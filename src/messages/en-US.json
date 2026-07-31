@@ -1,0 +1,39 @@
+{
+  "common": {
+    "appName": "Next Movies",
+    "loading": "Loading...",
+    "error": "Something went wrong.",
+    "noResultsFound": "No results were found."
+  },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "toggleTheme": "Toggle theme"
+  },
+  "color": {
+    "label": "Accent Color",
+    "blue": "Blue",
+    "green": "Green",
+    "cyan": "Cyan",
+    "indigo": "Indigo",
+    "purple": "Purple",
+    "yellow": "Yellow",
+    "orange": "Orange",
+    "red": "Red",
+    "pink": "Pink",
+    "toggleColor": "Toggle accent color"
+  },
+  "language": {
+    "label": "Languages",
+    "toggleLanguage": "Switch language",
+    "searchLanguage": "Search language",
+    "languageSelector": "Language selector"
+  },
+  "home": {
+    "title": "Welcome to Next Movies",
+    "subtitle": "A modern, fully internationalized movie app.",
+    "description": "Use the controls above to switch themes, accent colors, and languages in real time."
+  }
+}
