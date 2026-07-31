@@ -2,14 +2,19 @@
   "common": {
     "appName": "Next Movies",
     "loading": "Cargando...",
-    "error": "Algo salió mal."
+    "error": "Algo salió mal.",
+    "noResultsFound": "No se encontraron resultados.",
+    "close": "Cerrar",
+    "loadMore": "Cargar más",
+    "noMoreResults": "No hay más resultados"
   },
   "theme": {
     "label": "Tema",
     "light": "Claro",
     "dark": "Oscuro",
     "system": "Sistema",
-    "toggleTheme": "Cambiar tema"
+    "toggleTheme": "Cambiar tema",
+    "preferences": "Preferencias"
   },
   "color": {
     "label": "Color de Acento",
@@ -21,18 +26,79 @@
     "yellow": "Amarillo",
     "orange": "Naranja",
     "red": "Rojo",
-    "pink": "Rosita",
+    "pink": "Rosa",
     "toggleColor": "Cambiar color de acento"
   },
   "language": {
     "label": "Idioma",
-    "en": "Inglés",
-    "es": "Español",
-    "toggleLanguage": "Cambiar idioma"
+    "toggleLanguage": "Cambiar idioma",
+    "searchLanguage": "Buscar idioma",
+    "languageSelector": "Selector de idioma"
+  },
+  "nav": {
+    "home": "Inicio",
+    "trendingMovies": "Tendencias",
+    "categories": "Categorías",
+    "popular": "Populares",
+    "upcoming": "Próximamente",
+    "openMenu": "Abrir menú de navegación",
+    "closeMenu": "Cerrar menú de navegación",
+    "navigation": "Navegación principal",
+    "settings": "Configuración"
+  },
+  "search": {
+    "placeholder": "Buscar películas...",
+    "label": "Buscar",
+    "submit": "Enviar búsqueda",
+    "clear": "Limpiar búsqueda",
+    "noResults": "No se encontraron películas para \"{query}\".",
+    "results": "Resultados de búsqueda para \"{query}\"",
+    "title": "Búsqueda"
   },
   "home": {
     "title": "Bienvenido a Next Movies",
     "subtitle": "Una app de películas moderna y completamente internacionalizada.",
-    "description": "Usa los controles de arriba para cambiar temas, colores de acento e idiomas en tiempo real."
+    "description": "Usa los controles de arriba para cambiar temas, colores de acento e idiomas en tiempo real.",
+    "popularMovies": "Películas Populares",
+    "trending": "Tendencia",
+    "playTrailer": "Ver Tráiler",
+    "details": "Detalles",
+    "noMoviesAvailable": "No hay películas disponibles."
+  },
+  "movie": {
+    "cast": "Reparto",
+    "trailer": "Tráiler",
+    "related": "Películas Relacionadas",
+    "noTrailer": "No hay tráiler disponible.",
+    "runtime": "{hours}h {minutes}m",
+    "releaseDate": "Fecha de estreno",
+    "genres": "Géneros",
+    "backToHome": "Volver al inicio",
+    "viewDetails": "Ver Detalles",
+    "score": "Puntuación"
+  },
+  "trending": {
+    "title": "Tendencias",
+    "description": "Las películas más populares en este momento."
+  },
+  "categories": {
+    "title": "Categorías",
+    "description": "Explora películas por género."
+  },
+  "popular": {
+    "title": "Populares",
+    "description": "Las películas más vistas."
+  },
+  "upcoming": {
+    "title": "Próximamente",
+    "description": "Películas que llegan pronto a los cines."
+  },
+  "footer": {
+    "tagline": "Tu universo de películas, todo en un solo lugar.",
+    "copyright": "© {year} Next Movies. Todos los derechos reservados.",
+    "poweredBy": "Desarrollado con TMDB",
+    "disclaimer": "Este producto usa la API de TMDB pero no está respaldado ni certificado por TMDB.",
+    "links": "Navegación",
+    "legal": "Legal"
   }
 }

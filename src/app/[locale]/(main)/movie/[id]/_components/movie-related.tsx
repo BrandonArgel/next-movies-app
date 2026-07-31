@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { MovieCard } from "@/components/movies/movie-card";
 import {
   Carousel,
   CarouselContent,
@@ -8,37 +9,32 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { MovieCard } from "@/components/movies/movie-card";
 import type { Movie } from "@/types/movies";
 
-interface MovieCarouselProps {
+interface MovieRelatedProps {
   movies: Movie[];
 }
 
-export default function MovieCarousel({ movies }: MovieCarouselProps) {
-  const t = useTranslations("home");
+export function MovieRelated({ movies }: MovieRelatedProps) {
+  const t = useTranslations("movie");
+
+  if (movies.length === 0) return null;
 
   return (
-    <section
-      className="container mx-auto px-4 md:px-8 mt-12"
-      aria-labelledby="popular-heading"
-    >
-      <h2 id="popular-heading" className="text-2xl font-bold mb-6">
-        {t("popularMovies")}
+    <section aria-labelledby="related-heading" className="flex flex-col gap-4">
+      <h2 id="related-heading" className="text-xl md:text-2xl font-bold">
+        {t("related")}
       </h2>
 
       <Carousel
-        opts={{
-          align: "start",
-          loop: true,
-        }}
+        opts={{ align: "start", loop: false, dragFree: true }}
         className="w-full"
       >
         <CarouselContent className="-ms-4">
           {movies.map((movie) => (
             <CarouselItem
               key={movie.id}
-              className="ps-4 basis-1/2 md:basis-1/4 lg:basis-1/5"
+              className="ps-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
             >
               <MovieCard movie={movie} />
             </CarouselItem>

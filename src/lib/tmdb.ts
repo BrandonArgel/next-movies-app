@@ -1,5 +1,7 @@
 import { getLocale } from "next-intl/server";
-import { cookies } from "next/headers";
+import type { Movie, DetailedMovie, PaginatedResponse } from "@/types/movies";
+
+export type { PaginatedResponse };
 
 const BASE_URL = "https://api.themoviedb.org/3";
 const API_TOKEN = process.env.TMDB_API_READ_ACCESS_TOKEN;
@@ -14,15 +16,6 @@ async function fetchTMDB<T>(
   url.searchParams.append("language", locale);
   url.searchParams.append("include_image_language", locale);
 
-  // // Intentamos obtener la sesión del usuario desde las cookies
-  // const cookieStore = cookies();
-  // const userSessionId = cookieStore.get("tmdb_session_id")?.value;
-
-  // // Si hay sesión y es un endpoint de usuario, agregamos el parámetro o header
-  // if (userSessionId) {
-  //   url.searchParams.append("session_id", userSessionId);
-  // }
-
   const response = await fetch(url.toString(), {
     ...options,
     headers: {
@@ -35,31 +28,66 @@ async function fetchTMDB<T>(
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
-    throw new Error(errorData.status_message);
+    throw new Error(errorData.status_message ?? "TMDB request failed");
   }
 
-  return response.json();
+  return response.json() as Promise<T>;
 }
 
-// 2. Objeto exportado con tus métodos específicos
 export const tmdb = {
-  getTrending: async (timeWindow: "day" | "week" = "day") => {
-    return fetchTMDB<any>(`/trending/movie/${timeWindow}`);
+  getTrending: async (
+    timeWindow: "day" | "week" = "day",
+    page = 1,
+  ): Promise<PaginatedResponse<Movie>> => {
+    return fetchTMDB<PaginatedResponse<Movie>>(
+      `/trending/movie/${timeWindow}?page=${page}`,
+    );
   },
 
-  getMovie: async (id: string) => {
-    return fetchTMDB<any>(`/movie/${id}`);
+  getPopular: async (page = 1): Promise<PaginatedResponse<Movie>> => {
+    return fetchTMDB<PaginatedResponse<Movie>>(`/movie/popular?page=${page}`);
   },
 
-  searchMovies: async (query: string) => {
-    const url = new URL(`${BASE_URL}/search/movie`);
-    url.searchParams.append("query", query);
-    // Nota: fetchTMDB ya le agregará el ?language= automáticamente
-    return fetchTMDB<any>(`/search/movie?query=${encodeURIComponent(query)}`);
+  getUpcoming: async (page = 1): Promise<PaginatedResponse<Movie>> => {
+    return fetchTMDB<PaginatedResponse<Movie>>(`/movie/upcoming?page=${page}`);
   },
-  // Ejemplo de un método POST
-  rateMovie: async (movieId: string, rating: number) => {
-    return fetchTMDB<any>(`/movie/${movieId}/rating`, {
+
+  searchMovies: async (
+    query: string,
+    page = 1,
+  ): Promise<PaginatedResponse<Movie>> => {
+    return fetchTMDB<PaginatedResponse<Movie>>(
+      `/search/movie?query=${encodeURIComponent(query)}&page=${page}`,
+    );
+  },
+
+  /**
+   * Fetches full movie details including videos, credits, and similar movies
+   * in a single request via `append_to_response`.
+   */
+  getMovieDetails: async (id: string | number): Promise<DetailedMovie> => {
+    return fetchTMDB<DetailedMovie>(
+      `/movie/${id}?append_to_response=videos,images,credits,similar`,
+    );
+  },
+
+  /** @deprecated Use `getMovieDetails` instead for full data */
+  getMovie: async (id: string | number, appendToResponse?: string) => {
+    const query = appendToResponse
+      ? `?append_to_response=${appendToResponse}`
+      : "";
+    return fetchTMDB<DetailedMovie>(`/movie/${id}${query}`);
+  },
+
+  rateMovie: async (
+    movieId: string,
+    rating: number,
+  ): Promise<{
+    success: boolean;
+    status_code: number;
+    status_message: string;
+  }> => {
+    return fetchTMDB(`/movie/${movieId}/rating`, {
       method: "POST",
       body: JSON.stringify({ value: rating }),
     });

@@ -3,14 +3,18 @@
     "appName": "Next Movies",
     "loading": "Loading...",
     "error": "Something went wrong.",
-    "noResultsFound": "No results were found."
+    "noResultsFound": "No results were found.",
+    "close": "Close",
+    "loadMore": "Load more",
+    "noMoreResults": "No more results"
   },
   "theme": {
     "label": "Theme",
     "light": "Light",
     "dark": "Dark",
     "system": "System",
-    "toggleTheme": "Toggle theme"
+    "toggleTheme": "Toggle theme",
+    "preferences": "Preferences"
   },
   "color": {
     "label": "Accent Color",
@@ -31,9 +35,74 @@
     "searchLanguage": "Search language",
     "languageSelector": "Language selector"
   },
+  "nav": {
+    "home": "Home",
+    "trendingMovies": "Trending Movies",
+    "categories": "Categories",
+    "popular": "Popular",
+    "upcoming": "Upcoming",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
+    "navigation": "Main navigation",
+    "settings": "Settings"
+  },
+  "search": {
+    "placeholder": "Search movies...",
+    "label": "Search",
+    "submit": "Submit search",
+    "clear": "Clear search",
+    "noResults": "No movies found for \"{query}\".",
+    "results": "Search results for \"{query}\"",
+    "title": "Search"
+  },
   "home": {
     "title": "Welcome to Next Movies",
     "subtitle": "A modern, fully internationalized movie app.",
-    "description": "Use the controls above to switch themes, accent colors, and languages in real time."
+    "description": "Use the controls above to switch themes, accent colors, and languages in real time.",
+    "popularMovies": "Popular Movies",
+    "trending": "Trending",
+    "playTrailer": "Play Trailer",
+    "details": "Details",
+    "noMoviesAvailable": "No movies available."
+  },
+  "movie": {
+    "cast": "Cast",
+    "trailer": "Trailer",
+    "related": "Related Movies",
+    "noTrailer": "No trailer available.",
+    "releaseDate": "Release date",
+    "genres": "Genres",
+    "backToHome": "Back to home",
+    "viewDetails": "View Details",
+    "score": "Score",
+    "official_website": "Official website",
+    "status": "Status",
+    "popularity": "Popularity",
+    "budget": "Budget",
+    "revenue": "Revenue"
+  },
+  "trending": {
+    "title": "Trending Movies",
+    "description": "The most popular movies right now."
+  },
+  "categories": {
+    "title": "Categories",
+    "description": "Browse movies by genre."
+  },
+  "popular": {
+    "title": "Popular",
+    "description": "The most watched movies."
+  },
+  "upcoming": {
+    "title": "Upcoming",
+    "description": "Movies coming soon to theaters."
+  },
+  "footer": {
+    "tagline": "Your universe of movies, all in one place.",
+    "copyright": "© {year} Next Movies. All rights reserved.",
+    "poweredBy": "Powered by TMDB",
+    "disclaimer": "This product uses the TMDB API but is not endorsed or certified by TMDB.",
+    "links": "Navigation",
+    "legal": "Legal"
   }
 }

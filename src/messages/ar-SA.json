@@ -1,38 +1,104 @@
 {
   "common": {
     "appName": "Next Movies",
-    "loading": "Loading...",
-    "error": "Something went wrong."
+    "loading": "جارٍ التحميل...",
+    "error": "حدث خطأ ما.",
+    "noResultsFound": "لم يتم العثور على نتائج.",
+    "close": "إغلاق",
+    "loadMore": "تحميل المزيد",
+    "noMoreResults": "لا توجد نتائج أخرى"
   },
   "theme": {
-    "label": "Theme",
-    "light": "Light",
-    "dark": "Dark",
-    "system": "System",
-    "toggleTheme": "Toggle theme"
+    "label": "المظهر",
+    "light": "فاتح",
+    "dark": "داكن",
+    "system": "النظام",
+    "toggleTheme": "تبديل المظهر",
+    "preferences": "التفضيلات"
   },
   "color": {
-    "label": "Accent Color",
-    "blue": "Blue",
-    "green": "Green",
-    "cyan": "Cyan",
-    "indigo": "Indigo",
-    "purple": "Purple",
-    "yellow": "Yellow",
-    "orange": "Orange",
-    "red": "Red",
-    "pink": "Pink",
-    "toggleColor": "Toggle accent color"
+    "label": "لون التمييز",
+    "blue": "أزرق",
+    "green": "أخضر",
+    "cyan": "سماوي",
+    "indigo": "نيلي",
+    "purple": "بنفسجي",
+    "yellow": "أصفر",
+    "orange": "برتقالي",
+    "red": "أحمر",
+    "pink": "وردي",
+    "toggleColor": "تبديل لون التمييز"
   },
   "language": {
-    "label": "Language",
-    "en": "English",
-    "es": "Spanish",
-    "toggleLanguage": "Switch language"
+    "label": "اللغة",
+    "toggleLanguage": "تغيير اللغة",
+    "searchLanguage": "البحث عن لغة",
+    "languageSelector": "محدد اللغة"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "trendingMovies": "الأفلام الرائجة",
+    "categories": "الفئات",
+    "popular": "الأكثر شعبية",
+    "upcoming": "قادم قريبًا",
+    "openMenu": "فتح قائمة التنقل",
+    "closeMenu": "إغلاق قائمة التنقل",
+    "navigation": "التنقل الرئيسي",
+    "settings": "الإعدادات"
+  },
+  "search": {
+    "placeholder": "البحث عن أفلام...",
+    "label": "بحث",
+    "submit": "إرسال البحث",
+    "clear": "مسح البحث",
+    "noResults": "لم يتم العثور على أفلام لـ \"{query}\".",
+    "results": "نتائج البحث عن \"{query}\"",
+    "title": "بحث"
   },
   "home": {
-    "title": "Welcome to Next Movies",
-    "subtitle": "A modern, fully internationalized movie app.",
-    "description": "Use the controls above to switch themes, accent colors, and languages in real time."
+    "title": "مرحبًا بك في Next Movies",
+    "subtitle": "تطبيق أفلام حديث ومدوّل بالكامل.",
+    "description": "استخدم عناصر التحكم أعلاه للتبديل بين المظاهر وألوان التمييز واللغات في الوقت الفعلي.",
+    "popularMovies": "الأفلام الشائعة",
+    "trending": "رائج",
+    "playTrailer": "تشغيل الإعلان",
+    "details": "التفاصيل",
+    "noMoviesAvailable": "لا توجد أفلام متاحة."
+  },
+  "movie": {
+    "cast": "طاقم التمثيل",
+    "trailer": "الإعلان",
+    "related": "أفلام مشابهة",
+    "noTrailer": "لا يوجد إعلان متاح.",
+    "runtime": "{hours}س {minutes}د",
+    "releaseDate": "تاريخ الإصدار",
+    "genres": "الأنواع",
+    "backToHome": "العودة إلى الرئيسية",
+    "viewDetails": "عرض التفاصيل",
+    "score": "التقييم"
+  },
+  "trending": {
+    "title": "الأفلام الرائجة",
+    "description": "أكثر الأفلام شعبية الآن."
+  },
+  "categories": {
+    "title": "الفئات",
+    "description": "تصفح الأفلام حسب النوع."
+  },
+  "popular": {
+    "title": "الأكثر شعبية",
+    "description": "الأفلام الأكثر مشاهدة."
+  },
+  "upcoming": {
+    "title": "قادم قريبًا",
+    "description": "أفلام ستصل قريبًا إلى دور السينما."
+  },
+  "footer": {
+    "tagline": "عالمك من الأفلام، في مكان واحد.",
+    "copyright": "© {year} Next Movies. جميع الحقوق محفوظة.",
+    "poweredBy": "مدعوم من TMDB",
+    "disclaimer": "هذا المنتج يستخدم واجهة برمجة تطبيقات TMDB لكنه غير معتمد أو مصدَّق من TMDB.",
+    "links": "التنقل",
+    "legal": "قانوني"
   }
 }
