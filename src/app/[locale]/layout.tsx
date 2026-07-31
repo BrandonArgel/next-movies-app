@@ -1,5 +1,4 @@
-import type React from "react";
-import type { Metadata } from "next";
+import { type Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -26,8 +25,8 @@ export function generateStaticParams() {
 
 export const metadata: Metadata = {
   title: {
-    default: "Next Movies",
-    template: "%s | Next Movies",
+    default: "BrandScope",
+    template: "%s | BrandScope",
   },
   description:
     "A modern, fully internationalized movie app built with Next.js.",
@@ -60,7 +59,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var c=localStorage.getItem("app-color");if(c)document.documentElement.setAttribute("data-color",c)}catch(e){}})()`,
+            __html: `(function(){try{var c=localStorage.getItem("app-color");if(c)document.documentElement.setAttribute("data-color",c);else{document.documentElement.setAttribute("data-color","blue")}}catch(e){}})()`,
           }}
         />
       </head>

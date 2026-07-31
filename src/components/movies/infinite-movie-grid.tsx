@@ -4,8 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Loader2Icon } from "lucide-react";
 import { MovieCard } from "@/components/movies/movie-card";
-import type { Movie } from "@/types/movies";
-import type { MovieListType } from "@/app/api/movies/route";
+import { type Movie } from "@/types/movies";
+import { type MovieListType } from "@/app/api/movies/route";
 import { cn } from "@/lib/utils";
 
 interface InfiniteMovieGridProps {

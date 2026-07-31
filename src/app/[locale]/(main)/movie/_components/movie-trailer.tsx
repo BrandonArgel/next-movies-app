@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import type { VideoResult } from "@/types/movies";
+import { type VideoResult } from "@/types/media";
 
 interface MovieTrailerProps {
   videos: VideoResult[];

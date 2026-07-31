@@ -1,28 +1,20 @@
-"use client";
-
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { StarIcon } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
-import type { Movie } from "@/types/movies";
+import { type Movie } from "@/types/movies";
 
 interface MovieCardProps {
   movie: Movie;
   className?: string;
-  /** When true, renders a larger card suited for grid views */
-  variant?: "default" | "grid";
 }
 
-export function MovieCard({
-  movie,
-  className,
-  variant = "default",
-}: MovieCardProps) {
+export function MovieCard({ movie, className }: MovieCardProps) {
   const t = useTranslations("movie");
   const { id, poster_path, title, vote_average, release_date } = movie;
 
-  const year = release_date ? new Date(release_date).getFullYear() : null;
+  const year = release_date ? release_date.substring(0, 4) : null;
 
   return (
     <Link
@@ -33,12 +25,7 @@ export function MovieCard({
       )}
       aria-label={`${title}${year ? ` (${year})` : ""}`}
     >
-      <div
-        className={cn(
-          "relative overflow-hidden rounded-lg bg-muted",
-          variant === "grid" ? "aspect-2/3" : "aspect-2/3",
-        )}
-      >
+      <div className="relative overflow-hidden rounded-lg bg-muted aspect-2/3">
         {poster_path ? (
           <Image
             src={`https://image.tmdb.org/t/p/w500${poster_path}`}
@@ -55,19 +42,20 @@ export function MovieCard({
           </div>
         )}
 
-        {/* Score overlay */}
-        <div
-          className="absolute top-2 inset-s-2 flex items-center gap-0.5 rounded-full bg-black/70 px-2 py-0.5 text-xs font-semibold text-yellow-400"
-          aria-label={`${t("score")}: ${vote_average.toFixed(1)}`}
-        >
-          <StarIcon className="size-3 fill-current" aria-hidden="true" />
-          <span>{vote_average.toFixed(1)}</span>
-        </div>
+        {vote_average > 0 && (
+          <div
+            className="absolute top-2 inset-s-2 flex items-center gap-0.5 rounded-full bg-black/70 px-2 py-0.5 text-xs font-semibold text-yellow-400"
+            aria-label={`${t("score")}: ${vote_average.toFixed(1)}`}
+          >
+            <StarIcon className="size-3 fill-current" aria-hidden="true" />
+            <span>{vote_average.toFixed(1)}</span>
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col gap-0.5 px-0.5">
         <h3
-          className="font-semibold text-sm line-clamp-2 group-hover:text-primary transition-colors"
+          className="font-semibold text-sm line-clamp-1 group-hover:text-primary transition-colors"
           title={title}
         >
           {title}

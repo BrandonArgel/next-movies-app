@@ -1,3 +1,4 @@
+import { MediaType } from "./media";
 import {
   PaginatedResponse,
   Genre,
@@ -8,53 +9,48 @@ import {
 import { Videos, Images } from "./media";
 import { Credits } from "./credits";
 
-export interface Movie {
+export interface Show {
   adult: boolean;
   backdrop_path: string;
-  genre_ids: number[];
-  id: number;
-  media_type?: string;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  softcore?: boolean;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-}
-
-export interface BelongsToCollection {
   id: number;
   name: string;
+  original_language: string;
+  original_name: string;
+  overview: string;
   poster_path: string;
-  backdrop_path: string;
+  media_type: MediaType;
+  genre_ids: number[];
+  popularity: number;
+  first_air_date: string;
+  vote_average: number;
+  vote_count: number;
+  origin_country: string[];
 }
 
-export interface DetailedMovie extends Omit<
-  Movie,
-  "genre_ids" | "media_type" | "original_language" | "release_date"
-> {
-  belongs_to_collection: BelongsToCollection | null;
-  budget: number;
+export interface Creator {
+  id: number;
+  credit_id: string;
+  name: string;
+  gender: number;
+  profile_path: string | null;
+}
+
+export interface DetailedShow extends Show {
+  created_by: Creator[];
+  episode_run_time: number[];
   genres: Genre[];
   homepage: string;
-  imdb_id: string;
-  origin_country: string[];
-  original_language: string;
+  in_production: boolean;
+  languages: string[];
+  last_air_date: string;
+  number_of_episodes: number;
+  number_of_seasons: number;
   production_companies: ProductionCompany[];
   production_countries: ProductionCountry[];
-  release_date: string;
-  revenue: number;
-  runtime: number;
   spoken_languages: SpokenLanguage[];
   status: string;
   tagline: string;
   videos: Videos;
   images: Images;
   credits: Credits;
-  similar: PaginatedResponse<Movie>;
 }

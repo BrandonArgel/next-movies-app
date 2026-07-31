@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-// Agregamos un par de iconos más para las estadísticas
 import {
   Star,
   ExternalLink,
@@ -14,24 +13,13 @@ import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { LinkButton } from "@/components/ui/button";
 import { useAppLocale } from "@/providers/locale-provider";
-import { formatRuntime, formatReleaseDate } from "@/lib/utils";
-import type { DetailedMovie } from "@/types/movies";
-
-const formatCurrency = (amount: number, locale: string) => {
-  if (!amount || amount === 0) return "-";
-  return new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  }).format(amount);
-};
-
-const formatNumber = (num: number, locale: string) => {
-  if (!num) return "-";
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(
-    num,
-  );
-};
+import {
+  formatRuntime,
+  formatReleaseDate,
+  formatCurrency,
+  formatNumber,
+} from "@/lib/utils";
+import { type DetailedMovie } from "@/types/movies";
 
 interface MovieDetailHeroProps {
   movie: DetailedMovie;
@@ -175,7 +163,7 @@ export function MovieDetailHero({ movie }: MovieDetailHeroProps) {
             {overview}
           </p>
 
-          {/* BOTÓN HOMEPAGE Y/O TRAILER */}
+          {/* BOTÓN HOMEPAGE */}
           {homepage && (
             <div className="mt-2">
               <LinkButton

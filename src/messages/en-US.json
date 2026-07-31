@@ -1,12 +1,19 @@
 {
   "common": {
-    "appName": "Next Movies",
+    "appName": "BrandScope",
     "loading": "Loading...",
-    "error": "Something went wrong.",
     "noResultsFound": "No results were found.",
     "close": "Close",
     "loadMore": "Load more",
     "noMoreResults": "No more results"
+  },
+  "errors": {
+    "network": "Please check your internet connection and try again.",
+    "timeout": "The server took too long to respond.",
+    "notFound": "We couldn't find the requested resource.",
+    "default": "An unexpected error occurred. Please try again.",
+    "title": "Something went wrong",
+    "retry": "Retry"
   },
   "theme": {
     "label": "Theme",
@@ -44,7 +51,14 @@
     "openMenu": "Open navigation menu",
     "closeMenu": "Close navigation menu",
     "navigation": "Main navigation",
-    "settings": "Settings"
+    "settings": "Settings",
+    "movies": "Movies",
+    "tvShows": "TV Shows",
+    "people": "People",
+    "nowPlaying": "Now Playing",
+    "topRated": "Top Rated",
+    "airingToday": "Airing Today",
+    "onTv": "On TV"
   },
   "search": {
     "placeholder": "Search movies...",
@@ -56,19 +70,44 @@
     "title": "Search"
   },
   "home": {
-    "title": "Welcome to Next Movies",
-    "subtitle": "A modern, fully internationalized movie app.",
-    "description": "Use the controls above to switch themes, accent colors, and languages in real time.",
-    "popularMovies": "Popular Movies",
-    "trending": "Trending",
-    "playTrailer": "Play Trailer",
-    "details": "Details",
-    "noMoviesAvailable": "No movies available."
+    "errorHero": "Featured movie could not be loaded.",
+    "errorMovies": "Error loading movies: ",
+    "errorShows": "Error loading shows: ",
+    "errorPeople": "Error loading people: ",
+    "noMovies": "There are no movies available.",
+    "noShows": "There are no shows available.",
+    "noPeople": "There are no people available.",
+    "hero": {
+      "trending": "Trending!",
+      "playTrailer": "Play trailer",
+      "details": "More details",
+      "noTrailer": "No trailer available."
+    },
+    "trending": {
+      "movies": {
+        "title": "Trending Movies",
+        "description": "The most popular movies right now.",
+        "day": "Today",
+        "week": "This Week"
+      },
+      "shows": {
+        "title": "Trending TV Shows",
+        "description": "The most popular TV Shows right now.",
+        "day": "Today",
+        "week": "This Week"
+      },
+      "people": {
+        "title": "Trending People",
+        "description": "The most popular people right now.",
+        "day": "Today",
+        "week": "This Week"
+      }
+    }
   },
   "movie": {
-    "cast": "Cast",
+    "cast": "Top Billed Cast",
     "trailer": "Trailer",
-    "related": "Related Movies",
+    "recommendations": "If you liked this movie, you'll also like...",
     "noTrailer": "No trailer available.",
     "releaseDate": "Release date",
     "genres": "Genres",
@@ -81,9 +120,8 @@
     "budget": "Budget",
     "revenue": "Revenue"
   },
-  "trending": {
-    "title": "Trending Movies",
-    "description": "The most popular movies right now."
+  "person": {
+    "castMovies": "Known for..."
   },
   "categories": {
     "title": "Categories",
@@ -99,8 +137,8 @@
   },
   "footer": {
     "tagline": "Your universe of movies, all in one place.",
-    "copyright": "© {year} Next Movies. All rights reserved.",
-    "poweredBy": "Powered by TMDB",
+    "copyright": "© {year} BrandScope. All rights reserved.",
+    "poweredBy": "Powered by TMDB, created by Brandon Argel",
     "disclaimer": "This product uses the TMDB API but is not endorsed or certified by TMDB.",
     "links": "Navigation",
     "legal": "Legal"

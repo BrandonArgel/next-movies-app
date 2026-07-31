@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { getLocale } from "next-intl/server";
-import type { PaginatedResponse, Movie } from "@/types/movies";
+import { type PaginatedResponse } from "@/types/common";
+import { type Movie } from "@/types/movies";
 
 export type MovieListType = "trending" | "popular" | "upcoming" | "search";
 

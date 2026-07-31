@@ -3,7 +3,7 @@
 import { usePathname } from "@/i18n/navigation";
 import { LinkButton } from "../ui/button";
 import { cn } from "@/lib/utils";
-import type { ComponentProps } from "react";
+import { type ComponentProps } from "react";
 
 type Href = ComponentProps<typeof LinkButton>["href"];
 

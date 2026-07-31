@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { type Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { tmdb } from "@/lib/tmdb";
 import { InfiniteMovieGrid } from "@/components/movies/infinite-movie-grid";
@@ -7,7 +7,9 @@ interface SearchPageProps {
   searchParams: Promise<{ q?: string }>;
 }
 
-export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  searchParams,
+}: SearchPageProps): Promise<Metadata> {
   const { q } = await searchParams;
   const t = await getTranslations("search");
   return {
@@ -42,7 +44,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         </div>
 
         {data.results.length === 0 ? (
-          <p className="text-muted-foreground">{t("noResults", { query: q })}</p>
+          <p className="text-muted-foreground">
+            {t("noResults", { query: q })}
+          </p>
         ) : (
           <InfiniteMovieGrid
             initialMovies={data.results}

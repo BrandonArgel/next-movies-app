@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import type { Locale } from "@/i18n/routing";
+import { type Locale } from "@/i18n/routing";
 
 export const LOCALE_META: Record<Locale, { flag: string; nativeName: string }> =
   {

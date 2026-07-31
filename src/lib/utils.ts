@@ -42,3 +42,19 @@ export function formatReleaseDate(dateString: string, locale: string): string {
 
   return formatter.format(date);
 }
+
+export const formatCurrency = (amount: number, locale: string) => {
+  if (!amount || amount === 0) return "-";
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(amount);
+};
+
+export const formatNumber = (num: number, locale: string) => {
+  if (!num) return "-";
+  return new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(
+    num,
+  );
+};
