@@ -1,16 +1,16 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { PeopleCarousel } from "@/components/movies/people-carousel";
+import { PeopleCarousel } from "@/components/people/people-carousel";
 import { type CastMember } from "@/types/credits";
 
 interface MovieCastProps {
   cast: CastMember[];
 }
 
-const CAST_LIMIT = 20;
-
 export function MovieCast({ cast }: MovieCastProps) {
+  if (!cast || cast.length === 0) return;
+
   const t = useTranslations("movie");
 
   return (

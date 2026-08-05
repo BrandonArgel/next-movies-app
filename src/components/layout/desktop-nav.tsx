@@ -23,7 +23,7 @@ interface DesktopNavProps {
 
 export function DesktopNav({ menus }: DesktopNavProps) {
   return (
-    <ul className="hidden md:flex items-center gap-1 flex-1 ml-4" role="list">
+    <ul className="hidden xl:flex items-center gap-1 flex-1 ml-4" role="list">
       {menus.map((menu) => (
         <li key={menu.label}>
           <DropdownMenuTrigger>

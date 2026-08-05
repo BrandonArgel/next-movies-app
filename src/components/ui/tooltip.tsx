@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   Focusable,
   OverlayArrow,
   Tooltip as TooltipPrimitive,
   TooltipTrigger as TooltipTriggerPrimitive,
-} from "react-aria-components"
+} from "react-aria-components";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 function TooltipTrigger({
   delay = 0,
   children,
   ...props
 }: React.ComponentProps<typeof TooltipTriggerPrimitive>) {
-  const [trigger, tooltip] = React.Children.toArray(children)
+  const [trigger, tooltip] = React.Children.toArray(children);
 
   return (
     <TooltipTriggerPrimitive
@@ -28,7 +28,7 @@ function TooltipTrigger({
       </Focusable>
       {tooltip}
     </TooltipTriggerPrimitive>
-  )
+  );
 }
 
 function Tooltip({
@@ -42,8 +42,8 @@ function Tooltip({
   React.ComponentProps<typeof TooltipPrimitive>,
   "children" | "className"
 > & {
-  className?: string
-  children?: React.ReactNode
+  className?: string;
+  children?: React.ReactNode;
 }) {
   return (
     <TooltipPrimitive
@@ -53,13 +53,13 @@ function Tooltip({
       crossOffset={crossOffset}
       className={cn(
         "z-50 inline-flex w-fit max-w-xs origin-(--trigger-anchor-point) items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-xs text-background has-data-[slot=kbd]:pe-1.5 data-entering:animate-in data-entering:fade-in-0 data-entering:zoom-in-95 data-exiting:animate-out data-exiting:fade-out-0 data-exiting:zoom-out-95 data-[placement=bottom]:slide-in-from-top-2 data-[placement=left]:slide-in-from-right-2 data-[placement=right]:slide-in-from-left-2 data-[placement=top]:slide-in-from-bottom-2 **:data-[slot=kbd]:relative **:data-[slot=kbd]:isolate **:data-[slot=kbd]:z-50 **:data-[slot=kbd]:rounded-sm",
-        className
+        className,
       )}
       {...props}
     >
       {children}
       <OverlayArrow
-        className="z-50 size-2.5 translate-y-[calc(-50%-2px)] rotate-45 rounded-[2px] bg-foreground fill-foreground"
+        className="z-50 size-2.5 translate-y-[calc(-50%-2px)] rotate-45 rounded-xs bg-foreground fill-foreground"
         style={({ placement, defaultStyle }) => ({
           ...defaultStyle,
           rotate: "0deg",
@@ -75,7 +75,7 @@ function Tooltip({
         })}
       />
     </TooltipPrimitive>
-  )
+  );
 }
 
-export { Tooltip, TooltipTrigger }
+export { Tooltip, TooltipTrigger };

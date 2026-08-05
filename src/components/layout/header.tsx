@@ -6,27 +6,25 @@ import { MobileDrawer } from "@/components/layout/mobile-drawer";
 import { SearchBar } from "@/components/layout/search-bar";
 import { Link } from "@/i18n/navigation";
 import CinemaIcon from "@/assets/icons/cinema";
-// Importamos nuestro nuevo componente cliente
 import { DesktopNav, type NavMenuType } from "@/components/layout/desktop-nav";
 
-// La configuración pura
 const NAV_CONFIG = [
   {
     labelKey: "movies" as const,
     items: [
       { href: "/movies/popular", labelKey: "popular" as const },
-      { href: "/movies/now-playing", labelKey: "nowPlaying" as const },
+      { href: "/movies/now-playing", labelKey: "now_playing" as const },
       { href: "/movies/upcoming", labelKey: "upcoming" as const },
-      { href: "/movies/top-rated", labelKey: "topRated" as const },
+      { href: "/movies/top-rated", labelKey: "top_rated" as const },
     ],
   },
   {
-    labelKey: "tvShows" as const,
+    labelKey: "tv_shows" as const,
     items: [
-      { href: "/tv/airing-today", labelKey: "airingToday" as const },
-      { href: "/tv/on-tv", labelKey: "onTv" as const },
-      { href: "/tv/popular", labelKey: "popular" as const },
-      { href: "/tv/top-rated", labelKey: "topRated" as const },
+      { href: "/tv-show/airing-today", labelKey: "airing_today" as const },
+      { href: "/tv-show/on-tv", labelKey: "on_tv" as const },
+      { href: "/tv-show/popular", labelKey: "popular" as const },
+      { href: "/tv-show/top-rated", labelKey: "top_rated" as const },
     ],
   },
   {
@@ -35,12 +33,22 @@ const NAV_CONFIG = [
   },
 ] as const;
 
+const USER_NAV_CONFIG = [
+  {
+    labelKey: "user" as const,
+    items: [
+      { href: "/my-favorites", labelKey: "favorites" as const },
+      { href: "/my-list", labelKey: "list" as const },
+      { href: "/my-ratings", labelKey: "ratings" as const },
+    ],
+  },
+];
+
 export async function Header() {
   const tCommon = await getTranslations("common");
   const tNav = await getTranslations("nav");
 
-  // 1. Pre-procesamos las traducciones en el servidor
-  const translatedMenus: NavMenuType[] = NAV_CONFIG.map((menu) => ({
+  const translatedMenus: NavMenuType[] = [...NAV_CONFIG].map((menu) => ({
     label: tNav(menu.labelKey),
     items: menu.items.map((item) => ({
       href: item.href,
@@ -58,17 +66,17 @@ export async function Header() {
         <Link
           href="/"
           className="inline-flex shrink-0 justify-center items-center font-semibold tracking-tight text-primary gap-2 text-2xl"
-          aria-label={tCommon("appName")}
+          aria-label={tCommon("app_name")}
         >
           <CinemaIcon className="w-10" cupClassName="text-primary" />
-          <span>{tCommon("appName")}</span>
+          <span>{tCommon("app_name")}</span>
         </Link>
 
-        {/* Desktop nav (Delegado a un Client Component accesible) */}
+        {/* Desktop nav */}
         <DesktopNav menus={translatedMenus} />
 
         {/* Spacer on mobile */}
-        <div className="flex-1 md:hidden" />
+        <div className="flex-1 xl:hidden" />
 
         {/* Search — desktop */}
         <div className="hidden md:block">
@@ -77,7 +85,7 @@ export async function Header() {
 
         {/* Desktop controls */}
         <div
-          className="hidden md:flex items-center gap-2"
+          className="hidden xl:flex items-center gap-2"
           role="toolbar"
           aria-label={tNav("settings")}
         >

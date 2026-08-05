@@ -1,10 +1,15 @@
+import { type Movie } from "./movies";
+import { type TVShow } from "./tv-show";
+import { type TrendingPerson } from "./person";
+import { type PaginatedResponse } from "./common";
+
 export type ErrorTranslationKey =
   | "network"
   | "timeout"
-  | "notFound"
+  | "not_found"
   | "unauthorized"
-  | "rateLimit"
-  | "serverError"
+  | "rate_limit"
+  | "server_error"
   | "default";
 
 export type Result<T> =
@@ -16,3 +21,10 @@ export interface TMDBErrorResponse {
   status_code: number;
   status_message: string;
 }
+
+export type MultiSearchResult =
+  | (Movie & { media_type: "movie" })
+  | (TVShow & { media_type: "tv" })
+  | (TrendingPerson & { media_type: "person" });
+
+export interface MultiSearchResponse extends PaginatedResponse<MultiSearchResult> {}

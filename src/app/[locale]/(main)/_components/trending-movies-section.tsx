@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 import { MovieCarousel } from "@/components/movies/movies-carousel";
 import { cn } from "@/lib/utils";
-import { type TimeWindow, type Movie } from "@/types/movies";
+import { type Movie } from "@/types/movies";
+import { type TimeWindow } from "@/types/common";
 
 export default function TrendingMoviesSection({
   initialMovies,
@@ -17,15 +18,15 @@ export default function TrendingMoviesSection({
 }) {
   const t = useTranslations("home.trending.movies");
   const tErrors = useTranslations("errors");
+
   const [movies, setMovies] = useState<Movie[]>(initialMovies);
   const [timeWindow, setTimeWindow] = useState<TimeWindow>("day");
   const [isPending, startTransition] = useTransition();
 
-  const handleTabChange = (newWindow: "day" | "week") => {
+  const handleTabChange = (newWindow: TimeWindow) => {
     if (newWindow === timeWindow) return;
 
     const previousWindow = timeWindow;
-
     setTimeWindow(newWindow);
 
     startTransition(async () => {
@@ -33,7 +34,6 @@ export default function TrendingMoviesSection({
 
       if (!result.success) {
         setTimeWindow(previousWindow);
-
         sileo.error({
           title: tErrors("title"),
           description: tErrors(result.error),
@@ -42,7 +42,6 @@ export default function TrendingMoviesSection({
             onClick: () => handleTabChange(newWindow),
           },
         });
-
         return;
       }
 
@@ -53,46 +52,41 @@ export default function TrendingMoviesSection({
   const dayTimeWindow = timeWindow === "day";
 
   return (
-    <section className="container mx-auto mt-12 flex flex-col gap-4 px-4 md:px-8">
-      <div
-        className={cn(
-          "container mx-auto px-4 md:px-8 mt-12",
-          "transition-opacity duration-300",
-          isPending && "opacity-50",
-        )}
-      >
-        <div className="mb-6">
-          <div className="flex items-center gap-6 mb-2">
-            <h2 className="text-2xl font-bold">{t("title")}</h2>
+    <section
+      className={cn(
+        "transition-opacity duration-300",
+        isPending && "opacity-50",
+      )}
+    >
+      <div className="mb-6">
+        <div className="flex flex-wrap items-center gap-4 md:gap-6 mb-2">
+          <h2 className="text-xl md:text-2xl font-bold">{t("title")}</h2>
 
-            <ButtonGroup>
-              <Button
-                variant={dayTimeWindow ? "default" : "secondary"}
-                onClick={() => handleTabChange("day")}
-                className={cn(
-                  "px-4 py-1.5 text-sm font-medium transition-colors",
-                )}
-                isDisabled={isPending}
-              >
-                {t("day")}
-              </Button>
-              <Button
-                variant={dayTimeWindow ? "secondary" : "default"}
-                onClick={() => handleTabChange("week")}
-                className={cn(
-                  "px-4 py-1.5 text-sm font-medium transition-colors",
-                )}
-                isDisabled={isPending}
-              >
-                {t("week")}
-              </Button>
-            </ButtonGroup>
-          </div>
-          <p>{t("description")}</p>
+          <ButtonGroup>
+            <Button
+              variant={dayTimeWindow ? "default" : "secondary"}
+              onPress={() => handleTabChange("day")}
+              className="px-4 py-1.5 text-sm font-medium transition-colors"
+              isDisabled={isPending}
+            >
+              {t("day")}
+            </Button>
+            <Button
+              variant={dayTimeWindow ? "secondary" : "default"}
+              onPress={() => handleTabChange("week")}
+              className="px-4 py-1.5 text-sm font-medium transition-colors"
+              isDisabled={isPending}
+            >
+              {t("week")}
+            </Button>
+          </ButtonGroup>
         </div>
-
-        <MovieCarousel movies={movies} />
+        <p className="text-muted-foreground text-sm md:text-base">
+          {t("description")}
+        </p>
       </div>
+
+      <MovieCarousel key={timeWindow} movies={movies} active loop />
     </section>
   );
 }

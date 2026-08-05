@@ -26,7 +26,7 @@ export function ColorToggle() {
 
   return (
     <DropdownMenuTrigger>
-      <Button variant="outline" size="icon" aria-label={t("toggleColor")}>
+      <Button variant="outline" size="icon" aria-label={t("toggle_color")}>
         <PaletteIcon
           className={`size-4 transition-opacity ${!mounted ? "opacity-50" : "opacity-100"}`}
         />

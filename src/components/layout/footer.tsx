@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 
 const NAV_LINKS = [
   { href: "/", labelKey: "home" as const },
-  { href: "/trending", labelKey: "trendingMovies" as const },
+  { href: "/trending", labelKey: "trending_movies" as const },
   { href: "/categories", labelKey: "categories" as const },
   { href: "/popular", labelKey: "popular" as const },
   { href: "/upcoming", labelKey: "upcoming" as const },
@@ -27,10 +27,10 @@ export async function Footer() {
             <Link
               href="/"
               className="inline-flex items-end gap-2 font-semibold text-primary text-xl w-fit"
-              aria-label={tCommon("appName")}
+              aria-label={tCommon("app_name")}
             >
               <CinemaIcon className="w-9" cupClassName="text-primary" />
-              <span>{tCommon("appName")}</span>
+              <span>{tCommon("app_name")}</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               {tFooter("tagline")}
@@ -68,7 +68,7 @@ export async function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 w-fit group"
-                aria-label={tFooter("poweredBy")}
+                aria-label={tFooter("powered_by")}
               >
                 <img
                   src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
@@ -89,7 +89,7 @@ export async function Footer() {
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <p>{tFooter("copyright", { year })}</p>
-          <p>{tFooter("poweredBy")}</p>
+          <p>{tFooter("powered_by")}</p>
         </div>
       </div>
     </footer>

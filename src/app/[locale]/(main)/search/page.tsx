@@ -1,60 +1,69 @@
-import { type Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { type Metadata } from "next";
 import { tmdb } from "@/lib/tmdb";
-import { InfiniteMovieGrid } from "@/components/movies/infinite-movie-grid";
+import { InfiniteSearchGrid } from "@/components/movies/infinite-search-grid";
 
 interface SearchPageProps {
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{ q?: string | string[] }>;
+}
+
+function normalizeQuery(query?: string | string[]) {
+  if (!query) return "";
+  return Array.isArray(query) ? query[0] : query;
 }
 
 export async function generateMetadata({
   searchParams,
 }: SearchPageProps): Promise<Metadata> {
-  const { q } = await searchParams;
+  const resolvedParams = await searchParams;
+  const query = normalizeQuery(resolvedParams.q)?.trim();
   const t = await getTranslations("search");
+
   return {
-    title: q ? t("results", { query: q }) : t("title"),
+    title: query ? t("results", { query }) : t("title"),
+    description: query ? t("results", { query }) : t("title"),
   };
 }
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const { q = "" } = await searchParams;
+  const resolvedParams = await searchParams;
+  const query = normalizeQuery(resolvedParams.q)?.trim();
   const t = await getTranslations("search");
 
-  if (!q.trim()) {
+  if (!query) {
     return (
-      <main className="flex flex-col w-full min-h-screen pb-20 bg-background">
-        <div className="container mx-auto px-4 md:px-8 pt-10">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">{t("title")}</h1>
-          <p className="text-muted-foreground">{t("placeholder")}</p>
+      <main className="flex flex-col w-full min-h-screen bg-background">
+        <div className="container mx-auto px-4 md:px-8 xl:px-12 py-16">
+          <h1 className="text-4xl font-bold tracking-tight">{t("title")}</h1>
+          <p className="mt-4 max-w-2xl text-muted-foreground">
+            {t("placeholder")}
+          </p>
         </div>
       </main>
     );
   }
 
-  const data = await tmdb.searchMovies(q, 1);
+  const searchResponse = await tmdb.multiSearch(query, 1);
+  const initialResults = searchResponse.success
+    ? searchResponse.data.results
+    : [];
+  const totalPages = searchResponse.success
+    ? searchResponse.data.total_pages
+    : 0;
 
   return (
-    <main className="flex flex-col w-full min-h-screen pb-20 bg-background">
-      <div className="container mx-auto px-4 md:px-8 pt-10 flex flex-col gap-8">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-3xl md:text-4xl font-bold">
-            {t("results", { query: q })}
-          </h1>
+    <main className="flex flex-col w-full min-h-screen bg-background">
+      <div className="container mx-auto px-4 md:px-8 xl:px-12 py-16">
+        <div className="flex flex-col gap-3">
+          <h1 className="text-4xl font-bold tracking-tight">{t("title")}</h1>
+          <p className="text-muted-foreground">{t("results", { query })}</p>
         </div>
 
-        {data.results.length === 0 ? (
-          <p className="text-muted-foreground">
-            {t("noResults", { query: q })}
-          </p>
-        ) : (
-          <InfiniteMovieGrid
-            initialMovies={data.results}
-            totalPages={data.total_pages}
-            type="search"
-            query={q}
-          />
-        )}
+        <InfiniteSearchGrid
+          query={query}
+          initialResults={initialResults}
+          totalPages={totalPages}
+        />
       </div>
     </main>
   );

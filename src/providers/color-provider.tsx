@@ -7,7 +7,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useLocalStorage } from "@/hooks/use-local-storage";
 
 export type AccentColor =
   | "green"
@@ -18,7 +18,8 @@ export type AccentColor =
   | "yellow"
   | "orange"
   | "red"
-  | "pink";
+  | "pink"
+  | "gray";
 
 export interface ColorConfig {
   key: AccentColor;
@@ -67,6 +68,11 @@ export const ACCENT_COLORS: ColorConfig[] = [
     key: "pink",
     label: "Pink",
     previewClass: "bg-[oklch(0.645_0.246_346.816)]",
+  },
+  {
+    key: "gray",
+    label: "Gray",
+    previewClass: "bg-[oklch(0.5971_0_0)]",
   },
 ];
 

@@ -7,6 +7,10 @@ export interface PaginatedResponse<T> {
 
 export type TimeWindow = "day" | "week";
 
+export interface Genres {
+  genres: Genre[];
+}
+
 export interface Genre {
   id: number;
   name: string;

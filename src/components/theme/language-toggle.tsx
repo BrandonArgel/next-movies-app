@@ -50,7 +50,7 @@ export const LOCALE_META: Record<Locale, { flag: string; nativeName: string }> =
 
 export function LanguageToggle() {
   const t = useTranslations("language");
-  const tCommon = useTranslations("common");
+  const tCommon = useTranslations("common.states");
   const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
@@ -66,7 +66,6 @@ export function LanguageToggle() {
   }, []);
 
   const filteredLocales = useMemo(() => {
-    // Esparcimos la tupla en un nuevo arreglo para romper la referencia readonly
     let locales: Locale[] = [...routing.locales];
 
     if (searchQuery) {
@@ -107,7 +106,7 @@ export function LanguageToggle() {
       <Button
         variant="outline"
         size="icon"
-        aria-label={t("toggleLanguage")}
+        aria-label={t("toggle_language")}
         isDisabled={isPending}
       >
         {isPending ? (
@@ -125,18 +124,18 @@ export function LanguageToggle() {
       >
         <Dialog
           className="p-0 outline-none flex flex-col"
-          aria-label={t("languageSelector")}
+          aria-label={t("language_selector")}
         >
           <SearchField
             value={searchQuery}
             onChange={setSearchQuery}
             autoFocus
             className="flex items-center border-b px-3"
-            aria-label={t("searchLanguage")}
+            aria-label={t("search_language")}
           >
             <SearchIcon className="mr-2 size-4 shrink-0 opacity-50" />
             <Input
-              placeholder={`${t("searchLanguage")}...`}
+              placeholder={`${t("search_language")}...`}
               className="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground"
             />
           </SearchField>
@@ -154,7 +153,7 @@ export function LanguageToggle() {
             }}
             renderEmptyState={() => (
               <div className="text-center text-sm text-muted-foreground">
-                {tCommon("noResultsFound")}
+                {tCommon("no_results")}
               </div>
             )}
             className="max-h-75 overflow-y-auto p-1 outline-none"

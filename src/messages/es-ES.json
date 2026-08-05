@@ -1,104 +1,256 @@
 {
   "common": {
-    "appName": "Next Movies",
+    "app_name": "BrandScope",
+    "back_to_home": "Volver al inicio",
+    "view_details": "Ver detalles",
+    "view_details_of": "Ver detalles de",
+    "states": {
+      "no_results": "No hay resultados disponibles en este momento.",
+      "loading_error": "No se pudieron cargar los datos:",
+      "try_again": "Intenta de nuevo"
+    },
+    "entities": {
+      "movies": "Películas",
+      "tv_shows": "Series",
+      "people": "Personas"
+    },
     "loading": "Cargando...",
-    "error": "Algo salió mal.",
-    "noResultsFound": "No se encontraron resultados.",
-    "close": "Cerrar",
-    "loadMore": "Cargar más",
-    "noMoreResults": "No hay más resultados"
+    "no_more_results": "Has llegado al final.",
+    "results_count": "resultados"
+  },
+  "errors": {
+    "network": "Por favor revisa tu conexión y vuelve a intentarlo.",
+    "timeout": "El servidor tardó demasiado en responder.",
+    "not_found": "No pudimos encontrar el recurso solicitado.",
+    "unauthorized": "Acceso denegado. Verifica tus credenciales de API.",
+    "rate_limit": "Demasiadas solicitudes. Por favor reduce la velocidad e intenta más tarde.",
+    "server_error": "El servidor de TMDB está experimentando problemas.",
+    "default": "Ocurrió un error inesperado. Por favor intenta de nuevo.",
+    "title": "Algo salió mal",
+    "retry": "Reintentar"
   },
   "theme": {
     "label": "Tema",
     "light": "Claro",
     "dark": "Oscuro",
     "system": "Sistema",
-    "toggleTheme": "Cambiar tema",
+    "toggle_theme": "Cambiar tema",
     "preferences": "Preferencias"
   },
   "color": {
-    "label": "Color de Acento",
+    "label": "Color de acento",
     "blue": "Azul",
     "green": "Verde",
     "cyan": "Cian",
     "indigo": "Índigo",
-    "purple": "Morado",
+    "purple": "Púrpura",
     "yellow": "Amarillo",
     "orange": "Naranja",
     "red": "Rojo",
-    "pink": "Rosita",
-    "toggleColor": "Cambiar color de acento"
+    "pink": "Rosa",
+    "gray": "Gris",
+    "toggle_color": "Cambiar color de acento"
   },
   "language": {
-    "label": "Idioma",
-    "toggleLanguage": "Cambiar idioma",
-    "searchLanguage": "Buscar idioma",
-    "languageSelector": "Selector de idioma"
+    "label": "Idiomas",
+    "toggle_language": "Cambiar idioma",
+    "search_language": "Buscar idioma",
+    "language_selector": "Selector de idioma"
+  },
+  "network": {
+    "online_title": "Conexión restaurada",
+    "online_description": "Has vuelto a estar en línea.",
+    "offline_title": "Sin conexión",
+    "offline_description": "Parece que has perdido tu conexión a internet."
+  },
+  "certifications": {
+    "G": "Apto para todo el público.",
+    "PG": "Se sugiere supervisión de los padres.",
+    "PG-13": "Guía estricta para menores de 13 años.",
+    "R": "Restringido. Menores de 17 años deben ir acompañados por un adulto.",
+    "NC-17": "Solo para adultos. No accesible a menores de 17 años.",
+    "TV-Y": "Apto para todos los niños.",
+    "TV-Y7": "Para niños de 7 años en adelante.",
+    "TV-G": "Apto para todo el público.",
+    "TV-PG": "Se sugiere supervisión parental.",
+    "TV-14": "No apto para menores de 14 años.",
+    "TV-MA": "Solo para audiencias adultas.",
+    "NR": "No calificado.",
+    "Unrated": "Sin clasificación",
+    "fallback": "Clasificaciones de edad"
   },
   "nav": {
     "home": "Inicio",
-    "trendingMovies": "Tendencias",
+    "trending_movies": "Películas de tendencia",
     "categories": "Categorías",
     "popular": "Populares",
     "upcoming": "Próximamente",
-    "openMenu": "Abrir menú de navegación",
-    "closeMenu": "Cerrar menú de navegación",
+    "open_menu": "Abrir menú de navegación",
+    "close_menu": "Cerrar menú de navegación",
     "navigation": "Navegación principal",
-    "settings": "Configuración"
+    "settings": "Configuración",
+    "movies": "Películas",
+    "tv_shows": "Series",
+    "people": "Personas",
+    "now_playing": "En cines",
+    "top_rated": "Mejor valoradas",
+    "airing_today": "Emisión de hoy",
+    "on_tv": "En TV",
+    "user": "Mis cosas",
+    "favorites": "Favoritos",
+    "list": "Mi lista",
+    "ratings": "Mis valoraciones"
   },
   "search": {
-    "placeholder": "Buscar películas...",
+    "placeholder": "Buscar películas, series, personas...",
     "label": "Buscar",
     "submit": "Enviar búsqueda",
     "clear": "Limpiar búsqueda",
-    "noResults": "No se encontraron películas para \"{query}\".",
+    "filter_all": "Todos",
+    "filter_movies": "Películas",
+    "filter_tv": "Series",
+    "filter_people": "Personas",
+    "no_results": "No se encontraron resultados para \"{query}\".",
     "results": "Resultados de búsqueda para \"{query}\"",
-    "title": "Búsqueda"
+    "title": "Búsqueda",
+    "results_count": "resultados"
   },
   "home": {
-    "title": "Bienvenido a Next Movies",
-    "subtitle": "Una app de películas moderna y completamente internacionalizada.",
-    "description": "Usa los controles de arriba para cambiar temas, colores de acento e idiomas en tiempo real.",
-    "popularMovies": "Películas Populares",
-    "trending": "Tendencia",
-    "playTrailer": "Ver Tráiler",
-    "details": "Detalles",
-    "noMoviesAvailable": "No hay películas disponibles."
+    "hero": {
+      "trending": "¡Tendencia!",
+      "play_trailer": "Ver tráiler",
+      "details": "Más detalles",
+      "no_trailer": "No hay tráiler disponible."
+    },
+    "trending": {
+      "movies": {
+        "title": "Películas de tendencia",
+        "description": "Las películas más populares en este momento.",
+        "day": "Hoy",
+        "week": "Esta semana"
+      },
+      "tv_shows": {
+        "title": "Series de tendencia",
+        "description": "Las series más populares en este momento.",
+        "day": "Hoy",
+        "week": "Esta semana",
+        "error": "Error al cargar series:"
+      },
+      "people": {
+        "title": "Personas de tendencia",
+        "description": "Las personas más populares en este momento.",
+        "day": "Hoy",
+        "week": "Esta semana",
+        "error": "Error al cargar personas:"
+      }
+    }
   },
   "movie": {
-    "cast": "Reparto",
+    "cast": "Reparto principal",
     "trailer": "Tráiler",
-    "related": "Películas Relacionadas",
-    "noTrailer": "No hay tráiler disponible.",
-    "runtime": "{hours}h {minutes}m",
-    "releaseDate": "Fecha de estreno",
+    "recommendations": "Si te gustó esta película, también te gustará...",
+    "no_trailer": "No hay tráiler disponible.",
+    "release_date": "Fecha de estreno",
     "genres": "Géneros",
-    "backToHome": "Volver al inicio",
-    "viewDetails": "Ver Detalles",
-    "score": "Puntuación"
+    "score": "Puntuación",
+    "official_website": "Sitio web oficial",
+    "status": "Estado",
+    "popularity": "Popularidad",
+    "budget": "Presupuesto",
+    "revenue": "Ingresos",
+    "where_to_watch": "Dónde ver",
+    "stream": "Transmisión",
+    "buy": "Comprar",
+    "rent": "Alquilar",
+    "providers_attribution": "Datos de transmisión proporcionados por",
+    "gallery": "Galería",
+    "similar": "Películas similares",
+    "reviews": "Reseñas de usuarios",
+    "awards": "Premios",
+    "fallback_overview": "No hay descripción disponible para esta película.",
+    "options_aria_label": "Más opciones para {title}"
   },
-  "trending": {
-    "title": "Tendencias",
-    "description": "Las películas más populares en este momento."
+  "tv": {
+    "fallback_overview": "No hay descripción disponible para esta serie.",
+    "options_aria_label": "Más opciones para {name}",
+    "status": "Estado",
+    "popularity": "Popularidad",
+    "episodes": "Episodios",
+    "season": "Temporada",
+    "seasons": "Temporadas",
+    "reviews": "Reseñas de usuarios",
+    "created_by": "Creado por",
+    "in_production": "En producción",
+    "series_badge": "Serie",
+    "official_website": "Sitio web oficial",
+    "production_companies": "Compañías de producción"
+  },
+  "person": {
+    "castMovies": "Conocido por...",
+    "biography": "Biografía",
+    "noBiography": "No hay biografía disponible.",
+    "noPhoto": "Sin foto",
+    "readMore": "Leer más",
+    "readLess": "Leer menos",
+    "fallback_overview": "No hay descripción disponible para esta persona.",
+    "options_aria_label": "Más opciones para {name}",
+    "known_for": "Conocido por",
+    "popularity": "Popularidad",
+    "also_known_as": "También conocido como",
+    "photos": "Fotos",
+    "social_links_aria": "Redes sociales de {name}",
+    "tv_credits": "Créditos en TV",
+    "crew_credits": "Detrás de las cámaras"
   },
   "categories": {
     "title": "Categorías",
-    "description": "Explora películas por género."
+    "description": "Explora películas y series por género.",
+    "movies_section": "Películas",
+    "tv_section": "Series",
+    "explore_genre": "Explorar {genre}"
   },
   "popular": {
-    "title": "Populares",
+    "title": "Películas Populares",
     "description": "Las películas más vistas."
   },
   "upcoming": {
-    "title": "Próximamente",
-    "description": "Películas que llegan pronto a los cines."
+    "title": "Próximos Estrenos",
+    "description": "Películas que llegarán pronto."
   },
   "footer": {
     "tagline": "Tu universo de películas, todo en un solo lugar.",
-    "copyright": "© {year} Next Movies. Todos los derechos reservados.",
-    "poweredBy": "Desarrollado con TMDB",
+    "copyright": "© {year} BrandScope. Todos los derechos reservados.",
+    "powered_by": "Con tecnología de TMDB",
     "disclaimer": "Este producto usa la API de TMDB pero no está respaldado ni certificado por TMDB.",
     "links": "Navegación",
     "legal": "Legal"
+  },
+  "now_playing": {
+    "title": "En Cartelera",
+    "description": "Películas actualmente en los cines."
+  },
+  "movies_top_rated": {
+    "title": "Mejor Valoradas",
+    "description": "Las películas mejor valoradas de todos los tiempos."
+  },
+  "tv_airing_today": {
+    "title": "Emitiendo Hoy",
+    "description": "Series con episodios emitiéndose hoy."
+  },
+  "tv_on_tv": {
+    "title": "En Televisión",
+    "description": "Series emitiéndose actualmente en televisión."
+  },
+  "tv_popular": {
+    "title": "Series Populares",
+    "description": "Las series más populares ahora mismo."
+  },
+  "tv_top_rated": {
+    "title": "Series Mejor Valoradas",
+    "description": "Las series mejor valoradas de todos los tiempos."
+  },
+  "people_popular": {
+    "title": "Personas Populares",
+    "description": "Los actores, directores y creadores más destacados."
   }
 }

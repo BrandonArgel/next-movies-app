@@ -12,7 +12,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Skeleton } from "../ui/skeleton";
-import { MovieCard } from "./movie-card";
+import { MovieCard, MovieCardSkeleton } from "./movie-card";
+import { type CarouselApi } from "@/components/ui/carousel";
 import { type Movie } from "@/types/movies";
 
 interface MoviesCarouselProps {
@@ -27,6 +28,7 @@ export function MovieCarousel({
   loop = false,
 }: MoviesCarouselProps) {
   const { direction } = useAppLocale();
+  const [api, setApi] = useState<CarouselApi>();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -48,44 +50,50 @@ export function MovieCarousel({
     }),
   );
 
+  useEffect(() => {
+    if (!api || !active) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const autoplayPlugin = api.plugins().autoplay;
+
+          if (!autoplayPlugin) return;
+
+          try {
+            if (entry.isIntersecting) {
+              autoplayPlugin.play();
+            } else {
+              autoplayPlugin.stop();
+            }
+          } catch (error) {
+            console.debug("The Embla Autoplay plugin wasn't ready:", error);
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    const rootNode = api.rootNode();
+    if (rootNode) {
+      observer.observe(rootNode);
+    }
+
+    return () => {
+      if (rootNode) observer.unobserve(rootNode);
+      observer.disconnect();
+    };
+  }, [api]);
+
   if (!movies?.length) return null;
 
   if (!isMounted) {
-    return (
-      <div className="w-full space-y-4">
-        <div className="relative w-full">
-          <div className="overflow-hidden">
-            <div className="flex -ms-4">
-              {Array.from({ length: 5 }).map((_, index) => (
-                <div
-                  key={index}
-                  className="ps-4 basis-1/2 md:basis-1/4 lg:basis-1/5 shrink-0 grow-0 min-w-0"
-                >
-                  <div className="space-y-3">
-                    <Skeleton className="w-full aspect-2/3 rounded-xl" />
-                    <div className="space-y-1">
-                      <Skeleton className="h-4 w-3/4 rounded" />
-                      <Skeleton className="h-3 w-1/5 rounded" />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="hidden md:flex absolute inset-y-0 -inset-s-12 my-auto h-8 w-8 items-center justify-center">
-            <Skeleton className="h-8 w-8 rounded-full" />
-          </div>
-          <div className="hidden md:flex absolute inset-y-0 -inset-e-12 my-auto h-8 w-8 items-center justify-center">
-            <Skeleton className="h-8 w-8 rounded-full" />
-          </div>
-        </div>
-      </div>
-    );
+    return <MovieCarouselSkeleton />;
   }
 
   return (
     <Carousel
+      setApi={setApi}
       opts={{
         align: "start",
         skipSnaps: false,
@@ -94,7 +102,7 @@ export function MovieCarousel({
         loop,
       }}
       plugins={[pluginAutoplay.current, pluginWheel.current]}
-      className="w-full"
+      className="select-none w-full group/carousel relative"
     >
       <CarouselContent className="-ms-4">
         {movies.map((movie) => (
@@ -106,8 +114,40 @@ export function MovieCarousel({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="hidden md:flex" />
-      <CarouselNext className="hidden md:flex" />
+      <div className="absolute left-0 top-0 bottom-11 w-6 bg-linear-to-r from-background to-transparent pointer-events-none z-10" />
+
+      <div className="absolute right-0 top-0 bottom-11 w-6 bg-linear-to-l from-background to-transparent pointer-events-none z-10" />
+
+      <CarouselPrevious className="hidden md:flex z-20 border-none shadow-md backdrop-blur-md bg-background/70 group-hover/carousel:bg-primary! group-hover/carousel:text-primary-foreground! hover:bg-primary! hover:text-primary-foreground! transition-all duration-300" />
+      <CarouselNext className="hidden md:flex z-20 border-none shadow-md backdrop-blur-md bg-background/70 group-hover/carousel:bg-primary! group-hover/carousel:text-primary-foreground! hover:bg-primary! hover:text-primary-foreground! transition-all duration-300" />
     </Carousel>
+  );
+}
+
+export function MovieCarouselSkeleton() {
+  return (
+    <div className="w-full space-y-4">
+      <div className="relative w-full">
+        <div className="overflow-hidden">
+          <div className="flex -ms-4">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <div
+                key={index}
+                className="ps-4 basis-1/2 md:basis-1/4 lg:basis-1/5 shrink-0 grow-0 min-w-0"
+              >
+                <MovieCardSkeleton />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="hidden md:flex absolute inset-y-0 inset-s-2 xl:-inset-s-12 my-auto h-8 w-8 items-center justify-center">
+          <Skeleton className="h-8 w-8 rounded-full" />
+        </div>
+        <div className="hidden md:flex absolute inset-y-0 inset-e-2 xl:-inset-e-12 my-auto h-8 w-8 items-center justify-center">
+          <Skeleton className="h-8 w-8 rounded-full" />
+        </div>
+      </div>
+    </div>
   );
 }

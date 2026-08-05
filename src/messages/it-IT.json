@@ -1,0 +1,256 @@
+{
+  "common": {
+    "app_name": "BrandScope",
+    "back_to_home": "Ritorno a casa",
+    "view_details": "Visualizza dettagli",
+    "view_details_of": "Visualizza i dettagli per",
+    "states": {
+      "no_results": "Nessun risultato disponibile al momento.",
+      "loading_error": "Impossibile caricare i dati:",
+      "try_again": "Riprova"
+    },
+    "entities": {
+      "movies": "Film",
+      "tv_shows": "Spettacoli televisivi",
+      "people": "Persone"
+    },
+    "loading": "Caricamento...",
+    "no_more_results": "Hai raggiunto la fine.",
+    "results_count": "risultati"
+  },
+  "errors": {
+    "network": "Controlla la connessione Internet e riprova.",
+    "timeout": "Il server ha impiegato troppo tempo per rispondere.",
+    "not_found": "Non siamo riusciti a trovare la risorsa richiesta.",
+    "unauthorized": "Accesso negato. Controlla le tue credenziali API.",
+    "rate_limit": "Troppe richieste. Per favore rallenta e riprova più tardi.",
+    "server_error": "Il server TMDB sta attualmente riscontrando problemi.",
+    "default": "Si è verificato un errore imprevisto. Per favore riprova.",
+    "title": "Qualcosa è andato storto",
+    "retry": "Riprova"
+  },
+  "theme": {
+    "label": "Tema",
+    "light": "Leggero",
+    "dark": "Buio",
+    "system": "Sistema",
+    "toggle_theme": "Cambia tema",
+    "preferences": "Preferenze"
+  },
+  "color": {
+    "label": "Colore accento",
+    "blue": "Blu",
+    "green": "Verde",
+    "cyan": "Ciano",
+    "indigo": "Indaco",
+    "purple": "Viola",
+    "yellow": "Giallo",
+    "orange": "Arancia",
+    "red": "Rosso",
+    "pink": "Rosa",
+    "gray": "Grigio",
+    "toggle_color": "Attiva/disattiva il colore principale"
+  },
+  "language": {
+    "label": "Lingue",
+    "toggle_language": "Cambia lingua",
+    "search_language": "Cerca lingua",
+    "language_selector": "Selettore della lingua"
+  },
+  "network": {
+    "online_title": "Connessione ripristinata",
+    "online_description": "Sei di nuovo online.",
+    "offline_title": "Nessuna connessione",
+    "offline_description": "Sembra che tu abbia perso la connessione Internet."
+  },
+  "certifications": {
+    "G": "Adatto a tutto il pubblico.",
+    "PG": "Si consiglia la guida dei genitori.",
+    "PG-13": "Guida rigorosa dei genitori per i bambini sotto i 13 anni.",
+    "R": "Limitato. I bambini sotto i 17 anni devono essere accompagnati da un adulto.",
+    "NC-17": "Solo per adulti. Non accessibile ai minori di 17 anni.",
+    "TV-Y": "Adatto a tutti i bambini.",
+    "TV-Y7": "Per bambini dai 7 anni in su.",
+    "TV-G": "Adatto a tutto il pubblico.",
+    "TV-PG": "Si consiglia la guida dei genitori.",
+    "TV-14": "Non adatto a bambini sotto i 14 anni.",
+    "TV-MA": "Solo per un pubblico adulto.",
+    "NR": "Non valutato.",
+    "Unrated": "Non valutato",
+    "fallback": "Classificazioni per età"
+  },
+  "nav": {
+    "home": "Casa",
+    "trending_movies": "Film di tendenza",
+    "categories": "Categorie",
+    "popular": "Popolare",
+    "upcoming": "Prossimamente",
+    "open_menu": "Apri il menu di navigazione",
+    "close_menu": "Chiudi il menu di navigazione",
+    "navigation": "Navigazione principale",
+    "settings": "Impostazioni",
+    "movies": "Film",
+    "tv_shows": "Spettacoli televisivi",
+    "people": "Persone",
+    "now_playing": "Ora in riproduzione",
+    "top_rated": "I più votati",
+    "airing_today": "In onda oggi",
+    "on_tv": "In televisione",
+    "user": "Roba mia",
+    "favorites": "Preferiti",
+    "list": "La mia lista",
+    "ratings": "Le mie valutazioni"
+  },
+  "search": {
+    "placeholder": "Cerca film, serie TV, persone...",
+    "label": "Ricerca",
+    "submit": "Invia ricerca",
+    "clear": "Cancella ricerca",
+    "filter_all": "Tutti",
+    "filter_movies": "Film",
+    "filter_tv": "Serie TV",
+    "filter_people": "Persone",
+    "no_results": "Nessun risultato per \"{query}\".",
+    "results": "Risultati della ricerca per \"{query}\"",
+    "title": "Ricerca",
+    "results_count": "risultati"
+  },
+  "home": {
+    "hero": {
+      "trending": "Di tendenza!",
+      "play_trailer": "Riproduci il trailer",
+      "details": "Maggiori dettagli",
+      "no_trailer": "Nessun rimorchio disponibile."
+    },
+    "trending": {
+      "movies": {
+        "title": "Film di tendenza",
+        "description": "I film più popolari in questo momento.",
+        "day": "Oggi",
+        "week": "Questa settimana"
+      },
+      "tv_shows": {
+        "title": "Programmi TV di tendenza",
+        "description": "I programmi TV più popolari del momento.",
+        "day": "Oggi",
+        "week": "Questa settimana",
+        "error": "Errore durante il caricamento dei programmi TV:"
+      },
+      "people": {
+        "title": "Persone di tendenza",
+        "description": "Le persone più popolari in questo momento.",
+        "day": "Oggi",
+        "week": "Questa settimana",
+        "error": "Errore durante il caricamento delle persone:"
+      }
+    }
+  },
+  "movie": {
+    "cast": "Cast più fatturato",
+    "trailer": "Rimorchio",
+    "recommendations": "Se ti è piaciuto questo film, ti piacerà anche...",
+    "no_trailer": "Nessun rimorchio disponibile.",
+    "release_date": "Data di rilascio",
+    "genres": "Generi",
+    "score": "Punto",
+    "official_website": "Sito ufficiale",
+    "status": "Stato",
+    "popularity": "Popolarità",
+    "budget": "Bilancio",
+    "revenue": "Reddito",
+    "where_to_watch": "Dove guardare",
+    "stream": "Flusso",
+    "buy": "Acquistare",
+    "rent": "Affitto",
+    "providers_attribution": "Dati in streaming forniti da",
+    "gallery": "Galleria",
+    "similar": "Film simili",
+    "reviews": "Recensioni degli utenti",
+    "awards": "Premi",
+    "fallback_overview": "Nessuna panoramica disponibile per questo film.",
+    "options_aria_label": "Altre opzioni per{title}"
+  },
+  "tv": {
+    "fallback_overview": "Nessuna panoramica disponibile per questo programma TV.",
+    "options_aria_label": "Altre opzioni per{name}",
+    "status": "Stato",
+    "popularity": "Popolarità",
+    "episodes": "Episodi",
+    "season": "Stagione",
+    "seasons": "Stagioni",
+    "reviews": "Recensioni degli utenti",
+    "created_by": "Creato da",
+    "in_production": "In produzione",
+    "series_badge": "Serie",
+    "official_website": "Sito ufficiale",
+    "production_companies": "Case di produzione"
+  },
+  "person": {
+    "castMovies": "Conosciuto per...",
+    "biography": "Biografia",
+    "noBiography": "Nessuna biografia disponibile.",
+    "noPhoto": "Nessuna foto",
+    "readMore": "Per saperne di più",
+    "readLess": "Leggi di meno",
+    "fallback_overview": "Nessuna panoramica disponibile per questa persona.",
+    "options_aria_label": "Altre opzioni per{name}",
+    "known_for": "Noto per",
+    "popularity": "Popolarità",
+    "also_known_as": "Conosciuto anche come",
+    "photos": "Foto",
+    "social_links_aria": "Link social di {name}",
+    "tv_credits": "Crediti TV",
+    "crew_credits": "Dietro le quinte"
+  },
+  "categories": {
+    "title": "Categorie",
+    "description": "Sfoglia film e serie TV per genere.",
+    "movies_section": "Film",
+    "tv_section": "Serie TV",
+    "explore_genre": "Esplora {genre}"
+  },
+  "popular": {
+    "title": "Film Popolari",
+    "description": "I film più visti."
+  },
+  "upcoming": {
+    "title": "Film in Uscita",
+    "description": "Film in arrivo presto nei cinema."
+  },
+  "footer": {
+    "tagline": "Il tuo universo di film, tutto in un unico posto.",
+    "copyright": "©{year}BrandScope. Tutti i diritti riservati.",
+    "powered_by": "Alimentato da TMDB, creato da Brandon Argel",
+    "disclaimer": "Questo prodotto utilizza l'API TMDB ma non è approvato o certificato da TMDB.",
+    "links": "Navigazione",
+    "legal": "Legale"
+  },
+  "now_playing": {
+    "title": "Ora al Cinema",
+    "description": "Film attualmente in programmazione nelle sale."
+  },
+  "movies_top_rated": {
+    "title": "Film Più Votati",
+    "description": "I film più votati di sempre."
+  },
+  "tv_airing_today": {
+    "title": "In Onda Oggi",
+    "description": "Serie TV con episodi in onda oggi."
+  },
+  "tv_on_tv": {
+    "title": "In TV",
+    "description": "Serie TV attualmente in onda in televisione."
+  },
+  "tv_popular": {
+    "title": "Serie TV Popolari",
+    "description": "Le serie TV più popolari in questo momento."
+  },
+  "tv_top_rated": {
+    "title": "Serie TV Più Votate",
+    "description": "Le serie TV più votate di sempre."
+  },
+  "people_popular": {
+    "title": "Persone Popolari",
+    "description": "Attori, registi e creatori più discussi."
+  }
+}

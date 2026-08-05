@@ -1,21 +1,15 @@
-export interface CastMember {
-  id: number;
-  name: string;
-  character: string;
-  profile_path: string | null;
-  order: number;
-  known_for_department: string;
-}
+import type { PersonData } from "@/components/people/person-card";
 
-export interface CrewMember {
-  id: number;
-  name: string;
-  job: string;
-  department: string;
-  profile_path: string | null;
-}
-
-export interface Credits {
-  cast: CastMember[];
-  crew: CrewMember[];
+/**
+ * Unified CastMember type compatible with both movie cast (MovieCastMember)
+ * and TV show cast (ShowCast), extending PersonData used by PeopleCarousel.
+ */
+export interface CastMember extends PersonData {
+  original_name?: string;
+  popularity: number;
+  gender?: number;
+  department?: string;
+  job?: string;
+  credit_id?: string;
+  order?: number;
 }

@@ -1,12 +1,12 @@
 import {
-  PaginatedResponse,
   Genre,
+  PaginatedResponse,
   ProductionCompany,
   ProductionCountry,
   SpokenLanguage,
 } from "./common";
 import { Videos, Images } from "./media";
-import { Credits } from "./credits";
+import { WatchProvidersResponse } from "./watch-providers";
 
 export interface Movie {
   adult: boolean;
@@ -34,6 +34,25 @@ export interface BelongsToCollection {
   backdrop_path: string;
 }
 
+export interface ReleaseDatesResult {
+  iso_3166_1: string;
+  release_dates: {
+    certification: string;
+    release_date: string;
+  }[];
+}
+
+export interface Review {
+  id: string;
+  author: string;
+  content: string;
+  created_at: string;
+  author_details: {
+    rating?: number;
+    avatar_path?: string;
+  };
+}
+
 export interface DetailedMovie extends Omit<
   Movie,
   "genre_ids" | "media_type" | "original_language" | "release_date"
@@ -55,6 +74,32 @@ export interface DetailedMovie extends Omit<
   tagline: string;
   videos: Videos;
   images: Images;
-  credits: Credits;
-  similar: PaginatedResponse<Movie>;
+  credits: MovieCredits;
+  reviews: PaginatedResponse<Review>;
+  release_dates: PaginatedResponse<ReleaseDatesResult>;
+  "watch/providers"?: WatchProvidersResponse;
+}
+
+export interface MovieCastMember {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: null | string;
+  cast_id?: number;
+  character?: string;
+  credit_id: string;
+  order?: number;
+  department?: string;
+  job?: string;
+}
+
+export interface MovieCrewMember extends MovieCastMember {}
+
+export interface MovieCredits {
+  cast: MovieCastMember[];
+  crew: MovieCrewMember[];
 }

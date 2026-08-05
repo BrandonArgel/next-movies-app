@@ -1,13 +1,14 @@
-"use client";
-
 import { useTranslations } from "next-intl";
 import { type VideoResult } from "@/types/media";
+import { TrailerIframe } from "./trailer-iframe"; // Importamos el cliente
 
 interface MovieTrailerProps {
   videos: VideoResult[];
 }
 
 export function MovieTrailer({ videos }: MovieTrailerProps) {
+  if (!videos || videos.length === 0) return;
+
   const t = useTranslations("movie");
 
   const trailer =
@@ -24,16 +25,7 @@ export function MovieTrailer({ videos }: MovieTrailerProps) {
       </h2>
 
       {trailer ? (
-        <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-lg ring-1 ring-border bg-muted">
-          <iframe
-            src={`https://www.youtube.com/embed/${trailer.key}?rel=0&modestbranding=1`}
-            title={trailer.name}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="absolute inset-0 w-full h-full"
-            loading="lazy"
-          />
-        </div>
+        <TrailerIframe trailerKey={trailer.key} title={trailer.name} />
       ) : (
         <div className="flex items-center justify-center w-full aspect-video rounded-xl bg-muted text-muted-foreground text-sm">
           {t("noTrailer")}

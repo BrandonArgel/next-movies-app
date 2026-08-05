@@ -185,10 +185,10 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "absolute touch-manipulation rounded-full",
+        "absolute touch-manipulation rounded-full z-10 transition-all shadow-md",
         orientation === "horizontal"
-          ? "inset-y-0 -inset-s-12 my-auto"
-          : "-top-12 nset-s-1/2 -translate-x-1/2 rtl:translate-x-1/2 rotate-90",
+          ? "inset-y-0 inset-s-2 xl:-inset-s-10 my-auto"
+          : "-top-12 inset-s-1/2 -translate-x-1/2 rtl:translate-x-1/2 rotate-90",
         className,
       )}
       isDisabled={!canScrollPrev}
@@ -215,9 +215,9 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "absolute touch-manipulation rounded-full",
+        "absolute touch-manipulation rounded-full z-10 transition-all shadow-md",
         orientation === "horizontal"
-          ? "inset-y-0 -inset-e-12 my-auto"
+          ? "inset-y-0 inset-e-2 xl:-inset-e-10 my-auto"
           : "-bottom-12 inset-s-1/2 -translate-x-1/2 rtl:translate-x-1/2 rotate-90",
         className,
       )}

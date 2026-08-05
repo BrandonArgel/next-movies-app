@@ -51,6 +51,8 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --drop-shadow-hero-title: 2px 2px 2px rgb(0, 0, 0);
+  --drop-shadow-hero-text: 0 0px 4px rgba(0, 0, 0, 0.6);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -143,7 +145,7 @@
 
 [data-color="green"] {
   --primary: oklch(0.5 0.171 149.214);
-  --primary-foreground: oklch(0.145 0 0);
+  --primary-foreground: oklch(0.985 0 0);
   --ring: oklch(0.5 0.171 149.214);
   --sidebar-primary: var(--primary);
   --sidebar-ring: var(--ring);
@@ -201,6 +203,14 @@
   --primary: oklch(0.645 0.246 346.816);
   --primary-foreground: oklch(0.985 0 0);
   --ring: oklch(0.645 0.246 346.816);
+  --sidebar-primary: var(--primary);
+  --sidebar-ring: var(--ring);
+}
+
+[data-color="gray"] {
+  --primary: oklch(0.5971 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.5971 0 0);
   --sidebar-primary: var(--primary);
   --sidebar-ring: var(--ring);
 }
@@ -281,6 +291,15 @@
   --sidebar-primary: var(--primary);
   --sidebar-ring: var(--ring);
 }
+
+.dark[data-color="gray"] {
+  --primary: oklch(0.697 0 0);
+  --primary-foreground: oklch(0.145 0 0);
+  --ring: oklch(0.697 0 0);
+  --sidebar-primary: var(--primary);
+  --sidebar-ring: var(--ring);
+}
+
 /* ─────────────────────────────────────────────────────────────────────────────
    Base layer
 ────────────────────────────────────────────────────────────────────────────── */

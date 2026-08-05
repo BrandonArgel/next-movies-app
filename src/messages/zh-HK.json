@@ -1,0 +1,256 @@
+{
+  "common": {
+    "app_name": "BrandScope",
+    "back_to_home": "回到家",
+    "view_details": "看詳情",
+    "view_details_of": "查看詳細信息",
+    "states": {
+      "no_results": "目前沒有可用結果。",
+      "loading_error": "無法載入資料：",
+      "try_again": "再試一次"
+    },
+    "entities": {
+      "movies": "電影",
+      "tv_shows": "電視節目",
+      "people": "人們"
+    },
+    "loading": "載入中...",
+    "no_more_results": "已到達末尾。",
+    "results_count": "個結果"
+  },
+  "errors": {
+    "network": "請檢查您的網路連接，然後重試。",
+    "timeout": "伺服器回應時間太長。",
+    "not_found": "我們找不到所要求的資源。",
+    "unauthorized": "拒絕訪問。請檢查您的 API 憑證。",
+    "rate_limit": "請求太多。請放慢速度，稍後再試。",
+    "server_error": "TMDB 伺服器目前遇到問題。",
+    "default": "發生意外錯誤。請再試一次。",
+    "title": "出了點問題",
+    "retry": "重試"
+  },
+  "theme": {
+    "label": "主題",
+    "light": "光",
+    "dark": "黑暗的",
+    "system": "系統",
+    "toggle_theme": "切換主題",
+    "preferences": "偏好設定"
+  },
+  "color": {
+    "label": "強調色",
+    "blue": "藍色的",
+    "green": "綠色的",
+    "cyan": "青色",
+    "indigo": "靛青",
+    "purple": "紫色的",
+    "yellow": "黃色的",
+    "orange": "橘子",
+    "red": "紅色的",
+    "pink": "粉紅色的",
+    "gray": "灰色的",
+    "toggle_color": "切換強調色"
+  },
+  "language": {
+    "label": "語言",
+    "toggle_language": "切換語言",
+    "search_language": "搜尋語言",
+    "language_selector": "語言選擇器"
+  },
+  "network": {
+    "online_title": "連線已恢復",
+    "online_description": "您已恢復線上。",
+    "offline_title": "無連接",
+    "offline_description": "您似乎已失去網路連線。"
+  },
+  "certifications": {
+    "G": "適合所有觀眾。",
+    "PG": "建議家長指導。",
+    "PG-13": "對 13 歲以下兒童進行嚴格的家長指導。",
+    "R": "受限制的。 17 歲以下兒童必須由成人陪同。",
+    "NC-17": "僅限成人。 17 歲以下人士不可進入。",
+    "TV-Y": "適合所有兒童。",
+    "TV-Y7": "適合 7 歲及以上兒童。",
+    "TV-G": "適合所有觀眾。",
+    "TV-PG": "建議家長指導。",
+    "TV-14": "不適合 14 歲以下兒童。",
+    "TV-MA": "僅供成人觀眾觀賞。",
+    "NR": "未評級。",
+    "Unrated": "未評級",
+    "fallback": "年齡分級"
+  },
+  "nav": {
+    "home": "家",
+    "trending_movies": "熱門電影",
+    "categories": "類別",
+    "popular": "受歡迎的",
+    "upcoming": "即將推出",
+    "open_menu": "開啟導覽選單",
+    "close_menu": "關閉導航選單",
+    "navigation": "主導航",
+    "settings": "設定",
+    "movies": "電影",
+    "tv_shows": "電視節目",
+    "people": "人們",
+    "now_playing": "正在播放",
+    "top_rated": "最受好評",
+    "airing_today": "今天播出",
+    "on_tv": "在電視上",
+    "user": "我的東西",
+    "favorites": "收藏夾",
+    "list": "我的清單",
+    "ratings": "我的評分"
+  },
+  "search": {
+    "placeholder": "搜尋電影、劇集、人物...",
+    "label": "搜尋",
+    "submit": "提交搜索",
+    "clear": "清除搜尋",
+    "filter_all": "全部",
+    "filter_movies": "電影",
+    "filter_tv": "電視節目",
+    "filter_people": "人物",
+    "no_results": "找不到關於「{query}」的結果。",
+    "results": "搜尋結果“{query}」",
+    "title": "搜尋",
+    "results_count": "個結果"
+  },
+  "home": {
+    "hero": {
+      "trending": "趨勢！",
+      "play_trailer": "播放預告片",
+      "details": "更多詳情",
+      "no_trailer": "沒有可用的預告片。"
+    },
+    "trending": {
+      "movies": {
+        "title": "熱門電影",
+        "description": "現在最熱門的電影。",
+        "day": "今天",
+        "week": "本星期"
+      },
+      "tv_shows": {
+        "title": "熱門電視節目",
+        "description": "現在最受歡迎的電視節目。",
+        "day": "今天",
+        "week": "本星期",
+        "error": "載入電視節目時發生錯誤："
+      },
+      "people": {
+        "title": "熱門人物",
+        "description": "現在最受歡迎的人。",
+        "day": "今天",
+        "week": "本星期",
+        "error": "載入人員時出錯："
+      }
+    }
+  },
+  "movie": {
+    "cast": "票房最高的演員陣容",
+    "trailer": "拖車",
+    "recommendations": "如果你喜歡這部電影，你也會喜歡...",
+    "no_trailer": "沒有可用的預告片。",
+    "release_date": "發售日期",
+    "genres": "流派",
+    "score": "分數",
+    "official_website": "官方網站",
+    "status": "地位",
+    "popularity": "人氣",
+    "budget": "預算",
+    "revenue": "收入",
+    "where_to_watch": "在哪裡觀看",
+    "stream": "溪流",
+    "buy": "買",
+    "rent": "租",
+    "providers_attribution": "串流資料提供者",
+    "gallery": "畫廊",
+    "similar": "類似電影",
+    "reviews": "用戶評論",
+    "awards": "獎項",
+    "fallback_overview": "沒有這部電影的概述。",
+    "options_aria_label": "更多選項{title}"
+  },
+  "tv": {
+    "fallback_overview": "沒有此電視節目的概述。",
+    "options_aria_label": "更多選項{name}",
+    "status": "狀態",
+    "popularity": "熱度",
+    "episodes": "集數",
+    "season": "季",
+    "seasons": "季",
+    "reviews": "用戶評論",
+    "created_by": "創作者",
+    "in_production": "製作中",
+    "series_badge": "劇集",
+    "official_website": "官方網站",
+    "production_companies": "製作公司"
+  },
+  "person": {
+    "castMovies": "因...而聞名",
+    "biography": "傳",
+    "noBiography": "沒有可用的傳記。",
+    "noPhoto": "沒有照片",
+    "readMore": "閱讀更多",
+    "readLess": "少讀書",
+    "fallback_overview": "沒有此人的概述。",
+    "options_aria_label": "更多選項{name}",
+    "known_for": "知名作品",
+    "popularity": "熱度",
+    "also_known_as": "別名",
+    "photos": "照片",
+    "social_links_aria": "{name}的社群連結",
+    "tv_credits": "電視作品",
+    "crew_credits": "幕後工作"
+  },
+  "categories": {
+    "title": "類別",
+    "description": "按類型瀏覽電影和劇集。",
+    "movies_section": "電影",
+    "tv_section": "劇集",
+    "explore_genre": "探索 {genre}"
+  },
+  "popular": {
+    "title": "熱門電影",
+    "description": "觀看次數最多的電影。"
+  },
+  "upcoming": {
+    "title": "即將上映",
+    "description": "電影即將上映。"
+  },
+  "footer": {
+    "tagline": "您的電影世界盡在一處。",
+    "copyright": "©{year}品牌範圍。版權所有。",
+    "powered_by": "由 TMDB 提供支持，由 Brandon Argel 創建",
+    "disclaimer": "本產品使用 TMDB API，但未經 TMDB 認可或認證。",
+    "links": "導航",
+    "legal": "合法的"
+  },
+  "now_playing": {
+    "title": "正在上映",
+    "description": "目前在院線上映的電影。"
+  },
+  "movies_top_rated": {
+    "title": "評分最高的電影",
+    "description": "有史以來評分最高的電影。"
+  },
+  "tv_airing_today": {
+    "title": "今日播映",
+    "description": "今天有集數播映的劇集。"
+  },
+  "tv_on_tv": {
+    "title": "正在播映",
+    "description": "目前正在電視台播映的劇集。"
+  },
+  "tv_popular": {
+    "title": "熱門劇集",
+    "description": "目前最受歡迎的劇集。"
+  },
+  "tv_top_rated": {
+    "title": "評分最高的劇集",
+    "description": "有史以來評分最高的劇集。"
+  },
+  "people_popular": {
+    "title": "熱門人物",
+    "description": "最受關注的演員、導演和創作者。"
+  }
+}

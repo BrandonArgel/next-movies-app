@@ -11,7 +11,6 @@ export function formatRuntime(minutes: number, locale: string) {
   const hours = Math.floor(minutes / 60);
   const mins = minutes % 60;
 
-  // Configuramos el formateador para horas y minutos
   const hourFormatter = new Intl.NumberFormat(locale, {
     style: "unit",
     unit: "hour",
@@ -29,32 +28,3 @@ export function formatRuntime(minutes: number, locale: string) {
 
   return `${hourFormatter.format(hours)} ${minFormatter.format(mins)}`;
 }
-
-export function formatReleaseDate(dateString: string, locale: string): string {
-  if (!dateString) return "";
-
-  const date = new Date(dateString);
-  const formatter = new Intl.DateTimeFormat(locale, {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
-  return formatter.format(date);
-}
-
-export const formatCurrency = (amount: number, locale: string) => {
-  if (!amount || amount === 0) return "-";
-  return new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  }).format(amount);
-};
-
-export const formatNumber = (num: number, locale: string) => {
-  if (!num) return "-";
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(
-    num,
-  );
-};

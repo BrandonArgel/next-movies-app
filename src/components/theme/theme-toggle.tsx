@@ -45,7 +45,7 @@ export function ThemeToggle() {
 
   return (
     <DropdownMenuTrigger>
-      <Button variant="outline" size="icon" aria-label={t("toggleTheme")}>
+      <Button variant="outline" size="icon" aria-label={t("toggle_theme")}>
         <CurrentIcon
           className={`size-4 transition-opacity ${!mounted ? "opacity-50" : "opacity-100"}`}
           suppressHydrationWarning

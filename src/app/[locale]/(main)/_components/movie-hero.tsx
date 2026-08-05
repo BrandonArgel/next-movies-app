@@ -1,21 +1,27 @@
-"use client";
-
-import Image from "next/image";
 import { Star, Play, Info } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { getFormatter, getTranslations, getLocale } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
 import { Button, LinkButton } from "@/components/ui/button";
-import { type DetailedMovie } from "@/types/movies";
-import { DialogTrigger, Dialog } from "@/components/ui/dialog";
-import { useAppLocale } from "@/providers/locale-provider";
-import { formatRuntime, formatReleaseDate, cn } from "@/lib/utils";
-import { useState } from "react";
+import { formatRuntime } from "@/lib/utils";
+import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
+import { tmdb } from "@/lib/tmdb";
+import { MovieTrailerDialog } from "./movie-trailer-dialog";
 
-export default function MovieHero({ movie }: { movie: DetailedMovie }) {
-  const { locale } = useAppLocale();
+interface MovieHeroProps {
+  movieId: number;
+}
 
-  const [isMobileLoaded, setIsMobileLoaded] = useState(false);
-  const [isDesktopLoaded, setIsDesktopLoaded] = useState(false);
+export default async function MovieHero({ movieId }: MovieHeroProps) {
+  const heroDetailsResult = await tmdb.getMovieDetails(movieId);
+
+  if (!heroDetailsResult.success) {
+    return null;
+  }
+
+  const locale = await getLocale();
+  const format = await getFormatter();
+  const t = await getTranslations("home.hero");
 
   const {
     adult,
@@ -31,67 +37,64 @@ export default function MovieHero({ movie }: { movie: DetailedMovie }) {
     title,
     videos,
     vote_average,
-  } = movie;
+  } = heroDetailsResult.data;
 
-  const t = useTranslations("home.hero");
+  const formattedRating = vote_average > 0 ? vote_average.toFixed(1) : null;
+
+  const formattedReleaseDate = release_date
+    ? format.dateTime(new Date(release_date), "movieRelease")
+    : null;
 
   const formattedRuntime = formatRuntime(runtime, locale);
-  const formattedReleaseDate = formatReleaseDate(release_date, locale);
+
+  const logo =
+    images?.logos?.find((l) => locale.includes(l.iso_639_1)) ||
+    images?.logos?.[0];
+  const logoUrl = logo
+    ? `https://image.tmdb.org/t/p/w500${logo.file_path}`
+    : null;
+
+  const posterUrl = poster_path
+    ? `https://image.tmdb.org/t/p/w780${poster_path}`
+    : null;
+  const backdropUrl = backdrop_path
+    ? `https://image.tmdb.org/t/p/original${backdrop_path}`
+    : null;
 
   const trailer = videos?.results?.find(
     (vid) => vid.site === "YouTube" && vid.type === "Trailer",
   );
 
-  const logo =
-    images?.logos?.find((l) => locale.includes(l.iso_639_1)) ||
-    images?.logos?.[0];
+  const hasGenres = genres && genres.length > 0;
 
   return (
     <section
-      className="relative w-full h-[80vh] min-h-150 flex items-center"
+      className="relative w-full h-[80vh] min-h-150 flex items-center bg-black"
       aria-label={title}
     >
-      <div
-        className={cn("md:hidden absolute inset-0 z-0 bg-black", {
-          "animate-pulse bg-zinc-900": !isMobileLoaded,
-        })}
-      >
-        {poster_path && (
-          <Image
-            src={`https://image.tmdb.org/t/p/w780${poster_path}`}
-            alt={title}
-            fill
-            priority
-            className={cn(
-              "object-cover object-top transition-opacity duration-300",
-              isMobileLoaded ? "opacity-100" : "opacity-0",
-            )}
-            sizes="(max-width: 768px) 100vw, 0vw"
-            onLoad={() => setIsMobileLoaded(true)}
-          />
-        )}
-      </div>
+      {/* Mobile Image */}
+      {posterUrl && (
+        <ImageWithSkeleton
+          src={posterUrl}
+          alt={title}
+          fill
+          containerClassName="md:hidden absolute inset-0 z-0 bg-black"
+          className="object-cover object-top"
+          sizes="(max-width: 768px) 100vw, 0vw"
+        />
+      )}
 
-      <div
-        className={cn("hidden md:block absolute inset-0 z-0 bg-black", {
-          "animate-pulse bg-zinc-900": !isDesktopLoaded,
-        })}
-      >
-        {backdrop_path && (
-          <Image
-            src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
-            alt={title}
-            fill
-            priority
-            className={cn(
-              "object-cover transition-opacity duration-300",
-              isDesktopLoaded ? "opacity-100" : "opacity-0",
-            )}
-            sizes="(max-width: 768px) 0vw, 100vw"
-            onLoad={() => setIsDesktopLoaded(true)}
-          />
-        )}
-      </div>
+      {/* Desktop Image */}
+      {backdropUrl && (
+        <ImageWithSkeleton
+          src={backdropUrl}
+          alt={title}
+          fill
+          containerClassName="hidden md:block absolute inset-0 z-0 bg-black"
+          className="object-cover"
+          sizes="(max-width: 768px) 0vw, 100vw"
+        />
+      )}
 
       {/* Gradients */}
       <div className="absolute inset-0 bg-linear-to-r from-black/95 via-black/60 to-transparent z-10" />
@@ -99,17 +102,16 @@ export default function MovieHero({ movie }: { movie: DetailedMovie }) {
 
       {/* Content */}
       <div className="relative z-20 container mx-auto px-4 md:px-8 flex flex-col items-start gap-4 max-w-3xl">
-        {logo ? (
-          <div className="relative w-70 h-25 md:w-112.5 md:h-40 mb-2">
-            <Image
-              src={`https://image.tmdb.org/t/p/w500${logo.file_path}`}
-              alt={title}
-              fill
-              priority
-              className="object-contain object-left drop-shadow"
-              sizes="(max-width: 768px) 280px, 450px"
-            />
-          </div>
+        {/* Title */}
+        {logoUrl ? (
+          <ImageWithSkeleton
+            src={logoUrl}
+            alt={title}
+            fill
+            containerClassName="relative w-70 h-25 md:w-112.5 md:h-40 mb-2"
+            className="object-contain object-left drop-shadow"
+            sizes="(max-width: 768px) 280px, 450px"
+          />
         ) : (
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight mb-2">
             {title}
@@ -118,17 +120,16 @@ export default function MovieHero({ movie }: { movie: DetailedMovie }) {
 
         {/* Main metadata */}
         <div className="flex flex-wrap items-center gap-3 text-sm md:text-base font-medium text-white/90">
-          {vote_average > 0 && (
-            <div className="flex items-center gap-1.5 text-primary">
-              <Star className="w-5 h-5 fill-current" aria-hidden="true" />
-              <span className="text-white">{vote_average.toFixed(1)}</span>
-            </div>
-          )}
-
-          {vote_average > 0 && (
-            <span className="text-white/50" aria-hidden="true">
-              •
-            </span>
+          {formattedRating && (
+            <>
+              <div className="flex items-center gap-1.5 text-primary">
+                <Star className="w-5 h-5 fill-current" aria-hidden="true" />
+                <span className="text-white">{formattedRating}</span>
+              </div>
+              <span className="text-white/50" aria-hidden="true">
+                •
+              </span>
+            </>
           )}
 
           {formattedReleaseDate && (
@@ -160,24 +161,25 @@ export default function MovieHero({ movie }: { movie: DetailedMovie }) {
             </>
           )}
 
-          <span className="bg-primary text-white text-xs font-bold px-2 py-1 rounded-sm uppercase tracking-wider">
+          <span className="bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded-sm uppercase tracking-wider">
             {t("trending")}
           </span>
         </div>
 
-        {genres && genres.length > 0 && (
-          <div className="flex flex-wrap items-center gap-2 text-sm text-white/70">
-            {genres.map((genre) => (
-              <Badge
-                key={genre.id}
-                className="bg-primary/50 flex items-center gap-2"
-              >
-                <span>{genre.name}</span>
-              </Badge>
+        {/* Genres */}
+        {hasGenres && (
+          <div className="flex flex-wrap gap-2">
+            {genres.map(({ id, name }) => (
+              <Link key={id} href={`/genres/movie/${id}`}>
+                <Badge className="bg-primary/80 flex items-center gap-2">
+                  {name}
+                </Badge>
+              </Link>
             ))}
           </div>
         )}
 
+        {/* Synapsis and Tagline */}
         {tagline && (
           <p className="text-lg md:text-xl text-white/90 italic font-light mt-2">
             "{tagline}"
@@ -188,37 +190,21 @@ export default function MovieHero({ movie }: { movie: DetailedMovie }) {
           {overview}
         </p>
 
-        {/* Buttons */}
+        {/* Botones de acción */}
         <div className="flex items-center gap-4 mt-4">
           {trailer ? (
-            <DialogTrigger>
-              <Button
-                className="gap-2 px-6 py-6 text-base font-semibold rounded-md border-none transition-colors drop-shadow-md"
-                aria-label={t("playTrailer")}
-              >
-                <Play className="w-5 h-5 fill-current" aria-hidden="true" />
-                {t("playTrailer").toUpperCase()}
-              </Button>
-              <Dialog
-                className="sm:max-w-5xl w-full p-0 border-none bg-black overflow-hidden aspect-video shadow-2xl"
-                showCloseButton={true}
-              >
-                <iframe
-                  className="w-full h-full"
-                  src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1&rel=0`}
-                  title={`${title} Trailer`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </Dialog>
-            </DialogTrigger>
+            <MovieTrailerDialog
+              trailerKey={trailer.key}
+              title={title}
+              buttonText={t("play_trailer")}
+            />
           ) : (
             <Button
               isDisabled
               className="bg-gray-800 text-white/50 gap-2 px-6 py-6 text-base font-semibold rounded-md border-none opacity-70 cursor-not-allowed"
             >
               <Play className="w-5 h-5" aria-hidden="true" />
-              {t("noTrailer")}
+              {t("no_trailer")}
             </Button>
           )}
 

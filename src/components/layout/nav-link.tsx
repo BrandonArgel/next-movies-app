@@ -11,8 +11,7 @@ interface NavLinkProps {
   href: Href;
   children: React.ReactNode;
   className?: string;
-  onClick?: () => void;
-  /** When true, uses vertical mobile-drawer style */
+  onPress?: () => void;
   variant?: "desktop" | "mobile";
 }
 
@@ -20,7 +19,7 @@ export function NavLink({
   href,
   children,
   className,
-  onClick,
+  onPress,
   variant = "desktop",
 }: NavLinkProps) {
   const pathname = usePathname();
@@ -31,7 +30,7 @@ export function NavLink({
       <LinkButton
         href={href}
         variant="ghost"
-        onClick={onClick}
+        onPress={onPress}
         aria-current={isActive ? "page" : undefined}
         className={cn(
           "flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors",
@@ -50,7 +49,7 @@ export function NavLink({
     <LinkButton
       href={href}
       variant="ghost"
-      onClick={onClick}
+      onPress={onPress}
       aria-current={isActive ? "page" : undefined}
       className={cn(
         "relative px-3 py-2 rounded-md text-sm font-medium transition-colors",

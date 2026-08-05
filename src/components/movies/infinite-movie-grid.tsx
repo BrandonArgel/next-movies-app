@@ -13,6 +13,7 @@ interface InfiniteMovieGridProps {
   totalPages: number;
   type: MovieListType;
   query?: string;
+  genreId?: string;
   className?: string;
 }
 
@@ -21,6 +22,7 @@ export function InfiniteMovieGrid({
   totalPages,
   type,
   query = "",
+  genreId = "",
   className,
 }: InfiniteMovieGridProps) {
   const t = useTranslations("common");
@@ -32,7 +34,7 @@ export function InfiniteMovieGrid({
 
   const sentinelRef = useRef<HTMLDivElement>(null);
 
-  const loadMore = useCallback(async () => {
+  const load_more = useCallback(async () => {
     if (isLoading || !hasMore) return;
 
     setIsLoading(true);
@@ -42,6 +44,7 @@ export function InfiniteMovieGrid({
       type,
       page: String(nextPage),
       ...(query ? { q: query } : {}),
+      ...(genreId ? { genre: genreId } : {}),
     });
 
     const res = await fetch(`/api/movies?${params.toString()}`);
@@ -60,7 +63,7 @@ export function InfiniteMovieGrid({
     setPage(nextPage);
     setHasMore(nextPage < data.total_pages);
     setIsLoading(false);
-  }, [isLoading, hasMore, page, type, query]);
+  }, [isLoading, hasMore, page, type, query, genreId]);
 
   // Reset when initialMovies/type/query changes (e.g. navigating to a new search)
   useEffect(() => {
@@ -69,7 +72,7 @@ export function InfiniteMovieGrid({
     setHasMore(totalPages > 1);
   }, [initialMovies, totalPages]);
 
-  // IntersectionObserver — fires loadMore when sentinel enters viewport
+  // IntersectionObserver — fires load_more when sentinel enters viewport
   useEffect(() => {
     const sentinel = sentinelRef.current;
     if (!sentinel) return;
@@ -78,7 +81,7 @@ export function InfiniteMovieGrid({
       (entries) => {
         const [entry] = entries;
         if (entry?.isIntersecting) {
-          void loadMore();
+          void load_more();
         }
       },
       { rootMargin: "200px" },
@@ -86,7 +89,7 @@ export function InfiniteMovieGrid({
 
     observer.observe(sentinel);
     return () => observer.disconnect();
-  }, [loadMore]);
+  }, [load_more]);
 
   return (
     <div className={cn("flex flex-col gap-8", className)}>
@@ -108,7 +111,7 @@ export function InfiniteMovieGrid({
         className="flex justify-center items-center py-6 min-h-12"
         aria-live="polite"
         aria-label={
-          isLoading ? t("loading") : hasMore ? "" : t("noMoreResults")
+          isLoading ? t("loading") : hasMore ? "" : t("no_more_results")
         }
       >
         {isLoading && (
@@ -118,7 +121,9 @@ export function InfiniteMovieGrid({
           />
         )}
         {!isLoading && !hasMore && movies.length > 0 && (
-          <p className="text-sm text-muted-foreground">{t("noMoreResults")}</p>
+          <p className="text-sm text-muted-foreground">
+            {t("no_more_results")}
+          </p>
         )}
       </div>
     </div>
