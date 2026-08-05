@@ -100,7 +100,7 @@ export function InfiniteMovieGrid({
       >
         {movies.map((movie) => (
           <div key={movie.id} role="listitem">
-            <MovieCard movie={movie} variant="grid" />
+            <MovieCard movie={movie} />
           </div>
         ))}
       </div>
