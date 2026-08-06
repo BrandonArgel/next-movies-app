@@ -16,7 +16,7 @@ export async function MovieDetailHero({
   movie,
   ageRating,
 }: MovieDetailHeroProps) {
-  const t = await getTranslations("movie");
+  const t = await getTranslations("domains.movie");
   const format = await getFormatter();
   const locale = await getLocale();
 
@@ -69,11 +69,6 @@ export async function MovieDetailHero({
 
   const stats = [
     { label: t("status"), value: movie.status, icon: Info },
-    {
-      label: t("popularity"),
-      value: format.number(movie.popularity || 0, { maximumFractionDigits: 0 }),
-      icon: Activity,
-    },
     {
       label: t("budget"),
       value:

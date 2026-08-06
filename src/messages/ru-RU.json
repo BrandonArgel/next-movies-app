@@ -115,6 +115,13 @@
     "title": "Поиск",
     "results_count": "результатов"
   },
+  "genres": {
+    "title": "Категории",
+    "description": "Просматривайте фильмы и сериалы по жанрам.",
+    "movies_section": "Фильмы",
+    "tv_section": "Сериалы",
+    "explore_genre": "Смотреть {genre}"
+  },
   "home": {
     "hero": {
       "trending": "В тренде!",
@@ -201,13 +208,6 @@
     "social_links_aria": "Ссылки на соцсети {name}",
     "tv_credits": "Роли в сериалах",
     "crew_credits": "За камерой"
-  },
-  "categories": {
-    "title": "Категории",
-    "description": "Просматривайте фильмы и сериалы по жанрам.",
-    "movies_section": "Фильмы",
-    "tv_section": "Сериалы",
-    "explore_genre": "Смотреть {genre}"
   },
   "popular": {
     "title": "Популярные Фильмы",

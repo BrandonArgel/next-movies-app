@@ -10,7 +10,7 @@ import { Videos, Images } from "./media";
 import { WatchProvidersResponse } from "./watch-providers";
 import { type Review } from "./movies";
 
-export interface TVShow {
+export interface TvShow {
   adult: boolean;
   backdrop_path: string;
   id: number;
@@ -47,7 +47,7 @@ export interface Season {
   vote_average: number;
 }
 
-export interface DetailedTVShow extends TVShow {
+export interface DetailedTvShow extends TvShow {
   created_by: Creator[];
   episode_run_time: number[];
   genres: Genre[];

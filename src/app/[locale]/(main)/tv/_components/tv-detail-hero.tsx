@@ -1,16 +1,16 @@
 import { getFormatter, getTranslations } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
 import { Info, Activity, Tv2, Users } from "lucide-react";
-import { type DetailedTVShow } from "@/types/tv-show";
+import { type DetailedTvShow } from "@/types/tv-show";
 import { MediaHeroLayout } from "@/components/ui/media-hero-layout";
 import { getTMDBImageUrl } from "@/lib/tmdb";
 
 interface TvHeroProps {
-  show: DetailedTVShow;
+  show: DetailedTvShow;
 }
 
 export async function TvDetailHero({ show }: TvHeroProps) {
-  const t = await getTranslations("tv");
+  const t = await getTranslations("domains.tv");
   const format = await getFormatter();
 
   const logo =
@@ -56,11 +56,6 @@ export async function TvDetailHero({ show }: TvHeroProps) {
 
   const stats = [
     { label: t("status"), value: show.status, icon: Info },
-    {
-      label: t("popularity"),
-      value: format.number(show.popularity || 0, { maximumFractionDigits: 0 }),
-      icon: Activity,
-    },
     { label: t("episodes"), value: show.number_of_episodes, icon: Tv2 },
   ];
 
@@ -83,7 +78,7 @@ export async function TvDetailHero({ show }: TvHeroProps) {
       overview={show.overview}
       homepage={show.homepage}
       genres={show.genres}
-      genreBasePath="tv-show"
+      genreBasePath="tv"
       metaBadges={metaBadges}
       stats={stats}
       officialWebsiteLabel={t("official_website")}

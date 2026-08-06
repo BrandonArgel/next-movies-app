@@ -13,19 +13,19 @@ import {
 } from "@/components/ui/carousel";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TVShowCard, TVShowCardSkeleton } from "./tv-show-card";
-import { type TVShow } from "@/types/tv-show";
+import { type TvShow } from "@/types/tv-show";
 
-interface ShowCarouselProps {
-  tvShows: TVShow[];
+interface TvShowCarouselProps {
+  tvShows: TvShow[];
   active?: boolean;
   loop?: boolean;
 }
 
-export function TVShowCarousel({
+export function TvShowCarousel({
   tvShows,
   active = false,
   loop = false,
-}: ShowCarouselProps) {
+}: TvShowCarouselProps) {
   const { direction } = useAppLocale();
   const [isMounted, setIsMounted] = useState(false);
 

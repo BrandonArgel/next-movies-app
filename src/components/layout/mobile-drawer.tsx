@@ -34,7 +34,7 @@ const MOVIE_LINKS = [
 
 const TV_LINKS = [
   { href: "/tv/airing-today", labelKey: "airing_today" as const },
-  { href: "/tv/on-tv", labelKey: "on_tv" as const },
+  { href: "/tv/on-the-air", labelKey: "on_the_air" as const },
   { href: "/tv/popular", labelKey: "popular" as const },
   { href: "/tv/top-rated", labelKey: "top_rated" as const },
 ] as const;
@@ -55,19 +55,15 @@ function NavSection({ label, icon, links, tNav, onClose }: NavSectionProps) {
   return (
     <div className="flex flex-col gap-1">
       <div className="flex items-center gap-2 px-3 py-1">
-        <span className="text-muted-foreground">{icon}</span>
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+        <span className="text-foreground">{icon}</span>
+        <p className="text-xs font-semibold text-foreground uppercase tracking-wider">
           {label}
         </p>
       </div>
-      <ul className="flex flex-col gap-0.5">
+      <ul>
         {links.map(({ href, labelKey }) => (
-          <li key={href}>
-            <NavLink
-              href={href}
-              variant="mobile"
-              onPress={onClose}
-            >
+          <li key={href} className="flex flex-col">
+            <NavLink href={href} variant="mobile" onPress={onClose}>
               {tNav(labelKey as Parameters<typeof tNav>[0])}
             </NavLink>
           </li>
@@ -79,8 +75,9 @@ function NavSection({ label, icon, links, tNav, onClose }: NavSectionProps) {
 
 export function MobileDrawer() {
   const [isOpen, setIsOpen] = useState(false);
-  const tNav = useTranslations("nav");
-  const tCommon = useTranslations("common");
+  const tGlobal = useTranslations("global.branding");
+  const tNav = useTranslations("components.nav");
+
   const close = () => setIsOpen(false);
 
   return (
@@ -100,7 +97,7 @@ export function MobileDrawer() {
         <SheetHeader>
           <div className="flex items-center justify-between">
             <SheetTitle className="text-lg font-semibold">
-              {tCommon("app_name")}
+              {tGlobal("app_name")}
             </SheetTitle>
             <SheetClose
               variant="ghost"

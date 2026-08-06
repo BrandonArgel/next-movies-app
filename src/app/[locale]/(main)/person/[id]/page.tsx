@@ -6,10 +6,10 @@ import { tmdb } from "@/lib/tmdb";
 import { PersonHero } from "../_components/person-hero";
 import { PersonPhotos } from "../_components/person-photos";
 import { MovieCarousel } from "@/components/movies/movies-carousel";
-import { TVShowCarousel } from "@/components/tv-show/tv-show-carousel";
+import { TvShowCarousel } from "@/components/tv-show/tv-show-carousel";
 import { ADULT_CONTENT_COOKIE } from "@/lib/constants";
 import { AgeVerificationModal } from "@/components/ui/age-verification-modal";
-import { type TVShow } from "@/types/tv-show";
+import { type TvShow } from "@/types/tv-show";
 
 interface PersonPageProps {
   params: Promise<{ locale: string; id: string }>;
@@ -46,7 +46,7 @@ export default async function PersonPage({ params }: PersonPageProps) {
   const cookieStore = await cookies();
   const hasConsented = cookieStore.get(ADULT_CONTENT_COOKIE)?.value === "true";
 
-  const t = await getTranslations("person");
+  const t = await getTranslations("domains.person");
   const response = await tmdb.getPersonDetails(id);
 
   if (!response.success) {
@@ -91,11 +91,8 @@ export default async function PersonPage({ params }: PersonPageProps) {
         {/* Acting — TV shows */}
         {tvCastShows.length > 0 && (
           <section className="flex flex-col gap-6">
-            <h2 className="text-2xl font-bold">{t("tv_credits")}</h2>
-            <TVShowCarousel
-              tvShows={tvCastShows as unknown as TVShow[]}
-              active
-            />
+            <h2 className="text-2xl font-bold">{t("castTvShows")}</h2>
+            <TvShowCarousel tvShows={tvCastShows} active />
           </section>
         )}
 

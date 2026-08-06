@@ -10,17 +10,14 @@ export async function TvShowReviews({ reviews }: TvShowReviewsProps) {
   const displayReviews = reviews?.slice(0, 4);
   if (!displayReviews || displayReviews.length === 0) return null;
 
-  const t = await getTranslations("tv");
+  const t = await getTranslations("domains.tv");
 
   return (
     <section
       aria-labelledby="tv-reviews-heading"
       className="flex flex-col gap-6"
     >
-      <h2
-        id="tv-reviews-heading"
-        className="text-xl md:text-2xl font-bold"
-      >
+      <h2 id="tv-reviews-heading" className="text-xl md:text-2xl font-bold">
         {t("reviews")}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

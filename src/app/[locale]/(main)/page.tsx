@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { tmdb } from "@/lib/tmdb";
 import MovieHero from "./_components/movie-hero";
 import { TrendingMoviesContainer } from "./_components/trending-movies-container";
-import { TrendingTVShowsContainer } from "./_components/trending-tv-shows-container";
+import { TrendingTvShowsContainer } from "./_components/trending-tv-shows-container";
 import { TrendingPeopleContainer } from "./_components/trending-people-container";
 import { MovieCarouselSkeleton } from "@/components/movies/movies-carousel";
 
@@ -24,7 +24,7 @@ export default async function MoviesPage() {
         </Suspense>
 
         <Suspense fallback={<MovieCarouselSkeleton />}>
-          <TrendingTVShowsContainer />
+          <TrendingTvShowsContainer />
         </Suspense>
 
         <Suspense fallback={<MovieCarouselSkeleton />}>

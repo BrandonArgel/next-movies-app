@@ -22,8 +22,7 @@ interface PersonCardProps {
 export function PersonCard({ person, className }: PersonCardProps) {
   const { id, name, character, profile_path, known_for_department } = person;
 
-  const tCommon = useTranslations("common");
-  const tPerson = useTranslations("person");
+  const tGlobal = useTranslations("global.actions");
 
   const subtitle = character || known_for_department;
 
@@ -58,9 +57,9 @@ export function PersonCard({ person, className }: PersonCardProps) {
           <LinkButton
             href={`/person/${id}`}
             className="text-xs font-semibold text-primary-foreground shadow-sm"
-            aria-label={`${tCommon("view_details_of")} ${name}`}
+            aria-label={`${tGlobal("view_details_of")} ${name}`}
           >
-            {tCommon("view_details")}
+            {tGlobal("view_details")}
           </LinkButton>
         </div>
       </div>
@@ -70,7 +69,7 @@ export function PersonCard({ person, className }: PersonCardProps) {
         <button
           type="button"
           className="flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition-colors hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          aria-label={tPerson("options_aria_label", { name })}
+          aria-label={tGlobal("options_aria_label", { name })}
           onClick={(e) => {
             console.log("Abrir menú para:", name);
           }}

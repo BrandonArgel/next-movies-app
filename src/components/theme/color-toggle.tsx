@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 
 export function ColorToggle() {
   const { color, setColor } = useColor();
-  const t = useTranslations("color");
+  const t = useTranslations("components.preferences.color");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

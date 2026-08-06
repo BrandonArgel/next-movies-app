@@ -1,120 +1,220 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useMemo,
+} from "react";
 import { useTranslations } from "next-intl";
-import { Loader2Icon } from "lucide-react";
+import { Spinner } from "@/components/ui/spinner";
+import { useWindowVirtualizer } from "@tanstack/react-virtual";
 import { TVShowCard } from "@/components/tv-show/tv-show-card";
-import { type TVShow } from "@/types/tv-show";
-import { type TVListType } from "@/app/api/tv/route";
+import { type TvShow } from "@/types/tv-show";
 import { cn } from "@/lib/utils";
+import { useGridColumns } from "@/hooks/use-grid-columns";
 
-interface InfiniteTVGridProps {
-  initialShows: TVShow[];
+interface InfiniteTvShowGridProps {
+  initialTvShows: TvShow[];
   totalPages: number;
-  type: TVListType;
-  genreId?: string;
+  type?: "discover_tv" | "search";
+  searchQuery?: string;
+  filters?: Record<string, string>;
   className?: string;
 }
 
-export function InfiniteTVGrid({
-  initialShows,
+export function InfiniteTvShowGrid({
+  initialTvShows,
   totalPages,
-  type,
-  genreId = "",
+  type = "discover_tv",
+  searchQuery = "",
+  filters = {},
   className,
-}: InfiniteTVGridProps) {
+}: InfiniteTvShowGridProps) {
   const t = useTranslations("common");
+  const columns = useGridColumns();
 
-  const [shows, setShows] = useState<TVShow[]>(initialShows);
+  const [tvShows, setTvShows] = useState<TvShow[]>(initialTvShows);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(totalPages > 1);
+  const [scrollMargin, setScrollMargin] = useState(0);
 
-  const sentinelRef = useRef<HTMLDivElement>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (containerRef.current) {
+      setScrollMargin(containerRef.current.offsetTop);
+    }
+  }, []);
+
+  const tvShowsRows = useMemo(() => {
+    const rows = [];
+    for (let i = 0; i < tvShows.length; i += columns) {
+      rows.push(tvShows.slice(i, i + columns));
+    }
+    return rows;
+  }, [tvShows, columns]);
+
+  const virtualizer = useWindowVirtualizer({
+    count: tvShowsRows.length,
+    estimateSize: () => {
+      if (typeof window === "undefined") return 350;
+      const cardWidth = window.innerWidth / columns;
+      return cardWidth * 1.5 + 60;
+    },
+    overscan: 2,
+    scrollMargin,
+  });
+
+  const measureElement = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (node) {
+        queueMicrotask(() => {
+          virtualizer.measureElement(node);
+        });
+      }
+    },
+    [virtualizer],
+  );
 
   const loadMore = useCallback(async () => {
     if (isLoading || !hasMore) return;
 
     setIsLoading(true);
 
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    abortControllerRef.current = new AbortController();
+
     const nextPage = page + 1;
+
+    // Construct dynamic parameters based on the prop
     const params = new URLSearchParams({
       type,
       page: String(nextPage),
-      ...(genreId ? { genre: genreId } : {}),
     });
 
-    const res = await fetch(`/api/tv?${params.toString()}`);
-
-    if (!res.ok) {
-      setIsLoading(false);
-      return;
+    if (type === "search" && searchQuery) {
+      params.append("q", searchQuery);
+    } else {
+      Object.entries(filters).forEach(([key, value]) => {
+        if (value) params.append(key, value);
+      });
     }
 
-    const data = (await res.json()) as {
-      results: TVShow[];
-      total_pages: number;
-    };
+    try {
+      const res = await fetch(`/api/tv?${params.toString()}`, {
+        signal: abortControllerRef.current.signal,
+      });
 
-    setShows((prev) => [...prev, ...data.results]);
-    setPage(nextPage);
-    setHasMore(nextPage < data.total_pages);
-    setIsLoading(false);
-  }, [isLoading, hasMore, page, type, genreId]);
+      if (!res.ok) throw new Error("Fetch failed");
+
+      const data = (await res.json()) as {
+        results: TvShow[];
+        total_pages: number;
+      };
+
+      setTvShows((prev) => {
+        const existingIds = new Set(prev.map((m) => m.id));
+        const newMovies = data.results.filter((m) => !existingIds.has(m.id));
+        return [...prev, ...newMovies];
+      });
+
+      setPage(nextPage);
+      setHasMore(nextPage < data.total_pages);
+    } catch (error: any) {
+      if (error.name !== "AbortError") {
+        console.error(error);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }, [isLoading, hasMore, page, type, searchQuery, filters]);
+
+  // Deeply watch filter changes by stringifying them to prevent infinite loops
+  const filterKey = JSON.stringify(filters);
 
   useEffect(() => {
-    setShows(initialShows);
+    setTvShows(initialTvShows);
     setPage(1);
     setHasMore(totalPages > 1);
-  }, [initialShows, totalPages]);
+
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, [initialTvShows, totalPages, type, searchQuery, filterKey]);
+
+  const virtualItems = virtualizer.getVirtualItems();
+  const lastItemIndex = virtualItems[virtualItems.length - 1]?.index;
 
   useEffect(() => {
-    const sentinel = sentinelRef.current;
-    if (!sentinel) return;
+    if (lastItemIndex === undefined) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry?.isIntersecting) {
-          void loadMore();
-        }
-      },
-      { rootMargin: "200px" },
-    );
-
-    observer.observe(sentinel);
-    return () => observer.disconnect();
-  }, [loadMore]);
+    if (lastItemIndex >= tvShowsRows.length - 1 && hasMore && !isLoading) {
+      void loadMore();
+    }
+  }, [lastItemIndex, hasMore, isLoading, tvShowsRows.length, loadMore]);
 
   return (
-    <div className={cn("flex flex-col gap-8", className)}>
+    <div className={cn("flex flex-col gap-8", className)} ref={containerRef}>
       <div
-        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
         role="list"
         aria-busy={isLoading}
+        suppressHydrationWarning
+        style={{
+          height: `${virtualizer.getTotalSize()}px`,
+          width: "100%",
+          position: "relative",
+        }}
       >
-        {shows.map((show) => (
-          <div key={show.id} role="listitem">
-            <TVShowCard tvShow={show} />
-          </div>
-        ))}
+        {virtualItems.map((virtualRow) => {
+          const rowMovies = tvShowsRows[virtualRow.index];
+
+          return (
+            <div
+              key={virtualRow.key}
+              data-index={virtualRow.index}
+              ref={measureElement}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                transform: `translateY(${virtualRow.start - scrollMargin}px)`,
+                display: "grid",
+                gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+                gap: "1rem",
+                paddingBottom: "1.5rem",
+              }}
+            >
+              {rowMovies.map((movie) => (
+                <div key={movie.id} role="listitem">
+                  <TVShowCard tvShow={movie} />
+                </div>
+              ))}
+            </div>
+          );
+        })}
       </div>
 
       <div
-        ref={sentinelRef}
         className="flex justify-center items-center py-6 min-h-12"
         aria-live="polite"
-        aria-label={
-          isLoading ? t("loading") : hasMore ? "" : t("no_more_results")
-        }
       >
         {isLoading && (
-          <Loader2Icon
-            className="size-6 animate-spin text-muted-foreground"
+          <Spinner
+            className="size-6 text-muted-foreground"
             aria-hidden="true"
           />
         )}
-        {!isLoading && !hasMore && shows.length > 0 && (
+        {!isLoading && !hasMore && tvShows.length > 0 && (
           <p className="text-sm text-muted-foreground">
             {t("no_more_results")}
           </p>

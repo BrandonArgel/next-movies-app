@@ -5,15 +5,15 @@ import { Link } from "@/i18n/navigation";
 import { ChevronRightIcon, FilmIcon, TvIcon } from "lucide-react";
 import { tmdb } from "@/lib/tmdb";
 import { InfiniteMovieGrid } from "@/components/movies/infinite-movie-grid";
-import { InfiniteTVGrid } from "@/components/tv-show/infinite-tv-grid";
+import { InfiniteTvGrid } from "@/components/tv-show/infinite-tv-grid";
 import { type Movie } from "@/types/movies";
-import { type TVShow } from "@/types/tv-show";
+import { type TvShow } from "@/types/tv-show";
 
 interface GenrePageProps {
   params: Promise<{ type: string; genreId: string }>;
 }
 
-const VALID_TYPES = ["movie", "tv-show"] as const;
+const VALID_TYPES = ["movie", "tv"] as const;
 type GenreType = (typeof VALID_TYPES)[number];
 
 export async function generateMetadata({
@@ -109,7 +109,7 @@ export default async function GenrePage({ params }: GenrePageProps) {
               {/* Toggle to TV if genre also exists there */}
               {alsoInTV && (
                 <Link
-                  href={`/genres/tv-show/${genreId}`}
+                  href={`/genres/tv/${genreId}`}
                   className="inline-flex items-center gap-2 self-start sm:self-auto text-sm font-medium text-muted-foreground border border-border rounded-full px-4 py-2 hover:text-foreground hover:border-foreground/50 transition-colors"
                 >
                   <TvIcon className="size-4" />

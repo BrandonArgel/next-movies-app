@@ -1,101 +1,40 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { getLocale } from "next-intl/server";
-import { type PaginatedResponse } from "@/types/common";
-import { type TVShow } from "@/types/tv-show";
-
-export type TVListType =
-  | "airing-today"
-  | "on-tv"
-  | "popular"
-  | "top-rated"
-  | "genre";
-
-const BASE_URL = "https://api.themoviedb.org/3";
-const API_TOKEN = process.env.TMDB_API_READ_ACCESS_TOKEN;
-
-async function fetchPage(
-  type: TVListType,
-  page: number,
-  genreId: string,
-  locale: string,
-): Promise<PaginatedResponse<TVShow>> {
-  const url = new URL(BASE_URL);
-
-  switch (type) {
-    case "airing-today":
-      url.pathname = "/3/tv/airing_today";
-      break;
-    case "on-tv":
-      url.pathname = "/3/tv/on_the_air";
-      break;
-    case "popular":
-      url.pathname = "/3/tv/popular";
-      break;
-    case "top-rated":
-      url.pathname = "/3/tv/top_rated";
-      break;
-    case "genre":
-      url.pathname = "/3/discover/tv";
-      url.searchParams.set("with_genres", genreId);
-      url.searchParams.set("sort_by", "popularity.desc");
-      break;
-  }
-
-  url.searchParams.set("page", String(page));
-  url.searchParams.set("language", locale);
-  url.searchParams.set("include_image_language", locale);
-
-  const response = await fetch(url.toString(), {
-    headers: {
-      Authorization: `Bearer ${API_TOKEN}`,
-      accept: "application/json",
-    },
-    next: { revalidate: 300 },
-  });
-
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({}));
-    throw new Error(
-      (error as { status_message?: string }).status_message ?? "TMDB API error",
-    );
-  }
-
-  return response.json() as Promise<PaginatedResponse<TVShow>>;
-}
-
-const VALID_TYPES = new Set<TVListType>([
-  "airing-today",
-  "on-tv",
-  "popular",
-  "top-rated",
-  "genre",
-]);
+import { tmdb } from "@/lib/tmdb";
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   const { searchParams } = request.nextUrl;
 
-  const rawType = searchParams.get("type") ?? "popular";
   const page = Math.max(1, Number(searchParams.get("page") ?? "1"));
-  const genreId = searchParams.get("genre") ?? "";
+  const type = searchParams.get("type");
 
-  if (!VALID_TYPES.has(rawType as TVListType)) {
-    return NextResponse.json(
-      { error: "Invalid type parameter" },
-      { status: 400 },
-    );
+  if (type === "search") {
+    const query = searchParams.get("q") ?? "";
+    if (!query.trim()) {
+      return NextResponse.json(
+        { error: "Missing search query" },
+        { status: 400 },
+      );
+    }
+    const result = await tmdb.searchTVShows(query, page);
+
+    if (!result.success) {
+      return NextResponse.json({ error: result.error }, { status: 500 });
+    }
+    return NextResponse.json(result.data);
   }
 
-  const type = rawType as TVListType;
+  const filters: Record<string, string> = {};
+  searchParams.forEach((value, key) => {
+    if (key !== "page" && key !== "type" && key !== "q") {
+      filters[key] = value;
+    }
+  });
 
-  if (type === "genre" && !genreId.trim()) {
-    return NextResponse.json(
-      { error: "Missing genre parameter" },
-      { status: 400 },
-    );
+  const result = await tmdb.discoverTVShows(filters, page);
+
+  if (!result.success) {
+    return NextResponse.json({ error: result.error }, { status: 500 });
   }
 
-  const locale = await getLocale();
-
-  const data = await fetchPage(type, page, genreId, locale);
-  return NextResponse.json(data);
+  return NextResponse.json(result.data);
 }

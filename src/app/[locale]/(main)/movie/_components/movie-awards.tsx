@@ -5,7 +5,7 @@ import { Trophy } from "lucide-react";
 export async function MovieAwards({ imdbId }: { imdbId: string }) {
   if (!imdbId) return null;
   const awardsRes = await omdb.getAwards(imdbId);
-  const t = await getTranslations("movie");
+  const t = await getTranslations("domains.movie");
 
   if (
     !awardsRes.success ||

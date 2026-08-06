@@ -175,7 +175,7 @@ export default async function GenresPage() {
                   key={genre.id}
                   id={genre.id}
                   name={genre.name}
-                  href={`/genres/tv-show/${genre.id}`}
+                  href={`/genres/tv/${genre.id}`}
                   color={TV_GENRE_COLORS[index % TV_GENRE_COLORS.length]!}
                 />
               ))}

@@ -26,7 +26,7 @@ const THEME_OPTIONS: ThemeOption[] = [
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const t = useTranslations("theme");
+  const t = useTranslations("components.preferences.theme");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

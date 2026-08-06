@@ -115,6 +115,13 @@
     "title": "يبحث",
     "results_count": "نتائج"
   },
+  "genres": {
+    "title": "فئات",
+    "description": "تصفح الأفلام والمسلسلات حسب النوع.",
+    "movies_section": "الأفلام",
+    "tv_section": "المسلسلات",
+    "explore_genre": "استكشف {genre}"
+  },
   "home": {
     "hero": {
       "trending": "تتجه!",
@@ -201,13 +208,6 @@
     "social_links_aria": "روابط التواصل الاجتماعي لـ {name}",
     "tv_credits": "أعمال تلفزيونية",
     "crew_credits": "خلف الكاميرا"
-  },
-  "categories": {
-    "title": "فئات",
-    "description": "تصفح الأفلام والمسلسلات حسب النوع.",
-    "movies_section": "الأفلام",
-    "tv_section": "المسلسلات",
-    "explore_genre": "استكشف {genre}"
   },
   "popular": {
     "title": "أفلام رائجة",

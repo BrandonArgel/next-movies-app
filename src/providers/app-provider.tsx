@@ -11,7 +11,7 @@ import { LocaleProvider } from "./locale-provider";
 import { NetworkNotifier } from "@/components/network-notifier";
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
-  const t = useTranslations("network");
+  const t = useTranslations("global.network");
   const locale = useLocale();
 
   return (

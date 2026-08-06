@@ -8,7 +8,7 @@ interface MovieReviewsProps {
 }
 
 export function MovieReviews({ reviews }: MovieReviewsProps) {
-  const t = useTranslations("movie");
+  const t = useTranslations("domains.movie");
   const displayReviews = reviews.slice(0, 4);
 
   if (displayReviews.length === 0) return null;

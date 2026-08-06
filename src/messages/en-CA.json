@@ -115,6 +115,13 @@
     "title": "Search",
     "results_count": "results"
   },
+  "genres": {
+    "title": "Categories",
+    "description": "Browse movies and TV shows by genre.",
+    "movies_section": "Movies",
+    "tv_section": "TV Shows",
+    "explore_genre": "Explore {genre}"
+  },
   "home": {
     "hero": {
       "trending": "Trending!",
@@ -201,13 +208,6 @@
     "social_links_aria": "Social links for {name}",
     "tv_credits": "TV Credits",
     "crew_credits": "Behind the Camera"
-  },
-  "categories": {
-    "title": "Categories",
-    "description": "Browse movies and TV shows by genre.",
-    "movies_section": "Movies",
-    "tv_section": "TV Shows",
-    "explore_genre": "Explore {genre}"
   },
   "popular": {
     "title": "Popular Movies",

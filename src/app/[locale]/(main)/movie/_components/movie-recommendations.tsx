@@ -16,7 +16,7 @@ export async function MovieRecommendations({
   const movies = response.data.results;
   if (movies.length === 0) return null;
 
-  const t = await getTranslations("movie");
+  const t = await getTranslations("domains.movie");
 
   return (
     <section

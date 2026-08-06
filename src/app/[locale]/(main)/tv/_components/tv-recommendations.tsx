@@ -1,7 +1,6 @@
 import { getTranslations } from "next-intl/server";
-import { TVShowCarousel } from "@/components/tv-show/tv-show-carousel";
+import { TvShowCarousel } from "@/components/tv-show/tv-show-carousel";
 import { tmdb } from "@/lib/tmdb";
-import { type TVShow } from "@/types/tv-show";
 
 interface TvRecommendationsProps {
   showId: number;
@@ -16,7 +15,7 @@ export async function TvRecommendations({ showId }: TvRecommendationsProps) {
 
   if (!shows?.length) return null;
 
-  const t = await getTranslations("movie");
+  const t = await getTranslations("domains.tv");
 
   return (
     <section
@@ -29,7 +28,7 @@ export async function TvRecommendations({ showId }: TvRecommendationsProps) {
       >
         {t("recommendations")}
       </h2>
-      <TVShowCarousel tvShows={shows} active />
+      <TvShowCarousel tvShows={shows} active />
     </section>
   );
 }

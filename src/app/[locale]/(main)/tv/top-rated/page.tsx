@@ -1,0 +1,58 @@
+import { type Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { tmdb } from "@/lib/tmdb";
+import { InfiniteTvShowGrid } from "@/components/tv-show/infinite-tv-grid";
+import { TvShowFilters } from "@/components/tv-show/tv-show-filters";
+import { parseTvSearchParams } from "@/lib/filters";
+
+interface PageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("pages.tv.top_rated_tv");
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
+
+export default async function TopRatedTvPage({ searchParams }: PageProps) {
+  const t = await getTranslations("pages.tv.top_rated_tv");
+  const resolvedParams = await searchParams;
+
+  const baseCategoryFilters: Record<string, string> = {
+    sort_by: "vote_average.desc",
+    "vote_count.gte": "300",
+  };
+
+  const userFilters = parseTvSearchParams(resolvedParams);
+  const finalFilters = { ...baseCategoryFilters, ...userFilters };
+
+  const [response, genresResponse] = await Promise.all([
+    tmdb.discoverTVShows(finalFilters, 1),
+    tmdb.getTVShowGenres(),
+  ]);
+
+  if (!response.success || !genresResponse.success) {
+    throw new Error(response.error || genresResponse.error);
+  }
+
+  return (
+    <div className="container mx-auto px-4 md:px-8 xl:px-12 py-16">
+      <h1 className="text-4xl font-bold tracking-tight">{t("title")}</h1>
+      <p className="mt-2 text-muted-foreground max-w-2xl">{t("description")}</p>
+
+      <TvShowFilters initialGenres={genresResponse.data.genres} />
+
+      <div className="mt-8">
+        <InfiniteTvShowGrid
+          initialTvShows={response.data.results}
+          totalPages={response.data.total_pages}
+          type="discover_tv"
+          filters={finalFilters}
+        />
+      </div>
+    </div>
+  );
+}

@@ -4,10 +4,10 @@ import { LinkButton } from "../ui/button";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
-import { type TVShow } from "@/types/tv-show";
+import { type TvShow } from "@/types/tv-show";
 
 interface ShowCardProps {
-  tvShow: TVShow;
+  tvShow: TvShow;
   className?: string;
 }
 
@@ -15,8 +15,8 @@ export function TVShowCard({ tvShow, className }: ShowCardProps) {
   const { id, first_air_date, name, poster_path, vote_average, overview } =
     tvShow;
 
-  const tCommon = useTranslations("common");
-  const tTv = useTranslations("tv");
+  const tGlobal = useTranslations("global.actions");
+  const tTv = useTranslations("domains.tv");
   const format = useFormatter();
 
   const formattedDate = first_air_date
@@ -62,11 +62,11 @@ export function TVShowCard({ tvShow, className }: ShowCardProps) {
             {overview || tTv("fallback_overview")}
           </p>
           <LinkButton
-            href={`/tv-show/${id}`}
+            href={`/tv/${id}`}
             className="text-xs font-semibold text-primary-foreground shadow-sm"
-            aria-label={`${tCommon("view_details_of")} ${name} ${formattedDate ? formattedDate : ""}`}
+            aria-label={`${tGlobal("view_details_of")} ${name} ${formattedDate ? formattedDate : ""}`}
           >
-            {tCommon("view_details")}
+            {tGlobal("view_details")}
           </LinkButton>
         </div>
       </div>
@@ -76,7 +76,7 @@ export function TVShowCard({ tvShow, className }: ShowCardProps) {
         <button
           type="button"
           className="flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition-colors hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          aria-label={tTv("options_aria_label", { name })}
+          aria-label={tGlobal("options_aria_label", { name })}
           onClick={(e) => {
             console.log("Abrir menú para:", name);
           }}

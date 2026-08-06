@@ -1,9 +1,8 @@
 import { tmdb } from "@/lib/tmdb";
-import { getTranslations } from "next-intl/server";
 import TrendingTVShowsSection from "./trending-tv-shows-section";
 import { SectionState } from "./section-state";
 
-export async function TrendingTVShowsContainer() {
+export async function TrendingTvShowsContainer() {
   const result = await tmdb.getTrendingTVShows("day");
 
   if (!result.success) {

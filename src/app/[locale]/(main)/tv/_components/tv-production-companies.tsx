@@ -12,7 +12,7 @@ export async function TvProductionCompanies({
 }: TvProductionCompaniesProps) {
   if (!companies || companies.length === 0) return null;
 
-  const t = await getTranslations("tv");
+  const t = await getTranslations("domains.tv");
 
   return (
     <section

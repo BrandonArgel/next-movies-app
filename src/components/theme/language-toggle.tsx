@@ -49,8 +49,9 @@ export const LOCALE_META: Record<Locale, { flag: string; nativeName: string }> =
   };
 
 export function LanguageToggle() {
-  const t = useTranslations("language");
-  const tCommon = useTranslations("common.states");
+  const t = useTranslations("components.preferences.language");
+  const tGlobal = useTranslations("global.states");
+
   const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
@@ -153,7 +154,7 @@ export function LanguageToggle() {
             }}
             renderEmptyState={() => (
               <div className="text-center text-sm text-muted-foreground">
-                {tCommon("no_results")}
+                {tGlobal("no_results")}
               </div>
             )}
             className="max-h-75 overflow-y-auto p-1 outline-none"

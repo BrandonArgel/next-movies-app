@@ -12,9 +12,9 @@ const NAV_LINKS = [
 ] as const;
 
 export async function Footer() {
-  const tCommon = await getTranslations("common");
-  const tNav = await getTranslations("nav");
-  const tFooter = await getTranslations("footer");
+  const tGlobal = await getTranslations("global.branding");
+  const tNav = await getTranslations("components.nav");
+  const tFooter = await getTranslations("components.footer");
 
   const year = new Date().getFullYear();
 
@@ -27,10 +27,10 @@ export async function Footer() {
             <Link
               href="/"
               className="inline-flex items-end gap-2 font-semibold text-primary text-xl w-fit"
-              aria-label={tCommon("app_name")}
+              aria-label={tGlobal("app_name")}
             >
               <CinemaIcon className="w-9" cupClassName="text-primary" />
-              <span>{tCommon("app_name")}</span>
+              <span>{tGlobal("app_name")}</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               {tFooter("tagline")}

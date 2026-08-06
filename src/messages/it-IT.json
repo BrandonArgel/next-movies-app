@@ -115,6 +115,13 @@
     "title": "Ricerca",
     "results_count": "risultati"
   },
+  "genres": {
+    "title": "Categorie",
+    "description": "Sfoglia film e serie TV per genere.",
+    "movies_section": "Film",
+    "tv_section": "Serie TV",
+    "explore_genre": "Esplora {genre}"
+  },
   "home": {
     "hero": {
       "trending": "Di tendenza!",
@@ -201,13 +208,6 @@
     "social_links_aria": "Link social di {name}",
     "tv_credits": "Crediti TV",
     "crew_credits": "Dietro le quinte"
-  },
-  "categories": {
-    "title": "Categorie",
-    "description": "Sfoglia film e serie TV per genere.",
-    "movies_section": "Film",
-    "tv_section": "Serie TV",
-    "explore_genre": "Esplora {genre}"
   },
   "popular": {
     "title": "Film Popolari",

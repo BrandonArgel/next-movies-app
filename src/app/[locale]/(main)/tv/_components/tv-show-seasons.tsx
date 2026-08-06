@@ -11,21 +11,15 @@ interface TvShowSeasonsProps {
 export async function TvShowSeasons({ seasons, showName }: TvShowSeasonsProps) {
   if (!seasons || seasons.length === 0) return null;
 
-  const t = await getTranslations("tv");
+  const t = await getTranslations("domains.tv");
 
   // Filter out "Specials" (season_number === 0) unless it's the only season
   const mainSeasons = seasons.filter((s) => s.season_number > 0);
   const displaySeasons = mainSeasons.length > 0 ? mainSeasons : seasons;
 
   return (
-    <section
-      aria-labelledby="seasons-heading"
-      className="flex flex-col gap-6"
-    >
-      <h2
-        id="seasons-heading"
-        className="text-xl md:text-2xl font-bold"
-      >
+    <section aria-labelledby="seasons-heading" className="flex flex-col gap-6">
+      <h2 id="seasons-heading" className="text-xl md:text-2xl font-bold">
         {t("seasons")}
       </h2>
 
@@ -36,12 +30,9 @@ export async function TvShowSeasons({ seasons, showName }: TvShowSeasonsProps) {
             : null;
 
           return (
-            <div
-              key={season.id}
-              className="flex flex-col gap-2 group"
-            >
+            <div key={season.id} className="flex flex-col gap-2 group">
               {/* Poster */}
-              <div className="relative aspect-[2/3] rounded-xl overflow-hidden bg-muted shadow-md ring-1 ring-border transition-transform duration-300 group-hover:scale-[1.02] group-hover:shadow-xl">
+              <div className="relative aspect-2/3 rounded-xl overflow-hidden bg-muted shadow-md ring-1 ring-border transition-transform duration-300 group-hover:scale-[1.02] group-hover:shadow-xl">
                 {season.poster_path ? (
                   <Image
                     src={`https://image.tmdb.org/t/p/w300${season.poster_path}`}

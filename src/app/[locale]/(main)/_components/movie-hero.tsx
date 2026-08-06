@@ -7,6 +7,7 @@ import { formatRuntime } from "@/lib/utils";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { tmdb } from "@/lib/tmdb";
 import { MovieTrailerDialog } from "./movie-trailer-dialog";
+import { getTMDBImageUrl } from "@/lib/tmdb";
 
 interface MovieHeroProps {
   movieId: number;
@@ -21,7 +22,7 @@ export default async function MovieHero({ movieId }: MovieHeroProps) {
 
   const locale = await getLocale();
   const format = await getFormatter();
-  const t = await getTranslations("home.hero");
+  const t = await getTranslations("pages.home.hero");
 
   const {
     adult,
@@ -50,17 +51,9 @@ export default async function MovieHero({ movieId }: MovieHeroProps) {
   const logo =
     images?.logos?.find((l) => locale.includes(l.iso_639_1)) ||
     images?.logos?.[0];
-  const logoUrl = logo
-    ? `https://image.tmdb.org/t/p/w500${logo.file_path}`
-    : null;
-
-  const posterUrl = poster_path
-    ? `https://image.tmdb.org/t/p/w780${poster_path}`
-    : null;
-  const backdropUrl = backdrop_path
-    ? `https://image.tmdb.org/t/p/original${backdrop_path}`
-    : null;
-
+  const logoUrl = getTMDBImageUrl(logo?.file_path, "w500");
+  const posterUrl = getTMDBImageUrl(poster_path, "w500");
+  const backdropUrl = getTMDBImageUrl(backdrop_path, "original");
   const trailer = videos?.results?.find(
     (vid) => vid.site === "YouTube" && vid.type === "Trailer",
   );

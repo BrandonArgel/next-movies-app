@@ -11,7 +11,7 @@ interface PersonPhotosProps {
 export async function PersonPhotos({ photos, name }: PersonPhotosProps) {
   if (!photos || photos.length === 0) return null;
 
-  const t = await getTranslations("person");
+  const t = await getTranslations("domains.person");
   const displayPhotos = photos.slice(0, 8);
 
   return (
@@ -19,10 +19,7 @@ export async function PersonPhotos({ photos, name }: PersonPhotosProps) {
       aria-labelledby="person-photos-heading"
       className="flex flex-col gap-6"
     >
-      <h2
-        id="person-photos-heading"
-        className="text-xl md:text-2xl font-bold"
-      >
+      <h2 id="person-photos-heading" className="text-xl md:text-2xl font-bold">
         {t("photos")}
       </h2>
 
@@ -30,7 +27,7 @@ export async function PersonPhotos({ photos, name }: PersonPhotosProps) {
         {displayPhotos.map((photo, index) => (
           <div
             key={photo.file_path}
-            className="group relative aspect-[2/3] rounded-xl overflow-hidden bg-muted shadow-md ring-1 ring-border transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl hover:ring-primary/40"
+            className="group relative aspect-2/3 rounded-xl overflow-hidden bg-muted shadow-md ring-1 ring-border transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl hover:ring-primary/40"
           >
             {photo.file_path ? (
               <ImageWithSkeleton

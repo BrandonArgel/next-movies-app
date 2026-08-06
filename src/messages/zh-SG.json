@@ -115,6 +115,13 @@
     "title": "搜索",
     "results_count": "个结果"
   },
+  "genres": {
+    "title": "类别",
+    "description": "按类型浏览电影和电视剧。",
+    "movies_section": "电影",
+    "tv_section": "电视剧",
+    "explore_genre": "探索 {genre}"
+  },
   "home": {
     "hero": {
       "trending": "趋势！",
@@ -201,13 +208,6 @@
     "social_links_aria": "{name}的社交链接",
     "tv_credits": "电视作品",
     "crew_credits": "幕后工作"
-  },
-  "categories": {
-    "title": "类别",
-    "description": "按类型浏览电影和电视剧。",
-    "movies_section": "电影",
-    "tv_section": "电视剧",
-    "explore_genre": "探索 {genre}"
   },
   "popular": {
     "title": "热门电影",

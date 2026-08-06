@@ -15,7 +15,7 @@ interface MovieBreadcrumbProps {
 }
 
 export function MovieBreadcrumb({ movieTitle }: MovieBreadcrumbProps) {
-  const tNav = useTranslations("nav");
+  const tNav = useTranslations("components.nav");
 
   return (
     <Breadcrumb>

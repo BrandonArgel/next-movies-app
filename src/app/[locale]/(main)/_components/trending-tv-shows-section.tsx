@@ -6,20 +6,20 @@ import { getTrendingTVShowsAction } from "@/actions/tv-shows";
 import { sileo } from "sileo";
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
-import { TVShowCarousel } from "@/components/tv-show/tv-show-carousel";
+import { TvShowCarousel } from "@/components/tv-show/tv-show-carousel";
 import { cn } from "@/lib/utils";
-import { type TVShow } from "@/types/tv-show";
+import { type TvShow } from "@/types/tv-show";
 import { type TimeWindow } from "@/types/common";
 
 export default function TrendingTVShowsSection({
   initialTVShows,
 }: {
-  initialTVShows: TVShow[];
+  initialTVShows: TvShow[];
 }) {
-  const t = useTranslations("home.trending.tv_shows");
+  const t = useTranslations("pages.home.trending.tv_shows");
   const tErrors = useTranslations("errors");
 
-  const [tvShows, setTvShows] = useState<TVShow[]>(initialTVShows);
+  const [tvShows, setTvShows] = useState<TvShow[]>(initialTVShows);
   const [timeWindow, setTimeWindow] = useState<TimeWindow>("day");
   const [isPending, startTransition] = useTransition();
 
@@ -86,7 +86,7 @@ export default function TrendingTVShowsSection({
         </p>
       </div>
 
-      <TVShowCarousel key={timeWindow} tvShows={tvShows} loop />
+      <TvShowCarousel key={timeWindow} tvShows={tvShows} loop />
     </section>
   );
 }

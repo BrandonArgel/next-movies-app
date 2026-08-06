@@ -97,3 +97,64 @@ export default async function TvPage({ params }: TvPageProps) {
     </main>
   );
 }
+
+interface UserScoreChartProps {
+  voteAverage: number;
+}
+
+export function UserScoreChart({ voteAverage }: UserScoreChartProps) {
+  // Convert 10-point scale to percentage (e.g., 7.93 -> 79)
+  const percentage = Math.round(voteAverage * 10);
+
+  const radius = 20;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (percentage / 100) * circumference;
+
+  // TMDB color thresholds
+  const colorClass =
+    percentage >= 70
+      ? "text-green-500"
+      : percentage >= 40
+        ? "text-yellow-500"
+        : "text-red-500";
+
+  const trackColorClass =
+    percentage >= 70
+      ? "text-green-900"
+      : percentage >= 40
+        ? "text-yellow-900"
+        : "text-red-900";
+
+  return (
+    <div className="relative flex items-center justify-center w-14 h-14 bg-gray-900 rounded-full">
+      <svg className="w-full h-full transform -rotate-90" viewBox="0 0 50 50">
+        {/* Background Track */}
+        <circle
+          className={`${trackColorClass} stroke-current`}
+          strokeWidth="4"
+          fill="transparent"
+          r={radius}
+          cx="25"
+          cy="25"
+        />
+        {/* Progress Ring */}
+        <circle
+          className={`${colorClass} stroke-current transition-all duration-1000 ease-out`}
+          strokeWidth="4"
+          strokeDasharray={circumference}
+          strokeDashoffset={strokeDashoffset}
+          strokeLinecap="round"
+          fill="transparent"
+          r={radius}
+          cx="25"
+          cy="25"
+        />
+      </svg>
+      {/* Percentage Text */}
+      <div className="absolute flex items-start justify-center text-white font-bold text-sm mt-0.5">
+        {percentage}
+        <span className="text-[8px] font-normal mt-0.5">%</span>
+      </div>
+    </div>
+  );
+}

@@ -21,10 +21,10 @@ const NAV_CONFIG = [
   {
     labelKey: "tv_shows" as const,
     items: [
-      { href: "/tv-show/airing-today", labelKey: "airing_today" as const },
-      { href: "/tv-show/on-tv", labelKey: "on_tv" as const },
-      { href: "/tv-show/popular", labelKey: "popular" as const },
-      { href: "/tv-show/top-rated", labelKey: "top_rated" as const },
+      { href: "/tv/airing-today", labelKey: "airing_today" as const },
+      { href: "/tv/on-the-air", labelKey: "on_the_air" as const },
+      { href: "/tv/popular", labelKey: "popular" as const },
+      { href: "/tv/top-rated", labelKey: "top_rated" as const },
     ],
   },
   {
@@ -45,8 +45,8 @@ const USER_NAV_CONFIG = [
 ];
 
 export async function Header() {
-  const tCommon = await getTranslations("common");
-  const tNav = await getTranslations("nav");
+  const tGlobal = await getTranslations("global.branding");
+  const tNav = await getTranslations("components.nav");
 
   const translatedMenus: NavMenuType[] = [...NAV_CONFIG].map((menu) => ({
     label: tNav(menu.labelKey),
@@ -66,10 +66,10 @@ export async function Header() {
         <Link
           href="/"
           className="inline-flex shrink-0 justify-center items-center font-semibold tracking-tight text-primary gap-2 text-2xl"
-          aria-label={tCommon("app_name")}
+          aria-label={tGlobal("app_name")}
         >
           <CinemaIcon className="w-10" cupClassName="text-primary" />
-          <span>{tCommon("app_name")}</span>
+          <span>{tGlobal("app_name")}</span>
         </Link>
 
         {/* Desktop nav */}

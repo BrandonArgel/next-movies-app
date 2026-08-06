@@ -1,28 +1,64 @@
+import { type Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { tmdb } from "@/lib/tmdb";
 import { InfiniteMovieGrid } from "@/components/movies/infinite-movie-grid";
+import { MovieFilters } from "@/components/movies/movie-filters";
+import { parseMovieSearchParams } from "@/lib/filters";
 
-export default async function UpcomingPage() {
-  const t = await getTranslations("upcoming");
-  const response = await tmdb.getUpcoming(1);
+interface PageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
 
-  if (!response.success) {
-    throw new Error(response.error);
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("pages.movies.upcoming");
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
+
+export default async function PopularPage({ searchParams }: PageProps) {
+  const t = await getTranslations("pages.movies.upcoming");
+  const resolvedParams = await searchParams;
+  const today = new Date().toISOString().split("T")[0];
+  const futureDate = new Date(Date.now() + 60 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .split("T")[0];
+
+  const baseCategoryFilters = {
+    "primary_release_date.gte": today,
+    "primary_release_date.lte": futureDate,
+    with_release_type: "2|3",
+  };
+
+  const userFilters = parseMovieSearchParams(resolvedParams);
+
+  const finalFilters = { ...baseCategoryFilters, ...userFilters };
+
+  const [response, genresResponse] = await Promise.all([
+    tmdb.discoverMovies(finalFilters, 1),
+    tmdb.getMovieGenres(),
+  ]);
+
+  if (!response.success || !genresResponse.success) {
+    throw new Error(response.error || genresResponse.error);
   }
 
   return (
-    <main className="flex flex-col w-full min-h-screen bg-background">
-      <div className="container mx-auto px-4 md:px-8 xl:px-12 py-16">
-        <h1 className="text-4xl font-bold tracking-tight">{t("title")}</h1>
-        <p className="mt-2 text-muted-foreground max-w-2xl">{t("description")}</p>
-        <div className="mt-12">
-          <InfiniteMovieGrid
-            initialMovies={response.data.results}
-            totalPages={response.data.total_pages}
-            type="upcoming"
-          />
-        </div>
+    <div className="container mx-auto px-4 md:px-8 xl:px-12 py-16">
+      <h1 className="text-4xl font-bold tracking-tight">{t("title")}</h1>
+      <p className="mt-2 text-muted-foreground max-w-2xl">{t("description")}</p>
+
+      <MovieFilters initialGenres={genresResponse.data.genres} />
+
+      <div className="mt-8">
+        <InfiniteMovieGrid
+          initialMovies={response.data.results}
+          totalPages={response.data.total_pages}
+          type="discover"
+          filters={finalFilters}
+        />
       </div>
-    </main>
+    </div>
   );
 }

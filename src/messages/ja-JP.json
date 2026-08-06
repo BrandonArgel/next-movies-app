@@ -115,6 +115,13 @@
     "title": "検索",
     "results_count": "件"
   },
+  "genres": {
+    "title": "カテゴリー",
+    "description": "ジャンル別に映画やTVシリーズを探す。",
+    "movies_section": "映画",
+    "tv_section": "TVシリーズ",
+    "explore_genre": "{genre} を探す"
+  },
   "home": {
     "hero": {
       "trending": "トレンド！",
@@ -201,13 +208,6 @@
     "social_links_aria": "{name}のソーシャルリンク",
     "tv_credits": "TV出演",
     "crew_credits": "スタッフとして"
-  },
-  "categories": {
-    "title": "カテゴリー",
-    "description": "ジャンル別に映画やTVシリーズを探す。",
-    "movies_section": "映画",
-    "tv_section": "TVシリーズ",
-    "explore_genre": "{genre} を探す"
   },
   "popular": {
     "title": "人気映画",

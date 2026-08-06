@@ -18,7 +18,7 @@ interface SearchBarProps {
 }
 
 export function SearchBar({ className, variant = "compact" }: SearchBarProps) {
-  const t = useTranslations("search");
+  const t = useTranslations("components.search");
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
@@ -43,7 +43,7 @@ export function SearchBar({ className, variant = "compact" }: SearchBarProps) {
       aria-label={t("label")}
       onSubmit={handleSubmit}
       className={cn(
-        variant === "expanded" ? "w-full" : "w-48 lg:w-64",
+        variant === "expanded" ? "w-full" : "w-68 lg:w-80",
         className,
       )}
     >

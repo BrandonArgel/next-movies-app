@@ -22,8 +22,8 @@ export function MovieCard({ movie, className }: MovieCardProps) {
     overview,
   } = movie;
 
-  const tCommon = useTranslations("common");
-  const tMovie = useTranslations("movie");
+  const tGlobal = useTranslations("global.actions");
+  const tMovie = useTranslations("domains.movie");
   const format = useFormatter();
 
   const formattedReleaseDate = release_date
@@ -75,9 +75,9 @@ export function MovieCard({ movie, className }: MovieCardProps) {
           <LinkButton
             href={`/movie/${id}`}
             className="text-xs font-semibold text-primary-foreground shadow-sm"
-            aria-label={`${tCommon("view_details_of")} ${title} ${formattedReleaseDate}`}
+            aria-label={`${tGlobal("view_details_of")} ${title} ${formattedReleaseDate}`}
           >
-            {tCommon("view_details")}
+            {tGlobal("view_details")}
           </LinkButton>
         </div>
       </div>
@@ -86,7 +86,7 @@ export function MovieCard({ movie, className }: MovieCardProps) {
         <button
           type="button"
           className="flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition-colors hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          aria-label={tMovie("options_aria_label", { title })}
+          aria-label={tGlobal("options_aria_label", { name: title })}
           onClick={(e) => {
             console.log("Abrir menú para:", title);
           }}

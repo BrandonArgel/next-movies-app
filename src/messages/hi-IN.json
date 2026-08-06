@@ -115,6 +115,13 @@
     "title": "खोज",
     "results_count": "परिणाम"
   },
+  "genres": {
+    "title": "श्रेणियाँ",
+    "description": "शैली के अनुसार फिल्में और टीवी शो देखें।",
+    "movies_section": "फिल्में",
+    "tv_section": "टीवी शो",
+    "explore_genre": "{genre} एक्सप्लोर करें"
+  },
   "home": {
     "hero": {
       "trending": "ट्रेंडिंग!",
@@ -201,13 +208,6 @@
     "social_links_aria": "{name} के सोशल लिंक",
     "tv_credits": "टीवी क्रेडिट",
     "crew_credits": "परदे के पीछे"
-  },
-  "categories": {
-    "title": "श्रेणियाँ",
-    "description": "शैली के अनुसार फिल्में और टीवी शो देखें।",
-    "movies_section": "फिल्में",
-    "tv_section": "टीवी शो",
-    "explore_genre": "{genre} एक्सप्लोर करें"
   },
   "popular": {
     "title": "लोकप्रिय फिल्में",

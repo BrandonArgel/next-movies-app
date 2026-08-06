@@ -115,6 +115,13 @@
     "title": "অনুসন্ধান করুন",
     "results_count": "ফলাফল"
   },
+  "genres": {
+    "title": "ক্যাটাগরি",
+    "description": "ঘরানা অনুসারে সিনেমা ও টিভি শো দেখুন।",
+    "movies_section": "সিনেমা",
+    "tv_section": "টিভি শো",
+    "explore_genre": "{genre} অন্বেষণ করুন"
+  },
   "home": {
     "hero": {
       "trending": "প্রবণতা !",
@@ -201,13 +208,6 @@
     "social_links_aria": "{name}-এর সামাজিক লিঙ্ক",
     "tv_credits": "টিভি ক্রেডিট",
     "crew_credits": "পর্দার পেছনে"
-  },
-  "categories": {
-    "title": "ক্যাটাগরি",
-    "description": "ঘরানা অনুসারে সিনেমা ও টিভি শো দেখুন।",
-    "movies_section": "সিনেমা",
-    "tv_section": "টিভি শো",
-    "explore_genre": "{genre} অন্বেষণ করুন"
   },
   "popular": {
     "title": "জনপ্রিয় সিনেমা",

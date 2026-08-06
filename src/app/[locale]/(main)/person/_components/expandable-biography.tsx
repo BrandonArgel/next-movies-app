@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface ExpandableBiographyProps {
   text: string;
@@ -20,6 +21,7 @@ export function ExpandableBiography({
   maxLength = 300,
   dictionary,
 }: ExpandableBiographyProps) {
+  const t = useTranslations("domains.person");
   const [isExpanded, setIsExpanded] = useState(false);
 
   if (!text) {
@@ -42,7 +44,7 @@ export function ExpandableBiography({
     <div className={cn("flex flex-col gap-2", className)}>
       <p
         className={cn(
-          "text-sm text-foreground leading-relaxed transition-all duration-200",
+          "text-sm text-foreground leading-relaxed",
           !isExpanded && "line-clamp-5",
         )}
       >
@@ -51,8 +53,12 @@ export function ExpandableBiography({
 
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        aria-expanded={isExpanded}
         className="text-sm font-semibold text-primary hover:underline self-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+        aria-expanded={isExpanded}
+        aria-controls="biography-content"
+        aria-label={
+          isExpanded ? t("hide_biography_aria") : t("show_biography_aria")
+        }
       >
         {isExpanded ? dictionary.readLess : dictionary.readMore}
       </button>

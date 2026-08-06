@@ -5,8 +5,8 @@ import {
   TimeWindow,
 } from "@/types/common";
 import { type Movie, type DetailedMovie } from "@/types/movies";
-import { type DetailedTVShow } from "@/types/tv-show";
-import { type TVShow } from "@/types/tv-show";
+import { type DetailedTvShow } from "@/types/tv-show";
+import { type TvShow } from "@/types/tv-show";
 import { type Collection } from "@/types/collection";
 import { type PersonDetail, type TrendingPerson } from "@/types/person";
 import {
@@ -101,6 +101,33 @@ async function fetchTMDB<T>(
 }
 
 export const tmdb = {
+  getTrendingMovies: async (
+    timeWindow: TimeWindow = "day",
+    page = 1,
+  ): TMDBResponse<PaginatedResponse<Movie>> => {
+    return fetchTMDB<PaginatedResponse<Movie>>(
+      `/trending/movie/${timeWindow}?page=${page}`,
+    );
+  },
+
+  getTrendingTVShows: async (
+    timeWindow: TimeWindow = "day",
+    page = 1,
+  ): TMDBPaginatedResponse<TvShow> => {
+    return fetchTMDB<PaginatedResponse<TvShow>>(
+      `/trending/tv/${timeWindow}?page=${page}`,
+    );
+  },
+
+  getTrendingPeople: async (
+    timeWindow: TimeWindow = "day",
+    page = 1,
+  ): TMDBPaginatedResponse<TrendingPerson> => {
+    return fetchTMDB<PaginatedResponse<TrendingPerson>>(
+      `/trending/person/${timeWindow}?page=${page}`,
+    );
+  },
+
   getMovieDetails: async (id: string | number): TMDBResponse<DetailedMovie> => {
     return fetchTMDB<DetailedMovie>(
       `/movie/${id}?append_to_response=videos,images,credits,watch/providers,reviews,release_dates`,
@@ -115,8 +142,8 @@ export const tmdb = {
 
   getTVShowDetails: async (
     id: string | number,
-  ): TMDBResponse<DetailedTVShow> => {
-    return fetchTMDB<DetailedTVShow>(
+  ): TMDBResponse<DetailedTvShow> => {
+    return fetchTMDB<DetailedTvShow>(
       `/tv/${id}?append_to_response=videos,images,credits,watch/providers,reviews`,
     );
   },
@@ -124,33 +151,6 @@ export const tmdb = {
   getPersonDetails: async (id: string | number): TMDBResponse<PersonDetail> => {
     return fetchTMDB<PersonDetail>(
       `/person/${id}?append_to_response=movie_credits,tv_credits,images,tagged_images,external_ids`,
-    );
-  },
-
-  getTrendingMovies: async (
-    timeWindow: TimeWindow = "day",
-    page = 1,
-  ): TMDBResponse<PaginatedResponse<Movie>> => {
-    return fetchTMDB<PaginatedResponse<Movie>>(
-      `/trending/movie/${timeWindow}?page=${page}`,
-    );
-  },
-
-  getTrendingTVShows: async (
-    timeWindow: TimeWindow = "day",
-    page = 1,
-  ): TMDBPaginatedResponse<TVShow> => {
-    return fetchTMDB<PaginatedResponse<TVShow>>(
-      `/trending/tv/${timeWindow}?page=${page}`,
-    );
-  },
-
-  getTrendingPeople: async (
-    timeWindow: TimeWindow = "day",
-    page = 1,
-  ): TMDBPaginatedResponse<TrendingPerson> => {
-    return fetchTMDB<PaginatedResponse<TrendingPerson>>(
-      `/trending/person/${timeWindow}?page=${page}`,
     );
   },
 
@@ -175,8 +175,8 @@ export const tmdb = {
   getTVShowRecommendations: async (
     id: string | number,
     page = 1,
-  ): TMDBPaginatedResponse<TVShow> => {
-    return fetchTMDB<PaginatedResponse<TVShow>>(
+  ): TMDBPaginatedResponse<TvShow> => {
+    return fetchTMDB<PaginatedResponse<TvShow>>(
       `/tv/${id}/recommendations?page=${page}`,
     );
   },
@@ -189,10 +189,9 @@ export const tmdb = {
     return fetchTMDB<Genres>("/genre/tv/list");
   },
 
-  getPopular: async (page = 1): TMDBPaginatedResponse<Movie> => {
+  getPopular: async (page = 1): Promise<TMDBPaginatedResponse<Movie>> => {
     return fetchTMDB<PaginatedResponse<Movie>>(`/movie/popular?page=${page}`);
   },
-
   getUpcoming: async (page = 1): TMDBPaginatedResponse<Movie> => {
     return fetchTMDB<PaginatedResponse<Movie>>(`/movie/upcoming?page=${page}`);
   },
@@ -207,22 +206,22 @@ export const tmdb = {
     return fetchTMDB<PaginatedResponse<Movie>>(`/movie/top_rated?page=${page}`);
   },
 
-  getAiringTodayTVShows: async (page = 1): TMDBPaginatedResponse<TVShow> => {
-    return fetchTMDB<PaginatedResponse<TVShow>>(
+  getAiringTodayTVShows: async (page = 1): TMDBPaginatedResponse<TvShow> => {
+    return fetchTMDB<PaginatedResponse<TvShow>>(
       `/tv/airing_today?page=${page}`,
     );
   },
 
-  getOnAirTVShows: async (page = 1): TMDBPaginatedResponse<TVShow> => {
-    return fetchTMDB<PaginatedResponse<TVShow>>(`/tv/on_the_air?page=${page}`);
+  getOnAirTVShows: async (page = 1): TMDBPaginatedResponse<TvShow> => {
+    return fetchTMDB<PaginatedResponse<TvShow>>(`/tv/on_the_air?page=${page}`);
   },
 
-  getPopularTVShows: async (page = 1): TMDBPaginatedResponse<TVShow> => {
-    return fetchTMDB<PaginatedResponse<TVShow>>(`/tv/popular?page=${page}`);
+  getPopularTVShows: async (page = 1): TMDBPaginatedResponse<TvShow> => {
+    return fetchTMDB<PaginatedResponse<TvShow>>(`/tv/popular?page=${page}`);
   },
 
-  getTopRatedTVShows: async (page = 1): TMDBPaginatedResponse<TVShow> => {
-    return fetchTMDB<PaginatedResponse<TVShow>>(`/tv/top_rated?page=${page}`);
+  getTopRatedTVShows: async (page = 1): TMDBPaginatedResponse<TvShow> => {
+    return fetchTMDB<PaginatedResponse<TvShow>>(`/tv/top_rated?page=${page}`);
   },
 
   getPopularPeople: async (page = 1): TMDBPaginatedResponse<TrendingPerson> => {
@@ -243,9 +242,31 @@ export const tmdb = {
   discoverTVShowsByGenre: async (
     genreId: number | string,
     page = 1,
-  ): TMDBPaginatedResponse<TVShow> => {
-    return fetchTMDB<PaginatedResponse<TVShow>>(
+  ): TMDBPaginatedResponse<TvShow> => {
+    return fetchTMDB<PaginatedResponse<TvShow>>(
       `/discover/tv?with_genres=${genreId}&page=${page}&sort_by=popularity.desc`,
+    );
+  },
+
+  discoverMovies: async (
+    params: Record<string, string>,
+    page = 1,
+  ): TMDBPaginatedResponse<Movie> => {
+    const queryParams = new URLSearchParams(params);
+    queryParams.set("page", String(page));
+    return fetchTMDB<PaginatedResponse<Movie>>(
+      `/discover/movie?${queryParams.toString()}`,
+    );
+  },
+
+  discoverTVShows: async (
+    params: Record<string, string>,
+    page = 1,
+  ): TMDBPaginatedResponse<TvShow> => {
+    const queryParams = new URLSearchParams(params);
+    queryParams.set("page", String(page));
+    return fetchTMDB<PaginatedResponse<TvShow>>(
+      `/discover/tv?${queryParams.toString()}`,
     );
   },
 
@@ -255,6 +276,15 @@ export const tmdb = {
   ): TMDBPaginatedResponse<Movie> => {
     return fetchTMDB<PaginatedResponse<Movie>>(
       `/search/movie?query=${encodeURIComponent(query)}&page=${page}`,
+    );
+  },
+
+  searchTVShows: async (
+    query: string,
+    page = 1,
+  ): TMDBPaginatedResponse<TvShow> => {
+    return fetchTMDB<PaginatedResponse<TvShow>>(
+      `/search/tv?query=${encodeURIComponent(query)}&page=${page}`,
     );
   },
 

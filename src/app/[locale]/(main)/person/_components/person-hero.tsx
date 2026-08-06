@@ -7,10 +7,12 @@ import { ExpandableBiography } from "./expandable-biography";
 import { PersonExternalLinks } from "./person-external-links";
 import { type PersonDetail } from "@/types/person";
 import { Badge } from "@/components/ui/badge";
+import { getTMDBImageUrl } from "@/lib/tmdb";
 
 export function PersonHero({ person }: { person: PersonDetail }) {
   const format = useFormatter();
-  const t = useTranslations("person");
+  const tPerson = useTranslations("domains.person");
+  const tGlobal = useTranslations("global.actions");
   const {
     name,
     biography,
@@ -37,6 +39,7 @@ export function PersonHero({ person }: { person: PersonDetail }) {
   const formattedPopularity = popularity
     ? Math.round(popularity).toLocaleString()
     : null;
+  const profileUrl = getTMDBImageUrl(profile_path, "w500");
 
   const displayAliases = also_known_as?.slice(0, 5) ?? [];
 
@@ -45,9 +48,9 @@ export function PersonHero({ person }: { person: PersonDetail }) {
       <div className="container mx-auto px-4 md:px-8 max-w-6xl flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
         {/* Portrait */}
         <div className="relative w-64 h-96 md:w-80 md:h-120 shrink-0 rounded-xl overflow-hidden shadow-2xl ring-1 ring-foreground/20">
-          {profile_path ? (
+          {profileUrl ? (
             <Image
-              src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+              src={profileUrl}
               alt={name}
               fill
               priority
@@ -55,7 +58,7 @@ export function PersonHero({ person }: { person: PersonDetail }) {
             />
           ) : (
             <div className="w-full h-full bg-foreground/5 flex items-center justify-center">
-              <span className="text-xl">{t("noPhoto")}</span>
+              <span className="text-xl">{tPerson("noPhoto")}</span>
             </div>
           )}
         </div>
@@ -101,7 +104,7 @@ export function PersonHero({ person }: { person: PersonDetail }) {
               <div className="flex flex-col items-center md:items-start gap-0.5">
                 <span className=" text-[11px] uppercase tracking-wider flex items-center gap-1 font-medium">
                   <Activity className="w-3 h-3" />
-                  {t("popularity")}
+                  {tPerson("popularity")}
                 </span>
                 <span className="text-sm font-semibold">
                   {formattedPopularity}
@@ -112,7 +115,7 @@ export function PersonHero({ person }: { person: PersonDetail }) {
               <div className="flex flex-col items-center md:items-start gap-0.5">
                 <span className=" text-[11px] uppercase tracking-wider flex items-center gap-1 font-medium">
                   <Clapperboard className="w-3 h-3" />
-                  {t("known_for")}
+                  {tPerson("known_for")}
                 </span>
                 <span className="text-sm font-semibold">
                   {known_for_department}
@@ -125,9 +128,9 @@ export function PersonHero({ person }: { person: PersonDetail }) {
           <ExpandableBiography
             text={biography}
             dictionary={{
-              readMore: t("readMore"),
-              readLess: t("readLess"),
-              noBiography: t("noBiography"),
+              readMore: tGlobal("readMore"),
+              readLess: tGlobal("readLess"),
+              noBiography: tPerson("noBiography"),
             }}
           />
 
@@ -135,7 +138,7 @@ export function PersonHero({ person }: { person: PersonDetail }) {
           {displayAliases.length > 0 && (
             <div className="flex flex-col gap-2 items-center md:items-start">
               <span className="text-xs uppercase tracking-wider font-medium">
-                {t("also_known_as")}
+                {tPerson("also_known_as")}
               </span>
               <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                 {displayAliases.map((alias) => (

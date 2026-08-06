@@ -115,6 +115,13 @@
     "title": "搜尋",
     "results_count": "個結果"
   },
+  "genres": {
+    "title": "類別",
+    "description": "按類型瀏覽電影和劇集。",
+    "movies_section": "電影",
+    "tv_section": "劇集",
+    "explore_genre": "探索 {genre}"
+  },
   "home": {
     "hero": {
       "trending": "趨勢！",
@@ -201,13 +208,6 @@
     "social_links_aria": "{name}的社群連結",
     "tv_credits": "電視作品",
     "crew_credits": "幕後工作"
-  },
-  "categories": {
-    "title": "類別",
-    "description": "按類型瀏覽電影和劇集。",
-    "movies_section": "電影",
-    "tv_section": "劇集",
-    "explore_genre": "探索 {genre}"
   },
   "popular": {
     "title": "熱門電影",

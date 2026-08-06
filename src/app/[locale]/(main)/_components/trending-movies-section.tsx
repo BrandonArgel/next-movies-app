@@ -16,7 +16,7 @@ export default function TrendingMoviesSection({
 }: {
   initialMovies: Movie[];
 }) {
-  const t = useTranslations("home.trending.movies");
+  const t = useTranslations("pages.home.trending.movies");
   const tErrors = useTranslations("errors");
 
   const [movies, setMovies] = useState<Movie[]>(initialMovies);

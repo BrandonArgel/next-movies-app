@@ -21,7 +21,7 @@ interface MediaHeroLayoutProps {
   overview?: string;
   homepage?: string;
   genres?: { id: number; name: string }[];
-  genreBasePath: "movie" | "tv-show";
+  genreBasePath: "movie" | "tv";
   metaBadges: ReactNode;
   stats: Stat[];
   officialWebsiteLabel: string;

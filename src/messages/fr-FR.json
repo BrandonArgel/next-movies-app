@@ -115,6 +115,13 @@
     "title": "Recherche",
     "results_count": "résultats"
   },
+  "genres": {
+    "title": "Catégories",
+    "description": "Parcourez les films et séries par genre.",
+    "movies_section": "Films",
+    "tv_section": "Séries",
+    "explore_genre": "Explorer {genre}"
+  },
   "home": {
     "hero": {
       "trending": "Tendance !",
@@ -201,13 +208,6 @@
     "social_links_aria": "Liens sociaux de {name}",
     "tv_credits": "Crédits TV",
     "crew_credits": "Derrière la caméra"
-  },
-  "categories": {
-    "title": "Catégories",
-    "description": "Parcourez les films et séries par genre.",
-    "movies_section": "Films",
-    "tv_section": "Séries",
-    "explore_genre": "Explorer {genre}"
   },
   "popular": {
     "title": "Films populaires",

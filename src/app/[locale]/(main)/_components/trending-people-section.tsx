@@ -16,7 +16,7 @@ export default function TrendingPeopleSection({
 }: {
   initialPeople: TrendingPerson[];
 }) {
-  const t = useTranslations("home.trending.people");
+  const t = useTranslations("pages.home.trending.people");
   const tErrors = useTranslations("errors");
   const [people, setPeople] = useState<TrendingPerson[]>(initialPeople);
   const [timeWindow, setTimeWindow] = useState<TimeWindow>("day");
