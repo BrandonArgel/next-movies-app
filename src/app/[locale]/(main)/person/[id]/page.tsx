@@ -92,7 +92,7 @@ export default async function PersonPage({ params }: PersonPageProps) {
         {tvCastShows.length > 0 && (
           <section className="flex flex-col gap-6">
             <h2 className="text-2xl font-bold">{t("castTvShows")}</h2>
-            <TvShowCarousel tvShows={tvCastShows} active />
+            <TvShowCarousel tvShows={tvCastShows} />
           </section>
         )}
 
@@ -100,7 +100,7 @@ export default async function PersonPage({ params }: PersonPageProps) {
         {crewMovieCredits.length > 0 && (
           <section className="flex flex-col gap-6">
             <h2 className="text-2xl font-bold">{t("crew_credits")}</h2>
-            <MovieCarousel movies={crewMovieCredits} active />
+            <MovieCarousel movies={crewMovieCredits} />
           </section>
         )}
 

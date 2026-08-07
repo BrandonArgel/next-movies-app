@@ -2,7 +2,63 @@ import { getTranslations } from "next-intl/server";
 import { type Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { tmdb } from "@/lib/tmdb";
-import { FilmIcon, TvIcon, TagIcon } from "lucide-react";
+import {
+  FilmIcon,
+  TvIcon,
+  TagIcon,
+  SwordsIcon,
+  CompassIcon,
+  BabyIcon,
+  SmileIcon,
+  ShieldAlertIcon,
+  VideoIcon,
+  ClapperboardIcon,
+  HeartIcon,
+  Wand2Icon,
+  HistoryIcon,
+  GhostIcon,
+  MusicIcon,
+  SearchIcon,
+  RocketIcon,
+  ZapIcon,
+  TentIcon,
+  NewspaperIcon,
+  GlobeIcon,
+  LandmarkIcon,
+} from "lucide-react";
+
+// Standard TMDB Genre IDs mapped to Lucide icons
+const GENRE_ICONS: Record<number, React.ElementType> = {
+  // Movies & Shared
+  28: SwordsIcon, // Action
+  12: CompassIcon, // Adventure
+  16: BabyIcon, // Animation
+  35: SmileIcon, // Comedy
+  80: ShieldAlertIcon, // Crime
+  99: VideoIcon, // Documentary
+  18: ClapperboardIcon, // Drama
+  10751: HeartIcon, // Family
+  14: Wand2Icon, // Fantasy
+  36: HistoryIcon, // History
+  27: GhostIcon, // Horror
+  10402: MusicIcon, // Music
+  9648: SearchIcon, // Mystery
+  10749: HeartIcon, // Romance
+  878: RocketIcon, // Science Fiction
+  10770: TvIcon, // TV Movie
+  53: ZapIcon, // Thriller
+  10752: SwordsIcon, // War
+  37: TentIcon, // Western
+  // TV Specific
+  10759: SwordsIcon, // Action & Adventure
+  10762: BabyIcon, // Kids
+  10763: NewspaperIcon, // News
+  10764: GlobeIcon, // Reality
+  10765: Wand2Icon, // Sci-Fi & Fantasy
+  10766: HeartIcon, // Soap
+  10767: TvIcon, // Talk
+  10768: LandmarkIcon, // War & Politics
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("genres");
@@ -57,27 +113,28 @@ interface GenreCardProps {
   name: string;
   href: string;
   color: string;
+  Icon: React.ElementType;
 }
 
-function GenreCard({ id, name, href, color }: GenreCardProps) {
+function GenreCard({ id, name, href, color, Icon }: GenreCardProps) {
   return (
     <Link
       key={id}
       href={href}
       className={`group relative flex items-end overflow-hidden rounded-2xl aspect-video sm:aspect-square focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2`}
     >
-      {/* Gradient background */}
       <div
         className={`absolute inset-0 bg-linear-to-br ${color} transition-all duration-500 group-hover:scale-105`}
       />
-      {/* Noise texture overlay for depth */}
       <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==')]" />
-      {/* Bottom gradient for text legibility */}
-      <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
-      {/* Hover ring */}
+      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
       <div className="absolute inset-0 rounded-2xl ring-1 ring-white/15 group-hover:ring-white/40 transition-all duration-300" />
-      {/* Label */}
-      <div className="relative z-10 p-3 md:p-4 w-full">
+
+      <div className="relative z-10 p-4 w-full flex flex-col gap-2">
+        <Icon
+          className="size-6 text-white/80 group-hover:text-white transition-colors duration-300"
+          strokeWidth={1.5}
+        />
         <span className="text-white font-semibold text-sm md:text-base leading-tight drop-shadow-sm">
           {name}
         </span>
@@ -87,7 +144,7 @@ function GenreCard({ id, name, href, color }: GenreCardProps) {
 }
 
 export default async function GenresPage() {
-  const t = await getTranslations("genres");
+  const t = await getTranslations("pages.genres");
 
   const [movieGenresResult, tvGenresResult] = await Promise.all([
     tmdb.getMovieGenres(),
@@ -141,15 +198,21 @@ export default async function GenresPage() {
               </span>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
-              {movieGenres.map((genre, index) => (
-                <GenreCard
-                  key={genre.id}
-                  id={genre.id}
-                  name={genre.name}
-                  href={`/genres/movie/${genre.id}`}
-                  color={MOVIE_GENRE_COLORS[index % MOVIE_GENRE_COLORS.length]!}
-                />
-              ))}
+              {movieGenres.map((genre, index) => {
+                const Icon = GENRE_ICONS[genre.id] || TagIcon;
+                return (
+                  <GenreCard
+                    key={genre.id}
+                    id={genre.id}
+                    name={genre.name}
+                    href={`/genres/movie/${genre.id}`}
+                    color={
+                      MOVIE_GENRE_COLORS[index % MOVIE_GENRE_COLORS.length]!
+                    }
+                    Icon={Icon}
+                  />
+                );
+              })}
             </div>
           </section>
         )}
@@ -170,15 +233,19 @@ export default async function GenresPage() {
               </span>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
-              {tvOnlyGenres.map((genre, index) => (
-                <GenreCard
-                  key={genre.id}
-                  id={genre.id}
-                  name={genre.name}
-                  href={`/genres/tv/${genre.id}`}
-                  color={TV_GENRE_COLORS[index % TV_GENRE_COLORS.length]!}
-                />
-              ))}
+              {tvOnlyGenres.map((genre, index) => {
+                const Icon = GENRE_ICONS[genre.id] || TagIcon;
+                return (
+                  <GenreCard
+                    key={genre.id}
+                    id={genre.id}
+                    name={genre.name}
+                    href={`/genres/tv/${genre.id}`}
+                    color={TV_GENRE_COLORS[index % TV_GENRE_COLORS.length]!}
+                    Icon={Icon}
+                  />
+                );
+              })}
             </div>
           </section>
         )}

@@ -19,10 +19,11 @@ import { useGridColumns } from "@/hooks/use-grid-columns";
 interface InfiniteMovieGridProps {
   initialMovies: Movie[];
   totalPages: number;
-  type?: "discover" | "search";
+  type?: "discover" | "search" | "genre";
   searchQuery?: string;
   filters?: Record<string, string>;
   className?: string;
+  genreId?: string;
 }
 
 export function InfiniteMovieGrid({

@@ -8,7 +8,7 @@ import { type Movie, type DetailedMovie } from "@/types/movies";
 import { type DetailedTvShow } from "@/types/tv-show";
 import { type TvShow } from "@/types/tv-show";
 import { type Collection } from "@/types/collection";
-import { type PersonDetail, type TrendingPerson } from "@/types/person";
+import { type PersonDetail, type Person } from "@/types/person";
 import {
   type Result,
   type ErrorTranslationKey,
@@ -122,8 +122,8 @@ export const tmdb = {
   getTrendingPeople: async (
     timeWindow: TimeWindow = "day",
     page = 1,
-  ): TMDBPaginatedResponse<TrendingPerson> => {
-    return fetchTMDB<PaginatedResponse<TrendingPerson>>(
+  ): TMDBPaginatedResponse<Person> => {
+    return fetchTMDB<PaginatedResponse<Person>>(
       `/trending/person/${timeWindow}?page=${page}`,
     );
   },
@@ -224,10 +224,8 @@ export const tmdb = {
     return fetchTMDB<PaginatedResponse<TvShow>>(`/tv/top_rated?page=${page}`);
   },
 
-  getPopularPeople: async (page = 1): TMDBPaginatedResponse<TrendingPerson> => {
-    return fetchTMDB<PaginatedResponse<TrendingPerson>>(
-      `/person/popular?page=${page}`,
-    );
+  getPopularPeople: async (page = 1): TMDBPaginatedResponse<Person> => {
+    return fetchTMDB<PaginatedResponse<Person>>(`/person/popular?page=${page}`);
   },
 
   discoverMoviesByGenre: async (
@@ -279,12 +277,21 @@ export const tmdb = {
     );
   },
 
-  searchTVShows: async (
+  searchTvShows: async (
     query: string,
     page = 1,
   ): TMDBPaginatedResponse<TvShow> => {
     return fetchTMDB<PaginatedResponse<TvShow>>(
       `/search/tv?query=${encodeURIComponent(query)}&page=${page}`,
+    );
+  },
+
+  searchPeople: async (
+    query: string,
+    page = 1,
+  ): TMDBPaginatedResponse<Person> => {
+    return fetchTMDB<PaginatedResponse<Person>>(
+      `/search/person?query=${encodeURIComponent(query)}&page=${page}`,
     );
   },
 

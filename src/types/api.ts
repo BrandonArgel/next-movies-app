@@ -1,6 +1,6 @@
 import { type Movie } from "./movies";
-import { type TVShow } from "./tv-show";
-import { type TrendingPerson } from "./person";
+import { type TvShow } from "./tv-show";
+import { type Person } from "./person";
 import { type PaginatedResponse } from "./common";
 
 export type ErrorTranslationKey =
@@ -24,7 +24,7 @@ export interface TMDBErrorResponse {
 
 export type MultiSearchResult =
   | (Movie & { media_type: "movie" })
-  | (TVShow & { media_type: "tv" })
-  | (TrendingPerson & { media_type: "person" });
+  | (TvShow & { media_type: "tv" })
+  | (Person & { media_type: "person" });
 
 export interface MultiSearchResponse extends PaginatedResponse<MultiSearchResult> {}

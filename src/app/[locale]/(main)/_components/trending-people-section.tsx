@@ -8,17 +8,17 @@ import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 import { PeopleCarousel } from "@/components/people/people-carousel";
 import { cn } from "@/lib/utils";
-import { type TrendingPerson } from "@/types/person";
+import { type Person } from "@/types/person";
 import { type TimeWindow } from "@/types/common";
 
 export default function TrendingPeopleSection({
   initialPeople,
 }: {
-  initialPeople: TrendingPerson[];
+  initialPeople: Person[];
 }) {
   const t = useTranslations("pages.home.trending.people");
   const tErrors = useTranslations("errors");
-  const [people, setPeople] = useState<TrendingPerson[]>(initialPeople);
+  const [people, setPeople] = useState<Person[]>(initialPeople);
   const [timeWindow, setTimeWindow] = useState<TimeWindow>("day");
   const [isPending, startTransition] = useTransition();
 

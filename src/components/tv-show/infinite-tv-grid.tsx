@@ -19,10 +19,11 @@ import { useGridColumns } from "@/hooks/use-grid-columns";
 interface InfiniteTvShowGridProps {
   initialTvShows: TvShow[];
   totalPages: number;
-  type?: "discover_tv" | "search";
+  type?: "discover_tv" | "search" | "genre";
   searchQuery?: string;
   filters?: Record<string, string>;
   className?: string;
+  genreId?: string;
 }
 
 export function InfiniteTvShowGrid({

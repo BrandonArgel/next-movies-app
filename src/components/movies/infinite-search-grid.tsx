@@ -2,13 +2,19 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Loader2Icon, FilmIcon, TvIcon, UsersIcon, LayoutGridIcon } from "lucide-react";
+import {
+  Loader2Icon,
+  FilmIcon,
+  TvIcon,
+  UsersIcon,
+  LayoutGridIcon,
+} from "lucide-react";
 import { MovieCard } from "@/components/movies/movie-card";
 import { TVShowCard } from "@/components/tv-show/tv-show-card";
 import { PersonCard } from "@/components/people/person-card";
 import { type Movie } from "@/types/movies";
-import { type TVShow } from "@/types/tv-show";
-import { type TrendingPerson } from "@/types/person";
+import { type TvShow } from "@/types/tv-show";
+import { type Person } from "@/types/person";
 import { type MultiSearchResult } from "@/types/api";
 import { cn } from "@/lib/utils";
 
@@ -17,8 +23,8 @@ import { cn } from "@/lib/utils";
 type FilterType = "all" | "movie" | "tv" | "person";
 
 type FilteredMovies = (Movie & { media_type: "movie" })[];
-type FilteredTVShows = (TVShow & { media_type: "tv" })[];
-type FilteredPeople = (TrendingPerson & { media_type: "person" })[];
+type FilteredTvShows = (TvShow & { media_type: "tv" })[];
+type FilteredPeople = (Person & { media_type: "person" })[];
 
 interface InfiniteSearchGridProps {
   query: string;
@@ -139,15 +145,16 @@ export function InfiniteSearchGrid({
 
   // ── Partition results by media_type ─────────────────────────────────────────
   const movies = results.filter(
-    (item): item is Movie & { media_type: "movie" } => item.media_type === "movie",
+    (item): item is Movie & { media_type: "movie" } =>
+      item.media_type === "movie",
   ) as FilteredMovies;
 
   const tvShows = results.filter(
-    (item): item is TVShow & { media_type: "tv" } => item.media_type === "tv",
-  ) as FilteredTVShows;
+    (item): item is TvShow & { media_type: "tv" } => item.media_type === "tv",
+  ) as FilteredTvShows;
 
   const people = results.filter(
-    (item): item is TrendingPerson & { media_type: "person" } =>
+    (item): item is Person & { media_type: "person" } =>
       item.media_type === "person",
   ) as FilteredPeople;
 
@@ -155,7 +162,9 @@ export function InfiniteSearchGrid({
   if (results.length === 0 && !isLoading) {
     return (
       <div className="mt-12 rounded-3xl border border-border bg-muted p-10 text-center">
-        <p className="text-lg font-medium">{tSearch("no_results", { query })}</p>
+        <p className="text-lg font-medium">
+          {tSearch("no_results", { query })}
+        </p>
       </div>
     );
   }
@@ -216,11 +225,17 @@ export function InfiniteSearchGrid({
       {/* ── Result sections ─────────────────────────────────────────────── */}
       <div className="flex flex-col gap-12">
         {showMovies && movies.length > 0 && (
-          <section className="space-y-5" id="search-movies" aria-label={tSearch("filter_movies")}>
+          <section
+            className="space-y-5"
+            id="search-movies"
+            aria-label={tSearch("filter_movies")}
+          >
             {activeFilter === "all" && (
               <div className="flex items-center gap-3">
                 <FilmIcon className="size-5 text-primary shrink-0" />
-                <h2 className="text-xl font-semibold">{t("entities.movies")}</h2>
+                <h2 className="text-xl font-semibold">
+                  {t("entities.movies")}
+                </h2>
                 <span className="text-xs font-medium text-muted-foreground bg-muted rounded-full px-2 py-0.5">
                   {movies.length}+
                 </span>
@@ -235,11 +250,17 @@ export function InfiniteSearchGrid({
         )}
 
         {showTV && tvShows.length > 0 && (
-          <section className="space-y-5" id="search-tv" aria-label={tSearch("filter_tv")}>
+          <section
+            className="space-y-5"
+            id="search-tv"
+            aria-label={tSearch("filter_tv")}
+          >
             {activeFilter === "all" && (
               <div className="flex items-center gap-3">
                 <TvIcon className="size-5 text-primary shrink-0" />
-                <h2 className="text-xl font-semibold">{t("entities.tv_shows")}</h2>
+                <h2 className="text-xl font-semibold">
+                  {t("entities.tv_shows")}
+                </h2>
                 <span className="text-xs font-medium text-muted-foreground bg-muted rounded-full px-2 py-0.5">
                   {tvShows.length}+
                 </span>
@@ -254,11 +275,17 @@ export function InfiniteSearchGrid({
         )}
 
         {showPeople && people.length > 0 && (
-          <section className="space-y-5" id="search-people" aria-label={tSearch("filter_people")}>
+          <section
+            className="space-y-5"
+            id="search-people"
+            aria-label={tSearch("filter_people")}
+          >
             {activeFilter === "all" && (
               <div className="flex items-center gap-3">
                 <UsersIcon className="size-5 text-primary shrink-0" />
-                <h2 className="text-xl font-semibold">{t("entities.people")}</h2>
+                <h2 className="text-xl font-semibold">
+                  {t("entities.people")}
+                </h2>
                 <span className="text-xs font-medium text-muted-foreground bg-muted rounded-full px-2 py-0.5">
                   {people.length}+
                 </span>
@@ -299,7 +326,9 @@ export function InfiniteSearchGrid({
           />
         )}
         {!isLoading && !shouldShowSentinel && results.length > 0 && (
-          <p className="text-sm text-muted-foreground">{t("no_more_results")}</p>
+          <p className="text-sm text-muted-foreground">
+            {t("no_more_results")}
+          </p>
         )}
       </div>
     </div>

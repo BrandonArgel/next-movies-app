@@ -1,113 +1,193 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useMemo,
+} from "react";
 import { useTranslations } from "next-intl";
-import { Loader2Icon } from "lucide-react";
+import { Spinner } from "@/components/ui/spinner";
+import { useWindowVirtualizer } from "@tanstack/react-virtual";
 import { PersonCard } from "@/components/people/person-card";
-import { type TrendingPerson } from "@/types/person";
-import { type PeopleListType } from "@/app/api/people/route";
 import { cn } from "@/lib/utils";
+import { useGridColumns } from "@/hooks/use-grid-columns";
+import { type Person } from "@/types/person";
 
 interface InfinitePeopleGridProps {
-  initialPeople: TrendingPerson[];
+  initialPeople: Person[];
   totalPages: number;
-  type: PeopleListType;
   className?: string;
 }
 
 export function InfinitePeopleGrid({
   initialPeople,
   totalPages,
-  type,
   className,
 }: InfinitePeopleGridProps) {
-  const t = useTranslations("common");
+  const t = useTranslations("global.states");
+  const columns = useGridColumns();
 
-  const [people, setPeople] = useState<TrendingPerson[]>(initialPeople);
+  const [people, setPeople] = useState<Person[]>(initialPeople);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(totalPages > 1);
+  const [scrollMargin, setScrollMargin] = useState(0);
 
-  const sentinelRef = useRef<HTMLDivElement>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (containerRef.current) {
+      setScrollMargin(containerRef.current.offsetTop);
+    }
+  }, []);
+
+  const personRows = useMemo(() => {
+    const rows = [];
+    for (let i = 0; i < people.length; i += columns) {
+      rows.push(people.slice(i, i + columns));
+    }
+    return rows;
+  }, [people, columns]);
+
+  const virtualizer = useWindowVirtualizer({
+    count: personRows.length,
+    estimateSize: () => {
+      if (typeof window === "undefined") return 350;
+      const cardWidth = window.innerWidth / columns;
+      return cardWidth * 1.5 + 60; // Adjust multiplier if person cards have a different aspect ratio than posters
+    },
+    overscan: 2,
+    scrollMargin,
+  });
+
+  const measureElement = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (node) {
+        queueMicrotask(() => {
+          virtualizer.measureElement(node);
+        });
+      }
+    },
+    [virtualizer],
+  );
 
   const loadMore = useCallback(async () => {
     if (isLoading || !hasMore) return;
 
     setIsLoading(true);
 
-    const nextPage = page + 1;
-    const params = new URLSearchParams({
-      type,
-      page: String(nextPage),
-    });
-
-    const res = await fetch(`/api/people?${params.toString()}`);
-
-    if (!res.ok) {
-      setIsLoading(false);
-      return;
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
     }
+    abortControllerRef.current = new AbortController();
 
-    const data = (await res.json()) as {
-      results: TrendingPerson[];
-      total_pages: number;
-    };
+    const nextPage = page + 1;
 
-    setPeople((prev) => [...prev, ...data.results]);
-    setPage(nextPage);
-    setHasMore(nextPage < data.total_pages);
-    setIsLoading(false);
-  }, [isLoading, hasMore, page, type]);
+    try {
+      const res = await fetch(`/api/people?page=${nextPage}`, {
+        signal: abortControllerRef.current.signal,
+      });
+
+      if (!res.ok) throw new Error("Fetch failed");
+
+      const data = (await res.json()) as {
+        results: Person[];
+        total_pages: number;
+      };
+
+      setPeople((prev) => {
+        const existingIds = new Set(prev.map((p) => p.id));
+        const newPeople = data.results.filter((p) => !existingIds.has(p.id));
+        return [...prev, ...newPeople];
+      });
+
+      setPage(nextPage);
+      setHasMore(nextPage < data.total_pages);
+    } catch (error: any) {
+      if (error.name !== "AbortError") {
+        console.error(error);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }, [isLoading, hasMore, page]);
 
   useEffect(() => {
     setPeople(initialPeople);
     setPage(1);
     setHasMore(totalPages > 1);
+
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
   }, [initialPeople, totalPages]);
 
+  const virtualItems = virtualizer.getVirtualItems();
+  const lastItemIndex = virtualItems[virtualItems.length - 1]?.index;
+
   useEffect(() => {
-    const sentinel = sentinelRef.current;
-    if (!sentinel) return;
+    if (lastItemIndex === undefined) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry?.isIntersecting) {
-          void loadMore();
-        }
-      },
-      { rootMargin: "200px" },
-    );
-
-    observer.observe(sentinel);
-    return () => observer.disconnect();
-  }, [loadMore]);
+    if (lastItemIndex >= personRows.length - 1 && hasMore && !isLoading) {
+      void loadMore();
+    }
+  }, [lastItemIndex, hasMore, isLoading, personRows.length, loadMore]);
 
   return (
-    <div className={cn("flex flex-col gap-8", className)}>
+    <div className={cn("flex flex-col gap-8", className)} ref={containerRef}>
       <div
-        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
         role="list"
         aria-busy={isLoading}
+        suppressHydrationWarning
+        style={{
+          height: `${virtualizer.getTotalSize()}px`,
+          width: "100%",
+          position: "relative",
+        }}
       >
-        {people.map((person) => (
-          <div key={person.id} role="listitem">
-            <PersonCard person={person} />
-          </div>
-        ))}
+        {virtualItems.map((virtualRow) => {
+          const rowPeople = personRows[virtualRow.index];
+
+          return (
+            <div
+              key={virtualRow.key}
+              data-index={virtualRow.index}
+              ref={measureElement}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                transform: `translateY(${virtualRow.start - scrollMargin}px)`,
+                display: "grid",
+                gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+                gap: "1rem",
+                paddingBottom: "1.5rem",
+              }}
+            >
+              {rowPeople.map((person) => (
+                <div key={person.id} role="listitem">
+                  <PersonCard person={person} />
+                </div>
+              ))}
+            </div>
+          );
+        })}
       </div>
 
       <div
-        ref={sentinelRef}
         className="flex justify-center items-center py-6 min-h-12"
         aria-live="polite"
-        aria-label={
-          isLoading ? t("loading") : hasMore ? "" : t("no_more_results")
-        }
       >
         {isLoading && (
-          <Loader2Icon
-            className="size-6 animate-spin text-muted-foreground"
+          <Spinner
+            className="size-6 text-muted-foreground"
             aria-hidden="true"
           />
         )}

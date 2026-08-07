@@ -1,6 +1,6 @@
 import { type MediaType } from "./media";
 
-export interface TrendingPerson {
+export interface Person {
   adult: boolean;
   id: number;
   name: string;

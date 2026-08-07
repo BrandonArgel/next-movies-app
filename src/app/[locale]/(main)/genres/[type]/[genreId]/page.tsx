@@ -2,19 +2,74 @@ import { getTranslations } from "next-intl/server";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import { ChevronRightIcon, FilmIcon, TvIcon } from "lucide-react";
 import { tmdb } from "@/lib/tmdb";
 import { InfiniteMovieGrid } from "@/components/movies/infinite-movie-grid";
-import { InfiniteTvGrid } from "@/components/tv-show/infinite-tv-grid";
+import { InfiniteTvShowGrid } from "@/components/tv-show/infinite-tv-grid";
 import { type Movie } from "@/types/movies";
 import { type TvShow } from "@/types/tv-show";
+import {
+  ChevronRightIcon,
+  FilmIcon,
+  TvIcon,
+  TagIcon,
+  SwordsIcon,
+  CompassIcon,
+  BabyIcon,
+  SmileIcon,
+  ShieldAlertIcon,
+  VideoIcon,
+  ClapperboardIcon,
+  HeartIcon,
+  Wand2Icon,
+  HistoryIcon,
+  GhostIcon,
+  MusicIcon,
+  SearchIcon,
+  RocketIcon,
+  ZapIcon,
+  TentIcon,
+  NewspaperIcon,
+  GlobeIcon,
+  LandmarkIcon,
+} from "lucide-react";
+
+const VALID_TYPES = ["movie", "tv"] as const;
+type GenreType = (typeof VALID_TYPES)[number];
+
+// Mapa de íconos idéntico al de la página de categorías
+const GENRE_ICONS: Record<number, React.ElementType> = {
+  28: SwordsIcon, // Action
+  12: CompassIcon, // Adventure
+  16: BabyIcon, // Animation
+  35: SmileIcon, // Comedy
+  80: ShieldAlertIcon, // Crime
+  99: VideoIcon, // Documentary
+  18: ClapperboardIcon, // Drama
+  10751: HeartIcon, // Family
+  14: Wand2Icon, // Fantasy
+  36: HistoryIcon, // History
+  27: GhostIcon, // Horror
+  10402: MusicIcon, // Music
+  9648: SearchIcon, // Mystery
+  10749: HeartIcon, // Romance
+  878: RocketIcon, // Science Fiction
+  10770: TvIcon, // TV Movie
+  53: ZapIcon, // Thriller
+  10752: SwordsIcon, // War
+  37: TentIcon, // Western
+  10759: SwordsIcon, // Action & Adventure
+  10762: BabyIcon, // Kids
+  10763: NewspaperIcon, // News
+  10764: GlobeIcon, // Reality
+  10765: Wand2Icon, // Sci-Fi & Fantasy
+  10766: HeartIcon, // Soap
+  10767: TvIcon, // Talk
+  10768: LandmarkIcon, // War & Politics
+};
 
 interface GenrePageProps {
   params: Promise<{ type: string; genreId: string }>;
 }
-
-const VALID_TYPES = ["movie", "tv"] as const;
-type GenreType = (typeof VALID_TYPES)[number];
 
 export async function generateMetadata({
   params,
@@ -52,6 +107,9 @@ export default async function GenrePage({ params }: GenrePageProps) {
   const t = await getTranslations("genres");
   const tNav = await getTranslations("nav");
 
+  // Obtener el ícono dinámico basado en el ID de la URL
+  const Icon = GENRE_ICONS[Number(genreId)] || TagIcon;
+
   if (mediaType === "movie") {
     const [genresResult, tvGenresResult, moviesResult] = await Promise.all([
       tmdb.getMovieGenres(),
@@ -72,12 +130,10 @@ export default async function GenrePage({ params }: GenrePageProps) {
 
     return (
       <main className="flex flex-col w-full min-h-screen bg-background">
-        {/* Genre hero */}
         <div
           className={`bg-linear-to-b from-primary/80 via-background/60 to-background border-b border-border`}
         >
           <div className="container mx-auto px-4 md:px-8 xl:px-12 pt-12 pb-10">
-            {/* Breadcrumb */}
             <nav
               aria-label="Breadcrumb"
               className="flex items-center gap-1.5 text-sm text-muted-foreground mb-6"
@@ -92,21 +148,25 @@ export default async function GenrePage({ params }: GenrePageProps) {
               <span className="text-foreground font-medium">{genreName}</span>
             </nav>
 
-            {/* Title row */}
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary bg-primary/10 rounded-full px-3 py-1">
-                    <FilmIcon className="size-3" />
-                    {tNav("movies")}
-                  </span>
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+              {/* Contenedor del Título con Ícono */}
+              <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center size-12 sm:size-14 rounded-2xl bg-primary/10 text-primary shrink-0">
+                  <Icon className="size-6 sm:size-7" />
                 </div>
-                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
-                  {genreName}
-                </h1>
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary bg-primary/10 rounded-full px-3 py-1">
+                      <FilmIcon className="size-3" />
+                      {tNav("movies")}
+                    </span>
+                  </div>
+                  <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                    {genreName}
+                  </h1>
+                </div>
               </div>
 
-              {/* Toggle to TV if genre also exists there */}
               {alsoInTV && (
                 <Link
                   href={`/genres/tv/${genreId}`}
@@ -120,7 +180,6 @@ export default async function GenrePage({ params }: GenrePageProps) {
           </div>
         </div>
 
-        {/* Results grid */}
         <div className="container mx-auto px-4 md:px-8 xl:px-12 py-10">
           <InfiniteMovieGrid
             initialMovies={moviesResult.data.results as Movie[]}
@@ -133,10 +192,10 @@ export default async function GenrePage({ params }: GenrePageProps) {
     );
   }
 
-  // TV branch
+  // Branch para TV
   const [genresResult, movieGenresResult, tvResult] = await Promise.all([
     tmdb.getTVShowGenres(),
-    tmdb.getMovieGenres(), // to check if genre also exists in movies
+    tmdb.getMovieGenres(),
     tmdb.discoverTVShowsByGenre(genreId, 1),
   ]);
 
@@ -153,12 +212,10 @@ export default async function GenrePage({ params }: GenrePageProps) {
 
   return (
     <main className="flex flex-col w-full min-h-screen bg-background">
-      {/* Genre hero */}
       <div
         className={`bg-linear-to-b from-primary/80 via-background/60 to-background border-b border-border`}
       >
         <div className="container mx-auto px-4 md:px-8 xl:px-12 pt-12 pb-10">
-          {/* Breadcrumb */}
           <nav
             aria-label="Breadcrumb"
             className="flex items-center gap-1.5 text-sm text-muted-foreground mb-6"
@@ -173,21 +230,25 @@ export default async function GenrePage({ params }: GenrePageProps) {
             <span className="text-foreground font-medium">{genreName}</span>
           </nav>
 
-          {/* Title row */}
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary bg-primary/10 rounded-full px-3 py-1">
-                  <TvIcon className="size-3" />
-                  {tNav("tv_shows")}
-                </span>
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+            {/* Contenedor del Título con Ícono */}
+            <div className="flex items-center gap-4">
+              <div className="flex items-center justify-center size-12 sm:size-14 rounded-2xl bg-primary/10 text-primary shrink-0">
+                <Icon className="size-6 sm:size-7" />
               </div>
-              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
-                {genreName}
-              </h1>
+              <div className="flex flex-col gap-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary bg-primary/10 rounded-full px-3 py-1">
+                    <TvIcon className="size-3" />
+                    {tNav("tv_shows")}
+                  </span>
+                </div>
+                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                  {genreName}
+                </h1>
+              </div>
             </div>
 
-            {/* Toggle to Movies if genre also exists there */}
             {alsoInMovies && (
               <Link
                 href={`/genres/movie/${genreId}`}
@@ -201,10 +262,9 @@ export default async function GenrePage({ params }: GenrePageProps) {
         </div>
       </div>
 
-      {/* Results grid */}
       <div className="container mx-auto px-4 md:px-8 xl:px-12 py-10">
-        <InfiniteTVGrid
-          initialShows={tvResult.data.results as TVShow[]}
+        <InfiniteTvShowGrid
+          initialTvShows={tvResult.data.results as TvShow[]}
           totalPages={tvResult.data.total_pages}
           type="genre"
           genreId={genreId}

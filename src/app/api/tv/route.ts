@@ -15,7 +15,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         { status: 400 },
       );
     }
-    const result = await tmdb.searchTVShows(query, page);
+    const result = await tmdb.searchTvShows(query, page);
 
     if (!result.success) {
       return NextResponse.json({ error: result.error }, { status: 500 });

@@ -1,8 +1,8 @@
 import { type Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
-import { tmdb } from "@/lib/tmdb";
 import { Suspense } from "react";
+import { tmdb } from "@/lib/tmdb";
 import { Spinner } from "@/components/ui/spinner";
 import { MovieDetailHero } from "../_components/movie-detail-hero";
 import { MovieBreadcrumb } from "../_components/movie-breadcrumb";
