@@ -1,22 +1,298 @@
 {
-  "common": {
-    "app_name": "BrandScope",
-    "back_to_home": "العودة إلى الصفحة الرئيسية",
-    "view_details": "عرض التفاصيل",
-    "view_details_of": "عرض التفاصيل لـ",
-    "states": {
-      "no_results": "لا توجد نتائج متاحة في الوقت الحالي.",
-      "loading_error": "حدث خطأ أثناء تحميل البيانات:",
-      "try_again": "حاول مرة أخرى"
+  "global": {
+    "branding": {
+      "app_name": "BrandScope"
     },
     "entities": {
       "movies": "أفلام",
       "tv_shows": "مسلسلات",
       "people": "أشخاص"
     },
-    "loading": "جارٍ التحميل...",
-    "no_more_results": "لقد وصلت إلى النهاية.",
-    "results_count": "نتائج"
+    "actions": {
+      "back_to_home": "العودة إلى الصفحة الرئيسية",
+      "view_details": "عرض التفاصيل",
+      "view_details_of": "عرض التفاصيل لـ",
+      "readMore": "اقرأ المزيد",
+      "readLess": "اقرأ أقل",
+      "options_aria_label": "مزيد من الخيارات لـ {name}"
+    },
+    "labels": {
+      "results_count": "نتائج",
+      "status": "الحالة",
+      "popularity": "الشعبية",
+      "score": "التقييم",
+      "release_date": "تاريخ الإصدار",
+      "genres": "الأنواع"
+    },
+    "states": {
+      "loading": "جارٍ التحميل...",
+      "no_more_results": "لقد وصلت إلى النهاية.",
+      "no_items_found": "لم يتم العثور على عناصر.",
+      "no_results": "لا توجد نتائج متاحة في الوقت الحالي.",
+      "loading_error": "حدث خطأ أثناء تحميل البيانات:",
+      "try_again": "حاول مرة أخرى",
+      "no_trailer": "لا يوجد مقطع دعائي متاح."
+    },
+    "network": {
+      "online_title": "تم استعادة الاتصال",
+      "online_description": "لقد عدت إلى الإنترنت.",
+      "offline_title": "لا يوجد اتصال",
+      "offline_description": "يبدو أنك فقدت اتصال الإنترنت."
+    }
+  },
+  "components": {
+    "nav": {
+      "home": "الرئيسية",
+      "trending_movies": "الأفلام الرائجة",
+      "categories": "الفئات",
+      "popular": "شائع",
+      "upcoming": "قادم قريبًا",
+      "open_menu": "فتح قائمة التنقل",
+      "close_menu": "إغلاق قائمة التنقل",
+      "navigation": "التنقل الرئيسي",
+      "settings": "الإعدادات",
+      "movies": "أفلام",
+      "tv_shows": "مسلسلات",
+      "people": "أشخاص",
+      "now_playing": "يعرض الآن",
+      "top_rated": "الأعلى تقييمًا",
+      "airing_today": "يعرض اليوم",
+      "on_tv": "على التلفزيون",
+      "user": "محتواي",
+      "favorites": "المفضلات",
+      "list": "قائمتي",
+      "ratings": "تقييمي",
+      "on_the_air": "في البث"
+    },
+    "search": {
+      "placeholder": "ابحث عن أفلام وبرامج تلفزيونية وأشخاص...",
+      "label": "بحث",
+      "submit": "إرسال البحث",
+      "clear": "مسح البحث",
+      "filter_all": "الكل",
+      "filter_movies": "أفلام",
+      "filter_tv": "مسلسلات",
+      "filter_people": "أشخاص",
+      "no_results": "لا توجد نتائج لـ \"{query}\".",
+      "results": "نتائج البحث عن \"{query}\"",
+      "title": "بحث",
+      "results_count": "نتائج"
+    },
+    "filters": {
+      "sort_by": "ترتيب حسب",
+      "sort_popularity_desc": "الشعبية: من الأعلى إلى الأدنى",
+      "sort_popularity_asc": "الشعبية: من الأدنى إلى الأعلى",
+      "sort_rating_desc": "التقييم: من الأعلى إلى الأدنى",
+      "sort_rating_asc": "التقييم: من الأدنى إلى الأعلى",
+      "sort_title_desc": "العنوان: من ي إلى أ",
+      "sort_title_asc": "العنوان: من أ إلى ي",
+      "sort_date_desc": "تاريخ الإصدار: من الجديد إلى القديم",
+      "sort_date_asc": "تاريخ الإصدار: من القديم إلى الجديد",
+      "sort_first_air_date_desc": "تاريخ البث الأول: من الجديد إلى القديم",
+      "sort_first_air_date_asc": "تاريخ البث الأول: من القديم إلى الجديد",
+      "sort_by_genre": "النوع",
+      "all_genres": "كل الأنواع",
+      "sort_by_release_dates": "تواريخ الإصدار",
+      "pick_a_date": "اختر نطاقًا زمنيًا",
+      "sort_by_runtime_minutes": "المدة (دقيقة)",
+      "apply_filters": "تطبيق المرشحات",
+      "applying_filters": "جارٍ تطبيق المرشحات",
+      "clear_filters": "مسح المرشحات"
+    },
+    "preferences": {
+      "theme": {
+        "label": "السمة",
+        "light": "فاتح",
+        "dark": "داكن",
+        "system": "النظام",
+        "toggle_theme": "تبديل السمة",
+        "preferences": "التفضيلات"
+      },
+      "color": {
+        "label": "لون التمييز",
+        "blue": "أزرق",
+        "green": "أخضر",
+        "cyan": "سماوي",
+        "indigo": "نيلي",
+        "purple": "بنفسجي",
+        "yellow": "أصفر",
+        "orange": "برتقالي",
+        "red": "أحمر",
+        "pink": "وردي",
+        "gray": "رمادي",
+        "toggle_color": "تبديل لون التمييز"
+      },
+      "language": {
+        "label": "اللغة",
+        "toggle_language": "تغيير اللغة",
+        "search_language": "البحث عن لغة",
+        "language_selector": "محدد اللغة"
+      }
+    },
+    "footer": {
+      "tagline": "عالمك من الأفلام، في مكان واحد.",
+      "copyright": "© {year} BrandScope. جميع الحقوق محفوظة.",
+      "powered_by": "مدعوم من TMDB",
+      "disclaimer": "هذا المنتج يستخدم واجهة برمجة تطبيقات TMDB لكنه غير معتمد أو مصدَّق من TMDB.",
+      "links": "التنقل",
+      "legal": "قانوني"
+    }
+  },
+  "pages": {
+    "home": {
+      "hero": {
+        "trending": "رائج!",
+        "play_trailer": "تشغيل المقطع الدعائي",
+        "details": "المزيد من التفاصيل",
+        "no_trailer": "لا يوجد مقطع دعائي متاح."
+      },
+      "trending": {
+        "movies": {
+          "title": "الأفلام الرائجة",
+          "description": "أكثر الأفلام شعبية في الوقت الحالي.",
+          "day": "اليوم",
+          "week": "هذا الأسبوع"
+        },
+        "tv_shows": {
+          "title": "المسلسلات الرائجة",
+          "description": "أكثر المسلسلات شعبية في الوقت الحالي.",
+          "day": "اليوم",
+          "week": "هذا الأسبوع",
+          "error": "حدث خطأ عند تحميل المسلسلات:"
+        },
+        "people": {
+          "title": "الأشخاص الرائجون",
+          "description": "أكثر الأشخاص شعبية في الوقت الحالي.",
+          "day": "اليوم",
+          "week": "هذا الأسبوع",
+          "error": "حدث خطأ عند تحميل الأشخاص:"
+        }
+      }
+    },
+    "movies": {
+      "popular": {
+        "title": "أفلام رائجة",
+        "description": "الأفلام الأكثر مشاهدة."
+      },
+      "upcoming": {
+        "title": "أفلام قادمة",
+        "description": "أفلام ستصل قريبًا إلى دور السينما."
+      },
+      "now_playing": {
+        "title": "يُعرض الآن",
+        "description": "الأفلام المعروضة حاليًا في دور السينما."
+      },
+      "top_rated": {
+        "title": "الأعلى تقييمًا",
+        "description": "الأفلام الأعلى تقييمًا على الإطلاق."
+      }
+    },
+    "tv": {
+      "airing_today": {
+        "title": "يُبث اليوم",
+        "description": "مسلسلات تُبث اليوم."
+      },
+      "on_the_air": {
+        "title": "على التلفاز",
+        "description": "مسلسلات تُبث حاليًا على التلفاز."
+      },
+      "popular": {
+        "title": "مسلسلات رائجة",
+        "description": "أكثر المسلسلات شعبيةً الآن."
+      },
+      "top_rated": {
+        "title": "أعلى تقييمًا",
+        "description": "أعلى المسلسلات تقييمًا على الإطلاق."
+      }
+    },
+    "people": {
+      "popular": {
+        "title": "مشاهير",
+        "description": "أبرز الممثلين والمخرجين والمبدعين."
+      }
+    },
+    "search": {
+      "title": "بحث",
+      "placeholder": "حاول البحث عن شيء ما في شريط البحث أعلى الصفحة!",
+      "no_results": "لا توجد نتائج لـ \"{query}\".",
+      "results": "نتائج البحث عن \"{query}\"",
+      "results_count": "نتائج",
+      "view_all_results": "عرض جميع النتائج",
+      "filter_all": "الكل",
+      "filter_movies": "أفلام",
+      "filter_tv": "مسلسلات",
+      "filter_people": "أشخاص"
+    },
+    "genres": {
+      "title": "الفئات",
+      "description": "تصفح الأفلام والمسلسلات حسب النوع.",
+      "movies_section": "الأفلام",
+      "tv_section": "المسلسلات",
+      "explore_genre": "استكشف {genre}"
+    }
+  },
+  "domains": {
+    "movie": {
+      "cast": "طاقم التمثيل الرئيسي",
+      "trailer": "المقطع الدعائي",
+      "recommendations": "إذا أعجبك هذا الفيلم، فستعجبك أيضًا...",
+      "no_trailer": "لا يوجد مقطع دعائي متاح.",
+      "release_date": "تاريخ الإصدار",
+      "genres": "الأنواع",
+      "score": "التقييم",
+      "official_website": "الموقع الرسمي",
+      "status": "الحالة",
+      "popularity": "الشعبية",
+      "budget": "الميزانية",
+      "revenue": "الإيرادات",
+      "where_to_watch": "أين تشاهد",
+      "stream": "بث",
+      "buy": "شراء",
+      "rent": "استئجار",
+      "providers_attribution": "بيانات البث مقدمة من",
+      "gallery": "المعرض",
+      "similar": "أفلام مشابهة",
+      "reviews": "مراجعات المستخدمين",
+      "awards": "الجوائز",
+      "fallback_overview": "لا يوجد وصف متاح لهذا الفيلم.",
+      "options_aria_label": "المزيد من الخيارات لـ {title}"
+    },
+    "tv": {
+      "fallback_overview": "لا يوجد وصف متاح لهذا المسلسل.",
+      "options_aria_label": "المزيد من الخيارات لـ {name}",
+      "status": "الحالة",
+      "popularity": "الشعبية",
+      "episodes": "الحلقات",
+      "season": "موسم",
+      "seasons": "مواسم",
+      "reviews": "مراجعات المستخدمين",
+      "created_by": "من إنشاء",
+      "in_production": "قيد الإنتاج",
+      "series_badge": "مسلسل",
+      "official_website": "الموقع الرسمي",
+      "production_companies": "شركات الإنتاج",
+      "recommendations": "إذا أعجبك هذا البرنامج التلفزيوني، فسوف يعجبك أيضًا..."
+    },
+    "person": {
+      "castMovies": "معروف عن...",
+      "biography": "السيرة الذاتية",
+      "noBiography": "لا توجد سيرة ذاتية متاحة.",
+      "noPhoto": "لا توجد صورة",
+      "readMore": "اقرأ المزيد",
+      "readLess": "اقرأ أقل",
+      "fallback_overview": "لا يوجد وصف متاح لهذا الشخص.",
+      "options_aria_label": "المزيد من الخيارات لـ {name}",
+      "known_for": "مشهور بـ",
+      "popularity": "الشعبية",
+      "also_known_as": "يُعرف أيضاً بـ",
+      "photos": "الصور",
+      "social_links_aria": "روابط التواصل الاجتماعي لـ {name}",
+      "tv_credits": "أعمال تلفزيونية",
+      "crew_credits": "خلف الكاميرا",
+      "show_biography_aria": "عرض السيرة الذاتية كاملة",
+      "hide_biography_aria": "اخفاء السيرة الذاتية",
+      "castTvShows": "اشتهر بالتمثيل في البرامج التليفزيونية.."
+    }
   },
   "errors": {
     "network": "يرجى التحقق من اتصال الإنترنت وحاول مرة أخرى.",
@@ -29,228 +305,20 @@
     "title": "حدث خطأ ما",
     "retry": "إعادة المحاولة"
   },
-  "theme": {
-    "label": "السمة",
-    "light": "فاتح",
-    "dark": "داكن",
-    "system": "النظام",
-    "toggle_theme": "تبديل السمة",
-    "preferences": "التفضيلات"
-  },
-  "color": {
-    "label": "لون التمييز",
-    "blue": "أزرق",
-    "green": "أخضر",
-    "cyan": "سماوي",
-    "indigo": "نيلي",
-    "purple": "بنفسجي",
-    "yellow": "أصفر",
-    "orange": "برتقالي",
-    "red": "أحمر",
-    "pink": "وردي",
-    "gray": "رمادي",
-    "toggle_color": "تبديل لون التمييز"
-  },
-  "language": {
-    "label": "اللغة",
-    "toggle_language": "تغيير اللغة",
-    "search_language": "البحث عن لغة",
-    "language_selector": "محدد اللغة"
-  },
-  "network": {
-    "online_title": "تم استعادة الاتصال",
-    "online_description": "لقد عدت إلى الإنترنت.",
-    "offline_title": "لا يوجد اتصال",
-    "offline_description": "يبدو أنك فقدت اتصال الإنترنت."
-  },
   "certifications": {
-    "G": "مناسب لجميع الأعمار.",
-    "PG": "ينصح بإشراف الوالدين.",
-    "PG-13": "إرشاد صارم لمن هم دون 13 عامًا.",
-    "R": "مقيّد. يجب أن يصاحب الأطفال دون 17 عامًا شخص بالغ.",
-    "NC-17": "للبالغين فقط. غير متاح لمن تقل أعمارهم عن 17 عامًا.",
-    "TV-Y": "مناسب لجميع الأطفال.",
-    "TV-Y7": "للأطفال من 7 سنوات فما فوق.",
-    "TV-G": "مناسب لجميع الجمهور.",
-    "TV-PG": "ينصح بإشراف الوالدين.",
-    "TV-14": "غير مناسب للأطفال دون 14 عامًا.",
-    "TV-MA": "للبالغين فقط.",
-    "NR": "لم يتم تقييمه.",
-    "Unrated": "غير مصنَّف",
+    "G": "مناسبة لجميع الجماهير.",
+    "PG": "اقترح توجيه الوالدين.",
+    "PG-13": "توجيهات أبوية صارمة للأطفال دون سن 13 عامًا.",
+    "R": "مقيد. يجب أن يكون الأطفال دون سن 17 عامًا برفقة شخص بالغ.",
+    "NC-17": "للكبار فقط. لا يمكن الوصول إليه لمن تقل أعمارهم عن 17 عامًا.",
+    "TV-Y": "مناسبة لجميع الأطفال.",
+    "TV-Y7": "للأطفال 7 وما فوق.",
+    "TV-G": "مناسبة لجميع الجماهير.",
+    "TV-PG": "اقترح توجيه الوالدين.",
+    "TV-14": "غير مناسب للأطفال أقل من 14 عامًا.",
+    "TV-MA": "للجماهير الكبار فقط.",
+    "NR": "غير مصنف.",
+    "Unrated": "غير مصنف",
     "fallback": "تقييمات العمر"
-  },
-  "nav": {
-    "home": "الرئيسية",
-    "trending_movies": "الأفلام الرائجة",
-    "categories": "الفئات",
-    "popular": "الأكثر شعبية",
-    "upcoming": "قادم قريبًا",
-    "open_menu": "فتح قائمة التنقل",
-    "close_menu": "إغلاق قائمة التنقل",
-    "navigation": "التنقل الرئيسي",
-    "settings": "الإعدادات",
-    "movies": "أفلام",
-    "tv_shows": "مسلسلات",
-    "people": "أشخاص",
-    "now_playing": "يعرض الآن",
-    "top_rated": "الأعلى تقييمًا",
-    "airing_today": "يعرض اليوم",
-    "on_tv": "على التلفزيون",
-    "user": "محتواي",
-    "favorites": "المفضلات",
-    "list": "قائمتي",
-    "ratings": "تقييمي"
-  },
-  "search": {
-    "placeholder": "ابحث عن أفلام وبرامج تلفزيونية وأشخاص...",
-    "label": "بحث",
-    "submit": "إرسال البحث",
-    "clear": "مسح البحث",
-    "filter_all": "الكل",
-    "filter_movies": "أفلام",
-    "filter_tv": "مسلسلات",
-    "filter_people": "أشخاص",
-    "no_results": "لا توجد نتائج لـ \"{query}\".",
-    "results": "نتائج البحث عن \"{query}\"",
-    "title": "بحث",
-    "results_count": "نتائج"
-  },
-  "genres": {
-    "title": "الفئات",
-    "description": "تصفح الأفلام والمسلسلات حسب النوع.",
-    "movies_section": "الأفلام",
-    "tv_section": "المسلسلات",
-    "explore_genre": "استكشف {genre}"
-  },
-  "home": {
-    "hero": {
-      "trending": "رائج!",
-      "play_trailer": "تشغيل المقطع الدعائي",
-      "details": "المزيد من التفاصيل",
-      "no_trailer": "لا يوجد مقطع دعائي متاح."
-    },
-    "trending": {
-      "movies": {
-        "title": "الأفلام الرائجة",
-        "description": "أكثر الأفلام شعبية في الوقت الحالي.",
-        "day": "اليوم",
-        "week": "هذا الأسبوع"
-      },
-      "tv_shows": {
-        "title": "المسلسلات الرائجة",
-        "description": "أكثر المسلسلات شعبية في الوقت الحالي.",
-        "day": "اليوم",
-        "week": "هذا الأسبوع",
-        "error": "حدث خطأ عند تحميل المسلسلات:"
-      },
-      "people": {
-        "title": "الأشخاص الرائجون",
-        "description": "أكثر الأشخاص شعبية في الوقت الحالي.",
-        "day": "اليوم",
-        "week": "هذا الأسبوع",
-        "error": "حدث خطأ عند تحميل الأشخاص:"
-      }
-    }
-  },
-  "movie": {
-    "cast": "طاقم التمثيل الرئيسي",
-    "trailer": "المقطع الدعائي",
-    "recommendations": "إذا أعجبك هذا الفيلم، فستعجبك أيضًا...",
-    "no_trailer": "لا يوجد مقطع دعائي متاح.",
-    "release_date": "تاريخ الإصدار",
-    "genres": "الأنواع",
-    "score": "التقييم",
-    "official_website": "الموقع الرسمي",
-    "status": "الحالة",
-    "popularity": "الشعبية",
-    "budget": "الميزانية",
-    "revenue": "الإيرادات",
-    "where_to_watch": "أين تشاهد",
-    "stream": "بث",
-    "buy": "شراء",
-    "rent": "استئجار",
-    "providers_attribution": "بيانات البث مقدمة من",
-    "gallery": "المعرض",
-    "similar": "أفلام مشابهة",
-    "reviews": "مراجعات المستخدمين",
-    "awards": "الجوائز",
-    "fallback_overview": "لا يوجد وصف متاح لهذا الفيلم.",
-    "options_aria_label": "المزيد من الخيارات لـ {title}"
-  },
-  "tv": {
-    "fallback_overview": "لا يوجد وصف متاح لهذا المسلسل.",
-    "options_aria_label": "المزيد من الخيارات لـ {name}",
-    "status": "الحالة",
-    "popularity": "الشعبية",
-    "episodes": "الحلقات",
-    "season": "موسم",
-    "seasons": "مواسم",
-    "reviews": "مراجعات المستخدمين",
-    "created_by": "من إنشاء",
-    "in_production": "قيد الإنتاج",
-    "series_badge": "مسلسل",
-    "official_website": "الموقع الرسمي",
-    "production_companies": "شركات الإنتاج"
-  },
-  "person": {
-    "castMovies": "معروف عن...",
-    "biography": "السيرة الذاتية",
-    "noBiography": "لا توجد سيرة ذاتية متاحة.",
-    "noPhoto": "لا توجد صورة",
-    "readMore": "اقرأ المزيد",
-    "readLess": "اقرأ أقل",
-    "fallback_overview": "لا يوجد وصف متاح لهذا الشخص.",
-    "options_aria_label": "المزيد من الخيارات لـ {name}",
-    "known_for": "مشهور بـ",
-    "popularity": "الشعبية",
-    "also_known_as": "يُعرف أيضاً بـ",
-    "photos": "الصور",
-    "social_links_aria": "روابط التواصل الاجتماعي لـ {name}",
-    "tv_credits": "أعمال تلفزيونية",
-    "crew_credits": "خلف الكاميرا"
-  },
-  "popular": {
-    "title": "أفلام رائجة",
-    "description": "الأفلام الأكثر مشاهدة."
-  },
-  "upcoming": {
-    "title": "أفلام قادمة",
-    "description": "أفلام ستصل قريبًا إلى دور السينما."
-  },
-  "footer": {
-    "tagline": "عالمك من الأفلام، في مكان واحد.",
-    "copyright": "© {year} BrandScope. جميع الحقوق محفوظة.",
-    "powered_by": "مدعوم من TMDB",
-    "disclaimer": "هذا المنتج يستخدم واجهة برمجة تطبيقات TMDB لكنه غير معتمد أو مصدَّق من TMDB.",
-    "links": "التنقل",
-    "legal": "قانوني"
-  },
-  "now_playing": {
-    "title": "يُعرض الآن",
-    "description": "الأفلام المعروضة حاليًا في دور السينما."
-  },
-  "movies_top_rated": {
-    "title": "الأعلى تقييمًا",
-    "description": "الأفلام الأعلى تقييمًا على الإطلاق."
-  },
-  "tv_airing_today": {
-    "title": "يُبث اليوم",
-    "description": "مسلسلات تُبث اليوم."
-  },
-  "tv_on_tv": {
-    "title": "على التلفاز",
-    "description": "مسلسلات تُبث حاليًا على التلفاز."
-  },
-  "tv_popular": {
-    "title": "مسلسلات رائجة",
-    "description": "أكثر المسلسلات شعبيةً الآن."
-  },
-  "tv_top_rated": {
-    "title": "أعلى تقييمًا",
-    "description": "أعلى المسلسلات تقييمًا على الإطلاق."
-  },
-  "people_popular": {
-    "title": "مشاهير",
-    "description": "أبرز الممثلين والمخرجين والمبدعين."
   }
 }

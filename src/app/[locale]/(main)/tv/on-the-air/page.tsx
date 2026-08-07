@@ -10,7 +10,7 @@ interface PageProps {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("pages.tv.on_tv");
+  const t = await getTranslations("pages.tv.on_the_air");
   return {
     title: t("title"),
     description: t("description"),
@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function OnTVPage({ searchParams }: PageProps) {
-  const t = await getTranslations("pages.tv.airing_today");
+  const t = await getTranslations("pages.tv.on_the_air");
   const resolvedParams = await searchParams;
 
   const today = new Date().toISOString().split("T")[0];

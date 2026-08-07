@@ -1,22 +1,298 @@
 {
-  "common": {
-    "app_name": "BrandScope",
-    "back_to_home": "বাড়িতে ফিরে",
-    "view_details": "বিস্তারিত দেখুন",
-    "view_details_of": "জন্য বিশদ দেখুন",
-    "states": {
-      "no_results": "এই মুহূর্তে কোনো ফলাফল পাওয়া যাচ্ছে না।",
-      "loading_error": "ডেটা লোড করা যায়নি:",
-      "try_again": "আবার চেষ্টা করুন"
+  "global": {
+    "branding": {
+      "app_name": "BrandScope"
     },
     "entities": {
       "movies": "সিনেমা",
       "tv_shows": "টিভি শো",
       "people": "মানুষ"
     },
-    "loading": "লোড হচ্ছে...",
-    "no_more_results": "শেষে পৌঁছে গেছেন।",
-    "results_count": "ফলাফল"
+    "actions": {
+      "back_to_home": "বাড়িতে ফিরে",
+      "view_details": "বিস্তারিত দেখুন",
+      "view_details_of": "জন্য বিশদ দেখুন",
+      "readMore": "আরও পড়ুন",
+      "readLess": "কম পড়ুন",
+      "options_aria_label": "{name} এর আরও বিকল্প"
+    },
+    "labels": {
+      "results_count": "ফলাফল",
+      "status": "অবস্থা",
+      "popularity": "জনপ্রিয়তা",
+      "score": "স্কোর",
+      "release_date": "রিলিজ তারিখ",
+      "genres": "ধরন"
+    },
+    "states": {
+      "loading": "লোড হচ্ছে...",
+      "no_more_results": "শেষে পৌঁছে গেছেন।",
+      "no_items_found": "কোনো আইটেম পাওয়া যায়নি.",
+      "no_results": "এই মুহূর্তে কোনো ফলাফল পাওয়া যাচ্ছে না।",
+      "loading_error": "ডেটা লোড করা যায়নি:",
+      "try_again": "আবার চেষ্টা করুন",
+      "no_trailer": "কোনো ট্রেইলার নেই।"
+    },
+    "network": {
+      "online_title": "সংযোগ পুনরুদ্ধার করা হয়েছে৷",
+      "online_description": "আপনি অনলাইনে ফিরে এসেছেন।",
+      "offline_title": "কোন সংযোগ নেই",
+      "offline_description": "মনে হচ্ছে আপনি আপনার ইন্টারনেট সংযোগ হারিয়ে ফেলেছেন।"
+    }
+  },
+  "components": {
+    "nav": {
+      "home": "বাড়ি",
+      "trending_movies": "ট্রেন্ডিং মুভি",
+      "categories": "ক্যাটাগরি",
+      "popular": "জনপ্রিয়",
+      "upcoming": "আসন্ন",
+      "open_menu": "নেভিগেশন মেনু খুলুন",
+      "close_menu": "নেভিগেশন মেনু বন্ধ করুন",
+      "navigation": "প্রধান নেভিগেশন",
+      "settings": "সেটিংস",
+      "movies": "সিনেমা",
+      "tv_shows": "টিভি শো",
+      "people": "মানুষ",
+      "now_playing": "এখন চলছে",
+      "top_rated": "শীর্ষ রেট",
+      "airing_today": "আজ সম্প্রচার হচ্ছে",
+      "on_tv": "টিভিতে",
+      "user": "আমার স্টাফ",
+      "favorites": "প্রিয়",
+      "list": "আমার তালিকা",
+      "ratings": "আমার রেটিং",
+      "on_the_air": "এখন সম্প্রচারিত"
+    },
+    "search": {
+      "placeholder": "সিনেমা, টিভি শো এবং ব্যক্তি খুঁজুন...",
+      "label": "অনুসন্ধান করুন",
+      "submit": "অনুসন্ধান জমা দিন",
+      "clear": "সাফ অনুসন্ধান",
+      "filter_all": "সব",
+      "filter_movies": "চলচ্চিত্র",
+      "filter_tv": "টিভি শো",
+      "filter_people": "ব্যক্তিত্ব",
+      "no_results": "\"{query}\" এর জন্য কোনো ফলাফল পাওয়া যায়নি।",
+      "results": "\"এর জন্য অনুসন্ধানের ফলাফল{query}\"",
+      "title": "অনুসন্ধান করুন",
+      "results_count": "ফলাফল"
+    },
+    "filters": {
+      "sort_by": "অনুসারে সাজান",
+      "sort_popularity_desc": "জনপ্রিয়তা: বেশি থেকে কম",
+      "sort_popularity_asc": "জনপ্রিয়তা: কম থেকে বেশি",
+      "sort_rating_desc": "রেটিং: বেশি থেকে কম",
+      "sort_rating_asc": "রেটিং: কম থেকে বেশি",
+      "sort_title_desc": "শিরোনাম: জ-আ",
+      "sort_title_asc": "শিরোনাম: আ-জ",
+      "sort_date_desc": "তারিখ: নতুন থেকে পুরোনো",
+      "sort_date_asc": "তারিখ: পুরোনো থেকে নতুন",
+      "sort_first_air_date_desc": "প্রথম সম্প্রচারের তারিখ: নতুন থেকে পুরোনো",
+      "sort_first_air_date_asc": "প্রথম সম্প্রচারের তারিখ: পুরোনো থেকে নতুন",
+      "sort_by_genre": "ধরন",
+      "all_genres": "সব ধরন",
+      "sort_by_release_dates": "রিলিজ তারিখ",
+      "pick_a_date": "একটি তারিখ পরিসর বেছে নিন",
+      "sort_by_runtime_minutes": "দৈর্ঘ্য (মিনিট)",
+      "apply_filters": "ফিল্টার প্রয়োগ করুন",
+      "applying_filters": "ফিল্টার প্রয়োগ করা হচ্ছে",
+      "clear_filters": "ফিল্টার মুছুন"
+    },
+    "preferences": {
+      "theme": {
+        "label": "থিম",
+        "light": "আলো",
+        "dark": "অন্ধকার",
+        "system": "সিস্টেম",
+        "toggle_theme": "থিম টগল করুন",
+        "preferences": "পছন্দসমূহ"
+      },
+      "color": {
+        "label": "অ্যাকসেন্ট রঙ",
+        "blue": "নীল",
+        "green": "সবুজ",
+        "cyan": "সায়ান",
+        "indigo": "নীল",
+        "purple": "বেগুনি",
+        "yellow": "হলুদ",
+        "orange": "কমলা",
+        "red": "লাল",
+        "pink": "গোলাপী",
+        "gray": "ধূসর",
+        "toggle_color": "অ্যাকসেন্ট রঙ টগল করুন"
+      },
+      "language": {
+        "label": "ভাষা",
+        "toggle_language": "ভাষা পরিবর্তন করুন",
+        "search_language": "ভাষা অনুসন্ধান করুন",
+        "language_selector": "ভাষা নির্বাচক"
+      }
+    },
+    "footer": {
+      "tagline": "আপনার সিনেমার মহাবিশ্ব, সব এক জায়গায়।",
+      "copyright": "©{year}ব্র্যান্ডস্কোপ। সর্বস্বত্ব সংরক্ষিত",
+      "powered_by": "TMDB দ্বারা চালিত, ব্র্যান্ডন Argel দ্বারা নির্মিত",
+      "disclaimer": "এই পণ্যটি TMDB API ব্যবহার করে কিন্তু TMDB দ্বারা অনুমোদিত বা প্রত্যয়িত নয়।",
+      "links": "নেভিগেশন",
+      "legal": "আইনি"
+    }
+  },
+  "pages": {
+    "home": {
+      "hero": {
+        "trending": "প্রবণতা !",
+        "play_trailer": "ট্রেলার চালান",
+        "details": "আরো বিস্তারিত",
+        "no_trailer": "কোন ট্রেলার উপলব্ধ."
+      },
+      "trending": {
+        "movies": {
+          "title": "ট্রেন্ডিং মুভি",
+          "description": "এই মুহূর্তে সবচেয়ে জনপ্রিয় সিনেমা.",
+          "day": "আজ",
+          "week": "এই সপ্তাহে"
+        },
+        "tv_shows": {
+          "title": "ট্রেন্ডিং টিভি শো",
+          "description": "এই মুহূর্তে সবচেয়ে জনপ্রিয় টিভি শো।",
+          "day": "আজ",
+          "week": "এই সপ্তাহে",
+          "error": "টিভি শো লোড করার সময় ত্রুটি:"
+        },
+        "people": {
+          "title": "প্রবণতা মানুষ",
+          "description": "এই মুহূর্তে সবচেয়ে জনপ্রিয় মানুষ.",
+          "day": "আজ",
+          "week": "এই সপ্তাহে",
+          "error": "লোকেদের লোড করার সময় ত্রুটি:"
+        }
+      }
+    },
+    "movies": {
+      "popular": {
+        "title": "জনপ্রিয় সিনেমা",
+        "description": "সবচেয়ে বেশি দেখা সিনেমা।"
+      },
+      "upcoming": {
+        "title": "আসন্ন সিনেমা",
+        "description": "সিনেমাগুলো শীঘ্রই প্রেক্ষাগৃহে আসছে।"
+      },
+      "now_playing": {
+        "title": "এখন চলছে",
+        "description": "সিনেমা হলে বর্তমানে চলমান সিনেমা।"
+      },
+      "top_rated": {
+        "title": "শীর্ষ রেটিং প্রাপ্ত সিনেমা",
+        "description": "সর্বকালের সর্বোচ্চ রেটিং প্রাপ্ত সিনেমা।"
+      }
+    },
+    "tv": {
+      "airing_today": {
+        "title": "আজ সম্প্রচারিত",
+        "description": "আজকে এপিসোড সম্প্রচারিত হচ্ছে এমন শো।"
+      },
+      "on_the_air": {
+        "title": "টিভিতে চলছে",
+        "description": "টেলিভিশনে বর্তমানে সম্প্রচারিত শো।"
+      },
+      "popular": {
+        "title": "জনপ্রিয় টিভি শো",
+        "description": "এখন সবচেয়ে জনপ্রিয় টিভি শো।"
+      },
+      "top_rated": {
+        "title": "শীর্ষ রেটিং প্রাপ্ত টিভি শো",
+        "description": "সর্বকালের সর্বোচ্চ রেটিং প্রাপ্ত টিভি শো।"
+      }
+    },
+    "people": {
+      "popular": {
+        "title": "জনপ্রিয় ব্যক্তিত্ব",
+        "description": "সবচেয়ে আলোচিত অভিনেতা, পরিচালক এবং নির্মাতারা।"
+      }
+    },
+    "search": {
+      "title": "অনুসন্ধান করুন",
+      "placeholder": "পৃষ্ঠার শীর্ষে অনুসন্ধান বারে কিছু অনুসন্ধান করার চেষ্টা করুন!",
+      "no_results": "\"{query}\" এর জন্য কোনো ফলাফল পাওয়া যায়নি।",
+      "results": "\"এর জন্য অনুসন্ধানের ফলাফল{query}\"",
+      "results_count": "ফলাফল",
+      "view_all_results": "সব ফলাফল দেখুন",
+      "filter_all": "সব",
+      "filter_movies": "চলচ্চিত্র",
+      "filter_tv": "টিভি শো",
+      "filter_people": "ব্যক্তিত্ব"
+    },
+    "genres": {
+      "title": "ক্যাটাগরি",
+      "description": "ঘরানা অনুসারে সিনেমা ও টিভি শো দেখুন।",
+      "movies_section": "সিনেমা",
+      "tv_section": "টিভি শো",
+      "explore_genre": "{genre} অন্বেষণ করুন"
+    }
+  },
+  "domains": {
+    "movie": {
+      "cast": "শীর্ষ বিল করা কাস্ট",
+      "trailer": "ট্রেলার",
+      "recommendations": "আপনি যদি এই মুভিটি পছন্দ করেন তবে আপনিও পছন্দ করবেন...",
+      "no_trailer": "কোন ট্রেলার উপলব্ধ.",
+      "release_date": "মুক্তির তারিখ",
+      "genres": "জেনারস",
+      "score": "স্কোর",
+      "official_website": "অফিসিয়াল ওয়েবসাইট",
+      "status": "স্ট্যাটাস",
+      "popularity": "জনপ্রিয়তা",
+      "budget": "বাজেট",
+      "revenue": "রাজস্ব",
+      "where_to_watch": "কোথায় দেখতে হবে",
+      "stream": "প্রবাহ",
+      "buy": "কিনুন",
+      "rent": "ভাড়া",
+      "providers_attribution": "দ্বারা প্রদত্ত স্ট্রিমিং ডেটা",
+      "gallery": "গ্যালারি",
+      "similar": "অনুরূপ সিনেমা",
+      "reviews": "ব্যবহারকারী পর্যালোচনা",
+      "awards": "পুরস্কার",
+      "fallback_overview": "এই মুভির জন্য কোন ওভারভিউ উপলব্ধ নেই।",
+      "options_aria_label": "জন্য আরো বিকল্প{title}"
+    },
+    "tv": {
+      "fallback_overview": "এই টিভি শোর জন্য কোনো ওভারভিউ উপলব্ধ নেই৷",
+      "options_aria_label": "জন্য আরো বিকল্প{name}",
+      "status": "অবস্থা",
+      "popularity": "জনপ্রিয়তা",
+      "episodes": "পর্ব",
+      "season": "সিজন",
+      "seasons": "সিজন",
+      "reviews": "ব্যবহারকারীর পর্যালোচনা",
+      "created_by": "নির্মাতা",
+      "in_production": "নির্মাণাধীন",
+      "series_badge": "সিরিজ",
+      "official_website": "অফিসিয়াল ওয়েবসাইট",
+      "production_companies": "প্রযোজনা সংস্থা",
+      "recommendations": "আপনি যদি এই টিভি শোটি পছন্দ করেন তবে আপনিও পছন্দ করবেন..."
+    },
+    "person": {
+      "castMovies": "এর জন্য পরিচিত...",
+      "biography": "জীবনী",
+      "noBiography": "কোন জীবনী উপলব্ধ.",
+      "noPhoto": "ছবি নেই",
+      "readMore": "আরও পড়ুন",
+      "readLess": "কম পড়ুন",
+      "fallback_overview": "এই ব্যক্তির জন্য কোন ওভারভিউ উপলব্ধ.",
+      "options_aria_label": "জন্য আরো বিকল্প{name}",
+      "known_for": "পরিচিত",
+      "popularity": "জনপ্রিয়তা",
+      "also_known_as": "অন্য নামে পরিচিত",
+      "photos": "ছবি",
+      "social_links_aria": "{name}-এর সামাজিক লিঙ্ক",
+      "tv_credits": "টিভি ক্রেডিট",
+      "crew_credits": "পর্দার পেছনে",
+      "show_biography_aria": "সম্পূর্ণ জীবনী দেখান",
+      "hide_biography_aria": "জীবনী লুকান",
+      "castTvShows": "টিভি শোতে অভিনয়ের জন্য পরিচিত..."
+    }
   },
   "errors": {
     "network": "আপনার ইন্টারনেট সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন.",
@@ -28,40 +304,6 @@
     "default": "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে৷ আবার চেষ্টা করুন.",
     "title": "কিছু ভুল হয়েছে",
     "retry": "আবার চেষ্টা করুন"
-  },
-  "theme": {
-    "label": "থিম",
-    "light": "আলো",
-    "dark": "অন্ধকার",
-    "system": "সিস্টেম",
-    "toggle_theme": "থিম টগল করুন",
-    "preferences": "পছন্দসমূহ"
-  },
-  "color": {
-    "label": "অ্যাকসেন্ট রঙ",
-    "blue": "নীল",
-    "green": "সবুজ",
-    "cyan": "সায়ান",
-    "indigo": "নীল",
-    "purple": "বেগুনি",
-    "yellow": "হলুদ",
-    "orange": "কমলা",
-    "red": "লাল",
-    "pink": "গোলাপী",
-    "gray": "ধূসর",
-    "toggle_color": "অ্যাকসেন্ট রঙ টগল করুন"
-  },
-  "language": {
-    "label": "ভাষা",
-    "toggle_language": "ভাষা পরিবর্তন করুন",
-    "search_language": "ভাষা অনুসন্ধান করুন",
-    "language_selector": "ভাষা নির্বাচক"
-  },
-  "network": {
-    "online_title": "সংযোগ পুনরুদ্ধার করা হয়েছে৷",
-    "online_description": "আপনি অনলাইনে ফিরে এসেছেন।",
-    "offline_title": "কোন সংযোগ নেই",
-    "offline_description": "মনে হচ্ছে আপনি আপনার ইন্টারনেট সংযোগ হারিয়ে ফেলেছেন।"
   },
   "certifications": {
     "G": "সব দর্শকদের জন্য উপযুক্ত.",
@@ -78,179 +320,5 @@
     "NR": "রেট দেওয়া হয়নি।",
     "Unrated": "রেট দেওয়া হয়নি",
     "fallback": "বয়স রেটিং"
-  },
-  "nav": {
-    "home": "বাড়ি",
-    "trending_movies": "ট্রেন্ডিং মুভি",
-    "categories": "ক্যাটাগরি",
-    "popular": "জনপ্রিয়",
-    "upcoming": "আসন্ন",
-    "open_menu": "নেভিগেশন মেনু খুলুন",
-    "close_menu": "নেভিগেশন মেনু বন্ধ করুন",
-    "navigation": "প্রধান নেভিগেশন",
-    "settings": "সেটিংস",
-    "movies": "সিনেমা",
-    "tv_shows": "টিভি শো",
-    "people": "মানুষ",
-    "now_playing": "এখন চলছে",
-    "top_rated": "শীর্ষ রেট",
-    "airing_today": "আজ সম্প্রচার হচ্ছে",
-    "on_tv": "টিভিতে",
-    "user": "আমার স্টাফ",
-    "favorites": "প্রিয়",
-    "list": "আমার তালিকা",
-    "ratings": "আমার রেটিং"
-  },
-  "search": {
-    "placeholder": "সিনেমা, টিভি শো এবং ব্যক্তি খুঁজুন...",
-    "label": "অনুসন্ধান করুন",
-    "submit": "অনুসন্ধান জমা দিন",
-    "clear": "সাফ অনুসন্ধান",
-    "filter_all": "সব",
-    "filter_movies": "চলচ্চিত্র",
-    "filter_tv": "টিভি শো",
-    "filter_people": "ব্যক্তিত্ব",
-    "no_results": "\"{query}\" এর জন্য কোনো ফলাফল পাওয়া যায়নি।",
-    "results": "\"এর জন্য অনুসন্ধানের ফলাফল{query}\"",
-    "title": "অনুসন্ধান করুন",
-    "results_count": "ফলাফল"
-  },
-  "genres": {
-    "title": "ক্যাটাগরি",
-    "description": "ঘরানা অনুসারে সিনেমা ও টিভি শো দেখুন।",
-    "movies_section": "সিনেমা",
-    "tv_section": "টিভি শো",
-    "explore_genre": "{genre} অন্বেষণ করুন"
-  },
-  "home": {
-    "hero": {
-      "trending": "প্রবণতা !",
-      "play_trailer": "ট্রেলার চালান",
-      "details": "আরো বিস্তারিত",
-      "no_trailer": "কোন ট্রেলার উপলব্ধ."
-    },
-    "trending": {
-      "movies": {
-        "title": "ট্রেন্ডিং মুভি",
-        "description": "এই মুহূর্তে সবচেয়ে জনপ্রিয় সিনেমা.",
-        "day": "আজ",
-        "week": "এই সপ্তাহে"
-      },
-      "tv_shows": {
-        "title": "ট্রেন্ডিং টিভি শো",
-        "description": "এই মুহূর্তে সবচেয়ে জনপ্রিয় টিভি শো।",
-        "day": "আজ",
-        "week": "এই সপ্তাহে",
-        "error": "টিভি শো লোড করার সময় ত্রুটি:"
-      },
-      "people": {
-        "title": "প্রবণতা মানুষ",
-        "description": "এই মুহূর্তে সবচেয়ে জনপ্রিয় মানুষ.",
-        "day": "আজ",
-        "week": "এই সপ্তাহে",
-        "error": "লোকেদের লোড করার সময় ত্রুটি:"
-      }
-    }
-  },
-  "movie": {
-    "cast": "শীর্ষ বিল করা কাস্ট",
-    "trailer": "ট্রেলার",
-    "recommendations": "আপনি যদি এই মুভিটি পছন্দ করেন তবে আপনিও পছন্দ করবেন...",
-    "no_trailer": "কোন ট্রেলার উপলব্ধ.",
-    "release_date": "মুক্তির তারিখ",
-    "genres": "জেনারস",
-    "score": "স্কোর",
-    "official_website": "অফিসিয়াল ওয়েবসাইট",
-    "status": "স্ট্যাটাস",
-    "popularity": "জনপ্রিয়তা",
-    "budget": "বাজেট",
-    "revenue": "রাজস্ব",
-    "where_to_watch": "কোথায় দেখতে হবে",
-    "stream": "প্রবাহ",
-    "buy": "কিনুন",
-    "rent": "ভাড়া",
-    "providers_attribution": "দ্বারা প্রদত্ত স্ট্রিমিং ডেটা",
-    "gallery": "গ্যালারি",
-    "similar": "অনুরূপ সিনেমা",
-    "reviews": "ব্যবহারকারী পর্যালোচনা",
-    "awards": "পুরস্কার",
-    "fallback_overview": "এই মুভির জন্য কোন ওভারভিউ উপলব্ধ নেই।",
-    "options_aria_label": "জন্য আরো বিকল্প{title}"
-  },
-  "tv": {
-    "fallback_overview": "এই টিভি শোর জন্য কোনো ওভারভিউ উপলব্ধ নেই৷",
-    "options_aria_label": "জন্য আরো বিকল্প{name}",
-    "status": "অবস্থা",
-    "popularity": "জনপ্রিয়তা",
-    "episodes": "পর্ব",
-    "season": "সিজন",
-    "seasons": "সিজন",
-    "reviews": "ব্যবহারকারীর পর্যালোচনা",
-    "created_by": "নির্মাতা",
-    "in_production": "নির্মাণাধীন",
-    "series_badge": "সিরিজ",
-    "official_website": "অফিসিয়াল ওয়েবসাইট",
-    "production_companies": "প্রযোজনা সংস্থা"
-  },
-  "person": {
-    "castMovies": "এর জন্য পরিচিত...",
-    "biography": "জীবনী",
-    "noBiography": "কোন জীবনী উপলব্ধ.",
-    "noPhoto": "ছবি নেই",
-    "readMore": "আরও পড়ুন",
-    "readLess": "কম পড়ুন",
-    "fallback_overview": "এই ব্যক্তির জন্য কোন ওভারভিউ উপলব্ধ.",
-    "options_aria_label": "জন্য আরো বিকল্প{name}",
-    "known_for": "পরিচিত",
-    "popularity": "জনপ্রিয়তা",
-    "also_known_as": "অন্য নামে পরিচিত",
-    "photos": "ছবি",
-    "social_links_aria": "{name}-এর সামাজিক লিঙ্ক",
-    "tv_credits": "টিভি ক্রেডিট",
-    "crew_credits": "পর্দার পেছনে"
-  },
-  "popular": {
-    "title": "জনপ্রিয় সিনেমা",
-    "description": "সবচেয়ে বেশি দেখা সিনেমা।"
-  },
-  "upcoming": {
-    "title": "আসন্ন সিনেমা",
-    "description": "সিনেমাগুলো শীঘ্রই প্রেক্ষাগৃহে আসছে।"
-  },
-  "footer": {
-    "tagline": "আপনার সিনেমার মহাবিশ্ব, সব এক জায়গায়।",
-    "copyright": "©{year}ব্র্যান্ডস্কোপ। সর্বস্বত্ব সংরক্ষিত",
-    "powered_by": "TMDB দ্বারা চালিত, ব্র্যান্ডন Argel দ্বারা নির্মিত",
-    "disclaimer": "এই পণ্যটি TMDB API ব্যবহার করে কিন্তু TMDB দ্বারা অনুমোদিত বা প্রত্যয়িত নয়।",
-    "links": "নেভিগেশন",
-    "legal": "আইনি"
-  },
-  "now_playing": {
-    "title": "এখন চলছে",
-    "description": "সিনেমা হলে বর্তমানে চলমান সিনেমা।"
-  },
-  "movies_top_rated": {
-    "title": "শীর্ষ রেটিং প্রাপ্ত সিনেমা",
-    "description": "সর্বকালের সর্বোচ্চ রেটিং প্রাপ্ত সিনেমা।"
-  },
-  "tv_airing_today": {
-    "title": "আজ সম্প্রচারিত",
-    "description": "আজকে এপিসোড সম্প্রচারিত হচ্ছে এমন শো।"
-  },
-  "tv_on_tv": {
-    "title": "টিভিতে চলছে",
-    "description": "টেলিভিশনে বর্তমানে সম্প্রচারিত শো।"
-  },
-  "tv_popular": {
-    "title": "জনপ্রিয় টিভি শো",
-    "description": "এখন সবচেয়ে জনপ্রিয় টিভি শো।"
-  },
-  "tv_top_rated": {
-    "title": "শীর্ষ রেটিং প্রাপ্ত টিভি শো",
-    "description": "সর্বকালের সর্বোচ্চ রেটিং প্রাপ্ত টিভি শো।"
-  },
-  "people_popular": {
-    "title": "জনপ্রিয় ব্যক্তিত্ব",
-    "description": "সবচেয়ে আলোচিত অভিনেতা, পরিচালক এবং নির্মাতারা।"
   }
 }

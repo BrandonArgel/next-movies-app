@@ -1,22 +1,298 @@
 {
-  "common": {
-    "app_name": "BrandScope",
-    "back_to_home": "Back to home",
-    "view_details": "View Details",
-    "view_details_of": "View details for",
-    "states": {
-      "no_results": "No results available at the moment.",
-      "loading_error": "Could not load data:",
-      "try_again": "Try again"
+  "global": {
+    "branding": {
+      "app_name": "BrandScope"
     },
     "entities": {
       "movies": "Movies",
       "tv_shows": "TV Shows",
       "people": "People"
     },
-    "loading": "Loading...",
-    "no_more_results": "You've reached the end.",
-    "results_count": "results"
+    "actions": {
+      "back_to_home": "Back to home",
+      "view_details": "View Details",
+      "view_details_of": "View details for",
+      "readMore": "Read more",
+      "readLess": "Read less",
+      "options_aria_label": "More options for {name}"
+    },
+    "labels": {
+      "results_count": "results",
+      "status": "Status",
+      "popularity": "Popularity",
+      "score": "Score",
+      "release_date": "Release date",
+      "genres": "Genres"
+    },
+    "states": {
+      "loading": "Loading...",
+      "no_more_results": "You've reached the end.",
+      "no_items_found": "No items found.",
+      "no_results": "No results available at the moment.",
+      "loading_error": "Could not load data:",
+      "try_again": "Try again",
+      "no_trailer": "No trailer available."
+    },
+    "network": {
+      "online_title": "Connection Restored",
+      "online_description": "You are back online.",
+      "offline_title": "No Connection",
+      "offline_description": "It seems you have lost your internet connection."
+    }
+  },
+  "components": {
+    "nav": {
+      "home": "Home",
+      "trending_movies": "Trending Movies",
+      "categories": "Categories",
+      "popular": "Popular",
+      "upcoming": "Upcoming",
+      "open_menu": "Open navigation menu",
+      "close_menu": "Close navigation menu",
+      "navigation": "Main navigation",
+      "settings": "Settings",
+      "movies": "Movies",
+      "tv_shows": "TV Shows",
+      "people": "People",
+      "now_playing": "Now Playing",
+      "top_rated": "Top Rated",
+      "airing_today": "Airing Today",
+      "on_tv": "On TV",
+      "user": "My Stuff",
+      "favorites": "Favorites",
+      "list": "My List",
+      "ratings": "My Ratings",
+      "on_the_air": "On The Air"
+    },
+    "search": {
+      "placeholder": "Search movies, TV shows, people...",
+      "label": "Search",
+      "submit": "Submit search",
+      "clear": "Clear search",
+      "filter_all": "All",
+      "filter_movies": "Movies",
+      "filter_tv": "TV Shows",
+      "filter_people": "People",
+      "no_results": "No results found for \"{query}\".",
+      "results": "Search results for \"{query}\"",
+      "title": "Search",
+      "results_count": "results"
+    },
+    "filters": {
+      "sort_by": "Sort by",
+      "sort_popularity_desc": "Popularity (High to Low)",
+      "sort_popularity_asc": "Popularity (Low to High)",
+      "sort_rating_desc": "Rating (High to Low)",
+      "sort_rating_asc": "Rating (Low to High)",
+      "sort_title_desc": "Title (Z-A)",
+      "sort_title_asc": "Title (A-Z)",
+      "sort_date_desc": "Release Date (New to Old)",
+      "sort_date_asc": "Release Date (Old to New)",
+      "sort_first_air_date_desc": "First Air Date (New to Old)",
+      "sort_first_air_date_asc": "First Air Date (Old to New)",
+      "sort_by_genre": "Genre",
+      "all_genres": "All Genres",
+      "sort_by_release_dates": "Release Dates",
+      "pick_a_date": "Pick a date range",
+      "sort_by_runtime_minutes": "Runtime (Minutes)",
+      "apply_filters": "Apply filters",
+      "applying_filters": "Applying filters",
+      "clear_filters": "Clear filters"
+    },
+    "preferences": {
+      "theme": {
+        "label": "Theme",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System",
+        "toggle_theme": "Toggle theme",
+        "preferences": "Preferences"
+      },
+      "color": {
+        "label": "Accent Color",
+        "blue": "Blue",
+        "green": "Green",
+        "cyan": "Cyan",
+        "indigo": "Indigo",
+        "purple": "Purple",
+        "yellow": "Yellow",
+        "orange": "Orange",
+        "red": "Red",
+        "pink": "Pink",
+        "gray": "Gray",
+        "toggle_color": "Toggle accent color"
+      },
+      "language": {
+        "label": "Languages",
+        "toggle_language": "Switch language",
+        "search_language": "Search language",
+        "language_selector": "Language selector"
+      }
+    },
+    "footer": {
+      "tagline": "Your universe of movies, all in one place.",
+      "copyright": "© {year} BrandScope. All rights reserved.",
+      "powered_by": "Powered by TMDB",
+      "disclaimer": "This product uses the TMDB API but is not endorsed or certified by TMDB.",
+      "links": "Navigation",
+      "legal": "Legal"
+    }
+  },
+  "pages": {
+    "home": {
+      "hero": {
+        "trending": "Trending!",
+        "play_trailer": "Play trailer",
+        "details": "More details",
+        "no_trailer": "No trailer available."
+      },
+      "trending": {
+        "movies": {
+          "title": "Trending Movies",
+          "description": "The most popular movies right now.",
+          "day": "Today",
+          "week": "This Week"
+        },
+        "tv_shows": {
+          "title": "Trending TV Shows",
+          "description": "The most popular TV Shows right now.",
+          "day": "Today",
+          "week": "This Week",
+          "error": "Error loading TV shows:"
+        },
+        "people": {
+          "title": "Trending People",
+          "description": "The most popular people right now.",
+          "day": "Today",
+          "week": "This Week",
+          "error": "Error loading people:"
+        }
+      }
+    },
+    "movies": {
+      "popular": {
+        "title": "Popular Movies",
+        "description": "The most watched movies."
+      },
+      "upcoming": {
+        "title": "Upcoming Movies",
+        "description": "Movies coming soon."
+      },
+      "now_playing": {
+        "title": "Now Playing",
+        "description": "Movies currently playing in theatres."
+      },
+      "top_rated": {
+        "title": "Top Rated Movies",
+        "description": "The highest rated movies of all time."
+      }
+    },
+    "tv": {
+      "airing_today": {
+        "title": "Airing Today",
+        "description": "TV shows with episodes airing today."
+      },
+      "on_the_air": {
+        "title": "On TV",
+        "description": "TV shows currently airing on television."
+      },
+      "popular": {
+        "title": "Popular TV Shows",
+        "description": "The most popular TV shows right now."
+      },
+      "top_rated": {
+        "title": "Top Rated TV Shows",
+        "description": "The highest rated TV shows of all time."
+      }
+    },
+    "people": {
+      "popular": {
+        "title": "Popular People",
+        "description": "The most talked-about actors, directors, and creators."
+      }
+    },
+    "search": {
+      "title": "Search",
+      "placeholder": "Try searching something in the search bar at the top of the page!",
+      "no_results": "No results found for \"{query}\".",
+      "results": "Search results for \"{query}\"",
+      "results_count": "results",
+      "view_all_results": "View all results",
+      "filter_all": "All",
+      "filter_movies": "Movies",
+      "filter_tv": "TV Shows",
+      "filter_people": "People"
+    },
+    "genres": {
+      "title": "Categories",
+      "description": "Browse movies and TV shows by genre.",
+      "movies_section": "Movies",
+      "tv_section": "TV Shows",
+      "explore_genre": "Explore {genre}"
+    }
+  },
+  "domains": {
+    "movie": {
+      "cast": "Top Billed Cast",
+      "trailer": "Trailer",
+      "recommendations": "If you liked this movie, you'll also like...",
+      "no_trailer": "No trailer available.",
+      "release_date": "Release date",
+      "genres": "Genres",
+      "score": "Score",
+      "official_website": "Official website",
+      "status": "Status",
+      "popularity": "Popularity",
+      "budget": "Budget",
+      "revenue": "Revenue",
+      "where_to_watch": "Where to watch",
+      "stream": "Stream",
+      "buy": "Buy",
+      "rent": "Rent",
+      "providers_attribution": "Streaming data provided by",
+      "gallery": "Gallery",
+      "similar": "Similar movies",
+      "reviews": "User reviews",
+      "awards": "Awards",
+      "fallback_overview": "No overview available for this movie.",
+      "options_aria_label": "More options for {title}"
+    },
+    "tv": {
+      "fallback_overview": "No overview available for this TV show.",
+      "options_aria_label": "More options for {name}",
+      "status": "Status",
+      "popularity": "Popularity",
+      "episodes": "Episodes",
+      "season": "Season",
+      "seasons": "Seasons",
+      "reviews": "User Reviews",
+      "created_by": "Created by",
+      "in_production": "In Production",
+      "series_badge": "Series",
+      "official_website": "Official website",
+      "production_companies": "Production Companies",
+      "recommendations": "If you liked this tv show, you'll also like..."
+    },
+    "person": {
+      "castMovies": "Known for...",
+      "biography": "Biography",
+      "noBiography": "No biography available.",
+      "noPhoto": "No photo",
+      "readMore": "Read more",
+      "readLess": "Read less",
+      "fallback_overview": "No overview available for this person.",
+      "options_aria_label": "More options for {name}",
+      "known_for": "Known for",
+      "popularity": "Popularity",
+      "also_known_as": "Also known as",
+      "photos": "Photos",
+      "social_links_aria": "Social links for {name}",
+      "tv_credits": "TV Credits",
+      "crew_credits": "Behind the Camera",
+      "show_biography_aria": "Show full biography",
+      "hide_biography_aria": "Hide biography",
+      "castTvShows": "Known for acting in TV Shows..."
+    }
   },
   "errors": {
     "network": "Please check your internet connection and try again.",
@@ -28,40 +304,6 @@
     "default": "An unexpected error occurred. Please try again.",
     "title": "Something went wrong",
     "retry": "Retry"
-  },
-  "theme": {
-    "label": "Theme",
-    "light": "Light",
-    "dark": "Dark",
-    "system": "System",
-    "toggle_theme": "Toggle theme",
-    "preferences": "Preferences"
-  },
-  "color": {
-    "label": "Accent Color",
-    "blue": "Blue",
-    "green": "Green",
-    "cyan": "Cyan",
-    "indigo": "Indigo",
-    "purple": "Purple",
-    "yellow": "Yellow",
-    "orange": "Orange",
-    "red": "Red",
-    "pink": "Pink",
-    "gray": "Gray",
-    "toggle_color": "Toggle accent color"
-  },
-  "language": {
-    "label": "Languages",
-    "toggle_language": "Switch language",
-    "search_language": "Search language",
-    "language_selector": "Language selector"
-  },
-  "network": {
-    "online_title": "Connection Restored",
-    "online_description": "You are back online.",
-    "offline_title": "No Connection",
-    "offline_description": "It seems you have lost your internet connection."
   },
   "certifications": {
     "G": "Suitable for all audiences.",
@@ -78,179 +320,5 @@
     "NR": "Not rated.",
     "Unrated": "Not rated",
     "fallback": "Age ratings"
-  },
-  "nav": {
-    "home": "Home",
-    "trending_movies": "Trending Movies",
-    "categories": "Categories",
-    "popular": "Popular",
-    "upcoming": "Upcoming",
-    "open_menu": "Open navigation menu",
-    "close_menu": "Close navigation menu",
-    "navigation": "Main navigation",
-    "settings": "Settings",
-    "movies": "Movies",
-    "tv_shows": "TV Shows",
-    "people": "People",
-    "now_playing": "Now Playing",
-    "top_rated": "Top Rated",
-    "airing_today": "Airing Today",
-    "on_tv": "On TV",
-    "user": "My Stuff",
-    "favorites": "Favorites",
-    "list": "My List",
-    "ratings": "My Ratings"
-  },
-  "search": {
-    "placeholder": "Search movies, TV shows, people...",
-    "label": "Search",
-    "submit": "Submit search",
-    "clear": "Clear search",
-    "filter_all": "All",
-    "filter_movies": "Movies",
-    "filter_tv": "TV Shows",
-    "filter_people": "People",
-    "no_results": "No results found for \"{query}\".",
-    "results": "Search results for \"{query}\"",
-    "title": "Search",
-    "results_count": "results"
-  },
-  "genres": {
-    "title": "Categories",
-    "description": "Browse movies and TV shows by genre.",
-    "movies_section": "Movies",
-    "tv_section": "TV Shows",
-    "explore_genre": "Explore {genre}"
-  },
-  "home": {
-    "hero": {
-      "trending": "Trending!",
-      "play_trailer": "Play trailer",
-      "details": "More details",
-      "no_trailer": "No trailer available."
-    },
-    "trending": {
-      "movies": {
-        "title": "Trending Movies",
-        "description": "The most popular movies right now.",
-        "day": "Today",
-        "week": "This Week"
-      },
-      "tv_shows": {
-        "title": "Trending TV Shows",
-        "description": "The most popular TV Shows right now.",
-        "day": "Today",
-        "week": "This Week",
-        "error": "Error loading TV shows:"
-      },
-      "people": {
-        "title": "Trending People",
-        "description": "The most popular people right now.",
-        "day": "Today",
-        "week": "This Week",
-        "error": "Error loading people:"
-      }
-    }
-  },
-  "movie": {
-    "cast": "Top Billed Cast",
-    "trailer": "Trailer",
-    "recommendations": "If you liked this movie, you'll also like...",
-    "no_trailer": "No trailer available.",
-    "release_date": "Release date",
-    "genres": "Genres",
-    "score": "Score",
-    "official_website": "Official website",
-    "status": "Status",
-    "popularity": "Popularity",
-    "budget": "Budget",
-    "revenue": "Revenue",
-    "where_to_watch": "Where to watch",
-    "stream": "Stream",
-    "buy": "Buy",
-    "rent": "Rent",
-    "providers_attribution": "Streaming data provided by",
-    "gallery": "Gallery",
-    "similar": "Similar movies",
-    "reviews": "User reviews",
-    "awards": "Awards",
-    "fallback_overview": "No overview available for this movie.",
-    "options_aria_label": "More options for {title}"
-  },
-  "tv": {
-    "fallback_overview": "No overview available for this TV show.",
-    "options_aria_label": "More options for {name}",
-    "status": "Status",
-    "popularity": "Popularity",
-    "episodes": "Episodes",
-    "season": "Season",
-    "seasons": "Seasons",
-    "reviews": "User Reviews",
-    "created_by": "Created by",
-    "in_production": "In Production",
-    "series_badge": "Series",
-    "official_website": "Official website",
-    "production_companies": "Production Companies"
-  },
-  "person": {
-    "castMovies": "Known for...",
-    "biography": "Biography",
-    "noBiography": "No biography available.",
-    "noPhoto": "No photo",
-    "readMore": "Read more",
-    "readLess": "Read less",
-    "fallback_overview": "No overview available for this person.",
-    "options_aria_label": "More options for {name}",
-    "known_for": "Known for",
-    "popularity": "Popularity",
-    "also_known_as": "Also known as",
-    "photos": "Photos",
-    "social_links_aria": "Social links for {name}",
-    "tv_credits": "TV Credits",
-    "crew_credits": "Behind the Camera"
-  },
-  "popular": {
-    "title": "Popular Movies",
-    "description": "The most watched movies."
-  },
-  "upcoming": {
-    "title": "Upcoming Movies",
-    "description": "Movies coming soon."
-  },
-  "footer": {
-    "tagline": "Your universe of movies, all in one place.",
-    "copyright": "© {year} BrandScope. All rights reserved.",
-    "powered_by": "Powered by TMDB",
-    "disclaimer": "This product uses the TMDB API but is not endorsed or certified by TMDB.",
-    "links": "Navigation",
-    "legal": "Legal"
-  },
-  "now_playing": {
-    "title": "Now Playing",
-    "description": "Movies currently playing in theatres."
-  },
-  "movies_top_rated": {
-    "title": "Top Rated Movies",
-    "description": "The highest rated movies of all time."
-  },
-  "tv_airing_today": {
-    "title": "Airing Today",
-    "description": "TV shows with episodes airing today."
-  },
-  "tv_on_tv": {
-    "title": "On TV",
-    "description": "TV shows currently airing on television."
-  },
-  "tv_popular": {
-    "title": "Popular TV Shows",
-    "description": "The most popular TV shows right now."
-  },
-  "tv_top_rated": {
-    "title": "Top Rated TV Shows",
-    "description": "The highest rated TV shows of all time."
-  },
-  "people_popular": {
-    "title": "Popular People",
-    "description": "The most talked-about actors, directors, and creators."
   }
 }
