@@ -1,6 +1,6 @@
-// components/ui/age-verification-modal.tsx
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { verifyAdultAge } from "@/actions/age-verification";
@@ -20,9 +20,10 @@ interface AgeVerificationModalProps {
 }
 
 export function AgeVerificationModal({ children }: AgeVerificationModalProps) {
-  // Si NO hay children, se abre automáticamente (estado inicial true)
-  const [isOpen, setIsOpen] = useState(!children);
+  const tActions = useTranslations("global.actions");
+  const tAlert = useTranslations("components.alerts.adult_content");
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(!children);
 
   const handleConfirm = async () => {
     await verifyAdultAge();
@@ -41,17 +42,17 @@ export function AgeVerificationModal({ children }: AgeVerificationModalProps) {
 
       <AlertDialog>
         <AlertDialogHeader>
-          <AlertDialogTitle>Contenido para adultos</AlertDialogTitle>
+          <AlertDialogTitle>{tAlert("title")}</AlertDialogTitle>
           <AlertDialogDescription>
-            Este contenido está clasificado para adultos y puede contener
-            material explícito o violencia. ¿Confirmas que eres mayor de 18
-            años?
+            {tAlert("description")}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onPress={handleCancel}>Cancelar</AlertDialogCancel>
+          <AlertDialogCancel onPress={handleCancel}>
+            {tActions("cancel")}
+          </AlertDialogCancel>
           <AlertDialogAction onPress={handleConfirm}>
-            Sí, soy mayor de 18 años
+            {tActions("confirm_over_18")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialog>

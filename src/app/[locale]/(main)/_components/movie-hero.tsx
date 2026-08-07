@@ -5,16 +5,16 @@ import { Badge } from "@/components/ui/badge";
 import { Button, LinkButton } from "@/components/ui/button";
 import { formatRuntime } from "@/lib/utils";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
-import { tmdb } from "@/lib/tmdb";
 import { MovieTrailerDialog } from "./movie-trailer-dialog";
-import { getTMDBImageUrl } from "@/lib/tmdb";
+import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
+import { getMovie } from "@/lib/api/movies";
 
 interface MovieHeroProps {
   movieId: number;
 }
 
 export default async function MovieHero({ movieId }: MovieHeroProps) {
-  const heroDetailsResult = await tmdb.getMovieDetails(movieId);
+  const heroDetailsResult = await getMovie(movieId);
 
   if (!heroDetailsResult.success) {
     return null;
@@ -23,6 +23,7 @@ export default async function MovieHero({ movieId }: MovieHeroProps) {
   const locale = await getLocale();
   const format = await getFormatter();
   const t = await getTranslations("pages.home.hero");
+  const tGlobal = await getTranslations("global.states");
 
   const {
     adult,
@@ -197,7 +198,7 @@ export default async function MovieHero({ movieId }: MovieHeroProps) {
               className="bg-gray-800 text-white/50 gap-2 px-6 py-6 text-base font-semibold rounded-md border-none opacity-70 cursor-not-allowed"
             >
               <Play className="w-5 h-5" aria-hidden="true" />
-              {t("no_trailer")}
+              {tGlobal("no_trailer")}
             </Button>
           )}
 

@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
+import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 
 interface MovieImagesProps {
   images: { file_path: string }[];
@@ -20,7 +21,7 @@ export function MovieImages({ images }: MovieImagesProps) {
         {displayImages.map((image, index) => (
           <ImageWithSkeleton
             key={image.file_path}
-            src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
+            src={getTMDBImageUrl(image.file_path, "w500") ?? ""}
             alt={`Gallery image ${index + 1}`}
             fill
             containerClassName="aspect-video rounded-xl shadow-sm"

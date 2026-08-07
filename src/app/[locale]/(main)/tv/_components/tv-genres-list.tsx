@@ -1,9 +1,9 @@
 import { Link } from "@/i18n/navigation";
 import { Badge } from "@/components/ui/badge";
-import { tmdb } from "@/lib/tmdb";
+import { getTvShowGenres } from "@/lib/api/genres";
 
 export async function TvGenresList() {
-  const genresRes = await tmdb.getTVShowGenres();
+  const genresRes = await getTvShowGenres();
 
   if (!genresRes.success) return null;
 

@@ -34,7 +34,7 @@ export function InfiniteTvShowGrid({
   filters = {},
   className,
 }: InfiniteTvShowGridProps) {
-  const t = useTranslations("common");
+  const t = useTranslations("global.states");
   const columns = useGridColumns();
 
   const [tvShows, setTvShows] = useState<TvShow[]>(initialTvShows);

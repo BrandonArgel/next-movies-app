@@ -1,9 +1,10 @@
 import { type Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { tmdb } from "@/lib/tmdb";
 import { InfiniteTvShowGrid } from "@/components/tv-show/infinite-tv-grid";
 import { TvShowFilters } from "@/components/tv-show/tv-show-filters";
 import { parseTvSearchParams } from "@/lib/filters";
+import { discoverTVShows } from "@/lib/api/tv-shows";
+import { getTvShowGenres } from "@/lib/api/genres";
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -38,8 +39,8 @@ export default async function PopularTvPage({ searchParams }: PageProps) {
   }
 
   const [response, genresResponse] = await Promise.all([
-    tmdb.discoverTVShows(finalFilters, 1),
-    tmdb.getTVShowGenres(),
+    discoverTVShows(finalFilters, 1),
+    getTvShowGenres(),
   ]);
 
   if (!response.success || !genresResponse.success) {

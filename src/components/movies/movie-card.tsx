@@ -1,8 +1,12 @@
-import { LockIcon, StarIcon, MoreVerticalIcon } from "lucide-react";
+"use client";
+
+import { useState, useRef } from "react";
+import { StarIcon, MoreVerticalIcon } from "lucide-react";
 import { useTranslations, useFormatter } from "next-intl";
 import { LinkButton } from "../ui/button";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useOnClickOutside } from "@/hooks/use-on-click-outside";
 import { cn } from "@/lib/utils";
 import { type Movie } from "@/types/movies";
 
@@ -26,18 +30,24 @@ export function MovieCard({ movie, className }: MovieCardProps) {
   const tMovie = useTranslations("domains.movie");
   const format = useFormatter();
 
+  const [isTouchActive, setIsTouchActive] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
   const formattedReleaseDate = release_date
     ? format.dateTime(new Date(release_date), "movieRelease")
     : null;
 
-  // if (adult) {
-  //   return <CensoredCard />;
-  // }
+  useOnClickOutside(cardRef, () => setIsTouchActive(false), "mousedown");
+  useOnClickOutside(cardRef, () => setIsTouchActive(false), "touchstart", {
+    passive: true,
+  });
 
   return (
     <div
+      ref={cardRef}
+      onClick={() => setIsTouchActive((prev) => !prev)}
       className={cn(
-        "group relative flex flex-col gap-2 rounded-lg select-none",
+        "group relative flex flex-col gap-2 rounded-lg select-none cursor-pointer md:cursor-default",
         className,
       )}
     >
@@ -67,13 +77,21 @@ export function MovieCard({ movie, className }: MovieCardProps) {
           </div>
         )}
 
-        {/* Hover Layer with Overview and Button */}
-        <div className="absolute inset-0 z-10 flex flex-col justify-end bg-linear-to-t from-black/95 via-black/60 to-transparent p-3 opacity-0 translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0">
+        <div
+          className={cn(
+            "absolute inset-0 z-10 flex flex-col justify-end bg-linear-to-t from-black/95 via-black/60 to-transparent p-3 transition-all duration-300",
+            "opacity-0 translate-y-4 pointer-events-none",
+            "group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto",
+            "group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto",
+            isTouchActive && "opacity-100 translate-y-0 pointer-events-auto",
+          )}
+        >
           <p className="text-white/90 text-xs line-clamp-3 mb-3 text-balance">
             {overview || tMovie("fallback_overview")}
           </p>
           <LinkButton
             href={`/movie/${id}`}
+            onClick={(e) => e.stopPropagation()}
             className="text-xs font-semibold text-primary-foreground shadow-sm"
             aria-label={`${tGlobal("view_details_of")} ${title} ${formattedReleaseDate}`}
           >
@@ -82,12 +100,21 @@ export function MovieCard({ movie, className }: MovieCardProps) {
         </div>
       </div>
 
-      <div className="absolute top-2 inset-e-2 z-30 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+      <div
+        className={cn(
+          "absolute top-2 inset-e-2 z-30 transition-opacity duration-300",
+          "opacity-0 pointer-events-none",
+          "group-hover:opacity-100 group-hover:pointer-events-auto",
+          "group-focus-within:opacity-100 group-focus-within:pointer-events-auto",
+          isTouchActive && "opacity-100 pointer-events-auto",
+        )}
+      >
         <button
           type="button"
           className="flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition-colors hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           aria-label={tGlobal("options_aria_label", { name: title })}
           onClick={(e) => {
+            e.stopPropagation();
             console.log("Abrir menú para:", title);
           }}
         >
@@ -124,16 +151,3 @@ export function MovieCardSkeleton() {
     </div>
   );
 }
-
-// export function CensoredCard() {
-//   return (
-//     <div className="flex flex-col items-center justify-center w-full h-75 bg-muted rounded-lg border-2 border-dashed border-border cursor-pointer hover:bg-muted/80 transition-colors">
-//       <LockIcon className="w-8 h-8 text-muted-foreground mb-2" />
-//       <span className="text-sm font-medium text-muted-foreground text-center px-4">
-//         Contenido +18
-//         <br />
-//         Clic para desbloquear
-//       </span>
-//     </div>
-//   );
-// }

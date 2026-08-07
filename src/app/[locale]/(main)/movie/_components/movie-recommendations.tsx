@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { MovieCarousel } from "@/components/movies/movies-carousel";
-import { tmdb } from "@/lib/tmdb";
+import { getRecommendedMovies } from "@/lib/api/movies";
 
 interface MovieRecommendationsProps {
   movieId: number;
@@ -9,7 +9,7 @@ interface MovieRecommendationsProps {
 export async function MovieRecommendations({
   movieId,
 }: MovieRecommendationsProps) {
-  const response = await tmdb.getMovieRecommendations(movieId);
+  const response = await getRecommendedMovies(movieId);
 
   if (!response.success) return null;
 

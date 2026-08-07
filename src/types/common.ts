@@ -1,20 +1,4 @@
-export interface PaginatedResponse<T> {
-  page: number;
-  results: T[];
-  total_pages: number;
-  total_results: number;
-}
-
 export type TimeWindow = "day" | "week";
-
-export interface Genres {
-  genres: Genre[];
-}
-
-export interface Genre {
-  id: number;
-  name: string;
-}
 
 export interface ProductionCompany {
   id: number;

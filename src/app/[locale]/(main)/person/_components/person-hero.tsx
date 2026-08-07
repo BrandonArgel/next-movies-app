@@ -7,7 +7,7 @@ import { ExpandableBiography } from "./expandable-biography";
 import { PersonExternalLinks } from "./person-external-links";
 import { type PersonDetail } from "@/types/person";
 import { Badge } from "@/components/ui/badge";
-import { getTMDBImageUrl } from "@/lib/tmdb";
+import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 
 export function PersonHero({ person }: { person: PersonDetail }) {
   const format = useFormatter();
@@ -39,7 +39,7 @@ export function PersonHero({ person }: { person: PersonDetail }) {
   const formattedPopularity = popularity
     ? Math.round(popularity).toLocaleString()
     : null;
-  const profileUrl = getTMDBImageUrl(profile_path, "w500");
+  const profileImgUrl = getTMDBImageUrl(profile_path, "w500");
 
   const displayAliases = also_known_as?.slice(0, 5) ?? [];
 
@@ -48,9 +48,9 @@ export function PersonHero({ person }: { person: PersonDetail }) {
       <div className="container mx-auto px-4 md:px-8 max-w-6xl flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
         {/* Portrait */}
         <div className="relative w-64 h-96 md:w-80 md:h-120 shrink-0 rounded-xl overflow-hidden shadow-2xl ring-1 ring-foreground/20">
-          {profileUrl ? (
+          {profileImgUrl ? (
             <Image
-              src={profileUrl}
+              src={profileImgUrl}
               alt={name}
               fill
               priority

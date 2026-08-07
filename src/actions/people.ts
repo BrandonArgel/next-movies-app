@@ -1,12 +1,12 @@
 "use server";
 
-import { tmdb } from "@/lib/tmdb";
+import { getTrendingPeople } from "@/lib/api/people";
 import { type Result } from "@/types/api";
-import { type PaginatedResponse } from "@/types/common";
+import { type PaginatedResponse } from "@/types/api";
 import { type Person } from "@/types/person";
 
 export async function getTrendingPeopleAction(
   timeWindow: "day" | "week",
 ): Promise<Result<PaginatedResponse<Person>>> {
-  return tmdb.getTrendingPeople(timeWindow);
+  return getTrendingPeople(timeWindow);
 }

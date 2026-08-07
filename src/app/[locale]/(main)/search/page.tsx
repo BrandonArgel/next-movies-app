@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { type Metadata } from "next";
-import { tmdb } from "@/lib/tmdb";
 import { SearchResultsLayout } from "@/components/search/search-results-layout";
+import { searchMovies, searchPeople, searchTvShows } from "@/lib/api/search";
 
 interface SearchPageProps {
   searchParams: Promise<{ q?: string | string[] }>;
@@ -24,6 +24,8 @@ export async function generateMetadata({
   };
 }
 
+const defaultEmptyResult = { results: [], total_pages: 0, total_results: 0 };
+
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const resolvedParams = await searchParams;
   const query = normalizeQuery(resolvedParams.q)?.trim();
@@ -42,15 +44,26 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     );
   }
 
-  const [moviesRes, tvRes, peopleRes] = await Promise.all([
-    tmdb.searchMovies(query, 1),
-    tmdb.searchTvShows(query, 1),
-    tmdb.searchPeople(query, 1),
+  const [moviesSettled, tvSettled, peopleSettled] = await Promise.allSettled([
+    searchMovies(query, 1),
+    searchTvShows(query, 1),
+    searchPeople(query, 1),
   ]);
 
-  if (!moviesRes.success || !tvRes.success || !peopleRes.success) {
-    throw new Error("Failed to fetch search results");
-  }
+  const moviesData =
+    moviesSettled.status === "fulfilled" && moviesSettled.value.success
+      ? moviesSettled.value.data
+      : defaultEmptyResult;
+
+  const tvData =
+    tvSettled.status === "fulfilled" && tvSettled.value.success
+      ? tvSettled.value.data
+      : defaultEmptyResult;
+
+  const peopleData =
+    peopleSettled.status === "fulfilled" && peopleSettled.value.success
+      ? peopleSettled.value.data
+      : defaultEmptyResult;
 
   return (
     <main className="flex flex-col w-full min-h-screen bg-background">
@@ -64,9 +77,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
         <SearchResultsLayout
           query={query}
-          moviesData={moviesRes.data}
-          tvData={tvRes.data}
-          peopleData={peopleRes.data}
+          moviesData={moviesData}
+          tvData={tvData}
+          peopleData={peopleData}
         />
       </div>
     </main>

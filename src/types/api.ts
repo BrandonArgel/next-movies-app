@@ -1,7 +1,6 @@
 import { type Movie } from "./movies";
 import { type TvShow } from "./tv-show";
 import { type Person } from "./person";
-import { type PaginatedResponse } from "./common";
 
 export type ErrorTranslationKey =
   | "network"
@@ -11,6 +10,13 @@ export type ErrorTranslationKey =
   | "rate_limit"
   | "server_error"
   | "default";
+
+export interface PaginatedResponse<T> {
+  page: number;
+  results: T[];
+  total_pages: number;
+  total_results: number;
+}
 
 export type Result<T> =
   | { success: true; data: T; error?: never }
@@ -28,3 +34,5 @@ export type MultiSearchResult =
   | (Person & { media_type: "person" });
 
 export interface MultiSearchResponse extends PaginatedResponse<MultiSearchResult> {}
+export type TMDBResponse<T> = Promise<Result<T>>;
+export type TMDBPaginatedResponse<T> = Promise<Result<PaginatedResponse<T>>>;

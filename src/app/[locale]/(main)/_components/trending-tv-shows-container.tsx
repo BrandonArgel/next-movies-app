@@ -1,9 +1,9 @@
-import { tmdb } from "@/lib/tmdb";
 import TrendingTVShowsSection from "./trending-tv-shows-section";
 import { SectionState } from "./section-state";
+import { getTrendingTvShows } from "@/lib/api/tv-shows";
 
 export async function TrendingTvShowsContainer() {
-  const result = await tmdb.getTrendingTVShows("day");
+  const result = await getTrendingTvShows("day");
 
   if (!result.success) {
     return <SectionState type="error" entity="tv_shows" error={result.error} />;

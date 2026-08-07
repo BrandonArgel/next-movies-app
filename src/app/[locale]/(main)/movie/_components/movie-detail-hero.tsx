@@ -5,7 +5,7 @@ import { formatRuntime } from "@/lib/formatters";
 import { type DetailedMovie } from "@/types/movies";
 import { AgeRatingBadge } from "./age-rating-badge";
 import { MediaHeroLayout } from "@/components/ui/media-hero-layout";
-import { getTMDBImageUrl } from "@/lib/tmdb";
+import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 
 interface MovieDetailHeroProps {
   movie: DetailedMovie;

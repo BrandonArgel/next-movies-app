@@ -2,7 +2,6 @@ import { type Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { tmdb } from "@/lib/tmdb";
 import { Spinner } from "@/components/ui/spinner";
 import { MovieDetailHero } from "../_components/movie-detail-hero";
 import { MovieBreadcrumb } from "../_components/movie-breadcrumb";
@@ -17,8 +16,10 @@ import { MovieAwards } from "../_components/movie-awards";
 import { GenresList } from "../_components/genres-list";
 import { MovieCarouselSkeleton } from "@/components/movies/movies-carousel";
 import { AgeVerificationModal } from "@/components/ui/age-verification-modal";
+import { getMovie } from "@/lib/api/movies";
 import { getAgeRating } from "@/lib/age-rating";
 import { ADULT_CONTENT_COOKIE } from "@/lib/constants";
+import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 
 interface MoviePageProps {
   params: Promise<{ locale: string; id: string }>;
@@ -29,11 +30,12 @@ export async function generateMetadata({
 }: MoviePageProps): Promise<Metadata> {
   const { id } = await params;
 
-  const response = await tmdb.getMovieDetails(id);
+  const response = await getMovie(id);
 
   if (!response.success) return {};
 
   const movie = response.data;
+  const backdropUlr = getTMDBImageUrl(movie.backdrop_path, "w300") ?? "";
 
   return {
     title: movie.title,
@@ -41,9 +43,7 @@ export async function generateMetadata({
     openGraph: {
       title: movie.title,
       description: movie.overview,
-      images: movie.backdrop_path
-        ? [`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`]
-        : [],
+      images: [backdropUlr],
     },
   };
 }
@@ -53,7 +53,14 @@ export default async function MoviePage({ params }: MoviePageProps) {
   const cookieStore = await cookies();
   const hasConsented = cookieStore.get(ADULT_CONTENT_COOKIE)?.value === "true";
 
-  const movieRes = await tmdb.getMovieDetails(id);
+  const movieRes = await getMovie(id, [
+    "videos",
+    "images",
+    "credits",
+    "watch/providers",
+    "reviews",
+    "release_dates",
+  ]);
 
   if (!movieRes.success) {
     if (movieRes.error === "not_found") notFound();

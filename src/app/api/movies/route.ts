@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { tmdb } from "@/lib/tmdb";
+import { discoverMovies } from "@/lib/api/movies";
+import { searchMovies } from "@/lib/api/search";
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   const { searchParams } = request.nextUrl;
@@ -15,7 +16,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         { status: 400 },
       );
     }
-    const result = await tmdb.searchMovies(query, page);
+    const result = await searchMovies(query, page);
 
     if (!result.success) {
       return NextResponse.json({ error: result.error }, { status: 500 });
@@ -30,7 +31,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     }
   });
 
-  const result = await tmdb.discoverMovies(filters, page);
+  const result = await discoverMovies(filters, page);
 
   // Unwrap the Result object
   if (!result.success) {

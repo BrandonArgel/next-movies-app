@@ -1,10 +1,9 @@
-import { tmdb } from "@/lib/tmdb";
-import { getTranslations } from "next-intl/server";
 import TrendingPeopleSection from "./trending-people-section";
 import { SectionState } from "./section-state";
+import { getTrendingPeople } from "@/lib/api/people";
 
 export async function TrendingPeopleContainer() {
-  const result = await tmdb.getTrendingPeople("day");
+  const result = await getTrendingPeople("day");
 
   if (!result.success) {
     return <SectionState type="error" entity="people" error={result.error} />;

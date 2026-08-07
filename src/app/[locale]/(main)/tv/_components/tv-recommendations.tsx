@@ -1,13 +1,13 @@
 import { getTranslations } from "next-intl/server";
 import { TvShowCarousel } from "@/components/tv-show/tv-show-carousel";
-import { tmdb } from "@/lib/tmdb";
+import { getRecommendedTvShows } from "@/lib/api/tv-shows";
 
 interface TvRecommendationsProps {
   showId: number;
 }
 
 export async function TvRecommendations({ showId }: TvRecommendationsProps) {
-  const response = await tmdb.getTVShowRecommendations(showId);
+  const response = await getRecommendedTvShows(showId);
 
   if (!response.success) return null;
 

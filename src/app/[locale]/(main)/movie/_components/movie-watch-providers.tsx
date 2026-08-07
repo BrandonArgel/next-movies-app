@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
+import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 
 export function MovieWatchProviders({
   providers,
@@ -32,7 +33,7 @@ export function MovieWatchProviders({
           {providers.map((provider) => (
             <div key={provider.provider_id} title={provider.provider_name}>
               <ImageWithSkeleton
-                src={`https://image.tmdb.org/t/p/original${provider.logo_path}`}
+                src={getTMDBImageUrl(provider.logo_path, "original") ?? ""}
                 alt={provider.provider_name}
                 width={48}
                 height={48}

@@ -1,11 +1,11 @@
 import { getTranslations } from "next-intl/server";
-import { tmdb } from "@/lib/tmdb";
 import { InfinitePeopleGrid } from "@/components/people/infinite-people-grid";
+import { getPopularPeople } from "@/lib/api/people";
 
 export default async function PopularPeoplePage() {
   const t = await getTranslations("pages.people.popular");
 
-  const response = await tmdb.getPopularPeople(1);
+  const response = await getPopularPeople(1);
 
   if (!response.success) {
     throw new Error(response.error);

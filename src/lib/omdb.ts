@@ -1,18 +1,11 @@
 import { type Result, type ErrorTranslationKey } from "@/types/api";
+import { BASE_OMDB_API_URL } from "./constants";
+import { buildQuery } from "./api/utils";
 
-type OMDbResponseWrapper<T> = Promise<Result<T>>;
-
-const BASE_URL = "https://www.omdbapi.com";
 const API_KEY = process.env.OMDB_API_KEY;
 
-// Interfaz específica para lo que queremos extraer (puedes agregar más campos luego si los necesitas)
-export interface OMDbMovie {
-  Awards: string;
-  // imdbRating: string; // Ejemplo de otro campo útil que podrías extraer después
-}
-
-async function fetchOMDb<T>(
-  queryParams: Record<string, string>,
+export async function fetchOMDb<T>(
+  params: Record<string, string | number | undefined>,
   options: RequestInit = {},
 ): Promise<Result<T>> {
   try {
@@ -21,15 +14,10 @@ async function fetchOMDb<T>(
       return { success: false, error: "unauthorized" };
     }
 
-    const url = new URL(BASE_URL);
+    const query = buildQuery({ apikey: API_KEY, ...params });
+    const url = `${BASE_OMDB_API_URL}${query}`;
 
-    url.searchParams.append("apikey", API_KEY);
-
-    for (const [key, value] of Object.entries(queryParams)) {
-      url.searchParams.append(key, value);
-    }
-
-    const response = await fetch(url.toString(), {
+    const response = await fetch(url, {
       ...options,
       headers: {
         accept: "application/json",
@@ -84,9 +72,3 @@ async function fetchOMDb<T>(
     return { success: false, error: "default" };
   }
 }
-
-export const omdb = {
-  getAwards: async (imdbId: string): OMDbResponseWrapper<OMDbMovie> => {
-    return fetchOMDb<OMDbMovie>({ i: imdbId });
-  },
-};

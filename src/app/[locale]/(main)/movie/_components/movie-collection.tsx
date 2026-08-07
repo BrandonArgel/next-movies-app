@@ -1,4 +1,4 @@
-import { tmdb } from "@/lib/tmdb";
+import { getCollection } from "@/lib/api/collections";
 import { MovieCarousel } from "@/components/movies/movies-carousel";
 
 export async function MovieCollection({
@@ -8,7 +8,7 @@ export async function MovieCollection({
 }) {
   if (!collectionId) return;
 
-  const collectionRes = await tmdb.getCollection(collectionId);
+  const collectionRes = await getCollection(collectionId);
 
   if (!collectionRes.success || !collectionRes.data) {
     return null;

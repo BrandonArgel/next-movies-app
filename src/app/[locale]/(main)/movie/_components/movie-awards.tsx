@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server";
-import { omdb } from "@/lib/omdb";
 import { Trophy } from "lucide-react";
+import { getMovieAwards } from "@/lib/api/movies";
 
 export async function MovieAwards({ imdbId }: { imdbId: string }) {
   if (!imdbId) return null;
-  const awardsRes = await omdb.getAwards(imdbId);
+  const awardsRes = await getMovieAwards(imdbId);
   const t = await getTranslations("domains.movie");
 
   if (

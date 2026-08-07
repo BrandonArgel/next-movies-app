@@ -1,10 +1,13 @@
+"use client";
+
+import { useState, useRef } from "react";
 import { MoreVerticalIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { LinkButton } from "../ui/button";
+import { useOnClickOutside } from "@/hooks/use-on-click-outside";
 
 export interface PersonData {
   id: number;
@@ -24,12 +27,29 @@ export function PersonCard({ person, className }: PersonCardProps) {
 
   const tGlobal = useTranslations("global.actions");
 
+  const [isTouchActive, setIsTouchActive] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
   const subtitle = character || known_for_department;
+
+  useOnClickOutside<HTMLDivElement>(
+    cardRef,
+    () => setIsTouchActive(false),
+    "mousedown",
+  );
+  useOnClickOutside<HTMLDivElement>(
+    cardRef,
+    () => setIsTouchActive(false),
+    "touchstart",
+    { passive: true },
+  );
 
   return (
     <div
+      ref={cardRef}
+      onClick={() => setIsTouchActive((prev) => !prev)}
       className={cn(
-        "group relative flex flex-col gap-2 rounded-lg select-none",
+        "group relative flex flex-col gap-2 rounded-lg select-none cursor-pointer md:cursor-default",
         className,
       )}
     >
@@ -52,10 +72,18 @@ export function PersonCard({ person, className }: PersonCardProps) {
           </div>
         )}
 
-        {/* Hover Layer with Overview and Button */}
-        <div className="absolute inset-0 z-10 flex flex-col justify-end bg-linear-to-t from-black/95 via-black/60 to-transparent p-3 opacity-0 translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0">
+        <div
+          className={cn(
+            "absolute inset-0 z-10 flex flex-col justify-end bg-linear-to-t from-black/95 via-black/60 to-transparent p-3 transition-all duration-300",
+            "opacity-0 translate-y-4 pointer-events-none",
+            "group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto",
+            "group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto",
+            isTouchActive && "opacity-100 translate-y-0 pointer-events-auto",
+          )}
+        >
           <LinkButton
             href={`/person/${id}`}
+            onClick={(e) => e.stopPropagation()}
             className="text-xs font-semibold text-primary-foreground shadow-sm"
             aria-label={`${tGlobal("view_details_of")} ${name}`}
           >
@@ -64,13 +92,21 @@ export function PersonCard({ person, className }: PersonCardProps) {
         </div>
       </div>
 
-      {/* Options Menu Button */}
-      <div className="absolute top-2 inset-e-2 z-30 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+      <div
+        className={cn(
+          "absolute top-2 inset-e-2 z-30 transition-opacity duration-300",
+          "opacity-0 pointer-events-none",
+          "group-hover:opacity-100 group-hover:pointer-events-auto",
+          "group-focus-within:opacity-100 group-focus-within:pointer-events-auto",
+          isTouchActive && "opacity-100 pointer-events-auto",
+        )}
+      >
         <button
           type="button"
           className="flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition-colors hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           aria-label={tGlobal("options_aria_label", { name })}
           onClick={(e) => {
+            e.stopPropagation();
             console.log("Abrir menú para:", name);
           }}
         >
@@ -78,7 +114,6 @@ export function PersonCard({ person, className }: PersonCardProps) {
         </button>
       </div>
 
-      {/* Accessible Link and Metadata */}
       <div className="relative z-20 flex flex-col gap-0.5 px-0.5">
         <h3
           className="font-semibold text-sm line-clamp-1 transition-colors group-hover:text-primary group-focus-within:text-primary"

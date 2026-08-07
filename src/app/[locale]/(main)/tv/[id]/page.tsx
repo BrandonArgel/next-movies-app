@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { tmdb } from "@/lib/tmdb";
 import { Spinner } from "@/components/ui/spinner";
 import { TvDetailHero } from "../_components/tv-detail-hero";
 import { MovieBreadcrumb } from "../../movie/_components/movie-breadcrumb";
@@ -18,6 +17,8 @@ import { TvShowReviews } from "../_components/tv-show-reviews";
 import { TvProductionCompanies } from "../_components/tv-production-companies";
 import { AgeVerificationModal } from "@/components/ui/age-verification-modal";
 import { ADULT_CONTENT_COOKIE } from "@/lib/constants";
+import { getTvShow } from "@/lib/api/tv-shows";
+import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 
 interface TvPageProps {
   params: Promise<{ locale: string; id: string }>;
@@ -27,11 +28,12 @@ export async function generateMetadata({
   params,
 }: TvPageProps): Promise<Metadata> {
   const { id } = await params;
-  const response = await tmdb.getTVShowDetails(id);
+  const response = await getTvShow(id);
 
   if (!response.success) return {};
 
   const show = response.data;
+  const backdropUlr = getTMDBImageUrl(show.backdrop_path, "w300") ?? "";
 
   return {
     title: show.name,
@@ -39,9 +41,7 @@ export async function generateMetadata({
     openGraph: {
       title: show.name,
       description: show.overview,
-      images: show.backdrop_path
-        ? [`https://image.tmdb.org/t/p/w1280${show.backdrop_path}`]
-        : [],
+      images: [backdropUlr],
     },
   };
 }
@@ -56,7 +56,13 @@ export default async function TvPage({ params }: TvPageProps) {
   const cookieStore = await cookies();
   const hasConsented = cookieStore.get(ADULT_CONTENT_COOKIE)?.value === "true";
 
-  const showRes = await tmdb.getTVShowDetails(id);
+  const showRes = await getTvShow(id, [
+    "videos",
+    "images",
+    "credits",
+    "watch/providers",
+    "reviews",
+  ]);
 
   if (!showRes.success) {
     if (showRes.error === "not_found") notFound();
@@ -103,14 +109,12 @@ interface UserScoreChartProps {
 }
 
 export function UserScoreChart({ voteAverage }: UserScoreChartProps) {
-  // Convert 10-point scale to percentage (e.g., 7.93 -> 79)
   const percentage = Math.round(voteAverage * 10);
 
   const radius = 20;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
-  // TMDB color thresholds
   const colorClass =
     percentage >= 70
       ? "text-green-500"

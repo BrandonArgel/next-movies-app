@@ -19,12 +19,14 @@ import { type Person } from "@/types/person";
 interface InfinitePeopleGridProps {
   initialPeople: Person[];
   totalPages: number;
+  searchQuery?: string;
   className?: string;
 }
 
 export function InfinitePeopleGrid({
   initialPeople,
   totalPages,
+  searchQuery,
   className,
 }: InfinitePeopleGridProps) {
   const t = useTranslations("global.states");
@@ -58,7 +60,7 @@ export function InfinitePeopleGrid({
     estimateSize: () => {
       if (typeof window === "undefined") return 350;
       const cardWidth = window.innerWidth / columns;
-      return cardWidth * 1.5 + 60; // Adjust multiplier if person cards have a different aspect ratio than posters
+      return cardWidth * 1.5 + 60;
     },
     overscan: 2,
     scrollMargin,
@@ -88,11 +90,15 @@ export function InfinitePeopleGrid({
     const nextPage = page + 1;
 
     try {
-      const res = await fetch(`/api/people?page=${nextPage}`, {
+      const endpoint = searchQuery
+        ? `/api/people?type=search&q=${encodeURIComponent(searchQuery)}&page=${nextPage}`
+        : `/api/people?page=${nextPage}`;
+
+      const res = await fetch(endpoint, {
         signal: abortControllerRef.current.signal,
       });
 
-      if (!res.ok) throw new Error("Fetch failed");
+      if (!res.ok) throw new Error(`Fetch failed with status: ${res.status}`);
 
       const data = (await res.json()) as {
         results: Person[];
@@ -106,15 +112,15 @@ export function InfinitePeopleGrid({
       });
 
       setPage(nextPage);
-      setHasMore(nextPage < data.total_pages);
-    } catch (error: any) {
-      if (error.name !== "AbortError") {
-        console.error(error);
+      setHasMore(nextPage <= data.total_pages);
+    } catch (error: unknown) {
+      if (error instanceof Error && error.name !== "AbortError") {
+        console.error("Failed to load more people:", error);
       }
     } finally {
       setIsLoading(false);
     }
-  }, [isLoading, hasMore, page]);
+  }, [isLoading, hasMore, page, searchQuery]);
 
   useEffect(() => {
     setPeople(initialPeople);
@@ -126,7 +132,7 @@ export function InfinitePeopleGrid({
         abortControllerRef.current.abort();
       }
     };
-  }, [initialPeople, totalPages]);
+  }, [initialPeople, totalPages, searchQuery]);
 
   const virtualItems = virtualizer.getVirtualItems();
   const lastItemIndex = virtualItems[virtualItems.length - 1]?.index;

@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { tmdb } from "@/lib/tmdb";
 import { PersonHero } from "../_components/person-hero";
 import { PersonPhotos } from "../_components/person-photos";
 import { MovieCarousel } from "@/components/movies/movies-carousel";
 import { TvShowCarousel } from "@/components/tv-show/tv-show-carousel";
 import { ADULT_CONTENT_COOKIE } from "@/lib/constants";
 import { AgeVerificationModal } from "@/components/ui/age-verification-modal";
-import { type TvShow } from "@/types/tv-show";
+import { getPerson } from "@/lib/api/people";
+import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 
 interface PersonPageProps {
   params: Promise<{ locale: string; id: string }>;
@@ -20,11 +20,12 @@ export async function generateMetadata({
 }: PersonPageProps): Promise<Metadata> {
   const { id } = await params;
 
-  const response = await tmdb.getPersonDetails(id);
+  const response = await getPerson(id);
 
   if (!response.success) return {};
 
   const person = response.data;
+  const profileImgUrl = getTMDBImageUrl(person.profile_path) ?? "";
 
   return {
     title: person.name,
@@ -34,9 +35,7 @@ export async function generateMetadata({
     openGraph: {
       title: person.name,
       description: person.biography?.substring(0, 160),
-      images: person.profile_path
-        ? [`https://image.tmdb.org/t/p/w500${person.profile_path}`]
-        : [],
+      images: [profileImgUrl],
     },
   };
 }
@@ -47,7 +46,13 @@ export default async function PersonPage({ params }: PersonPageProps) {
   const hasConsented = cookieStore.get(ADULT_CONTENT_COOKIE)?.value === "true";
 
   const t = await getTranslations("domains.person");
-  const response = await tmdb.getPersonDetails(id);
+  const response = await getPerson(id, [
+    "movie_credits",
+    "tv_credits",
+    "images",
+    "tagged_images",
+    "external_ids",
+  ]);
 
   if (!response.success) {
     if (response.error === "not_found") notFound();

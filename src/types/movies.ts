@@ -1,10 +1,6 @@
-import {
-  Genre,
-  PaginatedResponse,
-  ProductionCompany,
-  ProductionCountry,
-  SpokenLanguage,
-} from "./common";
+import { type PaginatedResponse } from "./api";
+import { type Genre } from "./genres";
+import { ProductionCompany, ProductionCountry, SpokenLanguage } from "./common";
 import { Videos, Images } from "./media";
 import { WatchProvidersResponse } from "./watch-providers";
 
@@ -25,6 +21,10 @@ export interface Movie {
   video: boolean;
   vote_average: number;
   vote_count: number;
+}
+
+export interface OMDbMovie {
+  Awards: string;
 }
 
 export interface BelongsToCollection {

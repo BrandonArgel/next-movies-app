@@ -18,9 +18,13 @@ import { MovieCard } from "@/components/movies/movie-card";
 import { TVShowCard } from "@/components/tv-show/tv-show-card";
 import { PersonCard } from "@/components/people/person-card";
 
+import { Movie } from "@/types/movies";
+import { TvShow } from "@/types/tv-show";
+import { Person } from "@/types/person";
+
 type FilterType = "all" | "movie" | "tv" | "person";
 
-interface SearchData<T> {
+export interface SearchData<T> {
   results: T[];
   total_pages: number;
   total_results: number;
@@ -28,9 +32,9 @@ interface SearchData<T> {
 
 interface SearchResultsLayoutProps {
   query: string;
-  moviesData: SearchData<any>;
-  tvData: SearchData<any>;
-  peopleData: SearchData<any>;
+  moviesData: SearchData<Movie>;
+  tvData: SearchData<TvShow>;
+  peopleData: SearchData<Person>;
 }
 
 export function SearchResultsLayout({
@@ -56,45 +60,52 @@ export function SearchResultsLayout({
     );
   }
 
+  const FILTER_CONFIG = [
+    {
+      id: "all",
+      count: totalResults,
+      icon: LayoutGridIcon,
+      label: tSearch("filter_all"),
+    },
+    {
+      id: "movie",
+      count: moviesData.total_results,
+      icon: FilmIcon,
+      label: tSearch("filter_movies"),
+    },
+    {
+      id: "tv",
+      count: tvData.total_results,
+      icon: TvIcon,
+      label: tSearch("filter_tv"),
+    },
+    {
+      id: "person",
+      count: peopleData.total_results,
+      icon: UsersIcon,
+      label: tSearch("filter_people"),
+    },
+  ] as const;
+
   return (
     <div className="flex flex-col gap-8">
-      {/* Filters Toolbar */}
       <div
         role="toolbar"
         aria-label="Filter search results"
         className="flex flex-wrap items-center gap-2"
       >
-        <FilterPill
-          active={activeFilter === "all"}
-          count={totalResults}
-          icon={<LayoutGridIcon className="size-4" />}
-          label={tSearch("filter_all")}
-          onClick={() => setActiveFilter("all")}
-        />
-        <FilterPill
-          active={activeFilter === "movie"}
-          count={moviesData.total_results}
-          icon={<FilmIcon className="size-4" />}
-          label={tSearch("filter_movies")}
-          onClick={() => setActiveFilter("movie")}
-        />
-        <FilterPill
-          active={activeFilter === "tv"}
-          count={tvData.total_results}
-          icon={<TvIcon className="size-4" />}
-          label={tSearch("filter_tv")}
-          onClick={() => setActiveFilter("tv")}
-        />
-        <FilterPill
-          active={activeFilter === "person"}
-          count={peopleData.total_results}
-          icon={<UsersIcon className="size-4" />}
-          label={tSearch("filter_people")}
-          onClick={() => setActiveFilter("person")}
-        />
+        {FILTER_CONFIG.map((filter) => (
+          <FilterPill
+            key={filter.id}
+            active={activeFilter === filter.id}
+            count={filter.count}
+            icon={<filter.icon className="size-4" />}
+            label={filter.label}
+            onClick={() => setActiveFilter(filter.id as FilterType)}
+          />
+        ))}
       </div>
 
-      {/* Render All Preview */}
       {activeFilter === "all" && (
         <div className="flex flex-col gap-12">
           {moviesData.total_results > 0 && (
@@ -144,7 +155,6 @@ export function SearchResultsLayout({
         </div>
       )}
 
-      {/* Render Infinite Grids based on Active Filter */}
       {activeFilter === "movie" && (
         <InfiniteMovieGrid
           type="search"
@@ -165,6 +175,7 @@ export function SearchResultsLayout({
 
       {activeFilter === "person" && (
         <InfinitePeopleGrid
+          searchQuery={query}
           initialPeople={peopleData.results}
           totalPages={peopleData.total_pages}
         />
@@ -173,7 +184,21 @@ export function SearchResultsLayout({
   );
 }
 
-function PreviewSection({ title, icon, onViewAll, total, children }: any) {
+interface PreviewSectionProps {
+  title: string;
+  icon: React.ReactNode;
+  onViewAll: () => void;
+  total: number;
+  children: React.ReactNode;
+}
+
+function PreviewSection({
+  title,
+  icon,
+  onViewAll,
+  total,
+  children,
+}: PreviewSectionProps) {
   const tSearch = useTranslations("pages.search");
 
   return (

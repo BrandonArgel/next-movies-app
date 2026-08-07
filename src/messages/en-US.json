@@ -14,7 +14,9 @@
       "view_details_of": "View details for",
       "readMore": "Read more",
       "readLess": "Read less",
-      "options_aria_label": "More options for {name}"
+      "options_aria_label": "More options for {name}",
+      "cancel": "Cancel",
+      "confirm_over_18": "Yes, I am over 18 years old"
     },
     "labels": {
       "results_count": "results",
@@ -31,7 +33,7 @@
       "no_results": "No results available at the moment.",
       "loading_error": "Could not load data:",
       "try_again": "Try again",
-      "no_trailer": "No trailer available."
+      "no_trailer": "No trailer available"
     },
     "network": {
       "online_title": "Connection Restored",
@@ -118,6 +120,13 @@
         "toggle_language": "Switch language",
         "search_language": "Search language",
         "language_selector": "Language selector"
+      }
+    },
+    "alerts": {
+      "adult_content": {
+        "title": "Adult Content",
+        "description": "This content is rated for adults and may contain explicit material or violence. Do you confirm you are over 18 years old?",
+        "card_overlay": "Adult content. Click to verify age."
       }
     },
     "footer": {

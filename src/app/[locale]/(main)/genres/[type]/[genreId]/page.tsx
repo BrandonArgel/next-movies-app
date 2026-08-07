@@ -2,7 +2,6 @@ import { getTranslations } from "next-intl/server";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import { tmdb } from "@/lib/tmdb";
 import { InfiniteMovieGrid } from "@/components/movies/infinite-movie-grid";
 import { InfiniteTvShowGrid } from "@/components/tv-show/infinite-tv-grid";
 import { type Movie } from "@/types/movies";
@@ -32,6 +31,9 @@ import {
   GlobeIcon,
   LandmarkIcon,
 } from "lucide-react";
+import { getMovieGenres, getTvShowGenres } from "@/lib/api/genres";
+import { discoverMovies } from "@/lib/api/movies";
+import { discoverTVShows } from "@/lib/api/tv-shows";
 
 const VALID_TYPES = ["movie", "tv"] as const;
 type GenreType = (typeof VALID_TYPES)[number];
@@ -79,15 +81,13 @@ export async function generateMetadata({
   if (!VALID_TYPES.includes(type as GenreType)) return {};
 
   const genresResult =
-    type === "movie"
-      ? await tmdb.getMovieGenres()
-      : await tmdb.getTVShowGenres();
+    type === "movie" ? await getMovieGenres() : await getTvShowGenres();
 
   const genre = genresResult.success
     ? genresResult.data.genres.find((g) => String(g.id) === genreId)
     : null;
 
-  const t = await getTranslations("genres");
+  const t = await getTranslations("pages.genres");
   const name = genre?.name ?? genreId;
 
   return {
@@ -104,17 +104,17 @@ export default async function GenrePage({ params }: GenrePageProps) {
   }
 
   const mediaType = type as GenreType;
-  const t = await getTranslations("genres");
-  const tNav = await getTranslations("nav");
+  const t = await getTranslations("pages.genres");
+  const tNav = await getTranslations("components.nav");
 
   // Obtener el ícono dinámico basado en el ID de la URL
   const Icon = GENRE_ICONS[Number(genreId)] || TagIcon;
 
   if (mediaType === "movie") {
     const [genresResult, tvGenresResult, moviesResult] = await Promise.all([
-      tmdb.getMovieGenres(),
-      tmdb.getTVShowGenres(),
-      tmdb.discoverMoviesByGenre(genreId, 1),
+      getMovieGenres(),
+      getTvShowGenres(),
+      discoverMovies({ with_genres: genreId }, 1),
     ]);
 
     if (!moviesResult.success) throw new Error(moviesResult.error);
@@ -194,9 +194,9 @@ export default async function GenrePage({ params }: GenrePageProps) {
 
   // Branch para TV
   const [genresResult, movieGenresResult, tvResult] = await Promise.all([
-    tmdb.getTVShowGenres(),
-    tmdb.getMovieGenres(),
-    tmdb.discoverTVShowsByGenre(genreId, 1),
+    getTvShowGenres(),
+    getMovieGenres(),
+    discoverTVShows({ with_genres: genreId }, 1),
   ]);
 
   if (!tvResult.success) throw new Error(tvResult.error);

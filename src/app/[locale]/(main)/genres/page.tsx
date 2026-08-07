@@ -1,7 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { type Metadata } from "next";
 import { Link } from "@/i18n/navigation";
-import { tmdb } from "@/lib/tmdb";
 import {
   FilmIcon,
   TvIcon,
@@ -26,6 +25,7 @@ import {
   GlobeIcon,
   LandmarkIcon,
 } from "lucide-react";
+import { getMovieGenres, getTvShowGenres } from "@/lib/api/genres";
 
 // Standard TMDB Genre IDs mapped to Lucide icons
 const GENRE_ICONS: Record<number, React.ElementType> = {
@@ -61,7 +61,7 @@ const GENRE_ICONS: Record<number, React.ElementType> = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("genres");
+  const t = await getTranslations("pages.genres");
   return {
     title: t("title"),
     description: t("description"),
@@ -147,8 +147,8 @@ export default async function GenresPage() {
   const t = await getTranslations("pages.genres");
 
   const [movieGenresResult, tvGenresResult] = await Promise.all([
-    tmdb.getMovieGenres(),
-    tmdb.getTVShowGenres(),
+    getMovieGenres(),
+    getTvShowGenres(),
   ]);
 
   const movieGenres = movieGenresResult.success
@@ -156,7 +156,6 @@ export default async function GenresPage() {
     : [];
   const tvGenres = tvGenresResult.success ? tvGenresResult.data.genres : [];
 
-  // Genres that appear in both lists can link to both — TV-only links to /tv
   const movieGenreIds = new Set(movieGenres.map((g) => g.id));
   const tvOnlyGenres = tvGenres.filter((g) => !movieGenreIds.has(g.id));
 

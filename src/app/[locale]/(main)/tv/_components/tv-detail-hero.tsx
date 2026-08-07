@@ -1,9 +1,9 @@
 import { getFormatter, getTranslations } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
-import { Info, Activity, Tv2, Users } from "lucide-react";
+import { Info, Tv2, Users } from "lucide-react";
 import { type DetailedTvShow } from "@/types/tv-show";
 import { MediaHeroLayout } from "@/components/ui/media-hero-layout";
-import { getTMDBImageUrl } from "@/lib/tmdb";
+import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 
 interface TvHeroProps {
   show: DetailedTvShow;
