@@ -1,5 +1,5 @@
 import { fetchTMDB } from "../fetch-tmdb";
-import { fetchOMDb } from "../omdb";
+import { fetchOMDb } from "../fetch-omdb";
 import { buildQuery } from "./utils";
 import type { TMDBResponse, TMDBPaginatedResponse } from "@/types/api";
 import { type Movie, type OMDbMovie, type DetailedMovie } from "@/types/movies";

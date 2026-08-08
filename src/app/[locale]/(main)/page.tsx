@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { getTrendingMovies } from "@/lib/api/movies";
-import MovieHero from "./_components/movie-hero";
+import { MovieHero } from "./_components/movie-hero";
 import { TrendingMoviesContainer } from "./_components/trending-movies-container";
 import { TrendingTvShowsContainer } from "./_components/trending-tv-shows-container";
 import { TrendingPeopleContainer } from "./_components/trending-people-container";
@@ -10,7 +10,7 @@ export default async function MoviesPage() {
   const moviesResult = await getTrendingMovies("day");
 
   if (!moviesResult.success || moviesResult.data.results.length === 0) {
-    return null;
+    throw new Error(moviesResult.error || "failed_to_load");
   }
 
   const heroMovie = moviesResult.data.results[0];

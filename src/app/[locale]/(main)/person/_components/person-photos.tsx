@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
+import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 import { type Profile } from "@/types/person";
 import { UserRound } from "lucide-react";
 

@@ -1,14 +1,13 @@
-import { MediaType } from "./media";
+import { type PaginatedResponse } from "./api";
 import {
-  Genre,
-  PaginatedResponse,
-  ProductionCompany,
-  ProductionCountry,
-  SpokenLanguage,
+  type ProductionCompany,
+  type ProductionCountry,
+  type SpokenLanguage,
 } from "./common";
-import { Videos, Images } from "./media";
-import { WatchProvidersResponse } from "./watch-providers";
+import { type MediaType, type Videos, type Images } from "./media";
+import { type WatchProvidersResponse } from "./watch-providers";
 import { type Review } from "./movies";
+import { Genre } from "./genres";
 
 export interface TvShow {
   adult: boolean;

@@ -13,7 +13,7 @@ interface MovieHeroProps {
   movieId: number;
 }
 
-export default async function MovieHero({ movieId }: MovieHeroProps) {
+export async function MovieHero({ movieId }: MovieHeroProps) {
   const heroDetailsResult = await getMovie(movieId);
 
   if (!heroDetailsResult.success) {
