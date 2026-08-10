@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { MovieCarousel } from "@/components/movies/movies-carousel";
-import { type Movie } from "@/types/movies";
+import type { Movie } from "@/types/movies";
 
 export function MovieSimilar({ movies }: { movies: Movie[] }) {
   const t = useTranslations("movie");
@@ -11,7 +11,7 @@ export function MovieSimilar({ movies }: { movies: Movie[] }) {
 
   return (
     <section aria-labelledby="similar-heading" className="flex flex-col gap-4">
-      <h2 id="similar-heading" className="text-xl md:text-2xl font-bold">
+      <h2 id="similar-heading" className="font-bold text-xl md:text-2xl">
         {t("similar")}
       </h2>
 

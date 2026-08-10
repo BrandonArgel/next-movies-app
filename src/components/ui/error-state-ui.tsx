@@ -17,12 +17,12 @@ export function ErrorStateUi({
   actionElement,
 }: ErrorStateUiProps) {
   return (
-    <div className="flex flex-col items-center justify-center p-12 text-center gap-4 border border-dashed border-destructive/30 rounded-xl bg-destructive/5 max-w-lg w-full mx-auto">
+    <div className="mx-auto flex w-full max-w-lg flex-col items-center justify-center gap-4 rounded-xl border border-destructive/30 border-dashed bg-destructive/5 p-12 text-center">
       <AlertCircle className="h-8 w-8 text-destructive opacity-80" />
 
       <div className="space-y-1">
-        <p className="text-lg font-medium text-foreground">{title}</p>
-        <p className="text-sm text-muted-foreground">{description}</p>
+        <p className="font-medium text-foreground text-lg">{title}</p>
+        <p className="text-muted-foreground text-sm">{description}</p>
       </div>
 
       {actionElement ? (

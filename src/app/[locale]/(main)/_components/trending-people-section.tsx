@@ -2,14 +2,14 @@
 
 import { useTranslations } from "next-intl";
 import { useState, useTransition } from "react";
-import { getTrendingPeopleAction } from "@/actions/people";
 import { sileo } from "sileo";
+import { getTrendingPeopleAction } from "@/actions/people";
+import { PeopleCarousel } from "@/components/people/people-carousel";
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
-import { PeopleCarousel } from "@/components/people/people-carousel";
 import { cn } from "@/lib/utils";
-import { type Person } from "@/types/person";
-import { type TimeWindow } from "@/types/common";
+import type { TimeWindow } from "@/types/common";
+import type { Person } from "@/types/person";
 
 export default function TrendingPeopleSection({
   initialPeople,
@@ -61,14 +61,14 @@ export default function TrendingPeopleSection({
       )}
     >
       <div className="mb-6">
-        <div className="flex flex-wrap items-center gap-4 md:gap-6 mb-2">
-          <h2 className="text-2xl font-bold">{t("title")}</h2>
+        <div className="mb-2 flex flex-wrap items-center gap-4 md:gap-6">
+          <h2 className="font-bold text-2xl">{t("title")}</h2>
 
           <ButtonGroup>
             <Button
               variant={dayTimeWindow ? "default" : "secondary"}
               onPress={() => handleTabChange("day")}
-              className="px-4 py-1.5 text-sm font-medium transition-colors"
+              className="px-4 py-1.5 font-medium text-sm transition-colors"
               isDisabled={isPending}
             >
               {t("day")}
@@ -76,7 +76,7 @@ export default function TrendingPeopleSection({
             <Button
               variant={dayTimeWindow ? "secondary" : "default"}
               onPress={() => handleTabChange("week")}
-              className="px-4 py-1.5 text-sm font-medium transition-colors"
+              className="px-4 py-1.5 font-medium text-sm transition-colors"
               isDisabled={isPending}
             >
               {t("week")}

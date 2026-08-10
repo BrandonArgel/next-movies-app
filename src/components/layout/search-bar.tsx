@@ -1,15 +1,15 @@
 "use client";
 
-import { useTransition } from "react";
+import { Loader2, SearchIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { SearchIcon, Loader2 } from "lucide-react";
-import { useRouter } from "@/i18n/navigation";
+import { useTransition } from "react";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
+import { useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 interface SearchBarProps {
@@ -42,10 +42,7 @@ export function SearchBar({ className, variant = "compact" }: SearchBarProps) {
       role="search"
       aria-label={t("label")}
       onSubmit={handleSubmit}
-      className={cn(
-        variant === "expanded" ? "w-full" : "w-68 lg:w-80",
-        className,
-      )}
+      className={cn(variant === "expanded" ? "w-full" : "w-70", className)}
     >
       <InputGroup>
         <InputGroupAddon align="inline-start">

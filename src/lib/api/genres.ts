@@ -1,6 +1,6 @@
-import { fetchTMDB } from "../fetch-tmdb";
 import type { TMDBResponse } from "@/types/api";
-import { type Genres } from "@/types/genres";
+import type { Genres } from "@/types/genres";
+import { fetchTMDB } from "../fetch-tmdb";
 
 export const getTvShowGenres = (): TMDBResponse<Genres> =>
   fetchTMDB(`/genre/tv/list`);

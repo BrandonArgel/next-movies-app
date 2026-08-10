@@ -1,8 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-
-import { type Dispatch, type SetStateAction } from "react";
+import {
+  type Dispatch,
+  type SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 
 import { useEventCallback } from "./use-event-callback";
 import { useEventListener } from "./use-event-listener";
@@ -55,7 +59,7 @@ export function useLocalStorage<T>(
       let parsed: unknown;
       try {
         parsed = JSON.parse(value);
-      } catch (error) {
+      } catch (_error) {
         return defaultValue;
       }
 
@@ -143,7 +147,7 @@ export function useLocalStorage<T>(
   useEffect(() => {
     setStoredValue(readValue());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key]);
+  }, [readValue]);
 
   const handleStorageChange = useCallback(
     (event: StorageEvent | CustomEvent) => {

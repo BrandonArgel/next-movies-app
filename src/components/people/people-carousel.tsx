@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useAppLocale } from "@/providers/locale-provider";
 import Autoplay from "embla-carousel-autoplay";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
+import { useEffect, useRef, useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -12,6 +11,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useAppLocale } from "@/providers/locale-provider";
 import { PersonCard, PersonCardSkeleton, type PersonData } from "./person-card";
 
 interface PeopleCarouselProps {
@@ -63,24 +63,24 @@ export function PeopleCarousel({
         loop,
       }}
       plugins={[pluginAutoplay.current, pluginWheel.current]}
-      className="select-none w-full group/carousel relative"
+      className="group/carousel relative w-full select-none"
     >
       <CarouselContent className="-ms-3">
         {people.map((person) => (
           <CarouselItem
             key={person.id}
-            className="ps-3 basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/7"
+            className="basis-1/3 ps-3 sm:basis-1/4 md:basis-1/5 lg:basis-1/7"
           >
             <PersonCard person={person} />
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div className="absolute left-0 top-0 bottom-11 w-6 bg-linear-to-r from-background to-transparent pointer-events-none z-10" />
+      <div className="pointer-events-none absolute top-0 bottom-11 left-0 z-10 w-6 bg-linear-to-r from-background to-transparent" />
 
-      <div className="absolute right-0 top-0 bottom-11 w-6 bg-linear-to-l from-background to-transparent pointer-events-none z-10" />
+      <div className="pointer-events-none absolute top-0 right-0 bottom-11 z-10 w-6 bg-linear-to-l from-background to-transparent" />
 
-      <CarouselPrevious className="hidden md:flex z-20 border-none shadow-md backdrop-blur-md bg-background/70 group-hover/carousel:bg-primary! group-hover/carousel:text-primary-foreground! hover:bg-primary! hover:text-primary-foreground! transition-all duration-300" />
-      <CarouselNext className="hidden md:flex z-20 border-none shadow-md backdrop-blur-md bg-background/70 group-hover/carousel:bg-primary! group-hover/carousel:text-primary-foreground! hover:bg-primary! hover:text-primary-foreground! transition-all duration-300" />
+      <CarouselPrevious className="z-20 hidden border-none bg-background/70 shadow-md backdrop-blur-md transition-all duration-300 hover:bg-primary! hover:text-primary-foreground! group-hover/carousel:bg-primary! group-hover/carousel:text-primary-foreground! md:flex" />
+      <CarouselNext className="z-20 hidden border-none bg-background/70 shadow-md backdrop-blur-md transition-all duration-300 hover:bg-primary! hover:text-primary-foreground! group-hover/carousel:bg-primary! group-hover/carousel:text-primary-foreground! md:flex" />
     </Carousel>
   );
 }
@@ -90,11 +90,11 @@ export function PeopleCarouselSkeleton() {
     <div className="w-full space-y-4">
       <div className="relative w-full">
         <div className="overflow-hidden">
-          <div className="flex -ms-3">
+          <div className="-ms-3 flex">
             {Array.from({ length: 7 }).map((_, index) => (
               <div
                 key={index}
-                className="ps-3 basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/7 shrink-0 grow-0 min-w-0"
+                className="min-w-0 shrink-0 grow-0 basis-1/3 ps-3 sm:basis-1/4 md:basis-1/5 lg:basis-1/7"
               >
                 <PersonCardSkeleton />
               </div>
@@ -102,10 +102,10 @@ export function PeopleCarouselSkeleton() {
           </div>
         </div>
 
-        <div className="hidden md:flex absolute inset-y-0 inset-s-2 xl:-inset-s-12 my-auto h-8 w-8 items-center justify-center">
+        <div className="xl:-inset-s-12 absolute inset-s-2 inset-y-0 my-auto hidden h-8 w-8 items-center justify-center md:flex">
           <Skeleton className="h-8 w-8 rounded-full" />
         </div>
-        <div className="hidden md:flex absolute inset-y-0 inset-e-2 xl:-inset-e-12 my-auto h-8 w-8 items-center justify-center">
+        <div className="xl:-inset-e-12 absolute inset-e-2 inset-y-0 my-auto hidden h-8 w-8 items-center justify-center md:flex">
           <Skeleton className="h-8 w-8 rounded-full" />
         </div>
       </div>

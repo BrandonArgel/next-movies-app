@@ -1,10 +1,10 @@
-import { fetchTMDB } from "../fetch-tmdb";
-import { fetchOMDb } from "../fetch-omdb";
-import { buildQuery } from "./utils";
-import type { TMDBResponse, TMDBPaginatedResponse } from "@/types/api";
-import { type Movie, type OMDbMovie, type DetailedMovie } from "@/types/movies";
+import type { TMDBPaginatedResponse, TMDBResponse } from "@/types/api";
+import type { TimeWindow } from "@/types/common";
+import type { DetailedMovie, Movie, OMDbMovie } from "@/types/movies";
 import type { MovieAppend } from "@/types/tmdb";
-import { type TimeWindow } from "@/types/common";
+import { fetchOMDb } from "../fetch-omdb";
+import { fetchTMDB } from "../fetch-tmdb";
+import { buildQuery } from "./utils";
 
 export const getMovie = (
   id: string | number,
@@ -41,13 +41,17 @@ export const discoverMovies = (
 ): TMDBPaginatedResponse<Movie> =>
   fetchTMDB(`/discover/movie${buildQuery({ ...params, page })}`);
 
-// TODO: Type
-export const rateMovie = (
-  movieId: string | number,
-  rating: number,
-): TMDBResponse<{ status_code: number; status_message: string }> => {
-  return fetchTMDB(`/movie/${movieId}/rating`, {
-    method: "POST",
-    body: JSON.stringify({ value: rating }),
-  });
-};
+export const getMovieAccountState = (
+  movie_id: number,
+  session_id: string,
+) => {};
+
+// export const rateMovie = (
+//   movieId: string | number,
+//   rating: number,
+// ): TMDBResponse<{ status_code: number; status_message: string }> => {
+//   return fetchTMDB(`/movie/${movieId}/rating`, {
+//     method: "POST",
+//     body: JSON.stringify({ value: rating }),
+//   });
+// };

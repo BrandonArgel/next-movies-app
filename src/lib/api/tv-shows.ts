@@ -1,9 +1,9 @@
+import type { TMDBPaginatedResponse, TMDBResponse } from "@/types/api";
+import type { TimeWindow } from "@/types/common";
+import type { TvShowAppend } from "@/types/tmdb";
+import type { DetailedTvShow, TvShow } from "@/types/tv-show";
 import { fetchTMDB } from "../fetch-tmdb";
 import { buildQuery } from "./utils";
-import type { TMDBResponse, TMDBPaginatedResponse } from "@/types/api";
-import { type TvShow, type DetailedTvShow } from "@/types/tv-show";
-import type { TvShowAppend } from "@/types/tmdb";
-import { type TimeWindow } from "@/types/common";
 
 export const getTvShow = (
   id: string | number,

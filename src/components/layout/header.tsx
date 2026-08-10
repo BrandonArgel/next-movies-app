@@ -1,12 +1,14 @@
 import { getTranslations } from "next-intl/server";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
-import { ColorToggle } from "@/components/theme/color-toggle";
-import { LanguageToggle } from "@/components/theme/language-toggle";
+import { cookies } from "next/headers";
+import { initiateTMDBLogin, logoutTMDB } from "@/actions/auth";
+import { DesktopNav, type NavMenuType } from "@/components/layout/desktop-nav";
 import { MobileDrawer } from "@/components/layout/mobile-drawer";
 import { SearchBar } from "@/components/layout/search-bar";
 import { Link } from "@/i18n/navigation";
+import { UserPreferencesMenu } from "../preferences/user-preferences-menu";
+import { TMDB_SESSION_ID_COOKIE } from "@/lib/constants";
+import { getAccountDetails } from "@/lib/api/account";
 import CinemaIcon from "@/assets/icons/cinema";
-import { DesktopNav, type NavMenuType } from "@/components/layout/desktop-nav";
 
 const NAV_CONFIG = [
   {
@@ -31,24 +33,38 @@ const NAV_CONFIG = [
     labelKey: "people" as const,
     items: [{ href: "/people/popular", labelKey: "popular" as const }],
   },
+  {
+    labelKey: "genres" as const,
+    items: [{ href: "/genres", labelKey: "genres" as const }],
+  },
 ] as const;
 
 const USER_NAV_CONFIG = [
   {
     labelKey: "user" as const,
     items: [
-      { href: "/my-favorites", labelKey: "favorites" as const },
-      { href: "/my-list", labelKey: "list" as const },
-      { href: "/my-ratings", labelKey: "ratings" as const },
+      { href: "/favorites", labelKey: "favorites" as const },
+      { href: "/watch-later", labelKey: "list" as const },
+      { href: "/rated-movies", labelKey: "ratings" as const },
     ],
   },
 ];
 
 export async function Header() {
-  const tGlobal = await getTranslations("global.branding");
-  const tNav = await getTranslations("components.nav");
+  const cookieStore = await cookies();
+  const token = cookieStore.get(TMDB_SESSION_ID_COOKIE)?.value;
 
-  const translatedMenus: NavMenuType[] = [...NAV_CONFIG].map((menu) => ({
+  const [tGlobal, tNav, accountRes] = await Promise.all([
+    getTranslations("global.branding"),
+    getTranslations("components.nav"),
+    token ? getAccountDetails(token) : Promise.resolve(null),
+  ]);
+
+  const user = accountRes?.success ? accountRes.data : undefined;
+
+  const activeMenus = user ? [...USER_NAV_CONFIG, ...NAV_CONFIG] : NAV_CONFIG;
+
+  const translatedMenus: NavMenuType[] = activeMenus.map((menu) => ({
     label: tNav(menu.labelKey),
     items: menu.items.map((item) => ({
       href: item.href,
@@ -57,45 +73,35 @@ export async function Header() {
   }));
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 border-border border-b bg-background/80 backdrop-blur-sm">
       <nav
-        className="max-w-7xl mx-auto flex items-center gap-4 px-4 py-3"
+        className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3"
         aria-label={tNav("navigation")}
       >
-        {/* Logo */}
         <Link
           href="/"
-          className="inline-flex shrink-0 justify-center items-center font-semibold tracking-tight text-primary gap-2 text-2xl"
+          className="inline-flex shrink-0 items-center justify-center gap-2 font-semibold text-2xl text-primary tracking-tight"
           aria-label={tGlobal("app_name")}
         >
           <CinemaIcon className="w-10" cupClassName="text-primary" />
           <span>{tGlobal("app_name")}</span>
         </Link>
 
-        {/* Desktop nav */}
         <DesktopNav menus={translatedMenus} />
 
-        {/* Spacer on mobile */}
         <div className="flex-1 xl:hidden" />
 
-        {/* Search — desktop */}
         <div className="hidden md:block">
           <SearchBar variant="compact" />
         </div>
 
-        {/* Desktop controls */}
-        <div
-          className="hidden xl:flex items-center gap-2"
-          role="toolbar"
-          aria-label={tNav("settings")}
-        >
-          <ThemeToggle />
-          <ColorToggle />
-          <LanguageToggle />
-        </div>
+        <UserPreferencesMenu
+          user={user}
+          onLogin={initiateTMDBLogin}
+          onLogout={logoutTMDB}
+        />
 
-        {/* Hamburger — mobile only */}
-        <MobileDrawer />
+        <MobileDrawer isAuthenticated={Boolean(user)} />
       </nav>
     </header>
   );

@@ -1,10 +1,10 @@
 import { getLocale } from "next-intl/server";
-import { BASE_TMDB_API_URL, API_TOKEN } from "./constants";
-import {
-  type ErrorTranslationKey,
-  type TMDBErrorResponse,
-  type TMDBResponse,
+import type {
+  ErrorTranslationKey,
+  TMDBErrorResponse,
+  TMDBResponse,
 } from "@/types/api";
+import { API_TOKEN, BASE_TMDB_API_URL } from "./constants";
 
 export async function fetchTMDB<T>(
   endpoint: string,
@@ -23,14 +23,26 @@ export async function fetchTMDB<T>(
     url.searchParams.append("language", locale);
     url.searchParams.append("include_image_language", locale);
 
+    const isMutation = options.method && options.method !== "GET";
+
+    const defaultHeaders: HeadersInit = {
+      Authorization: `Bearer ${API_TOKEN}`,
+      accept: "application/json",
+    };
+
+    if (options.body) {
+      defaultHeaders["Content-Type"] = "application/json";
+    }
+
     const response = await fetch(url.toString(), {
       ...options,
       headers: {
-        Authorization: `Bearer ${API_TOKEN}`,
-        accept: "application/json",
+        ...defaultHeaders,
         ...options.headers,
       },
-      next: { revalidate: 3600, ...options.next },
+      ...(isMutation
+        ? { cache: "no-store" }
+        : { next: { revalidate: 3600, ...options.next } }),
     });
 
     if (!response.ok) {

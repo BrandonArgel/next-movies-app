@@ -1,25 +1,25 @@
-import { type Metadata } from "next";
+import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { Spinner } from "@/components/ui/spinner";
-import { MovieDetailHero } from "../_components/movie-detail-hero";
-import { MovieBreadcrumb } from "../_components/movie-breadcrumb";
-import { MovieWatchProviders } from "../_components/movie-watch-providers";
-import { MovieCast } from "../_components/movie-cast";
-import { MovieImages } from "../_components/movie-images";
-import { MovieTrailer } from "../_components/movie-trailer";
-import { MovieReviews } from "../_components/movie-reviews";
-import { MovieRecommendations } from "../_components/movie-recommendations";
-import { MovieCollection } from "../_components/movie-collection";
-import { MovieAwards } from "../_components/movie-awards";
-import { GenresList } from "../_components/genres-list";
 import { MovieCarouselSkeleton } from "@/components/movies/movies-carousel";
-import { AgeVerificationModal } from "@/components/ui/age-verification-modal";
-import { getMovie } from "@/lib/api/movies";
+import { AgeVerificationModal } from "@/components/auth/age-verification-modal";
+import { Spinner } from "@/components/ui/spinner";
 import { getAgeRating } from "@/lib/age-rating";
+import { getMovie } from "@/lib/api/movies";
 import { ADULT_CONTENT_COOKIE } from "@/lib/constants";
 import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
+import { GenresList } from "../_components/genres-list";
+import { MovieAwards } from "../_components/movie-awards";
+import { MovieBreadcrumb } from "../_components/movie-breadcrumb";
+import { MovieCast } from "../_components/movie-cast";
+import { MovieCollection } from "../_components/movie-collection";
+import { MovieDetailHero } from "../_components/movie-detail-hero";
+import { MovieImages } from "../_components/movie-images";
+import { MovieRecommendations } from "../_components/movie-recommendations";
+import { MovieReviews } from "../_components/movie-reviews";
+import { MovieTrailer } from "../_components/movie-trailer";
+import { MovieWatchProviders } from "../_components/movie-watch-providers";
 
 interface MoviePageProps {
   params: Promise<{ locale: string; id: string }>;
@@ -82,7 +82,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
   return (
     <>
       <MovieDetailHero movie={movie} ageRating={ageRating} />
-      <div className="container mx-auto pb-12 px-4 md:px-8 xl:px-12 max-w-7xl flex flex-col gap-12">
+      <div className="container mx-auto flex max-w-7xl flex-col gap-12 px-4 pb-12 md:px-8 xl:px-12">
         <MovieBreadcrumb movieTitle={movie.title} />
         <MovieAwards imdbId={movie.imdb_id} />
         <MovieWatchProviders providers={providers} />

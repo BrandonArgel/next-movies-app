@@ -1,14 +1,19 @@
-import { type PaginatedResponse } from "./api";
-import { type Genre } from "./genres";
-import { ProductionCompany, ProductionCountry, SpokenLanguage } from "./common";
-import { Videos, Images } from "./media";
-import { WatchProvidersResponse } from "./watch-providers";
+import type { PaginatedResponse } from "./api";
+import type {
+  ProductionCompany,
+  ProductionCountry,
+  SpokenLanguage,
+} from "./common";
+import type { Genre } from "./genres";
+import type { Images, Videos } from "./media";
+import type { WatchProvidersResponse } from "./watch-providers";
 
 export interface Movie {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
   id: number;
+  job?: string;
   media_type?: string;
   original_language: string;
   original_title: string;
@@ -53,10 +58,11 @@ export interface Review {
   };
 }
 
-export interface DetailedMovie extends Omit<
-  Movie,
-  "genre_ids" | "media_type" | "original_language" | "release_date"
-> {
+export interface DetailedMovie
+  extends Omit<
+    Movie,
+    "genre_ids" | "media_type" | "original_language" | "release_date"
+  > {
   belongs_to_collection: BelongsToCollection | null;
   budget: number;
   genres: Genre[];

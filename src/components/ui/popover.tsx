@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type * as React from "react";
 import {
   DialogTrigger,
+  type DialogTriggerProps,
   Heading,
   Popover as PopoverPrimitive,
-  type DialogTriggerProps,
   type PopoverProps as PopoverPrimitiveProps,
-} from "react-aria-components"
+} from "react-aria-components";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 function PopoverTrigger({ children, ...props }: DialogTriggerProps) {
   return (
     <DialogTrigger data-slot="popover-trigger" {...props}>
       {children}
     </DialogTrigger>
-  )
+  );
 }
 
 function Popover({
@@ -26,7 +26,7 @@ function Popover({
   crossOffset = 0,
   ...props
 }: Omit<PopoverPrimitiveProps, "className"> & {
-  className?: string
+  className?: string;
 }) {
   return (
     <PopoverPrimitive
@@ -35,12 +35,12 @@ function Popover({
       offset={offset}
       crossOffset={crossOffset}
       className={cn(
-        "z-50 flex w-72 origin-(--trigger-anchor-point) flex-col gap-2.5 rounded-lg bg-popover p-2.5 text-sm text-popover-foreground shadow-md ring-1 ring-foreground/10 outline-hidden duration-100 data-entering:animate-in data-entering:fade-in-0 data-entering:zoom-in-95 data-exiting:animate-out data-exiting:fade-out-0 data-exiting:zoom-out-95 data-[placement=bottom]:slide-in-from-top-2 data-[placement=left]:slide-in-from-right-2 data-[placement=right]:slide-in-from-left-2 data-[placement=top]:slide-in-from-bottom-2",
-        className
+        "data-entering:fade-in-0 data-entering:zoom-in-95 data-exiting:fade-out-0 data-exiting:zoom-out-95 data-[placement=bottom]:slide-in-from-top-2 data-[placement=left]:slide-in-from-right-2 data-[placement=right]:slide-in-from-left-2 data-[placement=top]:slide-in-from-bottom-2 z-50 flex w-72 origin-(--trigger-anchor-point) flex-col gap-2.5 rounded-lg bg-popover p-2.5 text-popover-foreground text-sm shadow-md outline-hidden ring-1 ring-foreground/10 duration-100 data-entering:animate-in data-exiting:animate-out",
+        className,
       )}
       {...props}
     />
-  )
+  );
 }
 
 function PopoverHeader({ className, ...props }: React.ComponentProps<"div">) {
@@ -50,7 +50,7 @@ function PopoverHeader({ className, ...props }: React.ComponentProps<"div">) {
       className={cn("flex flex-col gap-0.5 text-sm", className)}
       {...props}
     />
-  )
+  );
 }
 
 function PopoverTitle({
@@ -63,7 +63,7 @@ function PopoverTitle({
       className={cn("font-medium", className)}
       {...props}
     />
-  )
+  );
 }
 
 function PopoverDescription({
@@ -76,7 +76,7 @@ function PopoverDescription({
       className={cn("text-muted-foreground", className)}
       {...props}
     />
-  )
+  );
 }
 
 export {
@@ -85,4 +85,4 @@ export {
   PopoverHeader,
   PopoverTitle,
   PopoverTrigger,
-}
+};

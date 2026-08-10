@@ -1,22 +1,22 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
 import {
-  Loader2Icon,
   FilmIcon,
+  LayoutGridIcon,
+  Loader2Icon,
   TvIcon,
   UsersIcon,
-  LayoutGridIcon,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { MovieCard } from "@/components/movies/movie-card";
-import { TVShowCard } from "@/components/tv-show/tv-show-card";
 import { PersonCard } from "@/components/people/person-card";
-import { type Movie } from "@/types/movies";
-import { type TvShow } from "@/types/tv-show";
-import { type Person } from "@/types/person";
-import { type MultiSearchResult } from "@/types/api";
+import { TVShowCard } from "@/components/tv-show/tv-show-card";
 import { cn } from "@/lib/utils";
+import type { MultiSearchResult } from "@/types/api";
+import type { Movie } from "@/types/movies";
+import type { Person } from "@/types/person";
+import type { TvShow } from "@/types/tv-show";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -50,11 +50,11 @@ function FilterPill({ active, count, icon, label, onClick }: FilterPillProps) {
       onClick={onClick}
       aria-pressed={active}
       className={cn(
-        "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 select-none",
+        "inline-flex select-none items-center gap-2 rounded-full px-4 py-2 font-medium text-sm transition-all duration-200",
         active
           ? "bg-primary text-primary-foreground shadow-sm"
           : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground",
-        count === 0 && !active && "opacity-40 pointer-events-none",
+        count === 0 && !active && "pointer-events-none opacity-40",
       )}
     >
       {icon}
@@ -62,7 +62,7 @@ function FilterPill({ active, count, icon, label, onClick }: FilterPillProps) {
       {count > 0 && (
         <span
           className={cn(
-            "rounded-full px-1.5 py-px text-xs font-semibold tabular-nums",
+            "rounded-full px-1.5 py-px font-semibold text-xs tabular-nums",
             active
               ? "bg-primary-foreground/20 text-primary-foreground"
               : "bg-foreground/10 text-foreground",
@@ -162,7 +162,7 @@ export function InfiniteSearchGrid({
   if (results.length === 0 && !isLoading) {
     return (
       <div className="mt-12 rounded-3xl border border-border bg-muted p-10 text-center">
-        <p className="text-lg font-medium">
+        <p className="font-medium text-lg">
           {tSearch("no_results", { query })}
         </p>
       </div>
@@ -232,16 +232,16 @@ export function InfiniteSearchGrid({
           >
             {activeFilter === "all" && (
               <div className="flex items-center gap-3">
-                <FilmIcon className="size-5 text-primary shrink-0" />
-                <h2 className="text-xl font-semibold">
+                <FilmIcon className="size-5 shrink-0 text-primary" />
+                <h2 className="font-semibold text-xl">
                   {t("entities.movies")}
                 </h2>
-                <span className="text-xs font-medium text-muted-foreground bg-muted rounded-full px-2 py-0.5">
+                <span className="rounded-full bg-muted px-2 py-0.5 font-medium text-muted-foreground text-xs">
                   {movies.length}+
                 </span>
               </div>
             )}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {movies.map((movie) => (
                 <MovieCard key={movie.id} movie={movie} />
               ))}
@@ -257,16 +257,16 @@ export function InfiniteSearchGrid({
           >
             {activeFilter === "all" && (
               <div className="flex items-center gap-3">
-                <TvIcon className="size-5 text-primary shrink-0" />
-                <h2 className="text-xl font-semibold">
+                <TvIcon className="size-5 shrink-0 text-primary" />
+                <h2 className="font-semibold text-xl">
                   {t("entities.tv_shows")}
                 </h2>
-                <span className="text-xs font-medium text-muted-foreground bg-muted rounded-full px-2 py-0.5">
+                <span className="rounded-full bg-muted px-2 py-0.5 font-medium text-muted-foreground text-xs">
                   {tvShows.length}+
                 </span>
               </div>
             )}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {tvShows.map((show) => (
                 <TVShowCard key={show.id} tvShow={show} />
               ))}
@@ -282,16 +282,16 @@ export function InfiniteSearchGrid({
           >
             {activeFilter === "all" && (
               <div className="flex items-center gap-3">
-                <UsersIcon className="size-5 text-primary shrink-0" />
-                <h2 className="text-xl font-semibold">
+                <UsersIcon className="size-5 shrink-0 text-primary" />
+                <h2 className="font-semibold text-xl">
                   {t("entities.people")}
                 </h2>
-                <span className="text-xs font-medium text-muted-foreground bg-muted rounded-full px-2 py-0.5">
+                <span className="rounded-full bg-muted px-2 py-0.5 font-medium text-muted-foreground text-xs">
                   {people.length}+
                 </span>
               </div>
             )}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {people.map((person) => (
                 <PersonCard key={person.id} person={person} />
               ))}
@@ -306,7 +306,7 @@ export function InfiniteSearchGrid({
             (activeFilter === "person" && people.length === 0)) &&
           !isLoading && (
             <div className="rounded-2xl border border-border bg-muted p-8 text-center">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 {tSearch("no_results", { query })}
               </p>
             </div>
@@ -316,7 +316,7 @@ export function InfiniteSearchGrid({
       {/* ── Infinite scroll sentinel ─────────────────────────────────────── */}
       <div
         ref={sentinelRef}
-        className="flex justify-center items-center py-6 min-h-12"
+        className="flex min-h-12 items-center justify-center py-6"
         aria-live="polite"
       >
         {isLoading && (
@@ -326,7 +326,7 @@ export function InfiniteSearchGrid({
           />
         )}
         {!isLoading && !shouldShowSentinel && results.length > 0 && (
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             {t("no_more_results")}
           </p>
         )}

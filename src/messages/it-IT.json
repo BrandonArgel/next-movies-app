@@ -303,7 +303,11 @@
     "server_error": "Il server TMDB sta attualmente riscontrando problemi.",
     "default": "Si è verificato un errore imprevisto. Per favore riprova.",
     "title": "Qualcosa è andato storto",
-    "retry": "Riprova"
+    "retry": "Riprova",
+    "search_unavailable": "Il servizio di ricerca al momento non è disponibile.",
+    "load_movies_failed": "Impossibile caricare i film",
+    "load_tv_failed": "Impossibile caricare i programmi TV",
+    "load_people_failed": "Impossibile caricare le persone"
   },
   "certifications": {
     "G": "Adatto a tutto il pubblico.",

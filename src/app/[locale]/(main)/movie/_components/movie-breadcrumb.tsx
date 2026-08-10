@@ -1,14 +1,14 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { LinkButton } from "@/components/ui/button";
 import {
   Breadcrumb,
-  BreadcrumbList,
   BreadcrumbItem,
   BreadcrumbLink,
+  BreadcrumbList,
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
+import { LinkButton } from "@/components/ui/button";
 
 interface MovieBreadcrumbProps {
   movieTitle: string;

@@ -24,7 +24,7 @@ export async function TvRecommendations({ showId }: TvRecommendationsProps) {
     >
       <h2
         id="recommendations-heading"
-        className="text-xl md:text-2xl font-bold"
+        className="font-bold text-xl md:text-2xl"
       >
         {t("recommendations")}
       </h2>

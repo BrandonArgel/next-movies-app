@@ -1,7 +1,7 @@
-import { getTranslations } from "next-intl/server";
-import { type ProductionCompany } from "@/types/common";
-import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { Building2 } from "lucide-react";
+import { getTranslations } from "next-intl/server";
+import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
+import type { ProductionCompany } from "@/types/common";
 
 interface TvProductionCompaniesProps {
   companies: ProductionCompany[];
@@ -21,7 +21,7 @@ export async function TvProductionCompanies({
     >
       <h2
         id="production-companies-heading"
-        className="text-xl md:text-2xl font-bold"
+        className="font-bold text-xl md:text-2xl"
       >
         {t("production_companies")}
       </h2>
@@ -30,10 +30,10 @@ export async function TvProductionCompanies({
         {companies.map((company) => (
           <div
             key={company.id}
-            className="flex flex-col items-center gap-2 group"
+            className="group flex flex-col items-center gap-2"
             title={company.name}
           >
-            <div className="relative h-14 w-28 flex items-center justify-center rounded-xl border border-border transition-colors overflow-hidden">
+            <div className="relative flex h-14 w-28 items-center justify-center overflow-hidden rounded-xl border border-border transition-colors">
               {company.logo_path ? (
                 <div className="relative h-full w-full p-1">
                   <ImageWithSkeleton
@@ -45,10 +45,10 @@ export async function TvProductionCompanies({
                   />
                 </div>
               ) : (
-                <Building2 className="w-6 h-6 text-gray-400" />
+                <Building2 className="h-6 w-6 text-gray-400" />
               )}
             </div>
-            <p className="text-xs text-muted-foreground text-center max-w-28 line-clamp-2 leading-tight">
+            <p className="line-clamp-2 max-w-28 text-center text-muted-foreground text-xs leading-tight">
               {company.name}
             </p>
           </div>

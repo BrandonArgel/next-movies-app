@@ -1,25 +1,24 @@
 "use client";
 
-import * as React from "react";
 import { cva } from "class-variance-authority";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import type * as React from "react";
 import {
   Calendar as AriaCalendar,
   CalendarGridHeader as AriaCalendarGridHeader,
   RangeCalendar as AriaRangeCalendar,
   CalendarCell,
+  type CalendarCellRenderProps,
   CalendarGrid,
   CalendarGridBody,
   CalendarHeaderCell,
   CalendarHeading,
   CalendarMonthPicker,
-  CalendarYearPicker,
-  type CalendarCellRenderProps,
   type CalendarProps,
+  CalendarYearPicker,
   type DateValue,
   type RangeCalendarProps,
 } from "react-aria-components";
-
-import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Select,
@@ -29,7 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const cellVariants = cva(
   "group/day relative mt-2 aspect-square h-full w-full cursor-default rounded-(--cell-radius) p-0 text-center select-none [&:is(:last-child>[data-selected=true])>div]:rounded-e-(--cell-radius)",
@@ -85,7 +84,7 @@ function Calendar<
       data-slot="calendar"
       visibleDuration={{ months: props.numberOfMonths || 1 }}
       className={cn(
-        "group/calendar w-fit bg-background p-2 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(7)] in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
+        "group/calendar w-fit bg-background in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent p-2 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(7)]",
         props.className,
       )}
     >
@@ -114,7 +113,7 @@ function RangeCalendar<T extends DateValue>(
       data-slot="calendar"
       visibleDuration={{ months: props.numberOfMonths || 1 }}
       className={cn(
-        "group/calendar w-fit bg-background p-2 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(7)] in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
+        "group/calendar w-fit bg-background in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent p-2 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(7)]",
         props.className,
       )}
     >
@@ -148,16 +147,16 @@ function CalendarInner({
         <Button
           variant={buttonVariant}
           slot="previous"
-          className="size-(--cell-size) p-0 select-none aria-disabled:opacity-50"
+          className="size-(--cell-size) select-none p-0 aria-disabled:opacity-50"
         >
-          <ChevronLeftIcon className="rtl:rotate-180 size-4" />
+          <ChevronLeftIcon className="size-4 rtl:rotate-180" />
         </Button>
         <Button
           variant={buttonVariant}
           slot="next"
-          className="size-(--cell-size) p-0 select-none aria-disabled:opacity-50"
+          className="size-(--cell-size) select-none p-0 aria-disabled:opacity-50"
         >
-          <ChevronRightIcon className="rtl:rotate-180 size-4" />
+          <ChevronRightIcon className="size-4 rtl:rotate-180" />
         </Button>
       </header>
       {Array.from({ length: numberOfMonths }, (_, i) => (
@@ -172,7 +171,7 @@ function CalendarInner({
               <CalendarHeading
                 offset={{ months: i }}
                 format={headerFormat}
-                className="text-sm font-medium select-none"
+                className="select-none font-medium text-sm"
               />
             )}
           </div>
@@ -182,7 +181,7 @@ function CalendarInner({
           >
             <AriaCalendarGridHeader>
               {(day) => (
-                <CalendarHeaderCell className="rounded-(--cell-radius) text-[0.8rem] font-normal text-muted-foreground select-none">
+                <CalendarHeaderCell className="select-none rounded-(--cell-radius) font-normal text-[0.8rem] text-muted-foreground">
                   {day}
                 </CalendarHeaderCell>
               )}
@@ -208,7 +207,7 @@ function CalendarInner({
                       }
                       className={cn(
                         buttonVariants({ variant: "ghost", size: "icon" }),
-                        "relative isolate z-10 flex aspect-square h-full w-full min-w-(--cell-size) flex-col gap-1 border-0 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-[3px] group-data-[focused=true]/day:ring-ring/50 data-[range-end=true]:rounded-(--cell-radius) data-[range-end=true]:rounded-e-(--cell-radius) data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:rounded-none data-[range-middle=true]:bg-muted data-[range-middle=true]:text-foreground data-[range-start=true]:rounded-(--cell-radius) data-[range-start=true]:rounded-s-(--cell-radius) data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground dark:hover:text-foreground [&>span]:text-xs [&>span]:opacity-70",
+                        "relative isolate z-10 flex aspect-square h-full w-full min-w-(--cell-size) flex-col gap-1 border-0 font-normal leading-none data-[range-end=true]:rounded-(--cell-radius) data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-(--cell-radius) data-[range-start=true]:rounded-s-(--cell-radius) data-[range-end=true]:rounded-e-(--cell-radius) data-[range-end=true]:bg-primary data-[range-middle=true]:bg-muted data-[range-start=true]:bg-primary data-[selected-single=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:text-foreground data-[range-start=true]:text-primary-foreground data-[selected-single=true]:text-primary-foreground group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-[3px] group-data-[focused=true]/day:ring-ring/50 dark:hover:text-foreground [&>span]:text-xs [&>span]:opacity-70",
                       )}
                     >
                       {renderCell

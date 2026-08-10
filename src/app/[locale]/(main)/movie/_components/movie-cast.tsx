@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { PeopleCarousel } from "@/components/people/people-carousel";
-import { type CastMember } from "@/types/credits";
+import type { CastMember } from "@/types/credits";
 
 interface MovieCastProps {
   cast: CastMember[];
@@ -15,7 +15,7 @@ export function MovieCast({ cast }: MovieCastProps) {
 
   return (
     <section aria-labelledby="cast-heading" className="flex flex-col gap-4">
-      <h2 id="cast-heading" className="text-xl md:text-2xl font-bold">
+      <h2 id="cast-heading" className="font-bold text-xl md:text-2xl">
         {t("cast")}
       </h2>
 

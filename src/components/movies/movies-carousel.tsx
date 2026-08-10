@@ -1,20 +1,20 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { useAppLocale } from "@/providers/locale-provider";
 import Autoplay from "embla-carousel-autoplay";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
+import { useEffect, useRef, useState } from "react";
 import {
   Carousel,
+  type CarouselApi,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useAppLocale } from "@/providers/locale-provider";
+import type { Movie } from "@/types/movies";
 import { Skeleton } from "../ui/skeleton";
 import { MovieCard, MovieCardSkeleton } from "./movie-card";
-import { type CarouselApi } from "@/components/ui/carousel";
-import { type Movie } from "@/types/movies";
 
 interface MoviesCarouselProps {
   movies: Movie[];
@@ -83,7 +83,7 @@ export function MovieCarousel({
       if (rootNode) observer.unobserve(rootNode);
       observer.disconnect();
     };
-  }, [api]);
+  }, [api, active]);
 
   if (!movies?.length) return null;
 
@@ -102,24 +102,24 @@ export function MovieCarousel({
         loop,
       }}
       plugins={[pluginAutoplay.current, pluginWheel.current]}
-      className="select-none w-full group/carousel relative"
+      className="group/carousel relative w-full select-none"
     >
       <CarouselContent className="-ms-4">
         {movies.map((movie) => (
           <CarouselItem
             key={movie.id}
-            className="ps-4 basis-1/2 md:basis-1/4 lg:basis-1/5"
+            className="basis-1/2 ps-4 md:basis-1/4 lg:basis-1/5"
           >
-            <MovieCard movie={movie} />
+            <MovieCard movie={movie} subtitle={movie.job} />
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div className="absolute left-0 top-0 bottom-11 w-6 bg-linear-to-r from-background to-transparent pointer-events-none z-10" />
+      <div className="pointer-events-none absolute top-0 bottom-11 left-0 z-10 w-6 bg-linear-to-r from-background to-transparent" />
 
-      <div className="absolute right-0 top-0 bottom-11 w-6 bg-linear-to-l from-background to-transparent pointer-events-none z-10" />
+      <div className="pointer-events-none absolute top-0 right-0 bottom-11 z-10 w-6 bg-linear-to-l from-background to-transparent" />
 
-      <CarouselPrevious className="hidden md:flex z-20 border-none shadow-md backdrop-blur-md bg-background/70 group-hover/carousel:bg-primary! group-hover/carousel:text-primary-foreground! hover:bg-primary! hover:text-primary-foreground! transition-all duration-300" />
-      <CarouselNext className="hidden md:flex z-20 border-none shadow-md backdrop-blur-md bg-background/70 group-hover/carousel:bg-primary! group-hover/carousel:text-primary-foreground! hover:bg-primary! hover:text-primary-foreground! transition-all duration-300" />
+      <CarouselPrevious className="z-20 hidden border-none bg-background/70 shadow-md backdrop-blur-md transition-all duration-300 hover:bg-primary! hover:text-primary-foreground! group-hover/carousel:bg-primary! group-hover/carousel:text-primary-foreground! md:flex" />
+      <CarouselNext className="z-20 hidden border-none bg-background/70 shadow-md backdrop-blur-md transition-all duration-300 hover:bg-primary! hover:text-primary-foreground! group-hover/carousel:bg-primary! group-hover/carousel:text-primary-foreground! md:flex" />
     </Carousel>
   );
 }
@@ -129,11 +129,11 @@ export function MovieCarouselSkeleton() {
     <div className="w-full space-y-4">
       <div className="relative w-full">
         <div className="overflow-hidden">
-          <div className="flex -ms-4">
+          <div className="-ms-4 flex">
             {Array.from({ length: 5 }).map((_, index) => (
               <div
                 key={index}
-                className="ps-4 basis-1/2 md:basis-1/4 lg:basis-1/5 shrink-0 grow-0 min-w-0"
+                className="min-w-0 shrink-0 grow-0 basis-1/2 ps-4 md:basis-1/4 lg:basis-1/5"
               >
                 <MovieCardSkeleton />
               </div>
@@ -141,10 +141,10 @@ export function MovieCarouselSkeleton() {
           </div>
         </div>
 
-        <div className="hidden md:flex absolute inset-y-0 inset-s-2 xl:-inset-s-12 my-auto h-8 w-8 items-center justify-center">
+        <div className="xl:-inset-s-12 absolute inset-s-2 inset-y-0 my-auto hidden h-8 w-8 items-center justify-center md:flex">
           <Skeleton className="h-8 w-8 rounded-full" />
         </div>
-        <div className="hidden md:flex absolute inset-y-0 inset-e-2 xl:-inset-e-12 my-auto h-8 w-8 items-center justify-center">
+        <div className="xl:-inset-e-12 absolute inset-e-2 inset-y-0 my-auto hidden h-8 w-8 items-center justify-center md:flex">
           <Skeleton className="h-8 w-8 rounded-full" />
         </div>
       </div>

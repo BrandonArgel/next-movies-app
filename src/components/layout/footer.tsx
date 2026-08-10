@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import CinemaIcon from "@/assets/icons/cinema";
 import { Separator } from "@/components/ui/separator";
+import { Link } from "@/i18n/navigation";
 
 const NAV_LINKS = [
   { href: "/", labelKey: "home" as const },
@@ -19,27 +19,27 @@ export async function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border bg-background">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+    <footer className="border-border border-t bg-background">
+      <div className="mx-auto max-w-7xl px-4 py-12">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           {/* Brand */}
           <div className="flex flex-col gap-3">
             <Link
               href="/"
-              className="inline-flex items-end gap-2 font-semibold text-primary text-xl w-fit"
+              className="inline-flex w-fit items-end gap-2 font-semibold text-primary text-xl"
               aria-label={tGlobal("app_name")}
             >
               <CinemaIcon className="w-9" cupClassName="text-primary" />
               <span>{tGlobal("app_name")}</span>
             </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+            <p className="max-w-xs text-muted-foreground text-sm leading-relaxed">
               {tFooter("tagline")}
             </p>
           </div>
 
           {/* Navigation */}
           <div className="flex flex-col gap-4">
-            <h2 className="text-sm font-semibold tracking-wider uppercase text-foreground">
+            <h2 className="font-semibold text-foreground text-sm uppercase tracking-wider">
               {tFooter("links")}
             </h2>
             <nav aria-label={tNav("navigation")}>
@@ -48,7 +48,7 @@ export async function Footer() {
                   <li key={href}>
                     <Link
                       href={href}
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                      className="text-muted-foreground text-sm transition-colors hover:text-primary"
                     >
                       {tNav(labelKey)}
                     </Link>
@@ -59,7 +59,7 @@ export async function Footer() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <h2 className="text-sm font-semibold tracking-wider uppercase text-foreground">
+            <h2 className="font-semibold text-foreground text-sm uppercase tracking-wider">
               {tFooter("legal")}
             </h2>
             <div className="flex flex-col gap-2">
@@ -67,7 +67,7 @@ export async function Footer() {
                 href="https://www.themoviedb.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 w-fit group"
+                className="group flex w-fit items-center gap-2"
                 aria-label={tFooter("powered_by")}
               >
                 <img
@@ -75,10 +75,10 @@ export async function Footer() {
                   alt="TMDB"
                   width={80}
                   height={20}
-                  className="opacity-70 group-hover:opacity-100 transition-opacity"
+                  className="opacity-70 transition-opacity group-hover:opacity-100"
                 />
               </a>
-              <p className="text-xs text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground text-xs leading-relaxed">
                 {tFooter("disclaimer")}
               </p>
             </div>
@@ -87,7 +87,7 @@ export async function Footer() {
 
         <Separator className="my-8" />
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+        <div className="flex flex-col items-center justify-between gap-3 text-muted-foreground text-xs sm:flex-row">
           <p>{tFooter("copyright", { year })}</p>
           <p>{tFooter("powered_by")}</p>
         </div>

@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
-import { Link } from "@/i18n/navigation";
+import { ExternalLink, Star } from "lucide-react";
+import type { ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { LinkButton } from "@/components/ui/button";
-import { ExternalLink, Star } from "lucide-react";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
+import { Link } from "@/i18n/navigation";
 
 interface Stat {
   label: string;
@@ -44,7 +44,7 @@ export function MediaHeroLayout({
 }: MediaHeroLayoutProps) {
   return (
     <section
-      className="relative w-full min-h-[70vh] flex items-end md:items-center bg-black"
+      className="relative flex min-h-[70vh] w-full items-end bg-black md:items-center"
       aria-label={title}
     >
       {backdropUrl && (
@@ -58,10 +58,10 @@ export function MediaHeroLayout({
         />
       )}
 
-      <div className="absolute inset-0 bg-linear-to-r from-black/95 via-black/70 md:via-black/60 to-black/20 md:to-transparent z-10" />
-      <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent z-10" />
+      <div className="absolute inset-0 z-10 bg-linear-to-r from-black/95 via-black/70 to-black/20 md:via-black/60 md:to-transparent" />
+      <div className="absolute inset-0 z-10 bg-linear-to-t from-background via-transparent to-transparent" />
 
-      <div className="relative z-20 container mx-auto p-4 md:px-8 pb-10 md:py-16 flex flex-col md:flex-row items-start gap-8 max-w-6xl">
+      <div className="container relative z-20 mx-auto flex max-w-6xl flex-col items-start gap-8 p-4 pb-10 md:flex-row md:px-8 md:py-16">
         {posterUrl && (
           <ImageWithSkeleton
             src={posterUrl}
@@ -73,7 +73,7 @@ export function MediaHeroLayout({
           />
         )}
 
-        <div className="flex flex-col gap-4 max-w-2xl w-full">
+        <div className="flex w-full max-w-2xl flex-col gap-4">
           {logoUrl ? (
             <ImageWithSkeleton
               src={logoUrl}
@@ -84,16 +84,16 @@ export function MediaHeroLayout({
               sizes="(max-width: 768px) 280px, 450px"
             />
           ) : (
-            <h1 className="text-4xl drop-shadow-hero-title md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight mb-2">
+            <h1 className="mb-2 font-bold text-4xl text-white leading-tight tracking-tight drop-shadow-hero-title md:text-6xl lg:text-7xl">
               {title}
             </h1>
           )}
 
-          <div className="flex flex-wrap items-center gap-3 text-sm md:text-base font-medium text-white/90">
+          <div className="flex flex-wrap items-center gap-3 font-medium text-sm text-white/90 md:text-base">
             {rating && (
               <div className="flex items-center gap-1.5 text-yellow-400">
-                <Star className="w-4 h-4 fill-current" aria-hidden="true" />
-                <span className="font-semibold drop-shadow-hero-text text-white">
+                <Star className="h-4 w-4 fill-current" aria-hidden="true" />
+                <span className="font-semibold text-white drop-shadow-hero-text">
                   {rating}
                 </span>
               </div>
@@ -105,7 +105,7 @@ export function MediaHeroLayout({
             <div className="flex flex-wrap gap-2">
               {genres.map(({ id, name }) => (
                 <Link key={id} href={`/genres/${genreBasePath}/${id}`}>
-                  <Badge className="bg-primary/80 flex items-center gap-2 shadow-lg">
+                  <Badge className="flex items-center gap-2 bg-primary/80 shadow-lg">
                     {name}
                   </Badge>
                 </Link>
@@ -114,13 +114,13 @@ export function MediaHeroLayout({
           )}
 
           {tagline && (
-            <p className="text-white/90 drop-shadow-hero-text italic text-base md:text-lg font-light mt-2">
+            <p className="mt-2 font-light text-base text-white/90 italic drop-shadow-hero-text md:text-lg">
               &ldquo;{tagline}&rdquo;
             </p>
           )}
 
           {overview && (
-            <p className="text-white drop-shadow-hero-text text-sm md:text-base leading-relaxed line-clamp-5 mt-1">
+            <p className="mt-1 line-clamp-5 text-sm text-white leading-relaxed drop-shadow-hero-text md:text-base">
               {overview}
             </p>
           )}
@@ -132,22 +132,22 @@ export function MediaHeroLayout({
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="outline"
-                className="text-white bg-foreground/20 shadow-lg hover:bg-foreground/10 hover:text-white border-foreground/20"
+                className="border-foreground/20 bg-foreground/20 text-white shadow-lg hover:bg-foreground/10 hover:text-white"
               >
-                <ExternalLink className="w-4 h-4 mr-2" />
+                <ExternalLink className="mr-2 h-4 w-4" />
                 {officialWebsiteLabel}
               </LinkButton>
             </div>
           )}
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-6 border-t border-white/10 w-full">
+          <div className="mt-6 grid w-full grid-cols-2 gap-4 border-white/10 border-t pt-6 sm:grid-cols-4">
             {stats.map((stat, index) => (
               <div key={index} className="flex flex-col gap-1">
-                <span className="text-white/80 drop-shadow-hero-text text-xs uppercase tracking-wider flex items-center gap-1.5 font-medium">
-                  <stat.icon className="w-3 h-3" aria-hidden="true" />{" "}
+                <span className="flex items-center gap-1.5 font-medium text-white/80 text-xs uppercase tracking-wider drop-shadow-hero-text">
+                  <stat.icon className="h-3 w-3" aria-hidden="true" />{" "}
                   {stat.label}
                 </span>
-                <span className="text-white drop-shadow-hero-text text-sm font-semibold">
+                <span className="font-semibold text-sm text-white drop-shadow-hero-text">
                   {stat.value}
                 </span>
               </div>

@@ -1,7 +1,7 @@
-import TrendingMoviesSection from "./trending-movies-section";
+import type { PaginatedResponse, Result } from "@/types/api";
+import type { Movie } from "@/types/movies";
 import { SectionState } from "./section-state";
-import { type Result, type PaginatedResponse } from "@/types/api";
-import { Movie } from "@/types/movies";
+import TrendingMoviesSection from "./trending-movies-section";
 
 interface TrendingMoviesContainer {
   moviesResult: Result<PaginatedResponse<Movie>>;

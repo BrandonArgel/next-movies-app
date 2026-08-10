@@ -1,6 +1,6 @@
-import TrendingTVShowsSection from "./trending-tv-shows-section";
-import { SectionState } from "./section-state";
 import { getTrendingTvShows } from "@/lib/api/tv-shows";
+import { SectionState } from "./section-state";
+import TrendingTVShowsSection from "./trending-tv-shows-section";
 
 export async function TrendingTvShowsContainer() {
   const result = await getTrendingTvShows("day");

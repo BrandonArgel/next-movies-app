@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,17 +22,17 @@ interface DesktopNavProps {
 
 export function DesktopNav({ menus }: DesktopNavProps) {
   return (
-    <ul className="hidden xl:flex items-center gap-1 flex-1 ml-4" role="list">
+    <ul className="ml-4 hidden flex-1 items-center gap-1 xl:flex">
       {menus.map((menu) => (
         <li key={menu.label}>
           <DropdownMenuTrigger>
             <Button
               variant="ghost"
-              className="group flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground data-expanded:bg-muted data-expanded:text-foreground transition-colors"
+              className="group flex items-center gap-1 px-3 py-2 font-medium text-muted-foreground text-sm transition-colors hover:text-foreground data-expanded:bg-muted data-expanded:text-foreground"
             >
               {menu.label}
               <ChevronDown
-                className="w-4 h-4 transition-transform duration-200 group-data-expanded:rotate-180"
+                className="h-4 w-4 transition-transform duration-200 group-data-expanded:rotate-180"
                 aria-hidden="true"
               />
             </Button>

@@ -1,20 +1,19 @@
 "use client";
 
-import * as React from "react";
+import { XIcon } from "lucide-react";
+import type * as React from "react";
 import {
   Dialog as DialogPrimitive,
+  type DialogProps as DialogPrimitiveProps,
   DialogTrigger as DialogTriggerPrimitive,
+  type DialogTriggerProps as DialogTriggerPrimitiveProps,
   Heading,
   ModalOverlay as ModalOverlayPrimitive,
-  Modal as ModalPrimitive,
-  type DialogProps as DialogPrimitiveProps,
-  type DialogTriggerProps as DialogTriggerPrimitiveProps,
   type ModalOverlayProps as ModalOverlayPrimitiveProps,
+  Modal as ModalPrimitive,
 } from "react-aria-components";
-
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { XIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 function DialogTrigger({ ...props }: DialogTriggerPrimitiveProps) {
   return <DialogTriggerPrimitive data-slot="dialog-trigger" {...props} />;
@@ -50,7 +49,7 @@ function DialogOverlay({
     <ModalOverlayPrimitive
       data-slot="dialog-overlay"
       className={cn(
-        "fixed inset-0 isolate z-50 bg-black/10 duration-100 data-entering:animate-in data-entering:fade-in-0 data-exiting:animate-out data-exiting:fade-out-0 supports-backdrop-filter:backdrop-blur-xs",
+        "data-entering:fade-in-0 data-exiting:fade-out-0 fixed inset-0 isolate z-50 bg-black/10 duration-100 data-entering:animate-in data-exiting:animate-out supports-backdrop-filter:backdrop-blur-xs",
         className,
       )}
       {...props}
@@ -77,19 +76,19 @@ function Dialog({
       <ModalPrimitive
         data-slot="dialog-content"
         className={cn(
-          "fixed top-1/2 inset-s-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl bg-popover p-4 text-sm text-popover-foreground ring-1 ring-foreground/10 duration-100 outline-none data-entering:animate-in data-entering:fade-in-0 data-entering:zoom-in-95 data-exiting:animate-out data-exiting:fade-out-0 data-exiting:zoom-out-95 sm:max-w-sm",
+          "-translate-x-1/2 -translate-y-1/2 data-entering:fade-in-0 data-entering:zoom-in-95 data-exiting:fade-out-0 data-exiting:zoom-out-95 fixed inset-s-1/2 top-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] gap-4 rounded-xl bg-popover p-4 text-popover-foreground text-sm outline-none ring-1 ring-foreground/10 duration-100 data-entering:animate-in data-exiting:animate-out sm:max-w-sm rtl:translate-x-1/2",
           className,
         )}
       >
         <DialogPrimitive
           data-slot="dialog"
-          className="[display:inherit] gap-[inherit] outline-none"
+          className="gap-[inherit] outline-none [display:inherit]"
         >
           {children}
           {showCloseButton && (
             <DialogClose
               variant="ghost"
-              className="absolute top-2 inset-e-2"
+              className="absolute inset-e-2 top-2"
               size="icon-sm"
             >
               <XIcon />
@@ -144,7 +143,7 @@ function DialogTitle({
       slot="title"
       data-slot="dialog-title"
       className={cn(
-        "font-heading text-base leading-none font-medium",
+        "font-heading font-medium text-base leading-none",
         className,
       )}
       {...props}
@@ -160,7 +159,7 @@ function DialogDescription({
     <div
       data-slot="dialog-description"
       className={cn(
-        "text-sm text-muted-foreground *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground",
+        "text-muted-foreground text-sm *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground",
         className,
       )}
       {...props}

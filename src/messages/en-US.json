@@ -16,7 +16,9 @@
       "readLess": "Read less",
       "options_aria_label": "More options for {name}",
       "cancel": "Cancel",
-      "confirm_over_18": "Yes, I am over 18 years old"
+      "confirm_over_18": "Yes, I am over 18 years old",
+      "login": "Login",
+      "logout": "Logout"
     },
     "labels": {
       "results_count": "results",
@@ -28,6 +30,8 @@
     },
     "states": {
       "loading": "Loading...",
+      "redirecting": "Redirecting...",
+      "logging_out": "Logging out",
       "no_more_results": "You've reached the end.",
       "no_items_found": "No items found.",
       "no_results": "No results available at the moment.",
@@ -56,14 +60,16 @@
       "movies": "Movies",
       "tv_shows": "TV Shows",
       "people": "People",
+      "genres": "Genres",
       "user": "My Stuff",
       "favorites": "Favorites",
-      "list": "My List",
-      "ratings": "My Ratings",
+      "list": "Watch later",
+      "ratings": "Rated movies",
       "open_menu": "Open navigation menu",
       "close_menu": "Close navigation menu",
       "navigation": "Main navigation",
-      "settings": "Settings"
+      "settings": "Settings",
+      "profile": "Profile"
     },
     "search": {
       "placeholder": "Search movies, TV shows, people...",
@@ -228,6 +234,24 @@
       "movies_section": "Movies",
       "tv_section": "TV Shows",
       "explore_genre": "Explore {genre}"
+    },
+    "favorites": {
+      "movies_title": "Your favorite movies",
+      "tv_shows_title": "Your favorite TV shows",
+      "no_movies": "You haven't added any movies to your favorites yet.",
+      "no_tv_shows": "You haven't added any TV shows to your favorites yet."
+    },
+    "watch_later": {
+      "movies_title": "Movies to watch later",
+      "tv_shows_title": "TV shows to watch later",
+      "no_movies": "You haven't added any movies to your watch later list yet.",
+      "no_tv_shows": "You haven't added any TV shows to your watch later list yet."
+    },
+    "rated": {
+      "movies_title": "Your rated movies",
+      "tv_shows_title": "Your rated TV shows",
+      "no_movies": "You haven't rated any movies yet.",
+      "no_tv_shows": "You haven't rated any TV shows yet."
     }
   },
   "domains": {
@@ -290,7 +314,11 @@
     "server_error": "The TMDB server is currently experiencing issues.",
     "default": "An unexpected error occurred. Please try again.",
     "title": "Something went wrong",
-    "retry": "Retry"
+    "retry": "Retry",
+    "search_unavailable": "The search service is currently unavailable.",
+    "load_movies_failed": "Failed to load movies",
+    "load_tv_failed": "Failed to load TV shows",
+    "load_people_failed": "Failed to load people"
   },
   "certifications": {
     "G": "Suitable for all audiences.",
@@ -307,5 +335,15 @@
     "NR": "Not rated.",
     "Unrated": "Not rated",
     "fallback": "Age ratings"
+  },
+  "tmdb": {
+    "jobs": {
+      "Director": "Director",
+      "Producer": "Producer",
+      "Executive Producer": "Executive Producer",
+      "Songs": "Songs",
+      "Writer": "Writer",
+      "Screenplay": "Screenplay"
+    }
   }
 }

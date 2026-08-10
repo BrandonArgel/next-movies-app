@@ -1,6 +1,6 @@
-import { type Result, type ErrorTranslationKey } from "@/types/api";
-import { BASE_OMDB_API_URL } from "./constants";
+import type { ErrorTranslationKey, Result } from "@/types/api";
 import { buildQuery } from "./api/utils";
+import { BASE_OMDB_API_URL } from "./constants";
 
 const API_KEY = process.env.OMDB_API_KEY;
 

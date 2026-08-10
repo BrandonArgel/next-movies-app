@@ -1,5 +1,5 @@
-import { getCollection } from "@/lib/api/collections";
 import { MovieCarousel } from "@/components/movies/movies-carousel";
+import { getCollection } from "@/lib/api/collections";
 
 export async function MovieCollection({
   collectionId,
@@ -27,7 +27,7 @@ export async function MovieCollection({
   return (
     <section>
       <div className="flex flex-col gap-1">
-        <h2 className="text-2xl font-bold">{collection.name}</h2>
+        <h2 className="font-bold text-2xl">{collection.name}</h2>
         {collection.overview && (
           <p className="text-muted-foreground text-sm">{collection.overview}</p>
         )}

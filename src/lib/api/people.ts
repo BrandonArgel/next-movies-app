@@ -1,9 +1,9 @@
+import type { TMDBPaginatedResponse, TMDBResponse } from "@/types/api";
+import type { TimeWindow } from "@/types/common";
+import type { Person, PersonDetail } from "@/types/person";
+import type { PersonAppend } from "@/types/tmdb";
 import { fetchTMDB } from "../fetch-tmdb";
 import { buildQuery } from "./utils";
-import type { TMDBResponse, TMDBPaginatedResponse } from "@/types/api";
-import { type Person, type PersonDetail } from "@/types/person";
-import type { PersonAppend } from "@/types/tmdb";
-import { type TimeWindow } from "@/types/common";
 
 export const getPerson = (
   id: string | number,

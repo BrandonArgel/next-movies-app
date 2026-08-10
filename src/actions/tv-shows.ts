@@ -1,9 +1,8 @@
 "use server";
 
 import { getTrendingTvShows } from "@/lib/api/tv-shows";
-import { type Result } from "@/types/api";
-import { type PaginatedResponse } from "@/types/api";
-import { type TvShow } from "@/types/tv-show";
+import type { PaginatedResponse, Result } from "@/types/api";
+import type { TvShow } from "@/types/tv-show";
 
 export async function getTrendingTVShowsAction(
   timeWindow: "day" | "week",

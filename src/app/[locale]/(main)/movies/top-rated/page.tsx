@@ -1,10 +1,10 @@
-import { type Metadata } from "next";
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { InfiniteMovieGrid } from "@/components/movies/infinite-movie-grid";
 import { MovieFilters } from "@/components/movies/movie-filters";
-import { parseMovieSearchParams } from "@/lib/filters";
-import { discoverMovies } from "@/lib/api/movies";
 import { getMovieGenres } from "@/lib/api/genres";
+import { discoverMovies } from "@/lib/api/movies";
+import { parseMovieSearchParams } from "@/lib/filters";
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -41,9 +41,9 @@ export default async function TopRatedPage({ searchParams }: PageProps) {
   }
 
   return (
-    <div className="container mx-auto px-4 md:px-8 xl:px-12 py-16">
-      <h1 className="text-4xl font-bold tracking-tight">{t("title")}</h1>
-      <p className="mt-2 text-muted-foreground max-w-2xl">{t("description")}</p>
+    <div className="container mx-auto px-4 py-16 md:px-8 xl:px-12">
+      <h1 className="font-bold text-4xl tracking-tight">{t("title")}</h1>
+      <p className="mt-2 max-w-2xl text-muted-foreground">{t("description")}</p>
 
       <MovieFilters initialGenres={genresResponse.data.genres} />
 

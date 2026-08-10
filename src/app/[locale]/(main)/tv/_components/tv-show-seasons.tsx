@@ -1,7 +1,7 @@
+import { CalendarDays, Star, Tv2 } from "lucide-react";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
-import { type Season } from "@/types/tv-show";
-import { Star, CalendarDays, Tv2 } from "lucide-react";
+import type { Season } from "@/types/tv-show";
 
 interface TvShowSeasonsProps {
   seasons: Season[];
@@ -19,20 +19,20 @@ export async function TvShowSeasons({ seasons, showName }: TvShowSeasonsProps) {
 
   return (
     <section aria-labelledby="seasons-heading" className="flex flex-col gap-6">
-      <h2 id="seasons-heading" className="text-xl md:text-2xl font-bold">
+      <h2 id="seasons-heading" className="font-bold text-xl md:text-2xl">
         {t("seasons")}
       </h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {displaySeasons.map((season) => {
           const airYear = season.air_date
             ? new Date(season.air_date).getFullYear()
             : null;
 
           return (
-            <div key={season.id} className="flex flex-col gap-2 group">
+            <div key={season.id} className="group flex flex-col gap-2">
               {/* Poster */}
-              <div className="relative aspect-2/3 rounded-xl overflow-hidden bg-muted shadow-md ring-1 ring-border transition-transform duration-300 group-hover:scale-[1.02] group-hover:shadow-xl">
+              <div className="relative aspect-2/3 overflow-hidden rounded-xl bg-muted shadow-md ring-1 ring-border transition-transform duration-300 group-hover:scale-[1.02] group-hover:shadow-xl">
                 {season.poster_path ? (
                   <Image
                     src={`https://image.tmdb.org/t/p/w300${season.poster_path}`}
@@ -42,32 +42,32 @@ export async function TvShowSeasons({ seasons, showName }: TvShowSeasonsProps) {
                     sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, (max-width: 1024px) 22vw, 16vw"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-muted">
-                    <Tv2 className="w-8 h-8 text-muted-foreground/40" />
+                  <div className="flex h-full w-full items-center justify-center bg-muted">
+                    <Tv2 className="h-8 w-8 text-muted-foreground/40" />
                   </div>
                 )}
               </div>
 
               {/* Info */}
               <div className="flex flex-col gap-0.5 px-0.5">
-                <p className="font-semibold text-sm leading-tight line-clamp-2">
+                <p className="line-clamp-2 font-semibold text-sm leading-tight">
                   {season.name}
                 </p>
 
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-muted-foreground">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-muted-foreground text-xs">
                   {airYear && (
                     <span className="flex items-center gap-1">
-                      <CalendarDays className="w-3 h-3" />
+                      <CalendarDays className="h-3 w-3" />
                       {airYear}
                     </span>
                   )}
                   <span className="flex items-center gap-1">
-                    <Tv2 className="w-3 h-3" />
+                    <Tv2 className="h-3 w-3" />
                     {season.episode_count} {t("episodes")}
                   </span>
                   {season.vote_average > 0 && (
                     <span className="flex items-center gap-1 text-yellow-500">
-                      <Star className="w-3 h-3 fill-current" />
+                      <Star className="h-3 w-3 fill-current" />
                       {season.vote_average.toFixed(1)}
                     </span>
                   )}

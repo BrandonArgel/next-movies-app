@@ -1,20 +1,20 @@
 "use client";
 
+import { useWindowVirtualizer } from "@tanstack/react-virtual";
+import { useTranslations } from "next-intl";
 import {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
-  useMemo,
 } from "react";
-import { useTranslations } from "next-intl";
-import { Spinner } from "@/components/ui/spinner";
-import { useWindowVirtualizer } from "@tanstack/react-virtual";
 import { PersonCard } from "@/components/people/person-card";
-import { cn } from "@/lib/utils";
+import { Spinner } from "@/components/ui/spinner";
 import { useGridColumns } from "@/hooks/use-grid-columns";
-import { type Person } from "@/types/person";
+import { cn } from "@/lib/utils";
+import type { Person } from "@/types/person";
 
 interface InfinitePeopleGridProps {
   initialPeople: Person[];
@@ -132,7 +132,7 @@ export function InfinitePeopleGrid({
         abortControllerRef.current.abort();
       }
     };
-  }, [initialPeople, totalPages, searchQuery]);
+  }, [initialPeople, totalPages]);
 
   const virtualItems = virtualizer.getVirtualItems();
   const lastItemIndex = virtualItems[virtualItems.length - 1]?.index;
@@ -188,7 +188,7 @@ export function InfinitePeopleGrid({
       </div>
 
       <div
-        className="flex justify-center items-center py-6 min-h-12"
+        className="flex min-h-12 items-center justify-center py-6"
         aria-live="polite"
       >
         {isLoading && (
@@ -198,7 +198,7 @@ export function InfinitePeopleGrid({
           />
         )}
         {!isLoading && !hasMore && people.length > 0 && (
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             {t("no_more_results")}
           </p>
         )}

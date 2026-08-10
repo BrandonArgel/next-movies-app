@@ -2,14 +2,14 @@
 
 import { useTranslations } from "next-intl";
 import { useState, useTransition } from "react";
-import { getTrendingTVShowsAction } from "@/actions/tv-shows";
 import { sileo } from "sileo";
+import { getTrendingTVShowsAction } from "@/actions/tv-shows";
+import { TvShowCarousel } from "@/components/tv-show/tv-show-carousel";
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
-import { TvShowCarousel } from "@/components/tv-show/tv-show-carousel";
 import { cn } from "@/lib/utils";
-import { type TvShow } from "@/types/tv-show";
-import { type TimeWindow } from "@/types/common";
+import type { TimeWindow } from "@/types/common";
+import type { TvShow } from "@/types/tv-show";
 
 export default function TrendingTVShowsSection({
   initialTVShows,
@@ -59,14 +59,14 @@ export default function TrendingTVShowsSection({
       )}
     >
       <div className="mb-6">
-        <div className="flex flex-wrap items-center gap-4 md:gap-6 mb-2">
-          <h2 className="text-xl md:text-2xl font-bold">{t("title")}</h2>
+        <div className="mb-2 flex flex-wrap items-center gap-4 md:gap-6">
+          <h2 className="font-bold text-xl md:text-2xl">{t("title")}</h2>
 
           <ButtonGroup>
             <Button
               variant={dayTimeWindow ? "default" : "secondary"}
               onPress={() => handleTabChange("day")}
-              className="px-4 py-1.5 text-sm font-medium transition-colors"
+              className="px-4 py-1.5 font-medium text-sm transition-colors"
               isDisabled={isPending}
             >
               {t("day")}
@@ -74,7 +74,7 @@ export default function TrendingTVShowsSection({
             <Button
               variant={dayTimeWindow ? "secondary" : "default"}
               onPress={() => handleTabChange("week")}
-              className="px-4 py-1.5 text-sm font-medium transition-colors"
+              className="px-4 py-1.5 font-medium text-sm transition-colors"
               isDisabled={isPending}
             >
               {t("week")}

@@ -1,7 +1,7 @@
 // _components/movie-reviews.tsx
 import { useTranslations } from "next-intl";
 import { ReviewCard } from "@/components/movies/review-card";
-import { Review } from "@/types/movies";
+import type { Review } from "@/types/movies";
 
 interface MovieReviewsProps {
   reviews: Review[];
@@ -15,8 +15,8 @@ export function MovieReviews({ reviews }: MovieReviewsProps) {
 
   return (
     <section className="flex flex-col gap-6">
-      <h2 className="text-2xl font-bold">{t("reviews")}</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <h2 className="font-bold text-2xl">{t("reviews")}</h2>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {displayReviews.map((review) => (
           <ReviewCard key={review.id} review={review} />
         ))}

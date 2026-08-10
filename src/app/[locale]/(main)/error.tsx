@@ -1,8 +1,8 @@
 // src/app/[locale]/(main)/error.tsx
 "use client";
 
-import { useEffect } from "react";
 import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 import { ErrorStateUi } from "@/components/ui/error-state-ui";
 
 export default function ErrorBoundary({
@@ -22,7 +22,7 @@ export default function ErrorBoundary({
   const errorMessage = error.message || "default";
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[70vh] w-full px-4">
+    <div className="flex min-h-[70vh] w-full flex-col items-center justify-center px-4">
       <ErrorStateUi
         title={tGlobal("states.loading_error")}
         description={tErrors(errorMessage)}

@@ -16,8 +16,8 @@ export function MovieImages({ images }: MovieImagesProps) {
 
   return (
     <section className="flex flex-col gap-6">
-      <h2 className="text-2xl font-bold">{t("gallery")}</h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <h2 className="font-bold text-2xl">{t("gallery")}</h2>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
         {displayImages.map((image, index) => (
           <ImageWithSkeleton
             key={image.file_path}

@@ -1,15 +1,15 @@
 "use client";
 
-import { type ExternalIDS } from "@/types/person";
 import { useTranslations } from "next-intl";
 import {
-  InstagramIcon,
   FacebookIcon,
   ImdbIcon,
+  InstagramIcon,
   TikTokIcon,
   TwitterIcon,
   WikidataIcon,
 } from "@/assets/icons/social";
+import type { ExternalIDS } from "@/types/person";
 
 interface ExternalLink {
   id: string;
@@ -74,7 +74,7 @@ export function PersonExternalLinks({
 
   return (
     <div
-      className="flex items-center gap-2 flex-wrap"
+      className="flex flex-wrap items-center gap-2"
       aria-label={t("social_links_aria", { name })}
     >
       {links.map((link) => (
@@ -85,7 +85,7 @@ export function PersonExternalLinks({
           rel="noopener noreferrer"
           aria-label={link.label}
           title={link.label}
-          className="p-2 rounded-lg bg-foreground/10 hover:bg-foreground/20 text-foreground hover:text-primary transition-all duration-200 hover:scale-110"
+          className="rounded-lg bg-foreground/10 p-2 text-foreground transition-all duration-200 hover:scale-110 hover:bg-foreground/20 hover:text-primary"
         >
           {link.icon}
         </a>

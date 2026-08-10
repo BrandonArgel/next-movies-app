@@ -1,34 +1,29 @@
 "use client";
 
-import { useEffect, useState, useTransition, useMemo } from "react";
-import { useLocale, useTranslations } from "next-intl";
-import { GlobeIcon, CheckIcon, SearchIcon } from "lucide-react";
+import { CheckIcon, GlobeIcon, SearchIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { useEffect, useMemo, useState, useTransition } from "react";
 
 import {
-  DialogTrigger,
-  Popover,
   Dialog,
-  SearchField,
+  DialogTrigger,
   Input,
   ListBox,
   ListBoxItem,
+  Popover,
+  SearchField,
 } from "react-aria-components";
 
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { useRouter, usePathname } from "@/i18n/navigation";
-import { routing } from "@/i18n/routing";
-import { type Locale } from "@/i18n/routing";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { type Locale, routing } from "@/i18n/routing";
 
 export const LOCALE_META: Record<Locale, { flag: string; nativeName: string }> =
   {
     "en-US": { flag: "🇺🇸", nativeName: "English (United States)" },
     "en-GB": { flag: "🇬🇧", nativeName: "English (United Kingdom)" },
-    "en-CA": { flag: "🇨🇦", nativeName: "English (Canada)" },
-    "en-AU": { flag: "🇦🇺", nativeName: "English (Australia)" },
-    "en-IE": { flag: "🇮🇪", nativeName: "English (Ireland)" },
-    "en-NZ": { flag: "🇳🇿", nativeName: "English (New Zealand)" },
     "es-MX": { flag: "🇲🇽", nativeName: "Español (México)" },
     "es-ES": { flag: "🇪🇸", nativeName: "Español (España)" },
     "zh-CN": { flag: "🇨🇳", nativeName: "简体中文 (中国)" },
@@ -121,10 +116,10 @@ export function LanguageToggle() {
 
       <Popover
         placement="bottom end"
-        className="w-70 rounded-md border bg-popover text-popover-foreground shadow-md outline-none data-entering:animate-in data-exiting:animate-out data-entering:fade-in-0 data-exiting:fade-out-0 data-entering:zoom-in-95 data-exiting:zoom-out-95"
+        className="data-entering:fade-in-0 data-exiting:fade-out-0 data-entering:zoom-in-95 data-exiting:zoom-out-95 w-70 rounded-md border bg-popover text-popover-foreground shadow-md outline-none data-entering:animate-in data-exiting:animate-out"
       >
         <Dialog
-          className="p-0 outline-none flex flex-col"
+          className="flex flex-col p-0 outline-none"
           aria-label={t("language_selector")}
         >
           <SearchField
@@ -153,7 +148,7 @@ export function LanguageToggle() {
               }
             }}
             renderEmptyState={() => (
-              <div className="text-center text-sm text-muted-foreground">
+              <div className="text-center text-muted-foreground text-sm">
                 {tGlobal("no_results")}
               </div>
             )}
@@ -168,14 +163,14 @@ export function LanguageToggle() {
                   key={loc}
                   id={loc}
                   textValue={nativeName}
-                  className="flex items-center gap-3 cursor-pointer rounded-sm px-2 py-1.5 text-sm outline-none data-focused:bg-accent data-focused:text-accent-foreground data-selected:font-medium"
+                  className="flex cursor-pointer items-center gap-3 rounded-sm px-2 py-1.5 text-sm outline-none data-focused:bg-accent data-selected:font-medium data-focused:text-accent-foreground"
                 >
-                  <span aria-hidden="true" className="text-xl shrink-0">
+                  <span aria-hidden="true" className="shrink-0 text-xl">
                     {flag}
                   </span>
-                  <span className="truncate flex-1">{nativeName}</span>
+                  <span className="flex-1 truncate">{nativeName}</span>
                   {isSelected && (
-                    <CheckIcon className="size-4 ml-auto shrink-0" />
+                    <CheckIcon className="ml-auto size-4 shrink-0" />
                   )}
                 </ListBoxItem>
               );

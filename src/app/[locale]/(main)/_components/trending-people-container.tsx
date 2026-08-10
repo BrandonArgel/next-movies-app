@@ -1,6 +1,6 @@
-import TrendingPeopleSection from "./trending-people-section";
-import { SectionState } from "./section-state";
 import { getTrendingPeople } from "@/lib/api/people";
+import { SectionState } from "./section-state";
+import TrendingPeopleSection from "./trending-people-section";
 
 export async function TrendingPeopleContainer() {
   const result = await getTrendingPeople("day");

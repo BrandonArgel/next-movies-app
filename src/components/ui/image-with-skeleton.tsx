@@ -1,7 +1,7 @@
 "use client";
 
+import Image, { type ImageProps } from "next/image";
 import { useState } from "react";
-import Image, { ImageProps } from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +21,7 @@ export function ImageWithSkeleton({
     <div
       className={cn(
         "relative overflow-hidden",
-        props.fill && "w-full h-full",
+        props.fill && "h-full w-full",
         containerClassName,
       )}
     >
@@ -33,8 +33,8 @@ export function ImageWithSkeleton({
         className={cn(
           "transition-all duration-500",
           isLoading
-            ? "opacity-0 scale-95 blur-sm"
-            : "opacity-100 scale-100 blur-0",
+            ? "scale-95 opacity-0 blur-sm"
+            : "scale-100 opacity-100 blur-0",
           className,
         )}
         {...props}

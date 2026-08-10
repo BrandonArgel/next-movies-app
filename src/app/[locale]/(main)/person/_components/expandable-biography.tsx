@@ -1,8 +1,8 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { useTranslations } from "next-intl";
 
 interface ExpandableBiographyProps {
   text: string;
@@ -26,7 +26,7 @@ export function ExpandableBiography({
 
   if (!text) {
     return (
-      <p className={cn("text-sm text-muted-foreground italic", className)}>
+      <p className={cn("text-muted-foreground text-sm italic", className)}>
         {dictionary.noBiography}
       </p>
     );
@@ -34,7 +34,7 @@ export function ExpandableBiography({
 
   if (text.length <= maxLength) {
     return (
-      <p className={cn("text-sm text-foreground leading-relaxed", className)}>
+      <p className={cn("text-foreground text-sm leading-relaxed", className)}>
         {text}
       </p>
     );
@@ -44,7 +44,7 @@ export function ExpandableBiography({
     <div className={cn("flex flex-col gap-2", className)}>
       <p
         className={cn(
-          "text-sm text-foreground leading-relaxed",
+          "text-foreground text-sm leading-relaxed",
           !isExpanded && "line-clamp-5",
         )}
       >
@@ -53,7 +53,7 @@ export function ExpandableBiography({
 
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="text-sm font-semibold text-primary hover:underline self-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+        className="self-start rounded-sm font-semibold text-primary text-sm hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         aria-expanded={isExpanded}
         aria-controls="biography-content"
         aria-label={

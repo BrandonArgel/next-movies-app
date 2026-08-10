@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { type VideoResult } from "@/types/media";
+import type { VideoResult } from "@/types/media";
 import { TrailerIframe } from "./trailer-iframe"; // Importamos el cliente
 
 interface MovieTrailerProps {
@@ -20,14 +20,14 @@ export function MovieTrailer({ videos }: MovieTrailerProps) {
 
   return (
     <section aria-labelledby="trailer-heading" className="flex flex-col gap-4">
-      <h2 id="trailer-heading" className="text-xl md:text-2xl font-bold">
+      <h2 id="trailer-heading" className="font-bold text-xl md:text-2xl">
         {t("trailer")}
       </h2>
 
       {trailer ? (
         <TrailerIframe trailerKey={trailer.key} title={trailer.name} />
       ) : (
-        <div className="flex items-center justify-center w-full aspect-video rounded-xl bg-muted text-muted-foreground text-sm">
+        <div className="flex aspect-video w-full items-center justify-center rounded-xl bg-muted text-muted-foreground text-sm">
           {t("noTrailer")}
         </div>
       )}

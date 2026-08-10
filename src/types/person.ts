@@ -1,4 +1,4 @@
-import { type MediaType } from "./media";
+import type { MediaType } from "./media";
 
 export interface Person {
   adult: boolean;

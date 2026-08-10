@@ -1,30 +1,30 @@
-import { getTranslations } from "next-intl/server";
-import { type Metadata } from "next";
-import { Link } from "@/i18n/navigation";
 import {
-  FilmIcon,
-  TvIcon,
-  TagIcon,
-  SwordsIcon,
-  CompassIcon,
   BabyIcon,
-  SmileIcon,
-  ShieldAlertIcon,
-  VideoIcon,
   ClapperboardIcon,
-  HeartIcon,
-  Wand2Icon,
-  HistoryIcon,
+  CompassIcon,
+  FilmIcon,
   GhostIcon,
-  MusicIcon,
-  SearchIcon,
-  RocketIcon,
-  ZapIcon,
-  TentIcon,
-  NewspaperIcon,
   GlobeIcon,
+  HeartIcon,
+  HistoryIcon,
   LandmarkIcon,
+  MusicIcon,
+  NewspaperIcon,
+  RocketIcon,
+  SearchIcon,
+  ShieldAlertIcon,
+  SmileIcon,
+  SwordsIcon,
+  TagIcon,
+  TentIcon,
+  TvIcon,
+  VideoIcon,
+  Wand2Icon,
+  ZapIcon,
 } from "lucide-react";
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { getMovieGenres, getTvShowGenres } from "@/lib/api/genres";
 
 // Standard TMDB Genre IDs mapped to Lucide icons
@@ -121,21 +121,21 @@ function GenreCard({ id, name, href, color, Icon }: GenreCardProps) {
     <Link
       key={id}
       href={href}
-      className={`group relative flex items-end overflow-hidden rounded-2xl aspect-video sm:aspect-square focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2`}
+      className={`group relative flex aspect-video items-end overflow-hidden rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:aspect-square`}
     >
       <div
         className={`absolute inset-0 bg-linear-to-br ${color} transition-all duration-500 group-hover:scale-105`}
       />
-      <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==')]" />
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==')] opacity-10" />
       <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-      <div className="absolute inset-0 rounded-2xl ring-1 ring-white/15 group-hover:ring-white/40 transition-all duration-300" />
+      <div className="absolute inset-0 rounded-2xl ring-1 ring-white/15 transition-all duration-300 group-hover:ring-white/40" />
 
-      <div className="relative z-10 p-4 w-full flex flex-col gap-2">
+      <div className="relative z-10 flex w-full flex-col gap-2 p-4">
         <Icon
-          className="size-6 text-white/80 group-hover:text-white transition-colors duration-300"
+          className="size-6 text-white/80 transition-colors duration-300 group-hover:text-white"
           strokeWidth={1.5}
         />
-        <span className="text-white font-semibold text-sm md:text-base leading-tight drop-shadow-sm">
+        <span className="font-semibold text-sm text-white leading-tight drop-shadow-sm md:text-base">
           {name}
         </span>
       </div>
@@ -160,43 +160,43 @@ export default async function GenresPage() {
   const tvOnlyGenres = tvGenres.filter((g) => !movieGenreIds.has(g.id));
 
   return (
-    <main className="flex flex-col w-full min-h-screen pb-20 bg-background">
+    <div className="flex min-h-screen w-full flex-col bg-background pb-20">
       {/* Page header */}
-      <div className="bg-linear-to-b from-muted/60 to-background border-b border-border">
-        <div className="container mx-auto px-4 md:px-8 xl:px-12 pt-12 pb-10">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="flex items-center justify-center size-10 rounded-xl bg-primary/10 text-primary">
+      <div className="border-border border-b bg-linear-to-b from-muted/60 to-background">
+        <div className="container mx-auto max-w-7xl px-4 pt-12 pb-10 md:px-8 xl:px-12">
+          <div className="mb-4 flex items-center gap-3">
+            <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <TagIcon className="size-5" />
             </div>
             <div>
-              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
+              <h1 className="font-bold text-3xl tracking-tight sm:text-4xl">
                 {t("title")}
               </h1>
             </div>
           </div>
-          <p className="text-muted-foreground text-base max-w-2xl">
+          <p className="max-w-2xl text-base text-muted-foreground">
             {t("description")}
           </p>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-8 xl:px-12 pt-12 flex flex-col gap-16">
+      <div className="container mx-auto max-w-7xl flex flex-col gap-16 px-4 pt-12 md:px-8 xl:px-12">
         {/* Movie genres */}
         {movieGenres.length > 0 && (
           <section aria-labelledby="movies-genres-heading">
-            <div className="flex items-center gap-3 mb-6">
-              <FilmIcon className="size-5 text-primary shrink-0" />
+            <div className="mb-6 flex items-center gap-3">
+              <FilmIcon className="size-5 shrink-0 text-primary" />
               <h2
                 id="movies-genres-heading"
-                className="text-2xl font-semibold tracking-tight"
+                className="font-semibold text-2xl tracking-tight"
               >
                 {t("movies_section")}
               </h2>
-              <span className="text-xs font-medium text-muted-foreground bg-muted rounded-full px-2 py-0.5">
+              <span className="rounded-full bg-muted px-2 py-0.5 font-medium text-muted-foreground text-xs">
                 {movieGenres.length}
               </span>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-4 lg:grid-cols-5 xl:grid-cols-6">
               {movieGenres.map((genre, index) => {
                 const Icon = GENRE_ICONS[genre.id] || TagIcon;
                 return (
@@ -219,19 +219,19 @@ export default async function GenresPage() {
         {/* TV-only genres */}
         {tvOnlyGenres.length > 0 && (
           <section aria-labelledby="tv-genres-heading">
-            <div className="flex items-center gap-3 mb-6">
-              <TvIcon className="size-5 text-primary shrink-0" />
+            <div className="mb-6 flex items-center gap-3">
+              <TvIcon className="size-5 shrink-0 text-primary" />
               <h2
                 id="tv-genres-heading"
-                className="text-2xl font-semibold tracking-tight"
+                className="font-semibold text-2xl tracking-tight"
               >
                 {t("tv_section")}
               </h2>
-              <span className="text-xs font-medium text-muted-foreground bg-muted rounded-full px-2 py-0.5">
+              <span className="rounded-full bg-muted px-2 py-0.5 font-medium text-muted-foreground text-xs">
                 {tvOnlyGenres.length}
               </span>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-4 lg:grid-cols-5 xl:grid-cols-6">
               {tvOnlyGenres.map((genre, index) => {
                 const Icon = GENRE_ICONS[genre.id] || TagIcon;
                 return (
@@ -249,6 +249,6 @@ export default async function GenresPage() {
           </section>
         )}
       </div>
-    </main>
+    </div>
   );
 }

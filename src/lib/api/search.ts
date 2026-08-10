@@ -1,9 +1,9 @@
+import type { TMDBPaginatedResponse } from "@/types/api";
+import type { Movie } from "@/types/movies";
+import type { Person } from "@/types/person";
+import type { TvShow } from "@/types/tv-show";
 import { fetchTMDB } from "../fetch-tmdb";
 import { buildQuery } from "./utils";
-import { type Movie } from "@/types/movies";
-import { type TvShow } from "@/types/tv-show";
-import { type Person } from "@/types/person";
-import type { MultiSearchResult, TMDBPaginatedResponse } from "@/types/api";
 
 export const searchMovies = (
   query: string,

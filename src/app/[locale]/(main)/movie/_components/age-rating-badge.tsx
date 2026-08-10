@@ -12,7 +12,7 @@ export function AgeRatingBadge({ rating }: AgeRatingBadgeProps) {
 
   return (
     <TooltipTrigger>
-      <span className="inline-flex items-center justify-center px-1.5 py-0.5 border border-white/80 text-white/80 rounded-sm text-xs font-medium cursor-help transition-colors hover:text-white hover:border-white">
+      <span className="inline-flex cursor-help items-center justify-center rounded-sm border border-white/80 px-1.5 py-0.5 font-medium text-white/80 text-xs transition-colors hover:border-white hover:text-white">
         {rating}
       </span>
       <Tooltip offset={10}>

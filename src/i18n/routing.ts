@@ -1,13 +1,6 @@
 import { defineRouting } from "next-intl/routing";
 
-const ENGLISH_LOCALES = [
-  "en-US",
-  "en-GB",
-  "en-CA",
-  "en-AU",
-  "en-IE",
-  "en-NZ",
-] as const;
+const ENGLISH_LOCALES = ["en-US", "en-GB"] as const;
 const SPANISH_LOCALES = ["es-MX", "es-ES"] as const;
 const CHINESE_LOCALES = ["zh-CN", "zh-TW", "zh-HK", "zh-SG"] as const;
 const FRENCH_LOCALES = ["fr-FR", "fr-CA"] as const;

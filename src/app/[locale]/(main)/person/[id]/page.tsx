@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
-import { getTranslations } from "next-intl/server";
-import { PersonHero } from "../_components/person-hero";
-import { PersonPhotos } from "../_components/person-photos";
+import { getFormatter, getTranslations } from "next-intl/server";
 import { MovieCarousel } from "@/components/movies/movies-carousel";
 import { TvShowCarousel } from "@/components/tv-show/tv-show-carousel";
-import { ADULT_CONTENT_COOKIE } from "@/lib/constants";
-import { AgeVerificationModal } from "@/components/ui/age-verification-modal";
+import { AgeVerificationModal } from "@/components/auth/age-verification-modal";
 import { getPerson } from "@/lib/api/people";
+import { ADULT_CONTENT_COOKIE } from "@/lib/constants";
 import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
+import { PersonHero } from "../_components/person-hero";
+import { PersonPhotos } from "../_components/person-photos";
 
 interface PersonPageProps {
   params: Promise<{ locale: string; id: string }>;
@@ -45,7 +45,9 @@ export default async function PersonPage({ params }: PersonPageProps) {
   const cookieStore = await cookies();
   const hasConsented = cookieStore.get(ADULT_CONTENT_COOKIE)?.value === "true";
 
+  const format = await getFormatter();
   const t = await getTranslations("domains.person");
+  const tJobs = await getTranslations("tmdb.jobs");
   const response = await getPerson(id, [
     "movie_credits",
     "tv_credits",
@@ -74,21 +76,49 @@ export default async function PersonPage({ params }: PersonPageProps) {
     ...new Map(person.tv_credits.cast.map((c) => [c.id, c])).values(),
   ];
 
-  const crewMovieCredits =
-    person.movie_credits?.crew
-      .filter((c) => c.poster_path && c.job)
-      .sort((a, b) => b.popularity - a.popularity)
-      .slice(0, 20) ?? [];
+  const rawCrewCredits =
+    person.movie_credits?.crew.filter((c) => c.poster_path && c.job) || [];
+
+  // 1. Agrupar los trabajos en un arreglo temporal por película
+  const groupedCrewMap = rawCrewCredits.reduce((map, current) => {
+    const translatedJob = tJobs.has(current.job as any)
+      ? tJobs(current.job as any)
+      : current.job;
+
+    if (map.has(current.id)) {
+      const existing = map.get(current.id);
+      // Evitar trabajos duplicados idénticos para la misma película
+      if (!existing.jobsArray.includes(translatedJob)) {
+        existing.jobsArray.push(translatedJob);
+      }
+    } else {
+      map.set(current.id, { ...current, jobsArray: [translatedJob] });
+    }
+    return map;
+  }, new Map());
+
+  // 2. Mapear el resultado para aplicar format.list
+  const deduplicatedCrew = Array.from(groupedCrewMap.values()).map(
+    (movie: any) => ({
+      ...movie,
+      job: format.list(movie.jobsArray, { type: "conjunction" }),
+    }),
+  );
+
+  // 3. Ordenar y cortar
+  const crewMovieCredits = deduplicatedCrew
+    .sort((a, b) => b.popularity - a.popularity)
+    .slice(0, 20);
 
   return (
-    <main className="flex flex-col min-h-screen bg-background">
+    <main className="flex min-h-screen flex-col bg-background">
       <PersonHero person={person} />
 
-      <div className="container mx-auto pb-12 px-4 md:px-8 xl:px-12 max-w-7xl flex flex-col gap-12">
+      <div className="container mx-auto flex max-w-7xl flex-col gap-12 px-4 pb-12 md:px-8 xl:px-12">
         {/* Acting — movies */}
         {movieCredits.length > 0 && (
           <section className="flex flex-col gap-6">
-            <h2 className="text-2xl font-bold">{t("castMovies")}</h2>
+            <h2 className="font-bold text-2xl">{t("castMovies")}</h2>
             <MovieCarousel movies={movieCredits} active />
           </section>
         )}
@@ -96,7 +126,7 @@ export default async function PersonPage({ params }: PersonPageProps) {
         {/* Acting — TV shows */}
         {tvCastShows.length > 0 && (
           <section className="flex flex-col gap-6">
-            <h2 className="text-2xl font-bold">{t("castTvShows")}</h2>
+            <h2 className="font-bold text-2xl">{t("castTvShows")}</h2>
             <TvShowCarousel tvShows={tvCastShows} />
           </section>
         )}
@@ -104,7 +134,7 @@ export default async function PersonPage({ params }: PersonPageProps) {
         {/* Crew credits (directing / writing / producing) */}
         {crewMovieCredits.length > 0 && (
           <section className="flex flex-col gap-6">
-            <h2 className="text-2xl font-bold">{t("crew_credits")}</h2>
+            <h2 className="font-bold text-2xl">{t("crew_credits")}</h2>
             <MovieCarousel movies={crewMovieCredits} />
           </section>
         )}

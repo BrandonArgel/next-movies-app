@@ -1,7 +1,8 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { PaletteIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,9 +10,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ACCENT_COLORS, useColor } from "@/providers/color-provider";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { ACCENT_COLORS, useColor } from "@/providers/color-provider";
 
 export function ColorToggle() {
   const { color, setColor } = useColor();
@@ -38,12 +38,12 @@ export function ColorToggle() {
               key={key}
               id={key}
               onAction={() => setColor(key)}
-              className="flex items-center gap-2 cursor-pointer"
+              className="flex cursor-pointer items-center gap-2"
             >
               <span
                 aria-hidden="true"
                 className={cn(
-                  "size-3.5 rounded-full ring-1 ring-inset ring-black/10 dark:ring-white/10",
+                  "size-3.5 rounded-full ring-1 ring-black/10 ring-inset dark:ring-white/10",
                   previewClass,
                 )}
               />

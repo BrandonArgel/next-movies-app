@@ -1,6 +1,6 @@
-import { fetchTMDB } from "../fetch-tmdb";
 import type { TMDBResponse } from "@/types/api";
-import { Collection } from "@/types/collection";
+import type { Collection } from "@/types/collection";
+import { fetchTMDB } from "../fetch-tmdb";
 
 export const getCollection = (
   collectionId: string | number,

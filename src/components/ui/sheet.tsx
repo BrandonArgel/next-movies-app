@@ -1,20 +1,19 @@
 "use client";
 
-import * as React from "react";
+import { XIcon } from "lucide-react";
+import type * as React from "react";
 import {
   Heading,
   ModalOverlay as ModalOverlayPrimitive,
+  type ModalOverlayProps as ModalOverlayPrimitiveProps,
   Modal as ModalPrimitive,
   Dialog as SheetPrimitive,
-  DialogTrigger as SheetTriggerPrimitive,
-  type ModalOverlayProps as ModalOverlayPrimitiveProps,
   type DialogProps as SheetPrimitiveProps,
+  DialogTrigger as SheetTriggerPrimitive,
   type DialogTriggerProps as SheetTriggerPrimitiveProps,
 } from "react-aria-components";
-
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { XIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 function SheetTrigger({ ...props }: SheetTriggerPrimitiveProps) {
   return <SheetTriggerPrimitive data-slot="sheet-trigger" {...props} />;
@@ -80,19 +79,19 @@ function Sheet({
         data-slot="sheet-content"
         data-side={side}
         className={cn(
-          "fixed z-50 flex flex-col gap-4 bg-popover bg-clip-padding text-sm text-popover-foreground shadow-lg transition duration-200 ease-in-out data-entering:opacity-0 data-exiting:opacity-0 data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:h-auto data-[side=bottom]:border-t data-[side=bottom]:data-entering:translate-y-10 data-[side=bottom]:data-exiting:translate-y-10 data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:border-e data-[side=left]:data-entering:-translate-x-10 rtl:data-[side=left]:data-entering:translate-x-10 data-[side=left]:data-exiting:-translate-x-10 rtl:data-[side=left]:data-exiting:translate-x-10 data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:border-s data-[side=right]:data-entering:translate-x-10 rtl:data-[side=right]:data-entering:-translate-x-10 data-[side=right]:data-exiting:translate-x-10 rtl:data-[side=right]:data-exiting:-translate-x-10 data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=top]:h-auto data-[side=top]:border-b data-[side=top]:data-entering:-translate-y-10 data-[side=top]:data-exiting:-translate-y-10 data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm",
+          "data-[side=left]:data-entering:-translate-x-10 data-[side=left]:data-exiting:-translate-x-10 rtl:data-[side=right]:data-entering:-translate-x-10 rtl:data-[side=right]:data-exiting:-translate-x-10 data-[side=top]:data-entering:-translate-y-10 data-[side=top]:data-exiting:-translate-y-10 fixed z-50 flex flex-col gap-4 bg-popover bg-clip-padding text-popover-foreground text-sm shadow-lg transition duration-200 ease-in-out data-[side=right]:data-entering:translate-x-10 data-[side=right]:data-exiting:translate-x-10 data-[side=bottom]:data-entering:translate-y-10 data-[side=bottom]:data-exiting:translate-y-10 data-[side=bottom]:inset-x-0 data-[side=top]:inset-x-0 data-[side=left]:inset-y-0 data-[side=right]:inset-y-0 data-[side=top]:top-0 data-[side=right]:right-0 data-[side=bottom]:bottom-0 data-[side=left]:left-0 data-[side=bottom]:h-auto data-[side=left]:h-full data-[side=right]:h-full data-[side=top]:h-auto data-[side=left]:w-3/4 data-[side=right]:w-3/4 data-[side=right]:border-s data-[side=left]:border-e data-[side=bottom]:border-t data-[side=top]:border-b data-entering:opacity-0 data-exiting:opacity-0 data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm rtl:data-[side=left]:data-entering:translate-x-10 rtl:data-[side=left]:data-exiting:translate-x-10",
           className,
         )}
       >
         <SheetPrimitive
           data-slot="sheet"
-          className="[display:inherit] h-full max-h-[inherit] [flex-direction:inherit] gap-[inherit] outline-none"
+          className="h-full max-h-[inherit] gap-[inherit] outline-none [display:inherit] [flex-direction:inherit]"
         >
           {children}
           {showCloseButton && (
             <SheetClose
               variant="ghost"
-              className="absolute top-3 inset-e-3"
+              className="absolute inset-e-3 top-3"
               size="icon-sm"
             >
               <XIcon />
@@ -156,7 +155,7 @@ function SheetTitle({
       slot="title"
       data-slot="sheet-title"
       className={cn(
-        "font-heading text-base font-medium text-foreground",
+        "font-heading font-medium text-base text-foreground",
         className,
       )}
       {...props}
@@ -171,7 +170,7 @@ function SheetDescription({
   return (
     <div
       data-slot="sheet-description"
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn("text-muted-foreground text-sm", className)}
       {...props}
     />
   );

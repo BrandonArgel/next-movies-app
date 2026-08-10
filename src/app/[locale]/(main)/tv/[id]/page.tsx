@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import { Suspense } from "react";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import { MovieCarouselSkeleton } from "@/components/movies/movies-carousel";
+import { AgeVerificationModal } from "@/components/auth/age-verification-modal";
 import { Spinner } from "@/components/ui/spinner";
-import { TvDetailHero } from "../_components/tv-detail-hero";
+import { getTvShow } from "@/lib/api/tv-shows";
+import { ADULT_CONTENT_COOKIE } from "@/lib/constants";
+import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 import { MovieBreadcrumb } from "../../movie/_components/movie-breadcrumb";
-import { MovieWatchProviders } from "../../movie/_components/movie-watch-providers";
 import { MovieCast } from "../../movie/_components/movie-cast";
 import { MovieImages } from "../../movie/_components/movie-images";
 import { MovieTrailer } from "../../movie/_components/movie-trailer";
-import { MovieCarouselSkeleton } from "@/components/movies/movies-carousel";
-import { TvRecommendations } from "../_components/tv-recommendations";
+import { MovieWatchProviders } from "../../movie/_components/movie-watch-providers";
+import { TvDetailHero } from "../_components/tv-detail-hero";
 import { TvGenresList } from "../_components/tv-genres-list";
-import { TvShowSeasons } from "../_components/tv-show-seasons";
-import { TvShowReviews } from "../_components/tv-show-reviews";
 import { TvProductionCompanies } from "../_components/tv-production-companies";
-import { AgeVerificationModal } from "@/components/ui/age-verification-modal";
-import { ADULT_CONTENT_COOKIE } from "@/lib/constants";
-import { getTvShow } from "@/lib/api/tv-shows";
-import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
+import { TvRecommendations } from "../_components/tv-recommendations";
+import { TvShowReviews } from "../_components/tv-show-reviews";
+import { TvShowSeasons } from "../_components/tv-show-seasons";
 
 interface TvPageProps {
   params: Promise<{ locale: string; id: string }>;
@@ -79,10 +79,10 @@ export default async function TvPage({ params }: TvPageProps) {
   const providers = show["watch/providers"]?.results[countryCode];
 
   return (
-    <main className="flex flex-col min-h-screen bg-background">
+    <main className="flex min-h-screen flex-col bg-background">
       <TvDetailHero show={show} />
 
-      <div className="container mx-auto pb-12 px-4 md:px-8 xl:px-12 max-w-7xl flex flex-col gap-12">
+      <div className="container mx-auto flex max-w-7xl flex-col gap-12 px-4 pb-12 md:px-8 xl:px-12">
         <MovieBreadcrumb movieTitle={show.name} />
         <MovieWatchProviders providers={providers} />
         <MovieCast cast={show.credits.cast} />
@@ -130,8 +130,8 @@ export function UserScoreChart({ voteAverage }: UserScoreChartProps) {
         : "text-red-900";
 
   return (
-    <div className="relative flex items-center justify-center w-14 h-14 bg-gray-900 rounded-full">
-      <svg className="w-full h-full transform -rotate-90" viewBox="0 0 50 50">
+    <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gray-900">
+      <svg className="-rotate-90 h-full w-full transform" viewBox="0 0 50 50">
         {/* Background Track */}
         <circle
           className={`${trackColorClass} stroke-current`}
@@ -155,9 +155,9 @@ export function UserScoreChart({ voteAverage }: UserScoreChartProps) {
         />
       </svg>
       {/* Percentage Text */}
-      <div className="absolute flex items-start justify-center text-white font-bold text-sm mt-0.5">
+      <div className="absolute mt-0.5 flex items-start justify-center font-bold text-sm text-white">
         {percentage}
-        <span className="text-[8px] font-normal mt-0.5">%</span>
+        <span className="mt-0.5 font-normal text-[8px]">%</span>
       </div>
     </div>
   );

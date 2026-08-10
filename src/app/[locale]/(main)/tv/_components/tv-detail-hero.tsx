@@ -1,9 +1,9 @@
+import { Info, Tv2, Users } from "lucide-react";
 import { getFormatter, getTranslations } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
-import { Info, Tv2, Users } from "lucide-react";
-import { type DetailedTvShow } from "@/types/tv-show";
-import { MediaHeroLayout } from "@/components/ui/media-hero-layout";
+import { MediaHeroLayout } from "@/components/layout/media-hero-layout";
 import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
+import type { DetailedTvShow } from "@/types/tv-show";
 
 interface TvHeroProps {
   show: DetailedTvShow;
@@ -11,7 +11,7 @@ interface TvHeroProps {
 
 export async function TvDetailHero({ show }: TvHeroProps) {
   const t = await getTranslations("domains.tv");
-  const format = await getFormatter();
+  const _format = await getFormatter();
 
   const logo =
     show.images?.logos?.find((l) => l.iso_639_1 === "en") ||
@@ -43,11 +43,11 @@ export async function TvDetailHero({ show }: TvHeroProps) {
           </span>
         </>
       )}
-      <span className="bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded-sm uppercase tracking-wider">
+      <span className="rounded-sm bg-primary px-2 py-1 font-bold text-primary-foreground text-xs uppercase tracking-wider">
         {t("series_badge")}
       </span>
       {show.in_production && (
-        <Badge className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs">
+        <Badge className="border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs">
           {t("in_production")}
         </Badge>
       )}

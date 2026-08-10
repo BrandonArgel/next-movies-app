@@ -2,14 +2,14 @@
 
 import { useTranslations } from "next-intl";
 import { useState, useTransition } from "react";
-import { getTrendingMoviesAction } from "@/actions/movies";
 import { sileo } from "sileo";
+import { getTrendingMoviesAction } from "@/actions/movies";
+import { MovieCarousel } from "@/components/movies/movies-carousel";
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
-import { MovieCarousel } from "@/components/movies/movies-carousel";
 import { cn } from "@/lib/utils";
-import { type Movie } from "@/types/movies";
-import { type TimeWindow } from "@/types/common";
+import type { TimeWindow } from "@/types/common";
+import type { Movie } from "@/types/movies";
 
 export default function TrendingMoviesSection({
   initialMovies,
@@ -59,14 +59,14 @@ export default function TrendingMoviesSection({
       )}
     >
       <div className="mb-6">
-        <div className="flex flex-wrap items-center gap-4 md:gap-6 mb-2">
-          <h2 className="text-xl md:text-2xl font-bold">{t("title")}</h2>
+        <div className="mb-2 flex flex-wrap items-center gap-4 md:gap-6">
+          <h2 className="font-bold text-xl md:text-2xl">{t("title")}</h2>
 
           <ButtonGroup>
             <Button
               variant={dayTimeWindow ? "default" : "secondary"}
               onPress={() => handleTabChange("day")}
-              className="px-4 py-1.5 text-sm font-medium transition-colors"
+              className="px-4 py-1.5 font-medium text-sm transition-colors"
               isDisabled={isPending}
             >
               {t("day")}
@@ -74,7 +74,7 @@ export default function TrendingMoviesSection({
             <Button
               variant={dayTimeWindow ? "secondary" : "default"}
               onPress={() => handleTabChange("week")}
-              className="px-4 py-1.5 text-sm font-medium transition-colors"
+              className="px-4 py-1.5 font-medium text-sm transition-colors"
               isDisabled={isPending}
             >
               {t("week")}

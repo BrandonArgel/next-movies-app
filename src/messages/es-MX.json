@@ -303,7 +303,11 @@
     "server_error": "El servidor de TMDB está experimentando problemas.",
     "default": "Ocurrió un error inesperado. Por favor intenta de nuevo.",
     "title": "Algo salió mal",
-    "retry": "Reintentar"
+    "retry": "Reintentar",
+    "search_unavailable": "El servicio de búsqueda no está disponible actualmente.",
+    "load_movies_failed": "Error al cargar películas",
+    "load_tv_failed": "Error al cargar programas de televisión",
+    "load_people_failed": "Error al cargar personas"
   },
   "certifications": {
     "G": "Apto para todos los públicos.",
@@ -320,5 +324,15 @@
     "NR": "No clasificado.",
     "Unrated": "No clasificado",
     "fallback": "Clasificaciones de edad"
+  },
+  "tmdb": {
+    "jobs": {
+      "Director": "Director",
+      "Producer": "Productor",
+      "Executive Producer": "Productor Ejecutivo",
+      "Songs": "Canciones",
+      "Writer": "Escritor",
+      "Screenplay": "Guion"
+    }
   }
 }

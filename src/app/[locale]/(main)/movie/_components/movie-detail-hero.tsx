@@ -1,11 +1,11 @@
-import { getFormatter, getTranslations, getLocale } from "next-intl/server";
+import { CircleDollarSign, Info, TrendingUp } from "lucide-react";
+import { getFormatter, getLocale, getTranslations } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
-import { Info, Activity, CircleDollarSign, TrendingUp } from "lucide-react";
+import { MediaHeroLayout } from "@/components/layout/media-hero-layout";
 import { formatRuntime } from "@/lib/formatters";
-import { type DetailedMovie } from "@/types/movies";
-import { AgeRatingBadge } from "./age-rating-badge";
-import { MediaHeroLayout } from "@/components/ui/media-hero-layout";
 import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
+import type { DetailedMovie } from "@/types/movies";
+import { AgeRatingBadge } from "./age-rating-badge";
 
 interface MovieDetailHeroProps {
   movie: DetailedMovie;

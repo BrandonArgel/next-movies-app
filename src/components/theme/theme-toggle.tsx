@@ -1,16 +1,16 @@
 "use client";
 
-import { useTheme } from "next-themes";
-import { useTranslations } from "next-intl";
 import { MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
-  DropdownMenuItem,
   DropdownMenuGroup,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useEffect, useState } from "react";
 
 type ThemeOption = {
   value: "light" | "dark" | "system";
@@ -57,7 +57,7 @@ export function ThemeToggle() {
             <DropdownMenuItem
               key={value}
               id={value}
-              className="flex items-center gap-2 cursor-pointer"
+              className="flex cursor-pointer items-center gap-2"
               onAction={() => setTheme(value)}
             >
               <Icon className="size-4" />

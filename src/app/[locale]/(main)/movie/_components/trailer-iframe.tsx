@@ -14,7 +14,7 @@ export function TrailerIframe({
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-lg ring-1 ring-border bg-muted">
+    <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-muted shadow-lg ring-1 ring-border">
       {isLoading && <Skeleton className="absolute inset-0 z-10" />}
       <iframe
         src={`https://www.youtube.com/embed/${trailerKey}?rel=0&modestbranding=1`}
@@ -24,7 +24,7 @@ export function TrailerIframe({
         loading="lazy"
         onLoad={() => setIsLoading(false)}
         className={cn(
-          "absolute inset-0 w-full h-full transition-opacity duration-500",
+          "absolute inset-0 h-full w-full transition-opacity duration-500",
           isLoading ? "opacity-0" : "opacity-100",
         )}
       />

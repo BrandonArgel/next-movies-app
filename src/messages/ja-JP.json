@@ -303,7 +303,11 @@
     "server_error": "TMDB サーバーで現在問題が発生しています。",
     "default": "予期しないエラーが発生しました。もう一度試してください。",
     "title": "何か問題が発生しました",
-    "retry": "リトライ"
+    "retry": "リトライ",
+    "search_unavailable": "検索サービスは現在利用できません。",
+    "load_movies_failed": "映画の読み込みに失敗しました",
+    "load_tv_failed": "テレビ番組の読み込みに失敗しました",
+    "load_people_failed": "人物の読み込みに失敗しました"
   },
   "certifications": {
     "G": "すべての視聴者に適しています。",

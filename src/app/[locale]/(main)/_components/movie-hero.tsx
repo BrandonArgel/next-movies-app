@@ -1,13 +1,13 @@
-import { Star, Play, Info } from "lucide-react";
-import { Link } from "@/i18n/navigation";
-import { getFormatter, getTranslations, getLocale } from "next-intl/server";
+import { Info, Play, Star } from "lucide-react";
+import { getFormatter, getLocale, getTranslations } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
 import { Button, LinkButton } from "@/components/ui/button";
-import { formatRuntime } from "@/lib/utils";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
-import { MovieTrailerDialog } from "./movie-trailer-dialog";
-import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
+import { Link } from "@/i18n/navigation";
 import { getMovie } from "@/lib/api/movies";
+import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
+import { formatRuntime } from "@/lib/utils";
+import { MovieTrailerDialog } from "./movie-trailer-dialog";
 
 interface MovieHeroProps {
   movieId: number;
@@ -63,7 +63,7 @@ export async function MovieHero({ movieId }: MovieHeroProps) {
 
   return (
     <section
-      className="relative w-full h-[80vh] min-h-150 flex items-center bg-black"
+      className="relative flex h-[80vh] min-h-150 w-full items-center bg-black"
       aria-label={title}
     >
       {/* Mobile Image */}
@@ -91,11 +91,11 @@ export async function MovieHero({ movieId }: MovieHeroProps) {
       )}
 
       {/* Gradients */}
-      <div className="absolute inset-0 bg-linear-to-r from-black/95 via-black/60 to-transparent z-10" />
-      <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent z-10" />
+      <div className="absolute inset-0 z-10 bg-linear-to-r from-black/95 via-black/60 to-transparent" />
+      <div className="absolute inset-0 z-10 bg-linear-to-t from-background via-transparent to-transparent" />
 
       {/* Content */}
-      <div className="relative z-20 container mx-auto px-4 md:px-8 flex flex-col items-start gap-4 max-w-3xl">
+      <div className="container relative z-20 mx-auto flex max-w-3xl flex-col items-start gap-4 px-4 md:px-8">
         {/* Title */}
         {logoUrl ? (
           <ImageWithSkeleton
@@ -107,17 +107,17 @@ export async function MovieHero({ movieId }: MovieHeroProps) {
             sizes="(max-width: 768px) 280px, 450px"
           />
         ) : (
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight mb-2">
+          <h1 className="mb-2 font-bold text-4xl text-white leading-tight tracking-tight md:text-6xl lg:text-7xl">
             {title}
           </h1>
         )}
 
         {/* Main metadata */}
-        <div className="flex flex-wrap items-center gap-3 text-sm md:text-base font-medium text-white/90">
+        <div className="flex flex-wrap items-center gap-3 font-medium text-sm text-white/90 md:text-base">
           {formattedRating && (
             <>
               <div className="flex items-center gap-1.5 text-primary">
-                <Star className="w-5 h-5 fill-current" aria-hidden="true" />
+                <Star className="h-5 w-5 fill-current" aria-hidden="true" />
                 <span className="text-white">{formattedRating}</span>
               </div>
               <span className="text-white/50" aria-hidden="true">
@@ -146,7 +146,7 @@ export async function MovieHero({ movieId }: MovieHeroProps) {
 
           {adult && (
             <>
-              <span className="border border-white/40 text-white/80 text-xs px-1.5 py-0.5 rounded-sm">
+              <span className="rounded-sm border border-white/40 px-1.5 py-0.5 text-white/80 text-xs">
                 18+
               </span>
               <span className="text-white/50" aria-hidden="true">
@@ -155,7 +155,7 @@ export async function MovieHero({ movieId }: MovieHeroProps) {
             </>
           )}
 
-          <span className="bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded-sm uppercase tracking-wider">
+          <span className="rounded-sm bg-primary px-2 py-1 font-bold text-primary-foreground text-xs uppercase tracking-wider">
             {t("trending")}
           </span>
         </div>
@@ -165,7 +165,7 @@ export async function MovieHero({ movieId }: MovieHeroProps) {
           <div className="flex flex-wrap gap-2">
             {genres.map(({ id, name }) => (
               <Link key={id} href={`/genres/movie/${id}`}>
-                <Badge className="bg-primary/80 flex items-center gap-2">
+                <Badge className="flex items-center gap-2 bg-primary/80">
                   {name}
                 </Badge>
               </Link>
@@ -175,17 +175,17 @@ export async function MovieHero({ movieId }: MovieHeroProps) {
 
         {/* Synapsis and Tagline */}
         {tagline && (
-          <p className="text-lg md:text-xl text-white/90 italic font-light mt-2">
+          <p className="mt-2 font-light text-lg text-white/90 italic md:text-xl">
             "{tagline}"
           </p>
         )}
 
-        <p className="text-white/80 text-base md:text-lg line-clamp-3 md:line-clamp-4 leading-relaxed max-w-2xl mt-1">
+        <p className="mt-1 line-clamp-3 max-w-2xl text-base text-white/80 leading-relaxed md:line-clamp-4 md:text-lg">
           {overview}
         </p>
 
         {/* Botones de acción */}
-        <div className="flex items-center gap-4 mt-4">
+        <div className="mt-4 flex flex-wrap items-center gap-4">
           {trailer ? (
             <MovieTrailerDialog
               trailerKey={trailer.key}
@@ -195,20 +195,20 @@ export async function MovieHero({ movieId }: MovieHeroProps) {
           ) : (
             <Button
               isDisabled
-              className="bg-gray-800 text-white/50 gap-2 px-6 py-6 text-base font-semibold rounded-md border-none opacity-70 cursor-not-allowed"
+              className="cursor-not-allowed gap-2 rounded-md border-none bg-gray-800 px-6 py-6 font-semibold text-base text-white/50 opacity-70"
             >
-              <Play className="w-5 h-5" aria-hidden="true" />
+              <Play className="h-5 w-5" aria-hidden="true" />
               {tGlobal("no_trailer")}
             </Button>
           )}
 
           <LinkButton
             variant="secondary"
-            className="bg-white/20 hover:bg-white/30 text-white backdrop-blur-md gap-2 px-6 py-6 text-base font-semibold rounded-md border-none transition-colors"
+            className="gap-2 rounded-md border-none bg-white/20 px-6 py-6 font-semibold text-base text-white backdrop-blur-md transition-colors hover:bg-white/30"
             aria-label={t("details")}
             href={`/movie/${id}`}
           >
-            <Info className="w-5 h-5" aria-hidden="true" />
+            <Info className="h-5 w-5" aria-hidden="true" />
             {t("details").toUpperCase()}
           </LinkButton>
         </div>

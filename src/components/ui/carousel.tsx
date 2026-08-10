@@ -1,13 +1,12 @@
 "use client";
 
-import * as React from "react";
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
-
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import * as React from "react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -185,10 +184,10 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "absolute touch-manipulation rounded-full z-10 transition-all shadow-md",
+        "absolute z-10 touch-manipulation rounded-full shadow-md transition-all",
         orientation === "horizontal"
-          ? "inset-y-0 inset-s-2 xl:-inset-s-10 my-auto"
-          : "-top-12 inset-s-1/2 -translate-x-1/2 rtl:translate-x-1/2 rotate-90",
+          ? "xl:-inset-s-10 inset-s-2 inset-y-0 my-auto"
+          : "-top-12 -translate-x-1/2 inset-s-1/2 rotate-90 rtl:translate-x-1/2",
         className,
       )}
       isDisabled={!canScrollPrev}
@@ -215,10 +214,10 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "absolute touch-manipulation rounded-full z-10 transition-all shadow-md",
+        "absolute z-10 touch-manipulation rounded-full shadow-md transition-all",
         orientation === "horizontal"
-          ? "inset-y-0 inset-e-2 xl:-inset-e-10 my-auto"
-          : "-bottom-12 inset-s-1/2 -translate-x-1/2 rtl:translate-x-1/2 rotate-90",
+          ? "xl:-inset-e-10 inset-e-2 inset-y-0 my-auto"
+          : "-bottom-12 -translate-x-1/2 inset-s-1/2 rotate-90 rtl:translate-x-1/2",
         className,
       )}
       isDisabled={!canScrollNext}

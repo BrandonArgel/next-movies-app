@@ -303,7 +303,11 @@
     "server_error": "TMDB 伺服器目前遇到問題。",
     "default": "發生意外錯誤。請再試一次。",
     "title": "出了點問題",
-    "retry": "重試"
+    "retry": "重試",
+    "search_unavailable": "搜尋服務目前無法使用。",
+    "load_movies_failed": "載入電影失敗",
+    "load_tv_failed": "載入電視節目失敗",
+    "load_people_failed": "載入人物失敗"
   },
   "certifications": {
     "G": "適合所有觀眾。",

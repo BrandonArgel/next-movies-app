@@ -1,14 +1,38 @@
+import { Film } from "lucide-react";
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { type Metadata } from "next";
 import { SearchResultsLayout } from "@/components/search/search-results-layout";
+import {
+  Empty,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
 import { searchMovies, searchPeople, searchTvShows } from "@/lib/api/search";
 
 interface SearchPageProps {
   searchParams: Promise<{ q?: string | string[] }>;
 }
 
+export type CategoryState<T> =
+  | {
+      success: true;
+      data: { results: T[]; total_pages: number; total_results: number };
+    }
+  | { success: false; error: string };
+
 function normalizeQuery(query?: string | string[]) {
   return Array.isArray(query) ? query[0] : query || "";
+}
+
+function extractState<T>(settled: PromiseSettledResult<any>): CategoryState<T> {
+  if (settled.status === "fulfilled") {
+    if (settled.value.success) {
+      return { success: true, data: settled.value.data };
+    }
+    return { success: false, error: settled.value.error || "Error de la API" };
+  }
+  return { success: false, error: settled.reason?.message || "Error de red" };
 }
 
 export async function generateMetadata({
@@ -24,8 +48,6 @@ export async function generateMetadata({
   };
 }
 
-const defaultEmptyResult = { results: [], total_pages: 0, total_results: 0 };
-
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const resolvedParams = await searchParams;
   const query = normalizeQuery(resolvedParams.q)?.trim();
@@ -33,9 +55,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
   if (!query) {
     return (
-      <main className="flex flex-col w-full min-h-screen bg-background">
-        <div className="container mx-auto px-4 md:px-8 xl:px-12 py-16">
-          <h1 className="text-4xl font-bold tracking-tight">{t("title")}</h1>
+      <main className="flex min-h-screen w-full flex-col bg-background">
+        <div className="container mx-auto px-4 py-16 md:px-8 xl:px-12">
+          <h1 className="font-bold text-4xl tracking-tight">{t("title")}</h1>
           <p className="mt-4 max-w-2xl text-muted-foreground">
             {t("placeholder")}
           </p>
@@ -50,37 +72,49 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     searchPeople(query, 1),
   ]);
 
-  const moviesData =
-    moviesSettled.status === "fulfilled" && moviesSettled.value.success
-      ? moviesSettled.value.data
-      : defaultEmptyResult;
+  const moviesState = extractState<any>(moviesSettled);
+  const tvState = extractState<any>(tvSettled);
+  const peopleState = extractState<any>(peopleSettled);
 
-  const tvData =
-    tvSettled.status === "fulfilled" && tvSettled.value.success
-      ? tvSettled.value.data
-      : defaultEmptyResult;
+  if (!moviesState.success && !tvState.success && !peopleState.success) {
+    throw new Error("search_unavailable");
+  }
 
-  const peopleData =
-    peopleSettled.status === "fulfilled" && peopleSettled.value.success
-      ? peopleSettled.value.data
-      : defaultEmptyResult;
+  const totalResults =
+    (moviesState.success ? moviesState.data.total_results : 0) +
+    (tvState.success ? tvState.data.total_results : 0) +
+    (peopleState.success ? peopleState.data.total_results : 0);
 
   return (
-    <main className="flex flex-col w-full min-h-screen bg-background">
-      <div className="container mx-auto px-4 md:px-8 xl:px-12 py-16">
-        <div className="flex flex-col gap-3 mb-8">
-          <h1 className="text-4xl font-bold tracking-tight">
+    <main className="flex min-h-screen w-full flex-col bg-background">
+      <div className="container mx-auto px-4 py-16 md:px-8 xl:px-12">
+        <div className="mb-8 flex flex-col gap-3">
+          <h1 className="font-bold text-4xl tracking-tight">
             {t("title", { query })}
           </h1>
           <p className="text-muted-foreground">{t("results", { query })}</p>
         </div>
 
-        <SearchResultsLayout
-          query={query}
-          moviesData={moviesData}
-          tvData={tvData}
-          peopleData={peopleData}
-        />
+        {totalResults === 0 &&
+        moviesState.success &&
+        tvState.success &&
+        peopleState.success ? (
+          <Empty>
+            <EmptyHeader>
+              <EmptyMedia>
+                <Film className="size-8 text-muted-foreground" />
+              </EmptyMedia>
+              <EmptyTitle>{t("no_results", { query })}</EmptyTitle>
+            </EmptyHeader>
+          </Empty>
+        ) : (
+          <SearchResultsLayout
+            query={query}
+            moviesState={moviesState}
+            tvState={tvState}
+            peopleState={peopleState}
+          />
+        )}
       </div>
     </main>
   );

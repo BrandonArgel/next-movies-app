@@ -1,9 +1,9 @@
 "use client";
 
+import type { ComponentProps } from "react";
 import { usePathname } from "@/i18n/navigation";
-import { LinkButton } from "../ui/button";
 import { cn } from "@/lib/utils";
-import { type ComponentProps } from "react";
+import { LinkButton } from "../ui/button";
 
 type Href = ComponentProps<typeof LinkButton>["href"];
 
@@ -33,9 +33,9 @@ export function NavLink({
         onPress={onPress}
         aria-current={isActive ? "page" : undefined}
         className={cn(
-          "flex items-center justify-start px-3 py-2.5 rounded-md text-sm font-medium transition-colors",
+          "flex items-center justify-start rounded-md px-3 py-2.5 font-medium text-sm transition-colors",
           isActive
-            ? "bg-primary/10 text-primary font-semibold"
+            ? "bg-primary/10 font-semibold text-primary"
             : "text-foreground/70 hover:bg-accent hover:text-foreground",
           className,
         )}
@@ -52,11 +52,11 @@ export function NavLink({
       onPress={onPress}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "relative px-3 py-2 rounded-md text-sm font-medium transition-colors",
-        "after:absolute after:bottom-0 after:inset-s-3 after:inset-e-3 after:h-0.5 after:rounded-full after:transition-all",
+        "relative rounded-md px-3 py-2 font-medium text-sm transition-colors",
+        "after:absolute after:inset-e-3 after:inset-s-3 after:bottom-0 after:h-0.5 after:rounded-full after:transition-all",
         isActive
-          ? "text-primary font-semibold after:bg-primary after:opacity-100 hover:text-primary"
-          : "text-foreground/70 hover:text-foreground hover:bg-accent hover:after:bg-foreground",
+          ? "font-semibold text-primary after:bg-primary after:opacity-100 hover:text-primary"
+          : "text-foreground/70 hover:bg-accent hover:text-foreground hover:after:bg-foreground",
         className,
       )}
     >

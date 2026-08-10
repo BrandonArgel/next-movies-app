@@ -1,14 +1,17 @@
 "use client";
 
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { useState, useEffect, useMemo, useTransition } from "react";
-import { Autocomplete, useFilter, type DateRange } from "react-aria-components";
-import { parseDate, getLocalTimeZone } from "@internationalized/date";
+import { getLocalTimeZone, parseDate } from "@internationalized/date";
 import { CalendarIcon } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useEffect, useMemo, useState, useTransition } from "react";
+import { Autocomplete, type DateRange, useFilter } from "react-aria-components";
 
 import { Button } from "@/components/ui/button";
+import { RangeCalendar } from "@/components/ui/calendar";
+import { Field, FieldLabel } from "@/components/ui/field";
 import { Label } from "@/components/ui/label";
+import { Popover, PopoverTrigger } from "@/components/ui/popover";
 import {
   Select,
   SelectEmpty,
@@ -20,9 +23,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { RangeCalendar } from "@/components/ui/calendar";
-import { Field, FieldLabel } from "@/components/ui/field";
-import { Popover, PopoverTrigger } from "@/components/ui/popover";
 import { Slider } from "@/components/ui/slider";
 
 interface Genre {
@@ -147,10 +147,10 @@ export function TvShowFilters({ initialGenres }: TvShowFiltersProps) {
   };
 
   return (
-    <div className="my-8 flex flex-col gap-6 p-4 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80 border rounded-xl shadow-md">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+    <div className="my-8 flex flex-col gap-6 rounded-xl border bg-background/95 p-4 shadow-md backdrop-blur supports-backdrop-filter:bg-background/80">
+      <div className="grid grid-cols-1 items-start gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {/* Release Dates */}
-        <Field className="flex flex-col gap-1.5 w-full">
+        <Field className="flex w-full flex-col gap-1.5">
           <FieldLabel htmlFor="date-picker-range">
             {tFilters("sort_by_release_dates")}
           </FieldLabel>
@@ -158,7 +158,7 @@ export function TvShowFilters({ initialGenres }: TvShowFiltersProps) {
             <Button
               variant="outline"
               id="date-picker-range"
-              className="justify-start px-2.5 font-normal h-10 w-full"
+              className="h-10 w-full justify-start px-2.5 font-normal"
             >
               <CalendarIcon
                 className="mr-2 h-4 w-4 shrink-0"
@@ -186,7 +186,7 @@ export function TvShowFilters({ initialGenres }: TvShowFiltersProps) {
         </Field>
 
         {/* Sort Order */}
-        <div className="flex flex-col gap-1.5 w-full">
+        <div className="flex w-full flex-col gap-1.5">
           <Label htmlFor="sort-select">{tFilters("sort_by")}</Label>
           <Select
             aria-label={tFilters("sort_by")}
@@ -209,7 +209,7 @@ export function TvShowFilters({ initialGenres }: TvShowFiltersProps) {
         </div>
 
         {/* Genres */}
-        <div className="flex flex-col gap-1.5 w-full">
+        <div className="flex w-full flex-col gap-1.5">
           <Label htmlFor="genre-select">{tFilters("sort_by_genre")}</Label>
           <Select
             aria-label={tFilters("sort_by_genre")}
@@ -239,12 +239,12 @@ export function TvShowFilters({ initialGenres }: TvShowFiltersProps) {
         </div>
 
         {/* Runtime Slider */}
-        <div className="flex flex-col w-full gap-3">
+        <div className="flex w-full flex-col gap-3">
           <div className="flex items-center justify-between gap-2">
             <Label htmlFor="slider-runtime">
               {tFilters("sort_by_runtime_minutes")}
             </Label>
-            <span className="text-sm text-muted-foreground">
+            <span className="text-muted-foreground text-sm">
               {localRuntime.join(" - ")}
             </span>
           </div>
@@ -262,7 +262,7 @@ export function TvShowFilters({ initialGenres }: TvShowFiltersProps) {
       </div>
 
       {/* Actions */}
-      <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t">
+      <div className="flex flex-wrap items-center justify-end gap-3 border-t pt-4">
         <Button variant="ghost" onClick={clearFilters} isDisabled={isPending}>
           {tFilters("clear_filters")}
         </Button>

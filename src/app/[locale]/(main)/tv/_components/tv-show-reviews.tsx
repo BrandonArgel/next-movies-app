@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { ReviewCard } from "@/components/movies/review-card";
-import { type Review } from "@/types/movies";
+import type { Review } from "@/types/movies";
 
 interface TvShowReviewsProps {
   reviews: Review[];
@@ -17,10 +17,10 @@ export async function TvShowReviews({ reviews }: TvShowReviewsProps) {
       aria-labelledby="tv-reviews-heading"
       className="flex flex-col gap-6"
     >
-      <h2 id="tv-reviews-heading" className="text-xl md:text-2xl font-bold">
+      <h2 id="tv-reviews-heading" className="font-bold text-xl md:text-2xl">
         {t("reviews")}
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {displayReviews.map((review) => (
           <ReviewCard key={review.id} review={review} />
         ))}

@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import { WatchProvider, WatchLocaleData } from "@/types/watch-providers";
 import {
   Card,
   CardContent,
@@ -9,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
+import type { WatchLocaleData, WatchProvider } from "@/types/watch-providers";
 
 export function MovieWatchProviders({
   providers,
@@ -28,7 +28,7 @@ export function MovieWatchProviders({
 
     return (
       <div className="flex flex-col gap-3">
-        <h3 className="text-sm font-semibold text-muted-foreground">{title}</h3>
+        <h3 className="font-semibold text-muted-foreground text-sm">{title}</h3>
         <div className="flex flex-wrap gap-3">
           {providers.map((provider) => (
             <div key={provider.provider_id} title={provider.provider_name}>
@@ -37,7 +37,7 @@ export function MovieWatchProviders({
                 alt={provider.provider_name}
                 width={48}
                 height={48}
-                className="rounded-xl shadow-sm border border-border"
+                className="rounded-xl border border-border shadow-sm"
               />
             </div>
           ))}
@@ -50,17 +50,17 @@ export function MovieWatchProviders({
     <section className="flex flex-col gap-6">
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl font-bold">
+          <CardTitle className="font-bold text-2xl">
             {t("where_to_watch")}
           </CardTitle>
         </CardHeader>
-        <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
+        <CardContent className="grid grid-cols-1 gap-6 px-6 md:grid-cols-3">
           {renderProviderGroup(t("stream"), flatrate)}
           {renderProviderGroup(t("rent"), rent)}
           {renderProviderGroup(t("buy"), buy)}
         </CardContent>
         <CardFooter>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-muted-foreground text-xs">
             {t("providers_attribution")} JustWatch.
           </p>
         </CardFooter>

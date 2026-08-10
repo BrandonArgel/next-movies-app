@@ -12,9 +12,9 @@ export default async function PopularPeoplePage() {
   }
 
   return (
-    <div className="container mx-auto px-4 md:px-8 xl:px-12 py-16">
-      <h1 className="text-4xl font-bold tracking-tight">{t("title")}</h1>
-      <p className="mt-2 text-muted-foreground max-w-2xl">{t("description")}</p>
+    <div className="container mx-auto px-4 py-16 md:px-8 xl:px-12">
+      <h1 className="font-bold text-4xl tracking-tight">{t("title")}</h1>
+      <p className="mt-2 max-w-2xl text-muted-foreground">{t("description")}</p>
 
       <div className="mt-8">
         <InfinitePeopleGrid

@@ -1,4 +1,4 @@
-import { ReleaseDatesResult } from "@/types/movies";
+import type { ReleaseDatesResult } from "@/types/movies";
 
 export function getAgeRating(
   releaseDatesResults?: ReleaseDatesResult[],

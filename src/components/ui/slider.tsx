@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
 import {
   SliderFill,
   Slider as SliderPrimitive,
+  type SliderProps as SliderPrimitiveProps,
   SliderThumb,
   SliderTrack,
-  type SliderProps as SliderPrimitiveProps,
-} from "react-aria-components"
+} from "react-aria-components";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-type SliderValue = number | number[]
+type SliderValue = number | number[];
 type SliderProps<T extends SliderValue = SliderValue> = Omit<
   SliderPrimitiveProps<T>,
   "className"
 > & {
-  className?: string
-}
+  className?: string;
+};
 
 function Slider<T extends SliderValue = SliderValue>({
   className,
@@ -25,8 +25,8 @@ function Slider<T extends SliderValue = SliderValue>({
   return (
     <SliderPrimitive
       className={cn(
-        "group relative flex w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:min-h-40 data-vertical:w-auto data-vertical:flex-col",
-        className
+        "group relative flex w-full touch-none select-none items-center data-vertical:h-full data-vertical:min-h-40 data-vertical:w-auto data-vertical:flex-col data-disabled:opacity-50",
+        className,
       )}
       data-slot="slider"
       {...props}
@@ -36,11 +36,11 @@ function Slider<T extends SliderValue = SliderValue>({
           <>
             <SliderTrack
               data-slot="slider-track"
-              className="relative grow overflow-hidden rounded-full bg-muted select-none data-horizontal:h-1 data-horizontal:w-full data-vertical:h-full data-vertical:w-1"
+              className="relative grow select-none overflow-hidden rounded-full bg-muted data-horizontal:h-1 data-vertical:h-full data-horizontal:w-full data-vertical:w-1"
             >
               <SliderFill
                 data-slot="slider-range"
-                className="absolute bg-primary select-none data-horizontal:h-full data-vertical:w-full"
+                className="absolute select-none bg-primary data-horizontal:h-full data-vertical:w-full"
               />
             </SliderTrack>
             {state.values.map((_, index) => (
@@ -48,14 +48,14 @@ function Slider<T extends SliderValue = SliderValue>({
                 data-slot="slider-thumb"
                 key={index}
                 index={index}
-                className="relative block size-3 shrink-0 rounded-full border border-ring bg-white ring-ring/50 transition-[color,box-shadow] select-none group-data-horizontal:top-[50%] group-data-vertical:start-[50%] after:absolute after:-inset-2 hover:ring-3 focus-visible:ring-3 focus-visible:outline-hidden active:ring-3 disabled:pointer-events-none disabled:opacity-50"
+                className="after:-inset-2 relative block size-3 shrink-0 select-none rounded-full border border-ring bg-white ring-ring/50 transition-[color,box-shadow] after:absolute hover:ring-3 focus-visible:outline-hidden focus-visible:ring-3 active:ring-3 disabled:pointer-events-none disabled:opacity-50 group-data-vertical:start-[50%] group-data-horizontal:top-[50%]"
               />
             ))}
           </>
-        )
+        );
       }}
     </SliderPrimitive>
-  )
+  );
 }
 
-export { Slider }
+export { Slider };

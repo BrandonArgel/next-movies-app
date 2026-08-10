@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { discoverTVShows } from "@/lib/api/tv-shows";
 import { searchTvShows } from "@/lib/api/search";
+import { discoverTVShows } from "@/lib/api/tv-shows";
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   const { searchParams } = request.nextUrl;

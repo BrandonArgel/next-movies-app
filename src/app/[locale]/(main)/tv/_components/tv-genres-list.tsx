@@ -1,5 +1,5 @@
-import { Link } from "@/i18n/navigation";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "@/i18n/navigation";
 import { getTvShowGenres } from "@/lib/api/genres";
 
 export async function TvGenresList() {
@@ -15,7 +15,7 @@ export async function TvGenresList() {
     <section className="flex flex-wrap gap-4 gap-y-2">
       {genres.map(({ id, name }) => (
         <Link key={id} href={`/genres/tv-show/${id}`}>
-          <Badge className="text-sm font-medium transition-colors">
+          <Badge className="font-medium text-sm transition-colors">
             {name}
           </Badge>
         </Link>

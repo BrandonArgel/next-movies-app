@@ -1,6 +1,6 @@
-import { type Movie } from "./movies";
-import { type TvShow } from "./tv-show";
-import { type Person } from "./person";
+import type { Movie } from "./movies";
+import type { Person } from "./person";
+import type { TvShow } from "./tv-show";
 
 export type ErrorTranslationKey =
   | "network"
@@ -33,6 +33,7 @@ export type MultiSearchResult =
   | (TvShow & { media_type: "tv" })
   | (Person & { media_type: "person" });
 
-export interface MultiSearchResponse extends PaginatedResponse<MultiSearchResult> {}
+export interface MultiSearchResponse
+  extends PaginatedResponse<MultiSearchResult> {}
 export type TMDBResponse<T> = Promise<Result<T>>;
 export type TMDBPaginatedResponse<T> = Promise<Result<PaginatedResponse<T>>>;

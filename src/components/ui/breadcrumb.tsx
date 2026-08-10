@@ -1,18 +1,17 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import { ChevronRightIcon, MoreHorizontalIcon } from "lucide-react";
+import type * as React from "react";
 import {
   Breadcrumb as BreadcrumbPrimitive,
+  type BreadcrumbProps,
   Breadcrumbs as BreadcrumbsPrimitive,
+  type BreadcrumbsProps,
   composeRenderProps,
   Link as LinkPrimitive,
-  type BreadcrumbProps,
-  type BreadcrumbsProps,
   type LinkProps,
-} from "react-aria-components"
-
-import { cn } from "@/lib/utils"
-import { ChevronRightIcon, MoreHorizontalIcon } from "lucide-react"
+} from "react-aria-components";
+import { cn } from "@/lib/utils";
 
 function Breadcrumb({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -22,7 +21,7 @@ function Breadcrumb({ className, ...props }: React.ComponentProps<"nav">) {
       className={cn(className)}
       {...props}
     />
-  )
+  );
 }
 
 function BreadcrumbList<T extends object>({
@@ -33,12 +32,12 @@ function BreadcrumbList<T extends object>({
     <BreadcrumbsPrimitive
       data-slot="breadcrumb-list"
       className={cn(
-        "flex flex-wrap items-center gap-1.5 text-sm wrap-break-word text-muted-foreground",
-        className
+        "wrap-break-word flex flex-wrap items-center gap-1.5 text-muted-foreground text-sm",
+        className,
       )}
       {...props}
     />
-  )
+  );
 }
 
 function BreadcrumbItem({
@@ -69,7 +68,7 @@ function BreadcrumbItem({
         </>
       ))}
     </BreadcrumbPrimitive>
-  )
+  );
 }
 
 function BreadcrumbLink({ className, render, ...props }: LinkProps) {
@@ -80,7 +79,7 @@ function BreadcrumbLink({ className, render, ...props }: LinkProps) {
       render={render}
       {...props}
     />
-  )
+  );
 }
 
 function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
@@ -93,7 +92,7 @@ function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
       className={cn("font-normal text-foreground", className)}
       {...props}
     />
-  )
+  );
 }
 
 function BreadcrumbEllipsis({
@@ -107,15 +106,14 @@ function BreadcrumbEllipsis({
       aria-hidden="true"
       className={cn(
         "flex size-5 items-center justify-center [&>svg]:size-4",
-        className
+        className,
       )}
       {...props}
     >
-      <MoreHorizontalIcon
-      />
+      <MoreHorizontalIcon />
       <span className="sr-only">More</span>
     </span>
-  )
+  );
 }
 
 export {
@@ -125,4 +123,4 @@ export {
   BreadcrumbLink,
   BreadcrumbPage,
   BreadcrumbEllipsis,
-}
+};

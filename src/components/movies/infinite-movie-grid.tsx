@@ -1,20 +1,20 @@
 "use client";
 
+import { useWindowVirtualizer } from "@tanstack/react-virtual";
+import { useTranslations } from "next-intl";
 import {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
-  useMemo,
 } from "react";
-import { useTranslations } from "next-intl";
-import { Spinner } from "@/components/ui/spinner";
-import { useWindowVirtualizer } from "@tanstack/react-virtual";
 import { MovieCard } from "@/components/movies/movie-card";
-import { type Movie } from "@/types/movies";
-import { cn } from "@/lib/utils";
+import { Spinner } from "@/components/ui/spinner";
 import { useGridColumns } from "@/hooks/use-grid-columns";
+import { cn } from "@/lib/utils";
+import type { Movie } from "@/types/movies";
 
 interface InfiniteMovieGridProps {
   initialMovies: Movie[];
@@ -138,7 +138,7 @@ export function InfiniteMovieGrid({
   }, [isLoading, hasMore, page, type, searchQuery, filters]);
 
   // Deeply watch filter changes by stringifying them to prevent infinite loops
-  const filterKey = JSON.stringify(filters);
+  const _filterKey = JSON.stringify(filters);
 
   useEffect(() => {
     setMovies(initialMovies);
@@ -150,7 +150,7 @@ export function InfiniteMovieGrid({
         abortControllerRef.current.abort();
       }
     };
-  }, [initialMovies, totalPages, type, searchQuery, filterKey]);
+  }, [initialMovies, totalPages]);
 
   const virtualItems = virtualizer.getVirtualItems();
   const lastItemIndex = virtualItems[virtualItems.length - 1]?.index;
@@ -206,7 +206,7 @@ export function InfiniteMovieGrid({
       </div>
 
       <div
-        className="flex justify-center items-center py-6 min-h-12"
+        className="flex min-h-12 items-center justify-center py-6"
         aria-live="polite"
       >
         {isLoading && (
@@ -216,7 +216,7 @@ export function InfiniteMovieGrid({
           />
         )}
         {!isLoading && !hasMore && movies.length > 0 && (
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             {t("no_more_results")}
           </p>
         )}

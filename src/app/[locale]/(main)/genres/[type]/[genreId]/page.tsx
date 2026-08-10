@@ -1,39 +1,48 @@
-import { getTranslations } from "next-intl/server";
-import { type Metadata } from "next";
+import {
+  BabyIcon,
+  ChevronRightIcon,
+  ClapperboardIcon,
+  CompassIcon,
+  FilmIcon,
+  GhostIcon,
+  GlobeIcon,
+  HeartIcon,
+  HistoryIcon,
+  LandmarkIcon,
+  MusicIcon,
+  NewspaperIcon,
+  RocketIcon,
+  SearchIcon,
+  ShieldAlertIcon,
+  SmileIcon,
+  SwordsIcon,
+  TagIcon,
+  TentIcon,
+  TvIcon,
+  VideoIcon,
+  Wand2Icon,
+  ZapIcon,
+} from "lucide-react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Link } from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 import { InfiniteMovieGrid } from "@/components/movies/infinite-movie-grid";
 import { InfiniteTvShowGrid } from "@/components/tv-show/infinite-tv-grid";
-import { type Movie } from "@/types/movies";
-import { type TvShow } from "@/types/tv-show";
 import {
-  ChevronRightIcon,
-  FilmIcon,
-  TvIcon,
-  TagIcon,
-  SwordsIcon,
-  CompassIcon,
-  BabyIcon,
-  SmileIcon,
-  ShieldAlertIcon,
-  VideoIcon,
-  ClapperboardIcon,
-  HeartIcon,
-  Wand2Icon,
-  HistoryIcon,
-  GhostIcon,
-  MusicIcon,
-  SearchIcon,
-  RocketIcon,
-  ZapIcon,
-  TentIcon,
-  NewspaperIcon,
-  GlobeIcon,
-  LandmarkIcon,
-} from "lucide-react";
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
+import { LinkButton } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
 import { getMovieGenres, getTvShowGenres } from "@/lib/api/genres";
 import { discoverMovies } from "@/lib/api/movies";
 import { discoverTVShows } from "@/lib/api/tv-shows";
+import type { Movie } from "@/types/movies";
+import type { TvShow } from "@/types/tv-show";
+import { GenresBreadcrumb } from "./ _components/genres-breadcrumb";
 
 const VALID_TYPES = ["movie", "tv"] as const;
 type GenreType = (typeof VALID_TYPES)[number];
@@ -129,39 +138,27 @@ export default async function GenrePage({ params }: GenrePageProps) {
       : false;
 
     return (
-      <main className="flex flex-col w-full min-h-screen bg-background">
+      <div className="flex min-h-screen w-full flex-col bg-background">
         <div
-          className={`bg-linear-to-b from-primary/80 via-background/60 to-background border-b border-border`}
+          className={`border-border border-b bg-linear-to-b from-primary/80 via-background/60 to-background`}
         >
-          <div className="container mx-auto px-4 md:px-8 xl:px-12 pt-12 pb-10">
-            <nav
-              aria-label="Breadcrumb"
-              className="flex items-center gap-1.5 text-sm text-muted-foreground mb-6"
-            >
-              <Link
-                href="/genres"
-                className="hover:text-foreground transition-colors"
-              >
-                {t("title")}
-              </Link>
-              <ChevronRightIcon className="size-3.5 shrink-0" />
-              <span className="text-foreground font-medium">{genreName}</span>
-            </nav>
+          <div className="container mx-auto max-w-7xl px-4 pt-4 pb-10 md:px-8 xl:px-12">
+            <GenresBreadcrumb genreName={genreName} />
 
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
               {/* Contenedor del Título con Ícono */}
               <div className="flex items-center gap-4">
-                <div className="flex items-center justify-center size-12 sm:size-14 rounded-2xl bg-primary/10 text-primary shrink-0">
-                  <Icon className="size-6 sm:size-7" />
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary sm:size-18">
+                  <Icon className="size-8 sm:size-12" />
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary bg-primary/10 rounded-full px-3 py-1">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 font-semibold text-primary text-xs">
                       <FilmIcon className="size-3" />
                       {tNav("movies")}
                     </span>
                   </div>
-                  <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                  <h1 className="font-bold text-3xl tracking-tight sm:text-4xl">
                     {genreName}
                   </h1>
                 </div>
@@ -170,7 +167,7 @@ export default async function GenrePage({ params }: GenrePageProps) {
               {alsoInTV && (
                 <Link
                   href={`/genres/tv/${genreId}`}
-                  className="inline-flex items-center gap-2 self-start sm:self-auto text-sm font-medium text-muted-foreground border border-border rounded-full px-4 py-2 hover:text-foreground hover:border-foreground/50 transition-colors"
+                  className="inline-flex items-center gap-2 self-start rounded-full border border-border px-4 py-2 font-medium text-muted-foreground text-sm transition-colors hover:border-foreground/50 hover:text-foreground sm:self-auto"
                 >
                   <TvIcon className="size-4" />
                   {tNav("tv_shows")}
@@ -180,7 +177,7 @@ export default async function GenrePage({ params }: GenrePageProps) {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 md:px-8 xl:px-12 py-10">
+        <div className="container mx-auto max-w-7xl px-4 py-10 md:px-8 xl:px-12">
           <InfiniteMovieGrid
             initialMovies={moviesResult.data.results as Movie[]}
             totalPages={moviesResult.data.total_pages}
@@ -188,7 +185,7 @@ export default async function GenrePage({ params }: GenrePageProps) {
             genreId={genreId}
           />
         </div>
-      </main>
+      </div>
     );
   }
 
@@ -211,39 +208,27 @@ export default async function GenrePage({ params }: GenrePageProps) {
     : false;
 
   return (
-    <main className="flex flex-col w-full min-h-screen bg-background">
+    <main className="flex min-h-screen w-full flex-col bg-background">
       <div
-        className={`bg-linear-to-b from-primary/80 via-background/60 to-background border-b border-border`}
+        className={`border-border border-b bg-linear-to-b from-primary/80 via-background/60 to-background`}
       >
-        <div className="container mx-auto px-4 md:px-8 xl:px-12 pt-12 pb-10">
-          <nav
-            aria-label="Breadcrumb"
-            className="flex items-center gap-1.5 text-sm text-muted-foreground mb-6"
-          >
-            <Link
-              href="/genres"
-              className="hover:text-foreground transition-colors"
-            >
-              {t("title")}
-            </Link>
-            <ChevronRightIcon className="size-3.5 shrink-0" />
-            <span className="text-foreground font-medium">{genreName}</span>
-          </nav>
+        <div className="container mx-auto max-w-7xl px-4 pt-12 pb-4 md:px-8 xl:px-12">
+          <GenresBreadcrumb genreName={genreName} />
 
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             {/* Contenedor del Título con Ícono */}
             <div className="flex items-center gap-4">
-              <div className="flex items-center justify-center size-12 sm:size-14 rounded-2xl bg-primary/10 text-primary shrink-0">
-                <Icon className="size-6 sm:size-7" />
+              <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary sm:size-18">
+                <Icon className="size-8 sm:size-12" />
               </div>
               <div className="flex flex-col gap-1.5">
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary bg-primary/10 rounded-full px-3 py-1">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 font-semibold text-primary text-xs">
                     <TvIcon className="size-3" />
                     {tNav("tv_shows")}
                   </span>
                 </div>
-                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                <h1 className="font-bold text-3xl tracking-tight sm:text-4xl">
                   {genreName}
                 </h1>
               </div>
@@ -252,7 +237,7 @@ export default async function GenrePage({ params }: GenrePageProps) {
             {alsoInMovies && (
               <Link
                 href={`/genres/movie/${genreId}`}
-                className="inline-flex items-center gap-2 self-start sm:self-auto text-sm font-medium text-muted-foreground border border-border rounded-full px-4 py-2 hover:text-foreground hover:border-foreground/50 transition-colors"
+                className="inline-flex items-center gap-2 self-start rounded-full border border-border px-4 py-2 font-medium text-muted-foreground text-sm transition-colors hover:border-foreground/50 hover:text-foreground sm:self-auto"
               >
                 <FilmIcon className="size-4" />
                 {tNav("movies")}
@@ -262,7 +247,7 @@ export default async function GenrePage({ params }: GenrePageProps) {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-8 xl:px-12 py-10">
+      <div className="container mx-auto max-w-7xl px-4 py-10 md:px-8 xl:px-12">
         <InfiniteTvShowGrid
           initialTvShows={tvResult.data.results as TvShow[]}
           totalPages={tvResult.data.total_pages}

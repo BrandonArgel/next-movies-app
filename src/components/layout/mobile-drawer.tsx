@@ -1,28 +1,40 @@
 "use client";
 
-import { useState } from "react";
-import type { ReactNode } from "react";
+import {
+  FilmIcon,
+  MenuIcon,
+  TvIcon,
+  SettingsIcon,
+  TagIcon,
+  UsersIcon,
+  XIcon,
+  UserIcon,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
-import { MenuIcon, XIcon, FilmIcon, TvIcon, UsersIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
-import { ColorToggle } from "@/components/theme/color-toggle";
-import { LanguageToggle } from "@/components/theme/language-toggle";
+import { type ReactNode } from "react";
+import { useState } from "react";
 import { NavLink } from "@/components/layout/nav-link";
 import { SearchBar } from "@/components/layout/search-bar";
+import { ColorToggle } from "@/components/theme/color-toggle";
+import { LanguageToggle } from "@/components/theme/language-toggle";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import {
-  SheetTrigger,
   SheetClose,
   SheetContent,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
-  SheetFooter,
+  SheetTrigger,
 } from "@/components/ui/sheet";
-import { Separator } from "@/components/ui/separator";
 
-const TOP_LINKS = [
-  { href: "/", labelKey: "home" as const },
-  { href: "/categories", labelKey: "categories" as const },
+const TOP_LINKS = [{ href: "/", labelKey: "home" as const }] as const;
+
+const USER_LINKS = [
+  { href: "/favorites", labelKey: "favorites" as const },
+  { href: "/watch-later", labelKey: "list" as const },
+  { href: "/rated-movies", labelKey: "ratings" as const },
 ] as const;
 
 const MOVIE_LINKS = [
@@ -43,6 +55,10 @@ const PEOPLE_LINKS = [
   { href: "/people/popular", labelKey: "popular" as const },
 ] as const;
 
+const GENRES_LINKS = [
+  { href: "/genres", labelKey: "genres" as const },
+] as const;
+
 interface NavSectionProps {
   label: string;
   icon: ReactNode;
@@ -56,7 +72,7 @@ function NavSection({ label, icon, links, tNav, onClose }: NavSectionProps) {
     <div className="flex flex-col gap-1">
       <div className="flex items-center gap-2 px-3 py-1">
         <span className="text-foreground">{icon}</span>
-        <p className="text-xs font-semibold text-foreground uppercase tracking-wider">
+        <p className="font-semibold text-foreground text-xs uppercase tracking-wider">
           {label}
         </p>
       </div>
@@ -73,7 +89,11 @@ function NavSection({ label, icon, links, tNav, onClose }: NavSectionProps) {
   );
 }
 
-export function MobileDrawer() {
+interface MobileDrawerProps {
+  isAuthenticated: boolean;
+}
+
+export function MobileDrawer({ isAuthenticated }: MobileDrawerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const tGlobal = useTranslations("global.branding");
   const tNav = useTranslations("components.nav");
@@ -96,7 +116,7 @@ export function MobileDrawer() {
       <SheetContent side="left" showCloseButton={false}>
         <SheetHeader>
           <div className="flex items-center justify-between">
-            <SheetTitle className="text-lg font-semibold">
+            <SheetTitle className="text-primary font-semibold text-lg">
               {tGlobal("app_name")}
             </SheetTitle>
             <SheetClose
@@ -109,6 +129,8 @@ export function MobileDrawer() {
           </div>
         </SheetHeader>
 
+        <Separator className="my-3" />
+
         {/* Search */}
         <div className="px-4 md:hidden">
           <SearchBar variant="expanded" />
@@ -116,7 +138,7 @@ export function MobileDrawer() {
 
         <nav
           aria-label={tNav("navigation")}
-          className="flex flex-col flex-1 px-4 gap-1 overflow-y-auto"
+          className="flex flex-1 flex-col gap-1 overflow-y-auto px-4"
         >
           {/* Top-level links */}
           <ul className="flex flex-col gap-0.5">
@@ -130,6 +152,16 @@ export function MobileDrawer() {
           </ul>
 
           <Separator className="my-3" />
+
+          {isAuthenticated && (
+            <NavSection
+              label={tNav("user")}
+              icon={<UserIcon className="size-3.5" />}
+              links={USER_LINKS}
+              tNav={tNav}
+              onClose={close}
+            />
+          )}
 
           <NavSection
             label={tNav("movies")}
@@ -161,10 +193,25 @@ export function MobileDrawer() {
 
           <Separator className="my-3" />
 
-          <div className="flex flex-col gap-3">
-            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-3">
-              {tNav("settings")}
-            </p>
+          <NavSection
+            label={tNav("genres")}
+            icon={<TagIcon className="size-3.5" />}
+            links={GENRES_LINKS}
+            tNav={tNav}
+            onClose={close}
+          />
+        </nav>
+
+        <SheetFooter>
+          {/* <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-2 px-3 py-1">
+              <span className="text-foreground">
+                <SettingsIcon className="size-3.5" />
+              </span>
+              <p className="font-semibold text-foreground text-xs uppercase tracking-wider">
+                {tNav("settings")}
+              </p>
+            </div>
             <div
               className="flex items-center gap-2 px-3"
               role="toolbar"
@@ -174,10 +221,8 @@ export function MobileDrawer() {
               <ColorToggle />
               <LanguageToggle />
             </div>
-          </div>
-        </nav>
-
-        <SheetFooter />
+          </div> */}
+        </SheetFooter>
       </SheetContent>
     </SheetTrigger>
   );

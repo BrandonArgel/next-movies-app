@@ -1,19 +1,17 @@
 "use client";
 
-import * as React from "react";
+import type * as React from "react";
 import {
   Dialog as AlertDialogPrimitive,
   DialogTrigger as AlertDialogTriggerPrimitive,
+  type DialogTriggerProps as AlertDialogTriggerPrimitiveProps,
   Heading,
   ModalOverlay as ModalOverlayPrimitive,
-  Modal as ModalPrimitive,
-  type DialogProps as AlertDialogPrimitiveProps,
-  type DialogTriggerProps as AlertDialogTriggerPrimitiveProps,
   type ModalOverlayProps as ModalOverlayPrimitiveProps,
+  Modal as ModalPrimitive,
 } from "react-aria-components";
-
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 function AlertDialogTrigger({ ...props }: AlertDialogTriggerPrimitiveProps) {
   return (
@@ -33,7 +31,7 @@ function AlertDialogOverlay({
     <ModalOverlayPrimitive
       data-slot="alert-dialog-overlay"
       className={cn(
-        "fixed inset-0 isolate z-50 bg-black/10 duration-100 data-entering:animate-in data-entering:fade-in-0 data-exiting:animate-out data-exiting:fade-out-0 supports-backdrop-filter:backdrop-blur-xs",
+        "data-entering:fade-in-0 data-exiting:fade-out-0 fixed inset-0 isolate z-50 bg-black/10 duration-100 data-entering:animate-in data-exiting:animate-out supports-backdrop-filter:backdrop-blur-xs",
         className,
       )}
       {...props}
@@ -60,14 +58,14 @@ function AlertDialog({
         data-slot="alert-dialog-content"
         data-size={size}
         className={cn(
-          "group/alert-dialog-content fixed top-1/2 inset-s-1/2 z-50 grid w-full -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl bg-popover p-4 text-popover-foreground ring-1 ring-foreground/10 duration-100 outline-none data-entering:animate-in data-entering:fade-in-0 data-entering:zoom-in-95 data-exiting:animate-out data-exiting:fade-out-0 data-exiting:zoom-out-95 data-[size=default]:max-w-xs data-[size=sm]:max-w-xs data-[size=default]:sm:max-w-sm",
+          "group/alert-dialog-content -translate-x-1/2 -translate-y-1/2 data-entering:fade-in-0 data-entering:zoom-in-95 data-exiting:fade-out-0 data-exiting:zoom-out-95 fixed inset-s-1/2 top-1/2 z-50 grid w-full gap-4 rounded-xl bg-popover p-4 text-popover-foreground outline-none ring-1 ring-foreground/10 duration-100 data-[size=default]:max-w-xs data-[size=sm]:max-w-xs data-entering:animate-in data-exiting:animate-out data-[size=default]:sm:max-w-sm rtl:translate-x-1/2",
           className,
         )}
       >
         <AlertDialogPrimitive
           data-slot="alert-dialog"
           role="alertdialog"
-          className="[display:inherit] gap-[inherit] outline-none"
+          className="gap-[inherit] outline-none [display:inherit]"
         >
           {children}
         </AlertDialogPrimitive>
@@ -146,7 +144,7 @@ function AlertDialogTitle({
       slot="title"
       data-slot="alert-dialog-title"
       className={cn(
-        "font-heading text-base font-medium sm:group-data-[size=default]/alert-dialog-content:group-has-data-[slot=alert-dialog-media]/alert-dialog-content:col-start-2",
+        "font-heading font-medium text-base sm:group-data-[size=default]/alert-dialog-content:group-has-data-[slot=alert-dialog-media]/alert-dialog-content:col-start-2",
         className,
       )}
       {...props}
@@ -162,7 +160,7 @@ function AlertDialogDescription({
     <div
       data-slot="alert-dialog-description"
       className={cn(
-        "text-sm text-balance text-muted-foreground md:text-pretty *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground",
+        "text-balance text-muted-foreground text-sm md:text-pretty *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground",
         className,
       )}
       {...props}

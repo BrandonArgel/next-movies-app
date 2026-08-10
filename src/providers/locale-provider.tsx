@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useContext, createContext } from "react";
 import { useLocale } from "next-intl";
-import { getDirection, type Direction } from "@/lib/locale-utils";
+import { createContext, useContext, useEffect } from "react";
+import { type Direction, getDirection } from "@/lib/locale-utils";
 
 interface LocaleContextValue {
   locale: string;
