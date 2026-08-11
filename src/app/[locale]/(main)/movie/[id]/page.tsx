@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { MovieCarouselSkeleton } from "@/components/movies/movies-carousel";
 import { AgeVerificationModal } from "@/components/auth/age-verification-modal";
+import { MovieCarouselSkeleton } from "@/components/movies/movies-carousel";
 import { Spinner } from "@/components/ui/spinner";
 import { getAgeRating } from "@/lib/age-rating";
 import { getMovie } from "@/lib/api/movies";
+import { requireUser } from "@/lib/auth-utils";
 import { ADULT_CONTENT_COOKIE } from "@/lib/constants";
 import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 import { GenresList } from "../_components/genres-list";
@@ -50,6 +51,7 @@ export async function generateMetadata({
 
 export default async function MoviePage({ params }: MoviePageProps) {
   const { id, locale } = await params;
+  const { user, token } = await requireUser();
   const cookieStore = await cookies();
   const hasConsented = cookieStore.get(ADULT_CONTENT_COOKIE)?.value === "true";
 
@@ -81,7 +83,12 @@ export default async function MoviePage({ params }: MoviePageProps) {
 
   return (
     <>
-      <MovieDetailHero movie={movie} ageRating={ageRating} />
+      <MovieDetailHero
+        movie={movie}
+        ageRating={ageRating}
+        userId={user?.id}
+        token={token}
+      />
       <div className="container mx-auto flex max-w-7xl flex-col gap-12 px-4 pb-12 md:px-8 xl:px-12">
         <MovieBreadcrumb movieTitle={movie.title} />
         <MovieAwards imdbId={movie.imdb_id} />

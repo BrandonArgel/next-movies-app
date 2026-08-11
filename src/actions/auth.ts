@@ -1,7 +1,7 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { getToken } from "@/lib/api/auth";
 import { TMDB_SESSION_ID_COOKIE } from "@/lib/constants";
 

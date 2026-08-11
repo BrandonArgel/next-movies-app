@@ -1,8 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { initiateTMDBLogin } from "@/actions/auth";
 import { useTransition } from "react";
+import { initiateTMDBLogin } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
 
 export function LoginButton() {

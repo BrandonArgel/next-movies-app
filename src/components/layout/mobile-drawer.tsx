@@ -3,16 +3,15 @@
 import {
   FilmIcon,
   MenuIcon,
-  TvIcon,
   SettingsIcon,
   TagIcon,
+  TvIcon,
+  UserIcon,
   UsersIcon,
   XIcon,
-  UserIcon,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { type ReactNode } from "react";
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 import { NavLink } from "@/components/layout/nav-link";
 import { SearchBar } from "@/components/layout/search-bar";
 import { ColorToggle } from "@/components/theme/color-toggle";

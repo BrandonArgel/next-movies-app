@@ -12,7 +12,6 @@ interface LocaleContextValue {
 const LocaleContext = createContext<LocaleContextValue | undefined>(undefined);
 
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
-  // next-intl nos da el idioma actual de forma segura en el cliente
   const locale = useLocale();
   const direction = getDirection(locale);
 

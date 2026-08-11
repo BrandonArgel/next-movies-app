@@ -109,3 +109,14 @@ export interface MovieCredits {
   cast: MovieCastMember[];
   crew: MovieCrewMember[];
 }
+
+export interface MovieAccountState {
+  id: number;
+  favorite: boolean;
+  rated: Rated;
+  watchlist: boolean;
+}
+
+export interface Rated {
+  value: number;
+}

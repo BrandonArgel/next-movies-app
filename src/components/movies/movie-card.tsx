@@ -1,6 +1,6 @@
 "use client";
 
-import { MoreVerticalIcon, StarIcon } from "lucide-react";
+import { StarIcon } from "lucide-react";
 import { useFormatter, useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside";
 import { cn } from "@/lib/utils";
 import type { Movie } from "@/types/movies";
+import { MediaActionsDropdown } from "../layout/media-actions-dropdown";
 import { LinkButton } from "../ui/button";
 
 interface MovieCardProps {
@@ -17,15 +18,8 @@ interface MovieCardProps {
 }
 
 export function MovieCard({ movie, className, subtitle }: MovieCardProps) {
-  const {
-    id,
-    adult,
-    poster_path,
-    title,
-    vote_average,
-    release_date,
-    overview,
-  } = movie;
+  const { id, poster_path, title, vote_average, release_date, overview } =
+    movie;
 
   const tGlobal = useTranslations("global.actions");
   const tMovie = useTranslations("domains.movie");
@@ -104,27 +98,13 @@ export function MovieCard({ movie, className, subtitle }: MovieCardProps) {
         </div>
       </div>
 
-      <div
-        className={cn(
-          "absolute inset-e-2 top-2 z-30 transition-opacity duration-300",
-          "pointer-events-none opacity-0",
-          "group-hover:pointer-events-auto group-hover:opacity-100",
-          "group-focus-within:pointer-events-auto group-focus-within:opacity-100",
-          isTouchActive && "pointer-events-auto opacity-100",
-        )}
-      >
-        <button
-          type="button"
-          className="flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition-colors hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          aria-label={tGlobal("options_aria_label", { name: title })}
-          onClick={(e) => {
-            e.stopPropagation();
-            console.log("Abrir menú para:", movie);
-          }}
-        >
-          <MoreVerticalIcon className="size-4" />
-        </button>
-      </div>
+      <MediaActionsDropdown
+        mediaId={id}
+        mediaTitle={title}
+        mediaType="movie"
+        isTouchActive={isTouchActive}
+        onOpenChange={setIsTouchActive}
+      />
 
       <div className="relative z-20 flex flex-col gap-0.5 px-0.5">
         <h3

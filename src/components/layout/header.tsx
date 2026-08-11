@@ -1,14 +1,12 @@
 import { getTranslations } from "next-intl/server";
-import { cookies } from "next/headers";
 import { initiateTMDBLogin, logoutTMDB } from "@/actions/auth";
+import CinemaIcon from "@/assets/icons/cinema";
 import { DesktopNav, type NavMenuType } from "@/components/layout/desktop-nav";
 import { MobileDrawer } from "@/components/layout/mobile-drawer";
 import { SearchBar } from "@/components/layout/search-bar";
 import { Link } from "@/i18n/navigation";
+import { requireUser } from "@/lib/auth-utils";
 import { UserPreferencesMenu } from "../preferences/user-preferences-menu";
-import { TMDB_SESSION_ID_COOKIE } from "@/lib/constants";
-import { getAccountDetails } from "@/lib/api/account";
-import CinemaIcon from "@/assets/icons/cinema";
 
 const NAV_CONFIG = [
   {
@@ -51,16 +49,12 @@ const USER_NAV_CONFIG = [
 ];
 
 export async function Header() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(TMDB_SESSION_ID_COOKIE)?.value;
+  const { user } = await requireUser();
 
-  const [tGlobal, tNav, accountRes] = await Promise.all([
+  const [tGlobal, tNav] = await Promise.all([
     getTranslations("global.branding"),
     getTranslations("components.nav"),
-    token ? getAccountDetails(token) : Promise.resolve(null),
   ]);
-
-  const user = accountRes?.success ? accountRes.data : undefined;
 
   const activeMenus = user ? [...USER_NAV_CONFIG, ...NAV_CONFIG] : NAV_CONFIG;
 

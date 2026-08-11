@@ -1,4 +1,4 @@
-import { Locale } from "next-intl";
+import type { Locale } from "next-intl";
 
 export const LOCALE_META: Record<Locale, { flag: string; nativeName: string }> =
   {
@@ -8,8 +8,6 @@ export const LOCALE_META: Record<Locale, { flag: string; nativeName: string }> =
     "es-ES": { flag: "🇪🇸", nativeName: "Español (España)" },
     "zh-CN": { flag: "🇨🇳", nativeName: "简体中文 (中国)" },
     "zh-TW": { flag: "🇹🇼", nativeName: "繁體中文 (台灣)" },
-    "zh-HK": { flag: "🇭🇰", nativeName: "繁體中文 (香港)" },
-    "zh-SG": { flag: "🇸🇬", nativeName: "简体中文 (新加坡)" },
     "fr-FR": { flag: "🇫🇷", nativeName: "Français (France)" },
     "fr-CA": { flag: "🇨🇦", nativeName: "Français (Canada)" },
     "ar-SA": { flag: "🇸🇦", nativeName: "العربية (السعودية)" },

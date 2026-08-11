@@ -40,18 +40,3 @@ export const discoverMovies = (
   page = 1,
 ): TMDBPaginatedResponse<Movie> =>
   fetchTMDB(`/discover/movie${buildQuery({ ...params, page })}`);
-
-export const getMovieAccountState = (
-  movie_id: number,
-  session_id: string,
-) => {};
-
-// export const rateMovie = (
-//   movieId: string | number,
-//   rating: number,
-// ): TMDBResponse<{ status_code: number; status_message: string }> => {
-//   return fetchTMDB(`/movie/${movieId}/rating`, {
-//     method: "POST",
-//     body: JSON.stringify({ value: rating }),
-//   });
-// };

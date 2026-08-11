@@ -1,6 +1,5 @@
 import {
   BabyIcon,
-  ChevronRightIcon,
   ClapperboardIcon,
   CompassIcon,
   FilmIcon,
@@ -28,14 +27,6 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { InfiniteMovieGrid } from "@/components/movies/infinite-movie-grid";
 import { InfiniteTvShowGrid } from "@/components/tv-show/infinite-tv-grid";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
-import { LinkButton } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { getMovieGenres, getTvShowGenres } from "@/lib/api/genres";
 import { discoverMovies } from "@/lib/api/movies";
@@ -47,7 +38,6 @@ import { GenresBreadcrumb } from "./ _components/genres-breadcrumb";
 const VALID_TYPES = ["movie", "tv"] as const;
 type GenreType = (typeof VALID_TYPES)[number];
 
-// Mapa de íconos idéntico al de la página de categorías
 const GENRE_ICONS: Record<number, React.ElementType> = {
   28: SwordsIcon, // Action
   12: CompassIcon, // Adventure
@@ -116,7 +106,6 @@ export default async function GenrePage({ params }: GenrePageProps) {
   const t = await getTranslations("pages.genres");
   const tNav = await getTranslations("components.nav");
 
-  // Obtener el ícono dinámico basado en el ID de la URL
   const Icon = GENRE_ICONS[Number(genreId)] || TagIcon;
 
   if (mediaType === "movie") {
@@ -146,7 +135,6 @@ export default async function GenrePage({ params }: GenrePageProps) {
             <GenresBreadcrumb genreName={genreName} />
 
             <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-              {/* Contenedor del Título con Ícono */}
               <div className="flex items-center gap-4">
                 <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary sm:size-18">
                   <Icon className="size-8 sm:size-12" />
@@ -189,7 +177,7 @@ export default async function GenrePage({ params }: GenrePageProps) {
     );
   }
 
-  // Branch para TV
+  // Branch for TV
   const [genresResult, movieGenresResult, tvResult] = await Promise.all([
     getTvShowGenres(),
     getMovieGenres(),
@@ -208,7 +196,7 @@ export default async function GenrePage({ params }: GenrePageProps) {
     : false;
 
   return (
-    <main className="flex min-h-screen w-full flex-col bg-background">
+    <div className="flex min-h-screen w-full flex-col bg-background">
       <div
         className={`border-border border-b bg-linear-to-b from-primary/80 via-background/60 to-background`}
       >
@@ -216,7 +204,6 @@ export default async function GenrePage({ params }: GenrePageProps) {
           <GenresBreadcrumb genreName={genreName} />
 
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            {/* Contenedor del Título con Ícono */}
             <div className="flex items-center gap-4">
               <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary sm:size-18">
                 <Icon className="size-8 sm:size-12" />
@@ -255,6 +242,6 @@ export default async function GenrePage({ params }: GenrePageProps) {
           genreId={genreId}
         />
       </div>
-    </main>
+    </div>
   );
 }

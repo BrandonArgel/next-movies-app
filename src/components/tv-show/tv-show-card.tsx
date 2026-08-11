@@ -1,6 +1,6 @@
 "use client";
 
-import { MoreVerticalIcon, StarIcon } from "lucide-react";
+import { StarIcon } from "lucide-react";
 import { useFormatter, useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside";
 import { cn } from "@/lib/utils";
 import type { TvShow } from "@/types/tv-show";
+import { MediaActionsDropdown } from "../layout/media-actions-dropdown";
 import { LinkButton } from "../ui/button";
 
 interface ShowCardProps {
@@ -100,27 +101,14 @@ export function TVShowCard({ tvShow, className }: ShowCardProps) {
         </div>
       </div>
 
-      <div
-        className={cn(
-          "absolute inset-e-2 top-2 z-30 transition-opacity duration-300",
-          "pointer-events-none opacity-0",
-          "group-hover:pointer-events-auto group-hover:opacity-100",
-          "group-focus-within:pointer-events-auto group-focus-within:opacity-100",
-          isTouchActive && "pointer-events-auto opacity-100",
-        )}
-      >
-        <button
-          type="button"
-          className="flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition-colors hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          aria-label={tGlobal("options_aria_label", { name })}
-          onClick={(e) => {
-            e.stopPropagation();
-            console.log("Abrir menú para:", name);
-          }}
-        >
-          <MoreVerticalIcon className="size-4" />
-        </button>
-      </div>
+      {/* Menú de acciones sustituido */}
+      <MediaActionsDropdown
+        mediaId={id}
+        mediaTitle={name}
+        mediaType="tv"
+        isTouchActive={isTouchActive}
+        onOpenChange={setIsTouchActive}
+      />
 
       <div className="relative z-20 flex flex-col gap-0.5 px-0.5">
         <h3

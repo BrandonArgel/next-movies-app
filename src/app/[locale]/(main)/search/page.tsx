@@ -55,14 +55,14 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
   if (!query) {
     return (
-      <main className="flex min-h-screen w-full flex-col bg-background">
+      <div className="flex min-h-screen w-full flex-col bg-background">
         <div className="container mx-auto px-4 py-16 md:px-8 xl:px-12">
           <h1 className="font-bold text-4xl tracking-tight">{t("title")}</h1>
           <p className="mt-4 max-w-2xl text-muted-foreground">
             {t("placeholder")}
           </p>
         </div>
-      </main>
+      </div>
     );
   }
 
@@ -86,7 +86,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     (peopleState.success ? peopleState.data.total_results : 0);
 
   return (
-    <main className="flex min-h-screen w-full flex-col bg-background">
+    <div className="flex min-h-screen w-full flex-col bg-background">
       <div className="container mx-auto px-4 py-16 md:px-8 xl:px-12">
         <div className="mb-8 flex flex-col gap-3">
           <h1 className="font-bold text-4xl tracking-tight">
@@ -116,6 +116,6 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           />
         )}
       </div>
-    </main>
+    </div>
   );
 }

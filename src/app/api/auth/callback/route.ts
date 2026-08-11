@@ -1,6 +1,7 @@
 // app/api/auth/callback/route.ts
-import { NextResponse } from "next/server";
+
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 import { createSession } from "@/lib/api/auth";
 import { TMDB_SESSION_ID_COOKIE } from "@/lib/constants";
 

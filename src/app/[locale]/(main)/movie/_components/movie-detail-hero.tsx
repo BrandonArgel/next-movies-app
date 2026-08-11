@@ -1,7 +1,9 @@
 import { CircleDollarSign, Info, TrendingUp } from "lucide-react";
 import { getFormatter, getLocale, getTranslations } from "next-intl/server";
-import { Badge } from "@/components/ui/badge";
 import { MediaHeroLayout } from "@/components/layout/media-hero-layout";
+import { MediaUserActions } from "@/components/layout/media-user-actions";
+import { Badge } from "@/components/ui/badge";
+import { getMediaAccountState } from "@/lib/api/account";
 import { formatRuntime } from "@/lib/formatters";
 import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 import type { DetailedMovie } from "@/types/movies";
@@ -10,15 +12,28 @@ import { AgeRatingBadge } from "./age-rating-badge";
 interface MovieDetailHeroProps {
   movie: DetailedMovie;
   ageRating: string | null;
+  userId: number | undefined;
+  token: string | undefined;
 }
 
 export async function MovieDetailHero({
   movie,
   ageRating,
+  userId,
+  token,
 }: MovieDetailHeroProps) {
-  const t = await getTranslations("domains.movie");
-  const format = await getFormatter();
-  const locale = await getLocale();
+  const [t, format, locale, accountStateResult] = await Promise.all([
+    getTranslations("domains.movie"),
+    getFormatter(),
+    getLocale(),
+    token
+      ? getMediaAccountState("movie", movie?.id, token)
+      : Promise.resolve(null),
+  ]);
+
+  const accountState = accountStateResult?.success
+    ? accountStateResult.data
+    : null;
 
   const logo =
     movie.images?.logos?.find(
@@ -108,6 +123,18 @@ export async function MovieDetailHero({
       genres={movie.genres}
       genreBasePath="movie"
       metaBadges={metaBadges}
+      userActions={
+        userId && accountState ? (
+          <MediaUserActions
+            mediaId={movie?.id}
+            mediaTitle={movie?.title}
+            mediaType="tv"
+            initialFavorite={accountState.favorite}
+            initialWatchLater={accountState.watchlist}
+            initialRating={accountState.rated?.value}
+          />
+        ) : null
+      }
       stats={stats}
       officialWebsiteLabel={t("official_website")}
     />

@@ -1,9 +1,11 @@
-import { Info, Play, Star } from "lucide-react";
+import { Bookmark, Heart, Info, Play, Star } from "lucide-react";
 import { getFormatter, getLocale, getTranslations } from "next-intl/server";
+import { MediaUserActions } from "@/components/layout/media-user-actions";
 import { Badge } from "@/components/ui/badge";
 import { Button, LinkButton } from "@/components/ui/button";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { Link } from "@/i18n/navigation";
+import { getMediaAccountState } from "@/lib/api/account";
 import { getMovie } from "@/lib/api/movies";
 import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 import { formatRuntime } from "@/lib/utils";
@@ -11,14 +13,25 @@ import { MovieTrailerDialog } from "./movie-trailer-dialog";
 
 interface MovieHeroProps {
   movieId: number;
+  userId: number | undefined;
+  token: string | undefined;
 }
 
-export async function MovieHero({ movieId }: MovieHeroProps) {
-  const heroDetailsResult = await getMovie(movieId);
+export async function MovieHero({ movieId, userId, token }: MovieHeroProps) {
+  const [heroDetailsResult, accountStateResult] = await Promise.all([
+    getMovie(movieId),
+    token
+      ? getMediaAccountState("movie", movieId, token)
+      : Promise.resolve(null),
+  ]);
 
   if (!heroDetailsResult.success) {
     return null;
   }
+
+  const accountState = accountStateResult?.success
+    ? accountStateResult.data
+    : null;
 
   const locale = await getLocale();
   const format = await getFormatter();
@@ -116,7 +129,7 @@ export async function MovieHero({ movieId }: MovieHeroProps) {
         <div className="flex flex-wrap items-center gap-3 font-medium text-sm text-white/90 md:text-base">
           {formattedRating && (
             <>
-              <div className="flex items-center gap-1.5 text-primary">
+              <div className="flex items-center gap-1.5 text-yellow-500">
                 <Star className="h-5 w-5 fill-current" aria-hidden="true" />
                 <span className="text-white">{formattedRating}</span>
               </div>
@@ -160,17 +173,16 @@ export async function MovieHero({ movieId }: MovieHeroProps) {
           </span>
         </div>
 
-        {/* Genres */}
-        {hasGenres && (
-          <div className="flex flex-wrap gap-2">
-            {genres.map(({ id, name }) => (
-              <Link key={id} href={`/genres/movie/${id}`}>
-                <Badge className="flex items-center gap-2 bg-primary/80">
-                  {name}
-                </Badge>
-              </Link>
-            ))}
-          </div>
+        {/* User */}
+        {userId && accountState && (
+          <MediaUserActions
+            mediaId={id}
+            mediaTitle={title}
+            mediaType="movie"
+            initialFavorite={accountState.favorite}
+            initialWatchLater={accountState.watchlist}
+            initialRating={accountState.rated.value}
+          />
         )}
 
         {/* Synapsis and Tagline */}
@@ -184,7 +196,20 @@ export async function MovieHero({ movieId }: MovieHeroProps) {
           {overview}
         </p>
 
-        {/* Botones de acción */}
+        {/* Genres */}
+        {hasGenres && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {genres.map(({ id, name }) => (
+              <Link key={id} href={`/genres/movie/${id}`}>
+                <Badge className="flex items-center gap-2 bg-primary/80">
+                  {name}
+                </Badge>
+              </Link>
+            ))}
+          </div>
+        )}
+
+        {/* Action buttons */}
         <div className="mt-4 flex flex-wrap items-center gap-4">
           {trailer ? (
             <MovieTrailerDialog

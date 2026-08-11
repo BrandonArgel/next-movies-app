@@ -23,6 +23,7 @@ interface MediaHeroLayoutProps {
   genres?: { id: number; name: string }[];
   genreBasePath: "movie" | "tv";
   metaBadges: ReactNode;
+  userActions?: ReactNode;
   stats: Stat[];
   officialWebsiteLabel: string;
 }
@@ -39,6 +40,7 @@ export function MediaHeroLayout({
   genres,
   genreBasePath,
   metaBadges,
+  userActions,
   stats,
   officialWebsiteLabel,
 }: MediaHeroLayoutProps) {
@@ -101,17 +103,7 @@ export function MediaHeroLayout({
             {metaBadges}
           </div>
 
-          {genres && genres.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {genres.map(({ id, name }) => (
-                <Link key={id} href={`/genres/${genreBasePath}/${id}`}>
-                  <Badge className="flex items-center gap-2 bg-primary/80 shadow-lg">
-                    {name}
-                  </Badge>
-                </Link>
-              ))}
-            </div>
-          )}
+          {userActions && <div className="mt-1">{userActions}</div>}
 
           {tagline && (
             <p className="mt-2 font-light text-base text-white/90 italic drop-shadow-hero-text md:text-lg">
@@ -123,6 +115,18 @@ export function MediaHeroLayout({
             <p className="mt-1 line-clamp-5 text-sm text-white leading-relaxed drop-shadow-hero-text md:text-base">
               {overview}
             </p>
+          )}
+
+          {genres && genres.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {genres.map(({ id, name }) => (
+                <Link key={id} href={`/genres/${genreBasePath}/${id}`}>
+                  <Badge className="flex items-center gap-2 bg-primary/80 shadow-lg">
+                    {name}
+                  </Badge>
+                </Link>
+              ))}
+            </div>
           )}
 
           {homepage && (

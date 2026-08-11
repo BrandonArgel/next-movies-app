@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { MovieCarouselSkeleton } from "@/components/movies/movies-carousel";
 import { AgeVerificationModal } from "@/components/auth/age-verification-modal";
+import { MovieCarouselSkeleton } from "@/components/movies/movies-carousel";
 import { Spinner } from "@/components/ui/spinner";
 import { getTvShow } from "@/lib/api/tv-shows";
+import { requireUser } from "@/lib/auth-utils";
 import { ADULT_CONTENT_COOKIE } from "@/lib/constants";
 import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 import { MovieBreadcrumb } from "../../movie/_components/movie-breadcrumb";
@@ -53,6 +54,7 @@ function getCountryCode(locale: string) {
 
 export default async function TvPage({ params }: TvPageProps) {
   const { id, locale } = await params;
+  const { user, token } = await requireUser();
   const cookieStore = await cookies();
   const hasConsented = cookieStore.get(ADULT_CONTENT_COOKIE)?.value === "true";
 
@@ -79,8 +81,8 @@ export default async function TvPage({ params }: TvPageProps) {
   const providers = show["watch/providers"]?.results[countryCode];
 
   return (
-    <main className="flex min-h-screen flex-col bg-background">
-      <TvDetailHero show={show} />
+    <div className="flex min-h-screen flex-col bg-background">
+      <TvDetailHero show={show} userId={user?.id} token={token} />
 
       <div className="container mx-auto flex max-w-7xl flex-col gap-12 px-4 pb-12 md:px-8 xl:px-12">
         <MovieBreadcrumb movieTitle={show.name} />
@@ -100,7 +102,7 @@ export default async function TvPage({ params }: TvPageProps) {
           <TvGenresList />
         </Suspense>
       </div>
-    </main>
+    </div>
   );
 }
 

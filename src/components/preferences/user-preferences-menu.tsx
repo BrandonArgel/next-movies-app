@@ -1,21 +1,18 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { type Locale, routing } from "@/i18n/routing";
-import { usePathname, useRouter } from "@/i18n/navigation";
 import {
   GlobeIcon,
-  LogOutIcon,
   LogInIcon,
+  LogOutIcon,
   MonitorIcon,
   MoonIcon,
   PaletteIcon,
   SunIcon,
   UserIcon,
 } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,12 +26,14 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LOCALE_META } from "./locale-meta";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { type Locale, routing } from "@/i18n/routing";
+import { BASE_GRAVATAR_URL } from "@/lib/constants";
+import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 import { cn } from "@/lib/utils";
 import { ACCENT_COLORS, useColor } from "@/providers/color-provider";
-import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
-import { BASE_GRAVATAR_URL } from "@/lib/constants";
-import { Account } from "@/types/account";
+import type { Account } from "@/types/account";
+import { LOCALE_META } from "./locale-meta";
 
 interface UserPreferencesMenuProps {
   user?: Account;

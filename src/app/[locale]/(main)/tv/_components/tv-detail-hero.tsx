@@ -1,17 +1,27 @@
 import { Info, Tv2, Users } from "lucide-react";
 import { getFormatter, getTranslations } from "next-intl/server";
-import { Badge } from "@/components/ui/badge";
 import { MediaHeroLayout } from "@/components/layout/media-hero-layout";
+import { MediaUserActions } from "@/components/layout/media-user-actions";
+import { Badge } from "@/components/ui/badge";
+import { getMediaAccountState } from "@/lib/api/account";
 import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 import type { DetailedTvShow } from "@/types/tv-show";
 
 interface TvHeroProps {
   show: DetailedTvShow;
+  userId: number | undefined;
+  token: string | undefined;
 }
 
-export async function TvDetailHero({ show }: TvHeroProps) {
-  const t = await getTranslations("domains.tv");
-  const _format = await getFormatter();
+export async function TvDetailHero({ show, userId, token }: TvHeroProps) {
+  const [t, accountStateResult] = await Promise.all([
+    getTranslations("domains.tv"),
+    token ? getMediaAccountState("tv", show?.id, token) : Promise.resolve(null),
+  ]);
+
+  const accountState = accountStateResult?.success
+    ? accountStateResult.data
+    : null;
 
   const logo =
     show.images?.logos?.find((l) => l.iso_639_1 === "en") ||
@@ -80,6 +90,18 @@ export async function TvDetailHero({ show }: TvHeroProps) {
       genres={show.genres}
       genreBasePath="tv"
       metaBadges={metaBadges}
+      userActions={
+        userId && accountState ? (
+          <MediaUserActions
+            mediaId={show?.id}
+            mediaTitle={show?.name}
+            mediaType="tv"
+            initialFavorite={accountState.favorite}
+            initialWatchLater={accountState.watchlist}
+            initialRating={accountState.rated?.value}
+          />
+        ) : null
+      }
       stats={stats}
       officialWebsiteLabel={t("official_website")}
     />

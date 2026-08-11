@@ -1,9 +1,10 @@
+import type { Account, MutationResponse } from "@/types/account";
+import type { TMDBPaginatedResponse, TMDBResponse } from "@/types/api";
+import type { MediaType } from "@/types/media";
+import type { Movie, MovieAccountState } from "@/types/movies";
+import type { TvShow } from "@/types/tv-show";
 import { fetchTMDB } from "../fetch-tmdb";
 import { buildQuery } from "./utils";
-import { type TMDBResponse, type TMDBPaginatedResponse } from "@/types/api";
-import { type Account, type MutationResponse } from "@/types/account";
-import { Movie } from "@/types/movies";
-import { TvShow } from "@/types/tv-show";
 
 export const getAccountDetails = (sessionId: string): TMDBResponse<Account> =>
   fetchTMDB(`/account?session_id=${sessionId}`);
@@ -18,6 +19,7 @@ export const getFavoriteMovies = (
       session_id: sessionId,
       page,
     })}`,
+    { next: { revalidate: 0 } },
   );
 
 export const getFavoriteTvShows = (
@@ -30,6 +32,7 @@ export const getFavoriteTvShows = (
       session_id: sessionId,
       page,
     })}`,
+    { next: { revalidate: 0 } },
   );
 
 export const getWatchLaterMovies = (
@@ -42,6 +45,7 @@ export const getWatchLaterMovies = (
       session_id: sessionId,
       page,
     })}`,
+    { next: { revalidate: 0 } },
   );
 
 export const getWatchLaterTvShows = (
@@ -54,6 +58,7 @@ export const getWatchLaterTvShows = (
       session_id: sessionId,
       page,
     })}`,
+    { next: { revalidate: 0 } },
   );
 
 export const getRatedMovies = (
@@ -66,6 +71,7 @@ export const getRatedMovies = (
       session_id: sessionId,
       page,
     })}`,
+    { next: { revalidate: 0 } },
   );
 
 export const getRatedTvShows = (
@@ -78,12 +84,13 @@ export const getRatedTvShows = (
       session_id: sessionId,
       page,
     })}`,
+    { next: { revalidate: 0 } },
   );
 
 export const toggleFavorite = (
   accountId: number,
   sessionId: string,
-  mediaType: "movie" | "tv",
+  mediaType: MediaType,
   mediaId: number,
   isFavorite: boolean,
 ): TMDBResponse<MutationResponse> =>
@@ -96,30 +103,58 @@ export const toggleFavorite = (
     }),
   });
 
-export const toggleWatchlist = (
+export const toggleWatchList = (
   accountId: number,
   sessionId: string,
-  mediaType: "movie" | "tv",
+  mediaType: MediaType,
   mediaId: number,
-  isWatchlist: boolean,
+  isWatchList: boolean,
 ): TMDBResponse<MutationResponse> =>
   fetchTMDB(`/account/${accountId}/watchlist?session_id=${sessionId}`, {
     method: "POST",
     body: JSON.stringify({
       media_type: mediaType,
       media_id: mediaId,
-      watchlist: isWatchlist,
+      watchlist: isWatchList,
     }),
   });
 
-// export const addToList = (
-//   listId: number | string,
-//   sessionId: string,
-//   mediaId: number,
-// ): TMDBResponse<MutationResponse> =>
-//   fetchTMDB(`/list/${listId}/add_item?session_id=${sessionId}`, {
-//     method: "POST",
-//     body: JSON.stringify({
-//       media_id: mediaId,
-//     }),
-//   });
+export const getMediaAccountState = (
+  mediaType: MediaType,
+  mediaId: number,
+  sessionId: string,
+): TMDBResponse<MovieAccountState> =>
+  fetchTMDB(
+    `/${mediaType}/${mediaId}/account_states${buildQuery({ session_id: sessionId })}`,
+    {
+      next: { revalidate: 0 },
+    },
+  );
+
+export const rateMedia = (
+  mediaType: MediaType,
+  mediaId: number,
+  sessionId: string,
+  rating: number,
+): TMDBResponse<MutationResponse> =>
+  fetchTMDB(
+    `/${mediaType}/${mediaId}/rating${buildQuery({ session_id: sessionId })}`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        value: rating,
+      }),
+    },
+  );
+
+export const unrateMedia = (
+  mediaType: MediaType,
+  mediaId: number,
+  sessionId: string,
+): TMDBResponse<MutationResponse> =>
+  fetchTMDB(
+    `/${mediaType}/${mediaId}/rating${buildQuery({ session_id: sessionId })}`,
+    {
+      method: "DELETE",
+    },
+  );

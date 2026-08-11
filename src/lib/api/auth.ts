@@ -1,6 +1,6 @@
+import type { TMDBResponse } from "@/types/api";
+import type { Session, Token } from "@/types/token";
 import { fetchTMDB } from "../fetch-tmdb";
-import { type TMDBResponse } from "@/types/api";
-import { Session, type Token } from "@/types/token";
 
 export const getToken = (): TMDBResponse<Token> =>
   fetchTMDB("/authentication/token/new", { next: { revalidate: 0 } });

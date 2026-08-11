@@ -6,7 +6,7 @@ import type {
 } from "./common";
 import type { Genre } from "./genres";
 import type { Images, MediaType, Videos } from "./media";
-import type { Review } from "./movies";
+import type { MovieAccountState, Review } from "./movies";
 import type { WatchProvidersResponse } from "./watch-providers";
 
 export interface TvShow {
@@ -89,3 +89,5 @@ export interface ShowCast {
   department?: string;
   job?: string;
 }
+
+export interface TvShowAccountState extends MovieAccountState {}

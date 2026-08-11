@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { getFormatter, getTranslations } from "next-intl/server";
+import { AgeVerificationModal } from "@/components/auth/age-verification-modal";
 import { MovieCarousel } from "@/components/movies/movies-carousel";
 import { TvShowCarousel } from "@/components/tv-show/tv-show-carousel";
-import { AgeVerificationModal } from "@/components/auth/age-verification-modal";
 import { getPerson } from "@/lib/api/people";
 import { ADULT_CONTENT_COOKIE } from "@/lib/constants";
 import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
@@ -111,7 +111,7 @@ export default async function PersonPage({ params }: PersonPageProps) {
     .slice(0, 20);
 
   return (
-    <main className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-background">
       <PersonHero person={person} />
 
       <div className="container mx-auto flex max-w-7xl flex-col gap-12 px-4 pb-12 md:px-8 xl:px-12">
@@ -144,6 +144,6 @@ export default async function PersonPage({ params }: PersonPageProps) {
           <PersonPhotos photos={person.images.profiles} name={person.name} />
         )}
       </div>
-    </main>
+    </div>
   );
 }

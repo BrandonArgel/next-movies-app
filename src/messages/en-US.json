@@ -18,7 +18,13 @@
       "cancel": "Cancel",
       "confirm_over_18": "Yes, I am over 18 years old",
       "login": "Login",
-      "logout": "Logout"
+      "logout": "Logout",
+      "add_favorite": "Add to favorites",
+      "remove_favorite": "Remove from favorites",
+      "add_watch_later": "Add to watch later",
+      "remove_watch_later": "Remove from watch later",
+      "rate": "Rate",
+      "unrate": "Remove rating"
     },
     "labels": {
       "results_count": "results",
@@ -126,6 +132,24 @@
         "toggle_language": "Switch language",
         "search_language": "Search language",
         "language_selector": "Language selector"
+      }
+    },
+    "media_actions": {
+      "success_title": "Success",
+      "error_title": "Error",
+      "favorite_added": "{title} has been added to your favorites",
+      "favorite_removed": "{title} has been removed from your favorites",
+      "watch_later_added": "{title} has been added to watch later list",
+      "watch_later_removed": "{title} has been removed from watch later list",
+      "rating_success": "You have successfully rated {title}",
+      "unrate_success": "Your rating for {title} has been removed",
+      "action_error": "An error occurred while updating {title}",
+      "rating_labels": {
+        "terrible": "Terrible",
+        "bad": "Bad",
+        "average": "Average",
+        "great": "Great",
+        "perfect": "Perfect"
       }
     },
     "alerts": {
@@ -309,7 +333,7 @@
     "network": "Please check your internet connection and try again.",
     "timeout": "The server took too long to respond.",
     "not_found": "We couldn't find the requested resource.",
-    "unauthorized": "Access denied. Please check your API credentials.",
+    "unauthorized": "Access denied. You must be logged in to perform this action.",
     "rate_limit": "Too many requests. Please slow down and try again later.",
     "server_error": "The TMDB server is currently experiencing issues.",
     "default": "An unexpected error occurred. Please try again.",
