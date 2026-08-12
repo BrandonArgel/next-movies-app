@@ -48,12 +48,6 @@ export async function generateMetadata({
   };
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "components.nav" });
-  return { title: t("search") || "Search" };
-}
-
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const resolvedParams = await searchParams;
   const query = normalizeQuery(resolvedParams.q)?.trim();

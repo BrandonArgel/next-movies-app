@@ -1,11 +1,15 @@
-import { redirect } from "@/i18n/routing";
+import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { MovieCarousel } from "@/components/movies/movies-carousel";
 import { TvShowCarousel } from "@/components/tv-show/tv-show-carousel";
 import { getFavoriteMovies, getFavoriteTvShows } from "@/lib/api/account";
 import { requireUser } from "@/lib/auth-utils";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "components.nav" });
   return { title: t("favorites") };

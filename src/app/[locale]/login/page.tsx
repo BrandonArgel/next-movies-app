@@ -29,16 +29,16 @@ export default async function LoginPage({ params, searchParams }: Props) {
     <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-background">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
-          <h2 className="mt-6 text-3xl font-bold tracking-tight">{tActions("login")}</h2>
+          <h2 className="mt-6 text-3xl font-bold tracking-tight">
+            {tActions("login")}
+          </h2>
         </div>
-        
-        {error === 'access_denied' && (
+
+        {error === "access_denied" && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
             <AlertTitle>{tErrors("title")}</AlertTitle>
-            <AlertDescription>
-              {tErrors("unauthorized")}
-            </AlertDescription>
+            <AlertDescription>{tErrors("unauthorized")}</AlertDescription>
           </Alert>
         )}
       </div>
