@@ -11,7 +11,7 @@ export async function fetchOMDb<T>(
   try {
     if (!API_KEY) {
       console.error("OMDB_API_KEY is missing in environment variables.");
-      return { success: false, error: "unauthorized" };
+      return { success: false, error: "unauthorized_dev" };
     }
 
     const query = buildQuery({ apikey: API_KEY, ...params });

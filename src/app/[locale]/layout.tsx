@@ -4,13 +4,14 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { cookies } from "next/headers";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { type Locale, routing } from "@/i18n/routing";
 import { AppProvider } from "@/providers/app-provider";
 import { ACCENT_COLORS_VALUES, type AccentColor } from "@/lib/colors";
-import "../globals.css";
+import { requireUser } from "@/lib/auth-utils";
 import { getDirection } from "@/lib/locale-utils";
+import "../globals.css";
 
 const geistSans = Geist({
   variable: "--font-sans",
@@ -36,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: "global.branding" });
   const appName = t("app_name");
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
   const languagesMap = routing.locales.reduce(
     (acc, locale) => {
@@ -70,7 +71,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
       images: [
         {
-          url: `${baseUrl}/og.png`,
+          url: `${baseUrl}/og-image.png`,
           width: 1200,
           height: 630,
           alt: `${appName} Open Graph Image`,
@@ -85,7 +86,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
       description:
         "A modern, fully internationalized movie app built with Next.js.",
-      images: [`${baseUrl}/og.png`],
+      images: [`${baseUrl}/og-image.png`],
     },
     alternates: {
       canonical: "./",
@@ -118,6 +119,9 @@ export default async function LocaleLayout({ children, params }: Props) {
   const appColor = (cookieStore.get("app-color")?.value ||
     "blue") as AccentColor;
 
+  const { user } = await requireUser();
+  const isAuthenticated = !!user;
+
   return (
     <html
       lang={validLocale}
@@ -127,9 +131,14 @@ export default async function LocaleLayout({ children, params }: Props) {
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <body>
-        <NextIntlClientProvider messages={messages}>
-          <AppProvider appColor={appColor}>{children}</AppProvider>
-        </NextIntlClientProvider>
+        <AppProvider
+          appColor={appColor}
+          messages={messages}
+          locale={validLocale}
+          isAuthenticated={isAuthenticated}
+        >
+          {children}
+        </AppProvider>
       </body>
     </html>
   );

@@ -5,31 +5,31 @@
     },
     "entities": {
       "movies": "电影",
-      "tv_shows": "电视节目",
-      "people": "人们"
+      "tv_shows": "剧集",
+      "people": "影人"
     },
     "actions": {
-      "back_to_home": "回到家",
+      "back_to_home": "返回首页",
       "view_details": "查看详情",
       "view_details_of": "查看详细信息",
-      "readMore": "阅读更多",
+      "readMore": "展开",
       "readLess": "收起",
       "options_aria_label": "{name} 的更多选项",
-      "cancel": "Cancel",
-      "confirm_over_18": "Yes, I am over 18 years old",
+      "cancel": "取消",
+      "confirm_over_18": "是的，我已年满 18 岁",
       "login": "登录",
-      "logout": "登出",
-      "add_favorite": "添加到收藏",
-      "remove_favorite": "从收藏中移除",
-      "add_watch_later": "稍后观看",
-      "remove_watch_later": "从稍后观看中移除",
+      "logout": "退出登录",
+      "add_favorite": "添加收藏",
+      "remove_favorite": "取消收藏",
+      "add_watch_later": "添加至待看",
+      "remove_watch_later": "从待看清单中移除",
       "rate": "评分",
       "unrate": "移除评分"
     },
     "labels": {
       "results_count": "个结果",
       "status": "状态",
-      "popularity": "人气",
+      "popularity": "热度",
       "score": "评分",
       "release_date": "发行日期",
       "genres": "类型"
@@ -37,39 +37,39 @@
     "states": {
       "loading": "加载中...",
       "redirecting": "正在重定向...",
-      "logging_out": "正在登出",
-      "no_more_results": "已到达末尾。",
-      "no_items_found": "没有找到任何内容。",
+      "logging_out": "正在退出",
+      "no_more_results": "已经到底了。",
+      "no_items_found": "未找到任何内容。",
       "no_results": "目前没有可用结果。",
-      "loading_error": "无法加载数据：",
-      "try_again": "再试一次",
-      "no_trailer": "没有可用的预告片。"
+      "loading_error": "加载数据失败：",
+      "try_again": "重试",
+      "no_trailer": "暂无预告片"
     },
     "network": {
-      "online_title": "连接已恢复",
-      "online_description": "您已恢复在线。",
-      "offline_title": "无连接",
-      "offline_description": "您似乎已失去互联网连接。"
+      "online_title": "网络已恢复",
+      "online_description": "您已重新连接到网络。",
+      "offline_title": "无网络连接",
+      "offline_description": "您似乎已断开网络连接。"
     }
   },
   "components": {
     "nav": {
-      "home": "家",
-      "trending_movies": "热门电影",
-      "categories": "类别",
+      "home": "首页",
+      "trending_movies": "流行电影",
+      "categories": "分类",
       "popular": "热门",
-      "upcoming": "即将推出",
-      "now_playing": "正在播放",
-      "top_rated": "最受好评",
-      "airing_today": "今天播出",
+      "upcoming": "即将上映",
+      "now_playing": "正在热映",
+      "top_rated": "高分",
+      "airing_today": "今日播出",
       "on_the_air": "正在播出",
       "movies": "电影",
-      "tv_shows": "电视节目",
-      "people": "人们",
-      "genres": "Genres",
-      "user": "我的东西",
-      "favorites": "收藏夹",
-      "list": "我的清单",
+      "tv_shows": "剧集",
+      "people": "影人",
+      "genres": "类型",
+      "user": "我的",
+      "favorites": "我的收藏",
+      "list": "待看清单",
       "ratings": "我的评分",
       "open_menu": "打开导航菜单",
       "close_menu": "关闭导航菜单",
@@ -78,21 +78,21 @@
       "profile": "个人资料"
     },
     "search": {
-      "placeholder": "搜索电影、电视剧、人物...",
+      "placeholder": "搜索电影、剧集、影人...",
       "label": "搜索",
       "submit": "提交搜索",
       "clear": "清除搜索"
     },
     "filters": {
       "sort_by": "排序方式",
-      "sort_popularity_desc": "人气：从高到低",
-      "sort_popularity_asc": "人气：从低到高",
+      "sort_popularity_desc": "热度：从高到低",
+      "sort_popularity_asc": "热度：从低到高",
       "sort_rating_desc": "评分：从高到低",
       "sort_rating_asc": "评分：从低到高",
       "sort_title_desc": "标题：Z-A",
       "sort_title_asc": "标题：A-Z",
-      "sort_date_desc": "发布日期：从新到旧",
-      "sort_date_asc": "发布日期：从旧到新",
+      "sort_date_desc": "发行日期：从新到旧",
+      "sort_date_asc": "发行日期：从旧到新",
       "sort_first_air_date_desc": "首播日期：从新到旧",
       "sort_first_air_date_asc": "首播日期：从旧到新",
       "sort_by_genre": "类型",
@@ -107,25 +107,25 @@
     "preferences": {
       "theme": {
         "label": "主题",
-        "light": "光",
-        "dark": "黑暗的",
-        "system": "系统",
+        "light": "浅色",
+        "dark": "深色",
+        "system": "跟随系统",
         "toggle_theme": "切换主题",
         "preferences": "偏好设置"
       },
       "color": {
-        "label": "强调色",
-        "blue": "蓝色的",
-        "green": "绿色的",
+        "label": "主题色",
+        "blue": "蓝色",
+        "green": "绿色",
         "cyan": "青色",
-        "indigo": "靛青",
-        "purple": "紫色的",
-        "yellow": "黄色的",
-        "orange": "橙子",
-        "red": "红色的",
-        "pink": "粉色的",
-        "gray": "灰色的",
-        "toggle_color": "切换强调色"
+        "indigo": "靛蓝",
+        "purple": "紫色",
+        "yellow": "黄色",
+        "orange": "橙色",
+        "red": "红色",
+        "pink": "粉色",
+        "gray": "灰色",
+        "toggle_color": "切换主题色"
       },
       "language": {
         "label": "语言",
@@ -137,227 +137,229 @@
     "media_actions": {
       "success_title": "成功",
       "error_title": "错误",
-      "favorite_added": "已将 {title} 添加到收藏",
+      "favorite_added": "已将 {title} 添加至您的收藏",
       "favorite_removed": "已将 {title} 从收藏中移除",
-      "watch_later_added": "已将 {title} 添加到稍后观看",
-      "watch_later_removed": "已将 {title} 从稍后观看中移除",
-      "rating_success": "您已成功对 {title} 进行评分",
+      "watch_later_added": "已将 {title} 添加至待看清单",
+      "watch_later_removed": "已将 {title} 从待看清单中移除",
+      "rating_success": "您已成功对 {title} 评分",
       "unrate_success": "您对 {title} 的评分已移除",
       "action_error": "更新 {title} 时发生错误",
+      "login_required": "请先登录您的账号再继续操作。",
       "rating_labels": {
-        "terrible": "糟糕",
+        "terrible": "极差",
         "bad": "差",
         "average": "一般",
         "great": "好",
-        "perfect": "完美"
+        "perfect": "极佳"
       }
     },
     "alerts": {
       "adult_content": {
-        "title": "Adult Content",
-        "description": "This content is rated for adults and may contain explicit material or violence. Do you confirm you are over 18 years old?",
-        "card_overlay": "Adult content. Click to verify age."
+        "title": "成人内容",
+        "description": "此内容被评级为成人级，可能包含露骨或暴力画面。您确认您已年满 18 岁吗？",
+        "card_overlay": "成人内容，点击验证年龄。"
       }
     },
     "footer": {
-      "tagline": "您的电影世界尽在一处。",
-      "copyright": "©{year}品牌范围。版权所有。",
-      "powered_by": "由 TMDB 提供支持，由 Brandon Argel 创建",
-      "disclaimer": "本产品使用 TMDB API，但未经 TMDB 认可或认证。",
+      "tagline": "您的专属影视宇宙。",
+      "copyright": "© {year} BrandScope. 保留所有权利。",
+      "powered_by": "由 TMDB 提供数据支持，作者：Brandon Argel",
+      "disclaimer": "本产品使用 TMDB API，但未经 TMDB 官方认可或认证。",
       "links": "导航",
-      "legal": "合法的"
+      "legal": "法律信息"
     }
   },
   "pages": {
     "home": {
       "hero": {
-        "trending": "趋势！",
+        "trending": "当前流行！",
         "play_trailer": "播放预告片",
-        "details": "更多详情"
+        "details": "查看详情"
       },
       "trending": {
         "movies": {
-          "title": "热门电影",
-          "description": "现在最热门的电影。",
-          "day": "今天",
-          "week": "本星期"
+          "title": "流行电影",
+          "description": "当下最受欢迎的电影。",
+          "day": "今日",
+          "week": "本周"
         },
         "tv_shows": {
-          "title": "热门电视节目",
-          "description": "现在最流行的电视节目。",
-          "day": "今天",
-          "week": "本星期",
-          "error": "加载电视节目时出错："
+          "title": "流行剧集",
+          "description": "当下最受欢迎的剧集。",
+          "day": "今日",
+          "week": "本周",
+          "error": "加载剧集失败："
         },
         "people": {
-          "title": "热门人物",
-          "description": "现在最受欢迎的人。",
-          "day": "今天",
-          "week": "本星期",
-          "error": "加载人员时出错："
+          "title": "流行影人",
+          "description": "当下最受关注的影人。",
+          "day": "今日",
+          "week": "本周",
+          "error": "加载影人失败："
         }
       }
     },
     "movies": {
       "popular": {
         "title": "热门电影",
-        "description": "观看次数最多的电影。"
+        "description": "当前观看人数最多的电影。"
       },
       "upcoming": {
         "title": "即将上映",
-        "description": "电影即将上映。"
+        "description": "即将登陆院线的最新电影。"
       },
       "now_playing": {
-        "title": "正在上映",
-        "description": "目前在院线上映的电影。"
+        "title": "正在热映",
+        "description": "目前正在院线上映的电影。"
       },
       "top_rated": {
-        "title": "评分最高的电影",
+        "title": "高分电影",
         "description": "有史以来评分最高的电影。"
       }
     },
     "tv": {
       "airing_today": {
         "title": "今日播出",
-        "description": "今天有剧集播出的电视剧。"
+        "description": "今天有新集播出的剧集。"
       },
       "on_the_air": {
         "title": "正在播出",
-        "description": "目前正在电视台播出的剧集。"
+        "description": "目前正在电视台或流媒体播出的剧集。"
       },
       "popular": {
-        "title": "热门电视剧",
-        "description": "目前最受欢迎的电视剧。"
+        "title": "热门剧集",
+        "description": "当前最受欢迎的剧集。"
       },
       "top_rated": {
-        "title": "评分最高的电视剧",
-        "description": "有史以来评分最高的电视剧。"
+        "title": "高分剧集",
+        "description": "有史以来评分最高的剧集。"
       }
     },
     "people": {
       "popular": {
-        "title": "热门人物",
-        "description": "最受关注的演员、导演和创作者。"
+        "title": "热门影人",
+        "description": "当前最受讨论的演员、导演及创作者。"
       }
     },
     "search": {
-      "title": "搜索",
-      "placeholder": "尝试在页面顶部的搜索栏中搜索一些内容！",
-      "no_results": "没有找到关于\"{query}\"的结果。",
-      "results": "搜索结果“{query}”",
+      "title": "搜索 {query}",
+      "placeholder": "在页面顶部的搜索栏中尝试搜索！",
+      "no_results": "未找到与“{query}”相关的结果。",
+      "results": "“{query}”的搜索结果",
       "results_count": "个结果",
       "view_all_results": "查看所有结果",
       "filter_all": "全部",
       "filter_movies": "电影",
-      "filter_tv": "电视剧",
-      "filter_people": "人物"
+      "filter_tv": "剧集",
+      "filter_people": "影人"
     },
     "genres": {
-      "title": "类别",
-      "description": "按类型浏览电影和电视剧。",
+      "title": "类型",
+      "description": "按类型浏览电影和剧集。",
       "movies_section": "电影",
-      "tv_section": "电视剧",
+      "tv_section": "剧集",
       "explore_genre": "探索 {genre}"
     },
     "favorites": {
       "movies_title": "您收藏的电影",
-      "tv_shows_title": "您收藏的电视剧",
-      "no_movies": "您还没有收藏任何电影。",
-      "no_tv_shows": "您还没有收藏任何电视剧。"
+      "tv_shows_title": "您收藏的剧集",
+      "no_movies": "您还没有将任何电影添加到收藏。",
+      "no_tv_shows": "您还没有将任何剧集添加到收藏。"
     },
     "watch_later": {
-      "movies_title": "稍后观看的电影",
-      "tv_shows_title": "稍后观看的电视剧",
-      "no_movies": "您还没有添加任何稍后观看的电影。",
-      "no_tv_shows": "您还没有添加任何稍后观看的电视剧。"
+      "movies_title": "待看电影",
+      "tv_shows_title": "待看剧集",
+      "no_movies": "您的待看清单中还没有电影。",
+      "no_tv_shows": "您的待看清单中还没有剧集。"
     },
     "rated": {
-      "movies_title": "您评分的电影",
-      "tv_shows_title": "您评分的电视剧",
+      "movies_title": "您评分过的电影",
+      "tv_shows_title": "您评分过的剧集",
       "no_movies": "您还没有对任何电影进行评分。",
-      "no_tv_shows": "您还没有对任何电视剧进行评分。"
+      "no_tv_shows": "您还没有对任何剧集进行评分。"
     }
   },
   "domains": {
     "movie": {
-      "cast": "票房最高的演员阵容",
-      "trailer": "拖车",
-      "recommendations": "如果你喜欢这部电影，你也会喜欢...",
+      "cast": "主要演员",
+      "trailer": "预告片",
+      "recommendations": "如果您喜欢这部电影，您可能还会喜欢...",
       "budget": "预算",
-      "revenue": "收入",
-      "where_to_watch": "在哪里观看",
-      "providers_attribution": "流数据提供者",
-      "gallery": "画廊",
-      "similar": "类似电影",
+      "revenue": "票房",
+      "where_to_watch": "播放渠道",
+      "providers_attribution": "流媒体数据由以下机构提供",
+      "gallery": "剧照",
+      "similar": "相似电影",
       "reviews": "用户评论",
       "awards": "奖项",
-      "status": "地位",
-      "stream": "溪流",
-      "rent": "租",
-      "buy": "买",
+      "status": "状态",
+      "stream": "流媒体播放",
+      "rent": "租借",
+      "buy": "购买",
       "official_website": "官方网站",
-      "fallback_overview": "没有这部电影的概述。"
+      "fallback_overview": "暂无此电影的简介。"
     },
     "tv": {
-      "episodes": "集数",
+      "episodes": "剧集",
       "status": "状态",
       "season": "季",
       "seasons": "季",
       "reviews": "用户评论",
-      "created_by": "创建者",
+      "created_by": "主创",
       "in_production": "制作中",
       "series_badge": "剧集",
-      "recommendations": "如果您喜欢这部电视剧，您也会喜欢...",
+      "recommendations": "如果您喜欢这部剧集，您可能还会喜欢...",
       "production_companies": "制作公司",
-      "fallback_overview": "没有此电视节目的概述。",
+      "fallback_overview": "暂无此剧集的简介。",
       "official_website": "官方网站"
     },
     "person": {
-      "biography": "传",
-      "show_biography_aria": "显示完整的传记",
-      "hide_biography_aria": "隐藏传记",
-      "noBiography": "没有可用的传记。",
-      "noPhoto": "没有照片",
+      "biography": "个人简介",
+      "show_biography_aria": "显示完整简介",
+      "hide_biography_aria": "隐藏简介",
+      "noBiography": "暂无简介。",
+      "noPhoto": "暂无照片",
       "popularity": "热度",
       "known_for": "知名作品",
-      "castMovies": "因...而闻名",
-      "castTvShows": "因出演电视剧而闻名...",
-      "also_known_as": "别名",
+      "castMovies": "参演的电影",
+      "castTvShows": "参演的剧集",
+      "also_known_as": "又名",
       "photos": "照片",
       "crew_credits": "幕后工作",
-      "fallback_overview": "没有此人的概述。"
+      "fallback_overview": "暂无此影人的简介。"
     }
   },
   "errors": {
-    "network": "请检查您的互联网连接，然后重试。",
-    "timeout": "服务器响应时间太长。",
-    "not_found": "我们找不到所请求的资源。",
+    "network": "请检查您的网络连接并重试。",
+    "timeout": "服务器响应时间过长，请稍后重试。",
+    "not_found": "我们找不到请求的资源。",
     "unauthorized": "访问被拒绝。您必须登录才能执行此操作。",
-    "rate_limit": "请求太多。请放慢速度，稍后再试。",
-    "server_error": "TMDB 服务器当前遇到问题。",
-    "default": "发生意外错误。请再试一次。",
-    "title": "出了点问题",
+    "unauthorized_dev": "访问被拒绝。请正确配置您的 TMDB 和 OMDB API 密钥。",
+    "rate_limit": "请求过于频繁。请稍后再试。",
+    "server_error": "TMDB 服务器目前遇到问题，请稍后重试。",
+    "default": "发生未知错误。请重试。",
+    "title": "抱歉，出错了",
     "retry": "重试",
-    "search_unavailable": "搜索服务目前不可用。",
+    "search_unavailable": "搜索服务暂时不可用。",
     "load_movies_failed": "加载电影失败",
-    "load_tv_failed": "加载电视节目失败",
-    "load_people_failed": "加载人物失败"
+    "load_tv_failed": "加载剧集失败",
+    "load_people_failed": "加载影人失败"
   },
   "certifications": {
-    "G": "适合所有观众。",
-    "PG": "建议家长指导。",
-    "PG-13": "对 13 岁以下儿童进行严格的家长指导。",
-    "R": "受限制的。 17 岁以下儿童必须由成人陪同。",
-    "NC-17": "仅限成人。 17 岁以下人士不可进入。",
-    "TV-Y": "适合所有儿童。",
-    "TV-Y7": "适合 7 岁及以上儿童。",
-    "TV-G": "适合所有观众。",
-    "TV-PG": "建议家长指导。",
-    "TV-14": "不适合 14 岁以下儿童。",
-    "TV-MA": "仅供成人观众观看。",
-    "NR": "未评级。",
+    "G": "G - 大众级（适合所有年龄段）。",
+    "PG": "PG - 辅导级（建议家长指导）。",
+    "PG-13": "PG-13 - 特别辅导级（建议 13 岁以下儿童在家长陪同下观看）。",
+    "R": "R - 限制级（17 岁以下必须由成人陪同）。",
+    "NC-17": "NC-17 - 17岁以下禁止观看。",
+    "TV-Y": "TV-Y - 适合所有儿童。",
+    "TV-Y7": "TV-Y7 - 适合 7 岁及以上儿童。",
+    "TV-G": "TV-G - 大众级（适合所有观众）。",
+    "TV-PG": "TV-PG - 建议家长指导。",
+    "TV-14": "TV-14 - 14 岁以下儿童需家长陪同。",
+    "TV-MA": "TV-MA - 成人级（仅限成人观看）。",
+    "NR": "未评级",
     "Unrated": "未评级",
-    "fallback": "年龄分级"
+    "fallback": "年龄评级"
   },
   "tmdb": {
     "jobs": {

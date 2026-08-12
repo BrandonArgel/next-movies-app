@@ -7,6 +7,7 @@ export type ErrorTranslationKey =
   | "timeout"
   | "not_found"
   | "unauthorized"
+  | "unauthorized_dev"
   | "rate_limit"
   | "server_error"
   | "default";
@@ -33,7 +34,6 @@ export type MultiSearchResult =
   | (TvShow & { media_type: "tv" })
   | (Person & { media_type: "person" });
 
-export interface MultiSearchResponse
-  extends PaginatedResponse<MultiSearchResult> {}
+export interface MultiSearchResponse extends PaginatedResponse<MultiSearchResult> {}
 export type TMDBResponse<T> = Promise<Result<T>>;
 export type TMDBPaginatedResponse<T> = Promise<Result<PaginatedResponse<T>>>;
