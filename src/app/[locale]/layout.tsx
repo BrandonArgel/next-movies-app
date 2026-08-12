@@ -1,7 +1,8 @@
-// src/app/[locale]/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { cookies } from "next/headers";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
@@ -139,6 +140,8 @@ export default async function LocaleLayout({ children, params }: Props) {
         >
           {children}
         </AppProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
