@@ -38,6 +38,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
 
+  const languagesMap = routing.locales.reduce(
+    (acc, locale) => {
+      acc[locale] = `/${locale}`;
+      return acc;
+    },
+    {} as Record<string, string>,
+  );
+
   return {
     metadataBase: new URL(baseUrl),
     title: {
@@ -60,6 +68,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: appName,
       locale: locale,
       type: "website",
+      images: [
+        {
+          url: `${baseUrl}/og.png`,
+          width: 1200,
+          height: 630,
+          alt: `${appName} Open Graph Image`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
@@ -69,12 +85,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
       description:
         "A modern, fully internationalized movie app built with Next.js.",
+      images: [`${baseUrl}/og-image.png`],
     },
     alternates: {
       canonical: "./",
       languages: {
-        "en-US": "/en-US",
-        "es-MX": "/es-MX",
+        ...languagesMap,
+        "x-default": "/en-US",
       },
     },
   };
