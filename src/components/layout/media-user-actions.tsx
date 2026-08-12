@@ -147,7 +147,7 @@ export function MediaUserActions({
   ];
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex flex-wrap items-center gap-4">
       <TooltipTrigger delay={0}>
         <Button
           onPress={handleFavoriteClick}
