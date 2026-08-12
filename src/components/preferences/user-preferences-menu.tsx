@@ -15,19 +15,16 @@ import {
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
+import { Dialog } from "react-aria-components";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { Popover, PopoverTrigger } from "@/components/ui/popover";
 import {
-  DropdownMenu,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { type Locale, routing } from "@/i18n/routing";
 import { BASE_GRAVATAR_URL } from "@/lib/constants";
@@ -60,7 +57,6 @@ export function UserPreferencesMenu({
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // 1. Inicializar useTransition
   const [isPending, startTransition] = useTransition();
 
   const initials = user?.name
@@ -77,7 +73,6 @@ export function UserPreferencesMenu({
     const params = new URLSearchParams(searchParams.toString());
     const query = params.toString() ? `?${params.toString()}` : "";
 
-    // 2. Envolver la navegación en startTransition
     startTransition(() => {
       router.replace(`${pathname}${query}`, { locale: next });
     });
@@ -90,7 +85,7 @@ export function UserPreferencesMenu({
     : `${BASE_GRAVATAR_URL}/${gravatarHash}`;
 
   return (
-    <DropdownMenuTrigger>
+    <PopoverTrigger>
       <Button
         variant="ghost"
         size="icon"
@@ -117,157 +112,142 @@ export function UserPreferencesMenu({
         )}
       </Button>
 
-      <DropdownMenu placement="bottom end" className="w-56">
-        {/* User Information Header */}
-        {user ? (
-          <DropdownMenuGroup>
-            <DropdownMenuLabel>
-              <div className="flex flex-col space-y-1.5 py-0.5 text-foreground">
-                <span className="font-medium leading-none">
-                  {user.username}
-                </span>
+      <Popover
+        placement="bottom end"
+        className="w-64 max-h-[85dvh] overflow-y-auto p-2"
+      >
+        <Dialog className="flex flex-col outline-none">
+          {user && (
+            <>
+              <div className="px-2 py-1.5 text-sm font-medium">
+                {user.username}
               </div>
-            </DropdownMenuLabel>
-          </DropdownMenuGroup>
-        ) : null}
+              <div className="my-1 h-px bg-border" />
+            </>
+          )}
 
-        {user ? <DropdownMenuSeparator /> : null}
-
-        {/* Preferences Section */}
-        <DropdownMenuGroup>
-          <DropdownMenuLabel>
-            {tPreferences("theme.preferences")}
-          </DropdownMenuLabel>
-
-          {/* Theme Submenu */}
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>
-              <SunIcon className="mr-2 size-4 dark:hidden" />
-              <MoonIcon className="mr-2 hidden size-4 dark:block" />
-              <span>{tPreferences("theme.toggle_theme")}</span>
-            </DropdownMenuSubTrigger>
-            <DropdownMenuSubContent>
-              <DropdownMenuGroup
-                selectionMode="single"
-                selectedKeys={new Set([theme ?? "system"])}
-              >
-                <DropdownMenuItem
-                  id="light"
-                  onAction={() => setTheme("light")}
-                  className="flex cursor-pointer items-center gap-2"
+          <Accordion className="w-full">
+            {/* Theme Section */}
+            <AccordionItem id="theme" className="border-b-0">
+              <AccordionTrigger className="px-2 py-2 hover:bg-muted hover:no-underline rounded-sm">
+                <span className="flex items-center gap-2">
+                  <SunIcon className="size-4 dark:hidden" />
+                  <MoonIcon className="hidden size-4 dark:block" />
+                  {tPreferences("theme.preferences")}
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="flex flex-col gap-1 px-1 pb-2 pt-1">
+                <Button
+                  variant={theme === "light" ? "secondary" : "ghost"}
+                  className="h-8 w-full justify-start px-2 font-normal"
+                  onPress={() => setTheme("light")}
                 >
-                  <SunIcon className="size-4" />
-                  <span>{tPreferences("theme.light")}</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  id="dark"
-                  onAction={() => setTheme("dark")}
-                  className="flex cursor-pointer items-center gap-2"
+                  <SunIcon className="mr-2 size-4" />
+                  {tPreferences("theme.light")}
+                </Button>
+                <Button
+                  variant={theme === "dark" ? "secondary" : "ghost"}
+                  className="h-8 w-full justify-start px-2 font-normal"
+                  onPress={() => setTheme("dark")}
                 >
-                  <MoonIcon className="size-4" />
-                  <span>{tPreferences("theme.dark")}</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  id="system"
-                  onAction={() => setTheme("system")}
-                  className="flex cursor-pointer items-center gap-2"
+                  <MoonIcon className="mr-2 size-4" />
+                  {tPreferences("theme.dark")}
+                </Button>
+                <Button
+                  variant={theme === "system" ? "secondary" : "ghost"}
+                  className="h-8 w-full justify-start px-2 font-normal"
+                  onPress={() => setTheme("system")}
                 >
-                  <MonitorIcon className="size-4" />
-                  <span>{tPreferences("theme.system")}</span>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuSubContent>
-          </DropdownMenuSub>
+                  <MonitorIcon className="mr-2 size-4" />
+                  {tPreferences("theme.system")}
+                </Button>
+              </AccordionContent>
+            </AccordionItem>
 
-          {/* Color Submenu */}
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>
-              <PaletteIcon className="mr-2 size-4" />
-              <span>{tPreferences("color.toggle_color")}</span>
-            </DropdownMenuSubTrigger>
-            <DropdownMenuSubContent>
-              <DropdownMenuGroup
-                selectionMode="single"
-                selectedKeys={new Set([color])}
-              >
+            {/* Color Section */}
+            <AccordionItem id="color" className="border-b-0">
+              <AccordionTrigger className="px-2 py-2 hover:bg-muted hover:no-underline rounded-sm">
+                <span className="flex items-center gap-2">
+                  <PaletteIcon className="size-4" />
+                  {tPreferences("color.label")}
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="flex max-h-48 flex-col gap-1 overflow-y-auto px-1 pb-2 pt-1">
                 {ACCENT_COLORS.map(({ key, previewClass }) => (
-                  <DropdownMenuItem
+                  <Button
                     key={key}
-                    id={key}
-                    onAction={() => setColor(key)}
-                    className="flex cursor-pointer items-center gap-2"
+                    variant={color === key ? "secondary" : "ghost"}
+                    className="h-8 w-full justify-start px-2 font-normal"
+                    onPress={() => setColor(key)}
                   >
                     <span
                       aria-hidden="true"
                       className={cn(
-                        "size-3.5 rounded-full ring-1 ring-black/10 ring-inset dark:ring-white/10",
+                        "mr-2 size-3.5 rounded-full ring-1 ring-black/10 ring-inset dark:ring-white/10",
                         previewClass,
                       )}
                     />
-                    <span>{tPreferences(`color.${key}`)}</span>
-                  </DropdownMenuItem>
+                    {tPreferences(`color.${key}`)}
+                  </Button>
                 ))}
-              </DropdownMenuGroup>
-            </DropdownMenuSubContent>
-          </DropdownMenuSub>
+              </AccordionContent>
+            </AccordionItem>
 
-          {/* Language Submenu */}
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>
-              <GlobeIcon className="mr-2 size-4" />
-              <span>{tPreferences("language.toggle_language")}</span>
-            </DropdownMenuSubTrigger>
-            <DropdownMenuSubContent>
-              <DropdownMenuGroup
-                selectionMode="single"
-                selectedKeys={new Set([locale])}
-                className="max-h-75 overflow-y-auto"
-              >
+            {/* Language Section */}
+            <AccordionItem id="language" className="border-b-0">
+              <AccordionTrigger className="px-2 py-2 hover:bg-muted hover:no-underline rounded-sm">
+                <span className="flex items-center gap-2">
+                  <GlobeIcon className="size-4" />
+                  {tPreferences("language.label")}
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="flex max-h-48 flex-col gap-1 overflow-y-auto px-1 pb-2 pt-1">
                 {routing.locales.map((loc) => {
                   const { flag, nativeName } = LOCALE_META[loc];
                   return (
-                    <DropdownMenuItem
+                    <Button
                       key={loc}
-                      id={loc}
-                      onAction={() => switchLocale(loc as Locale)}
-                      className="flex cursor-pointer items-center gap-3"
+                      variant={locale === loc ? "secondary" : "ghost"}
+                      className="h-8 w-full justify-start px-2 font-normal"
+                      onPress={() => switchLocale(loc as Locale)}
                     >
-                      <span aria-hidden="true" className="shrink-0 text-base">
+                      <span aria-hidden="true" className="mr-3 text-base">
                         {flag}
                       </span>
-                      <span className="flex-1 truncate">{nativeName}</span>
-                    </DropdownMenuItem>
+                      <span className="truncate">{nativeName}</span>
+                    </Button>
                   );
                 })}
-              </DropdownMenuGroup>
-            </DropdownMenuSubContent>
-          </DropdownMenuSub>
-        </DropdownMenuGroup>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
 
-        <DropdownMenuSeparator />
+          <div className="my-1 h-px bg-border" />
 
-        {/* Authentication State Section */}
-        <DropdownMenuGroup>
-          {user ? (
-            <DropdownMenuItem
-              variant="destructive"
-              onAction={onLogout}
-              className="flex cursor-pointer items-center gap-2"
-            >
-              <LogOutIcon className="size-4" />
-              <span>{tGlobal("actions.logout")}</span>
-            </DropdownMenuItem>
-          ) : (
-            <DropdownMenuItem
-              onAction={onLogin}
-              className="flex cursor-pointer items-center gap-2"
-            >
-              <LogInIcon className="size-4" />
-              <span>{tGlobal("actions.login")}</span>
-            </DropdownMenuItem>
-          )}
-        </DropdownMenuGroup>
-      </DropdownMenu>
-    </DropdownMenuTrigger>
+          {/* Authentication Action */}
+          <div className="px-1 py-1">
+            {user ? (
+              <Button
+                variant="ghost"
+                className="h-8 w-full justify-start px-2 font-normal text-destructive hover:bg-destructive/10 hover:text-destructive"
+                onPress={onLogout}
+              >
+                <LogOutIcon className="mr-2 size-4" />
+                {tGlobal("actions.logout")}
+              </Button>
+            ) : (
+              <Button
+                variant="ghost"
+                className="h-8 w-full justify-start px-2 font-normal"
+                onPress={onLogin}
+              >
+                <LogInIcon className="mr-2 size-4" />
+                {tGlobal("actions.login")}
+              </Button>
+            )}
+          </div>
+        </Dialog>
+      </Popover>
+    </PopoverTrigger>
   );
 }
