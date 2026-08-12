@@ -110,7 +110,7 @@ interface UserScoreChartProps {
   voteAverage: number;
 }
 
-export function UserScoreChart({ voteAverage }: UserScoreChartProps) {
+function _UserScoreChart({ voteAverage }: UserScoreChartProps) {
   const percentage = Math.round(voteAverage * 10);
 
   const radius = 20;

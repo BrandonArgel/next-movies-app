@@ -103,7 +103,7 @@ export default async function GenrePage({ params }: GenrePageProps) {
   }
 
   const mediaType = type as GenreType;
-  const t = await getTranslations("pages.genres");
+  const _t = await getTranslations("pages.genres");
   const tNav = await getTranslations("components.nav");
 
   const Icon = GENRE_ICONS[Number(genreId)] || TagIcon;

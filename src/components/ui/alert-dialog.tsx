@@ -74,7 +74,7 @@ function AlertDialog({
   );
 }
 
-function AlertDialogContent({
+function _AlertDialogContent({
   className,
   size = "default",
   children,
@@ -119,7 +119,7 @@ function AlertDialogFooter({
   );
 }
 
-function AlertDialogMedia({
+function _AlertDialogMedia({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -204,12 +204,9 @@ export {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
-  AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogMedia,
-  AlertDialogOverlay,
   AlertDialogTitle,
   AlertDialogTrigger,
 };

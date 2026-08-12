@@ -14,7 +14,17 @@
       "view_details_of": "عرض التفاصيل ل",
       "readMore": "اقرأ المزيد",
       "readLess": "اقرأ أقل",
-      "options_aria_label": "مزيد من الخيارات لـ {name}"
+      "options_aria_label": "مزيد من الخيارات لـ {name}",
+      "cancel": "Cancel",
+      "confirm_over_18": "Yes, I am over 18 years old",
+      "login": "تسجيل الدخول",
+      "logout": "تسجيل الخروج",
+      "add_favorite": "إضافة إلى المفضلة",
+      "remove_favorite": "إزالة من المفضلة",
+      "add_watch_later": "المشاهدة لاحقاً",
+      "remove_watch_later": "إزالة من المشاهدة لاحقاً",
+      "rate": "تقييم",
+      "unrate": "إزالة التقييم"
     },
     "labels": {
       "results_count": "نتائج",
@@ -26,6 +36,8 @@
     },
     "states": {
       "loading": "جارٍ التحميل...",
+      "redirecting": "جاري التوجيه...",
+      "logging_out": "جاري تسجيل الخروج",
       "no_more_results": "لقد وصلت إلى النهاية.",
       "no_items_found": "لم يتم العثور على عناصر.",
       "no_results": "لا توجد نتائج متاحة في الوقت الراهن.",
@@ -47,36 +59,29 @@
       "categories": "فئات",
       "popular": "شائع",
       "upcoming": "القادمة",
-      "open_menu": "فتح قائمة التنقل",
-      "close_menu": "إغلاق قائمة التنقل",
-      "navigation": "الملاحة الرئيسية",
-      "settings": "إعدادات",
-      "movies": "أفلام",
-      "tv_shows": "البرامج التلفزيونية",
-      "people": "الناس",
       "now_playing": "التشغيل الآن",
       "top_rated": "الأعلى تقييمًا",
       "airing_today": "بث اليوم",
-      "on_tv": "على شاشة التلفزيون",
+      "on_the_air": "في البث",
+      "movies": "أفلام",
+      "tv_shows": "البرامج التلفزيونية",
+      "people": "الناس",
+      "genres": "Genres",
       "user": "أشيائي",
       "favorites": "المفضلة",
       "list": "قائمتي",
       "ratings": "تقييماتي",
-      "on_the_air": "في البث"
+      "open_menu": "فتح قائمة التنقل",
+      "close_menu": "إغلاق قائمة التنقل",
+      "navigation": "الملاحة الرئيسية",
+      "settings": "إعدادات",
+      "profile": "الملف الشخصي"
     },
     "search": {
       "placeholder": "ابحث عن أفلام وبرامج تلفزيونية وأشخاص...",
       "label": "يبحث",
       "submit": "إرسال البحث",
-      "clear": "مسح البحث",
-      "filter_all": "الكل",
-      "filter_movies": "أفلام",
-      "filter_tv": "مسلسلات",
-      "filter_people": "أشخاص",
-      "no_results": "لا توجد نتائج لـ \"{query}\".",
-      "results": "نتائج البحث عن \"{query}\"",
-      "title": "يبحث",
-      "results_count": "نتائج"
+      "clear": "مسح البحث"
     },
     "filters": {
       "sort_by": "ترتيب حسب",
@@ -129,6 +134,31 @@
         "language_selector": "محدد اللغة"
       }
     },
+    "media_actions": {
+      "success_title": "نجاح",
+      "error_title": "خطأ",
+      "favorite_added": "تمت إضافة {title} إلى المفضلة",
+      "favorite_removed": "تمت إزالة {title} من المفضلة",
+      "watch_later_added": "تمت إضافة {title} إلى قائمة المشاهدة لاحقاً",
+      "watch_later_removed": "تمت إزالة {title} من قائمة المشاهدة لاحقاً",
+      "rating_success": "لقد قمت بتقييم {title} بنجاح",
+      "unrate_success": "تمت إزالة تقييمك لـ {title}",
+      "action_error": "حدث خطأ أثناء تحديث {title}",
+      "rating_labels": {
+        "terrible": "سيء جداً",
+        "bad": "سيء",
+        "average": "متوسط",
+        "great": "جيد جداً",
+        "perfect": "ممتاز"
+      }
+    },
+    "alerts": {
+      "adult_content": {
+        "title": "Adult Content",
+        "description": "This content is rated for adults and may contain explicit material or violence. Do you confirm you are over 18 years old?",
+        "card_overlay": "Adult content. Click to verify age."
+      }
+    },
     "footer": {
       "tagline": "عالم الأفلام الخاص بك، كل ذلك في مكان واحد.",
       "copyright": "©{year}براندسكوب. جميع الحقوق محفوظة.",
@@ -143,8 +173,7 @@
       "hero": {
         "trending": "تتجه!",
         "play_trailer": "تشغيل المقطع الدعائي",
-        "details": "مزيد من التفاصيل",
-        "no_trailer": "لا يوجد مقطورة متاحة."
+        "details": "مزيد من التفاصيل"
       },
       "trending": {
         "movies": {
@@ -229,6 +258,24 @@
       "movies_section": "الأفلام",
       "tv_section": "المسلسلات",
       "explore_genre": "استكشف {genre}"
+    },
+    "favorites": {
+      "movies_title": "أفلامك المفضلة",
+      "tv_shows_title": "برامجك التلفزيونية المفضلة",
+      "no_movies": "لم تقم بإضافة أي أفلام إلى المفضلة بعد.",
+      "no_tv_shows": "لم تقم بإضافة أي برامج تلفزيونية إلى المفضلة بعد."
+    },
+    "watch_later": {
+      "movies_title": "أفلام للمشاهدة لاحقاً",
+      "tv_shows_title": "برامج تلفزيونية للمشاهدة لاحقاً",
+      "no_movies": "لم تقم بإضافة أي أفلام إلى قائمة المشاهدة لاحقاً بعد.",
+      "no_tv_shows": "لم تقم بإضافة أي برامج تلفزيونية إلى قائمة المشاهدة لاحقاً بعد."
+    },
+    "rated": {
+      "movies_title": "الأفلام التي قيمتها",
+      "tv_shows_title": "البرامج التلفزيونية التي قيمتها",
+      "no_movies": "لم تقم بتقييم أي أفلام بعد.",
+      "no_tv_shows": "لم تقم بتقييم أي برامج تلفزيونية بعد."
     }
   },
   "domains": {
@@ -236,69 +283,56 @@
       "cast": "أعلى الممثلين الفاتورة",
       "trailer": "جَرَّار",
       "recommendations": "إذا أعجبك هذا الفيلم، فسوف يعجبك أيضًا...",
-      "no_trailer": "لا يوجد مقطورة متاحة.",
-      "release_date": "تاريخ الافراج عنه",
-      "genres": "الأنواع",
-      "score": "نتيجة",
-      "official_website": "الموقع الرسمي",
-      "status": "حالة",
-      "popularity": "شعبية",
       "budget": "ميزانية",
       "revenue": "ربح",
       "where_to_watch": "أين تشاهد",
-      "stream": "تدفق",
-      "buy": "يشتري",
-      "rent": "إيجار",
       "providers_attribution": "تدفق البيانات المقدمة من",
       "gallery": "معرض",
       "similar": "أفلام مماثلة",
       "reviews": "مراجعات المستخدم",
       "awards": "الجوائز",
-      "fallback_overview": "لا توجد نظرة عامة متاحة لهذا الفيلم.",
-      "options_aria_label": "المزيد من الخيارات ل{title}"
+      "status": "حالة",
+      "stream": "تدفق",
+      "rent": "إيجار",
+      "buy": "يشتري",
+      "official_website": "الموقع الرسمي",
+      "fallback_overview": "لا توجد نظرة عامة متاحة لهذا الفيلم."
     },
     "tv": {
-      "fallback_overview": "لا توجد نظرة عامة متاحة لهذا البرنامج التلفزيوني.",
-      "options_aria_label": "المزيد من الخيارات ل{name}",
-      "status": "الحالة",
-      "popularity": "الشعبية",
       "episodes": "الحلقات",
+      "status": "الحالة",
       "season": "موسم",
       "seasons": "مواسم",
       "reviews": "مراجعات المستخدمين",
       "created_by": "من إنشاء",
       "in_production": "قيد الإنتاج",
       "series_badge": "مسلسل",
-      "official_website": "الموقع الرسمي",
+      "recommendations": "إذا أعجبك هذا البرنامج التلفزيوني، فسوف يعجبك أيضًا...",
       "production_companies": "شركات الإنتاج",
-      "recommendations": "إذا أعجبك هذا البرنامج التلفزيوني، فسوف يعجبك أيضًا..."
+      "fallback_overview": "لا توجد نظرة عامة متاحة لهذا البرنامج التلفزيوني.",
+      "official_website": "الموقع الرسمي"
     },
     "person": {
-      "castMovies": "معروف ب...",
       "biography": "سيرة",
-      "noBiography": "لا توجد سيرة ذاتية متاحة.",
-      "noPhoto": "لا توجد صورة",
-      "readMore": "اقرأ المزيد",
-      "readLess": "اقرأ أقل",
-      "fallback_overview": "لا توجد نظرة عامة متاحة لهذا الشخص.",
-      "options_aria_label": "المزيد من الخيارات ل{name}",
-      "known_for": "مشهور بـ",
-      "popularity": "الشعبية",
-      "also_known_as": "يُعرف أيضاً بـ",
-      "photos": "الصور",
-      "social_links_aria": "روابط التواصل الاجتماعي لـ {name}",
-      "tv_credits": "أعمال تلفزيونية",
-      "crew_credits": "خلف الكاميرا",
       "show_biography_aria": "عرض السيرة الذاتية كاملة",
       "hide_biography_aria": "اخفاء السيرة الذاتية",
-      "castTvShows": "اشتهر بالتمثيل في البرامج التليفزيونية.."
+      "noBiography": "لا توجد سيرة ذاتية متاحة.",
+      "noPhoto": "لا توجد صورة",
+      "popularity": "الشعبية",
+      "known_for": "مشهور بـ",
+      "castMovies": "معروف ب...",
+      "castTvShows": "اشتهر بالتمثيل في البرامج التليفزيونية..",
+      "also_known_as": "يُعرف أيضاً بـ",
+      "photos": "الصور",
+      "crew_credits": "خلف الكاميرا",
+      "fallback_overview": "لا توجد نظرة عامة متاحة لهذا الشخص."
     }
   },
   "errors": {
     "network": "يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.",
     "timeout": "استغرق الخادم وقتًا طويلاً للرد.",
     "not_found": "لم نتمكن من العثور على المورد المطلوب.",
-    "unauthorized": "تم الرفض. يرجى التحقق من بيانات اعتماد API الخاصة بك.",
+    "unauthorized": "تم الرفض. يجب عليك تسجيل الدخول لإجراء هذه العملية.",
     "rate_limit": "طلبات كثيرة جدًا. يرجى إبطاء والمحاولة مرة أخرى في وقت لاحق.",
     "server_error": "يواجه خادم TMDB مشكلات حاليًا.",
     "default": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
@@ -324,5 +358,15 @@
     "NR": "غير مصنف.",
     "Unrated": "غير مصنف",
     "fallback": "تقييمات العمر"
+  },
+  "tmdb": {
+    "jobs": {
+      "Director": "مخرج",
+      "Producer": "منتج",
+      "Executive Producer": "منتج منفذ",
+      "Songs": "أغاني",
+      "Writer": "كاتب",
+      "Screenplay": "سيناريو"
+    }
   }
 }

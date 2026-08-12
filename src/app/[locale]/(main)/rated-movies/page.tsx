@@ -5,6 +5,12 @@ import { TvShowCarousel } from "@/components/tv-show/tv-show-carousel";
 import { getRatedMovies, getRatedTvShows } from "@/lib/api/account";
 import { requireUser } from "@/lib/auth-utils";
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "components.nav" });
+  return { title: t("ratings") };
+}
+
 export default async function FavoritesPage() {
   const { user, token } = await requireUser();
 
@@ -27,7 +33,7 @@ export default async function FavoritesPage() {
     : [];
 
   return (
-    <div className="container mx-auto flex max-w-7xl flex-col gap-24 mt-8 px-4 md:px-8 xl:px-12">
+    <div className="container mx-auto mt-8 flex max-w-7xl flex-col gap-24 px-4 md:px-8 xl:px-12">
       <section className="flex flex-col gap-4">
         <h2 className="font-bold text-xl md:text-2xl">{t("movies_title")}</h2>
 

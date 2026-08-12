@@ -7,9 +7,9 @@ interface MovieTrailerProps {
 }
 
 export function MovieTrailer({ videos }: MovieTrailerProps) {
-  if (!videos || videos.length === 0) return;
-
   const t = useTranslations("domains.movie");
+
+  if (!videos || videos.length === 0) return;
 
   const trailer =
     videos.find(

@@ -27,7 +27,7 @@ export function PersonExternalLinks({
   externalIds,
   name,
 }: PersonExternalLinksProps) {
-  const t = useTranslations("domains.person");
+  const _t = useTranslations("domains.person");
 
   if (!externalIds) return null;
 
@@ -73,10 +73,7 @@ export function PersonExternalLinks({
   if (links.length === 0) return null;
 
   return (
-    <div
-      className="flex flex-wrap items-center gap-2"
-      aria-label={t("social_links_aria", { name })}
-    >
+    <div className="flex flex-wrap items-center gap-2">
       {links.map((link) => (
         <a
           key={link.id}

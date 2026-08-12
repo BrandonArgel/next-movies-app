@@ -52,6 +52,7 @@ export function ExpandableBiography({
       </p>
 
       <button
+        type="button"
         onClick={() => setIsExpanded(!isExpanded)}
         className="self-start rounded-sm font-semibold text-primary text-sm hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         aria-expanded={isExpanded}

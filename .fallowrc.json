@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/fallow/schema.json",
+  "entry": ["src/index.{ts,tsx,js,jsx}", "src/main.{ts,tsx,js,jsx}"],
+  "duplicates": {
+    "minOccurrences": 3,
+    "ignore": [],
+    "mode": "semantic"
+  },
+  "rules": {},
+  "ignoreExports": [
+    {
+      "file": "src/types/media.ts",
+      "exports": ["*"]
+    },
+    {
+      "file": "src/types/person.ts",
+      "exports": ["*"]
+    },
+    {
+      "file": "src/types/movies.ts",
+      "exports": ["*"]
+    },
+    {
+      "file": "src/types/api.ts",
+      "exports": ["*"]
+    }
+  ]
+}

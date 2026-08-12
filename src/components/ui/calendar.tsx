@@ -61,7 +61,7 @@ const cellVariants = cva(
   },
 );
 
-function Calendar<
+function _Calendar<
   T extends DateValue,
   M extends "single" | "multiple" = "single",
 >(
@@ -269,4 +269,4 @@ function YearDropdown({ format }: { format?: Intl.DateTimeFormatOptions }) {
   );
 }
 
-export { Calendar, RangeCalendar };
+export { RangeCalendar };

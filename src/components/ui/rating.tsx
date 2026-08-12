@@ -23,7 +23,7 @@ export interface StarIconProps {
   SVGstyle?: React.CSSProperties;
 }
 
-export function StarIcon({
+function StarIcon({
   size = 25,
   SVGstrokeColor = "currentColor",
   SVGstorkeWidth = 0,
@@ -59,7 +59,7 @@ type Action =
   | { type: "PointerLeave" }
   | { type: "MouseClick"; payload: number };
 
-export function reducer(state: State, action: Action): State {
+function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "PointerMove":
       return {
@@ -349,7 +349,7 @@ export function Rating({
           </span>
 
           <span
-            className={`absolute top-0 inset-s-0 flex overflow-hidden whitespace-nowrap ${fillClassName}`}
+            className={`absolute inset-s-0 top-0 flex overflow-hidden whitespace-nowrap ${fillClassName}`}
             style={{
               color: ratingArray(fillColorArray) || fillColor,
               transition: transition

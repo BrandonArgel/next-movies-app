@@ -1,4 +1,4 @@
-import { Bookmark, Heart, Info, Play, Star } from "lucide-react";
+import { Info, Play, Star } from "lucide-react";
 import { getFormatter, getLocale, getTranslations } from "next-intl/server";
 import { MediaUserActions } from "@/components/layout/media-user-actions";
 import { Badge } from "@/components/ui/badge";
@@ -198,7 +198,7 @@ export async function MovieHero({ movieId, userId, token }: MovieHeroProps) {
 
         {/* Genres */}
         {hasGenres && (
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="mb-4 flex flex-wrap gap-2">
             {genres.map(({ id, name }) => (
               <Link key={id} href={`/genres/movie/${id}`}>
                 <Badge className="flex items-center gap-2 bg-primary/80">

@@ -152,7 +152,7 @@ export function MediaUserActions({
         <Button
           onPress={handleFavoriteClick}
           isDisabled={isFavoritePending}
-          className={`p-2 rounded-full transition-colors ${
+          className={`rounded-full p-2 transition-colors ${
             isFavorite
               ? "bg-red-600 text-white hover:bg-red-800"
               : "bg-white/20 text-white hover:bg-white/30"
@@ -170,7 +170,7 @@ export function MediaUserActions({
         <Button
           onPress={handleWatchLaterClick}
           isDisabled={isWatchLaterPending}
-          className={`p-2 rounded-full transition-colors ${
+          className={`rounded-full p-2 transition-colors ${
             isWatchLater
               ? "bg-primary text-primary-foreground"
               : "bg-white/20 text-white hover:bg-white/30"

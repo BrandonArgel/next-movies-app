@@ -70,7 +70,7 @@
       "user": "My Stuff",
       "favorites": "Favorites",
       "list": "Watch later",
-      "ratings": "Rated movies",
+      "ratings": "My ratings",
       "open_menu": "Open navigation menu",
       "close_menu": "Close navigation menu",
       "navigation": "Main navigation",
@@ -324,7 +324,6 @@
       "castTvShows": "Known for acting in TV Shows...",
       "also_known_as": "Also known as",
       "photos": "Photos",
-      "social_links_aria": "Social links for {name}",
       "crew_credits": "Behind the Camera",
       "fallback_overview": "No overview available for this person."
     }

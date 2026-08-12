@@ -7,9 +7,10 @@ interface MovieImagesProps {
 }
 
 export function MovieImages({ images }: MovieImagesProps) {
+  const t = useTranslations("domains.movie");
+
   if (!images || images.length === 0) return;
 
-  const t = useTranslations("domains.movie");
   const displayImages = images.slice(0, 6);
 
   if (displayImages.length === 0) return null;

@@ -14,7 +14,17 @@
       "view_details_of": "Visualizza i dettagli per",
       "readMore": "Leggi di più",
       "readLess": "Leggi di meno",
-      "options_aria_label": "Più opzioni per {name}"
+      "options_aria_label": "Più opzioni per {name}",
+      "cancel": "Cancel",
+      "confirm_over_18": "Yes, I am over 18 years old",
+      "login": "Accedi",
+      "logout": "Esci",
+      "add_favorite": "Aggiungi ai preferiti",
+      "remove_favorite": "Rimuovi dai preferiti",
+      "add_watch_later": "Guarda più tardi",
+      "remove_watch_later": "Rimuovi da guarda più tardi",
+      "rate": "Valuta",
+      "unrate": "Rimuovi valutazione"
     },
     "labels": {
       "results_count": "risultati",
@@ -26,6 +36,8 @@
     },
     "states": {
       "loading": "Caricamento...",
+      "redirecting": "Reindirizzamento...",
+      "logging_out": "Disconnessione",
       "no_more_results": "Hai raggiunto la fine.",
       "no_items_found": "Nessun elemento trovato.",
       "no_results": "Nessun risultato disponibile al momento.",
@@ -47,36 +59,29 @@
       "categories": "Categorie",
       "popular": "Popolare",
       "upcoming": "Prossimamente",
-      "open_menu": "Apri il menu di navigazione",
-      "close_menu": "Chiudi il menu di navigazione",
-      "navigation": "Navigazione principale",
-      "settings": "Impostazioni",
-      "movies": "Film",
-      "tv_shows": "Spettacoli televisivi",
-      "people": "Persone",
       "now_playing": "Ora in riproduzione",
       "top_rated": "I più votati",
       "airing_today": "In onda oggi",
-      "on_tv": "In televisione",
+      "on_the_air": "In onda",
+      "movies": "Film",
+      "tv_shows": "Spettacoli televisivi",
+      "people": "Persone",
+      "genres": "Genres",
       "user": "Roba mia",
       "favorites": "Preferiti",
       "list": "La mia lista",
       "ratings": "Le mie valutazioni",
-      "on_the_air": "In onda"
+      "open_menu": "Apri il menu di navigazione",
+      "close_menu": "Chiudi il menu di navigazione",
+      "navigation": "Navigazione principale",
+      "settings": "Impostazioni",
+      "profile": "Profilo"
     },
     "search": {
       "placeholder": "Cerca film, serie TV, persone...",
       "label": "Ricerca",
       "submit": "Invia ricerca",
-      "clear": "Cancella ricerca",
-      "filter_all": "Tutti",
-      "filter_movies": "Film",
-      "filter_tv": "Serie TV",
-      "filter_people": "Persone",
-      "no_results": "Nessun risultato per \"{query}\".",
-      "results": "Risultati della ricerca per \"{query}\"",
-      "title": "Ricerca",
-      "results_count": "risultati"
+      "clear": "Cancella ricerca"
     },
     "filters": {
       "sort_by": "Ordina per",
@@ -129,6 +134,31 @@
         "language_selector": "Selettore della lingua"
       }
     },
+    "media_actions": {
+      "success_title": "Successo",
+      "error_title": "Errore",
+      "favorite_added": "{title} è stato aggiunto ai tuoi preferiti",
+      "favorite_removed": "{title} è stato rimosso dai tuoi preferiti",
+      "watch_later_added": "{title} è stato aggiunto all'elenco guarda più tardi",
+      "watch_later_removed": "{title} è stato rimosso dall'elenco guarda più tardi",
+      "rating_success": "Hai valutato con successo {title}",
+      "unrate_success": "La tua valutazione per {title} è stata rimossa",
+      "action_error": "Si è verificato un errore durante l'aggiornamento di {title}",
+      "rating_labels": {
+        "terrible": "Pessimo",
+        "bad": "Scarso",
+        "average": "Sufficiente",
+        "great": "Ottimo",
+        "perfect": "Perfetto"
+      }
+    },
+    "alerts": {
+      "adult_content": {
+        "title": "Adult Content",
+        "description": "This content is rated for adults and may contain explicit material or violence. Do you confirm you are over 18 years old?",
+        "card_overlay": "Adult content. Click to verify age."
+      }
+    },
     "footer": {
       "tagline": "Il tuo universo di film, tutto in un unico posto.",
       "copyright": "©{year}BrandScope. Tutti i diritti riservati.",
@@ -143,8 +173,7 @@
       "hero": {
         "trending": "Di tendenza!",
         "play_trailer": "Riproduci il trailer",
-        "details": "Maggiori dettagli",
-        "no_trailer": "Nessun rimorchio disponibile."
+        "details": "Maggiori dettagli"
       },
       "trending": {
         "movies": {
@@ -229,6 +258,24 @@
       "movies_section": "Film",
       "tv_section": "Serie TV",
       "explore_genre": "Esplora {genre}"
+    },
+    "favorites": {
+      "movies_title": "I tuoi film preferiti",
+      "tv_shows_title": "Le tue serie TV preferite",
+      "no_movies": "Non hai ancora aggiunto film ai tuoi preferiti.",
+      "no_tv_shows": "Non hai ancora aggiunto serie TV ai tuoi preferiti."
+    },
+    "watch_later": {
+      "movies_title": "Film da guardare più tardi",
+      "tv_shows_title": "Serie TV da guardare più tardi",
+      "no_movies": "Non hai ancora aggiunto film al tuo elenco guarda più tardi.",
+      "no_tv_shows": "Non hai ancora aggiunto serie TV al tuo elenco guarda più tardi."
+    },
+    "rated": {
+      "movies_title": "I tuoi film valutati",
+      "tv_shows_title": "Le tue serie TV valutate",
+      "no_movies": "Non hai ancora valutato nessun film.",
+      "no_tv_shows": "Non hai ancora valutato nessuna serie TV."
     }
   },
   "domains": {
@@ -236,69 +283,56 @@
       "cast": "Cast più fatturato",
       "trailer": "Rimorchio",
       "recommendations": "Se ti è piaciuto questo film, ti piacerà anche...",
-      "no_trailer": "Nessun rimorchio disponibile.",
-      "release_date": "Data di rilascio",
-      "genres": "Generi",
-      "score": "Punto",
-      "official_website": "Sito ufficiale",
-      "status": "Stato",
-      "popularity": "Popolarità",
       "budget": "Bilancio",
       "revenue": "Reddito",
       "where_to_watch": "Dove guardare",
-      "stream": "Flusso",
-      "buy": "Acquistare",
-      "rent": "Affitto",
       "providers_attribution": "Dati in streaming forniti da",
       "gallery": "Galleria",
       "similar": "Film simili",
       "reviews": "Recensioni degli utenti",
       "awards": "Premi",
-      "fallback_overview": "Nessuna panoramica disponibile per questo film.",
-      "options_aria_label": "Altre opzioni per{title}"
+      "status": "Stato",
+      "stream": "Flusso",
+      "rent": "Affitto",
+      "buy": "Acquistare",
+      "official_website": "Sito ufficiale",
+      "fallback_overview": "Nessuna panoramica disponibile per questo film."
     },
     "tv": {
-      "fallback_overview": "Nessuna panoramica disponibile per questo programma TV.",
-      "options_aria_label": "Altre opzioni per{name}",
-      "status": "Stato",
-      "popularity": "Popolarità",
       "episodes": "Episodi",
+      "status": "Stato",
       "season": "Stagione",
       "seasons": "Stagioni",
       "reviews": "Recensioni degli utenti",
       "created_by": "Creato da",
       "in_production": "In produzione",
       "series_badge": "Serie",
-      "official_website": "Sito ufficiale",
+      "recommendations": "Se ti è piaciuto questo programma televisivo, ti piacerà anche...",
       "production_companies": "Case di produzione",
-      "recommendations": "Se ti è piaciuto questo programma televisivo, ti piacerà anche..."
+      "fallback_overview": "Nessuna panoramica disponibile per questo programma TV.",
+      "official_website": "Sito ufficiale"
     },
     "person": {
-      "castMovies": "Conosciuto per...",
       "biography": "Biografia",
-      "noBiography": "Nessuna biografia disponibile.",
-      "noPhoto": "Nessuna foto",
-      "readMore": "Per saperne di più",
-      "readLess": "Leggi di meno",
-      "fallback_overview": "Nessuna panoramica disponibile per questa persona.",
-      "options_aria_label": "Altre opzioni per{name}",
-      "known_for": "Noto per",
-      "popularity": "Popolarità",
-      "also_known_as": "Conosciuto anche come",
-      "photos": "Foto",
-      "social_links_aria": "Link social di {name}",
-      "tv_credits": "Crediti TV",
-      "crew_credits": "Dietro le quinte",
       "show_biography_aria": "Mostra la biografia completa",
       "hide_biography_aria": "Nascondi biografia",
-      "castTvShows": "Conosciuto per aver recitato in programmi TV..."
+      "noBiography": "Nessuna biografia disponibile.",
+      "noPhoto": "Nessuna foto",
+      "popularity": "Popolarità",
+      "known_for": "Noto per",
+      "castMovies": "Conosciuto per...",
+      "castTvShows": "Conosciuto per aver recitato in programmi TV...",
+      "also_known_as": "Conosciuto anche come",
+      "photos": "Foto",
+      "crew_credits": "Dietro le quinte",
+      "fallback_overview": "Nessuna panoramica disponibile per questa persona."
     }
   },
   "errors": {
     "network": "Controlla la connessione Internet e riprova.",
     "timeout": "Il server ha impiegato troppo tempo per rispondere.",
     "not_found": "Non siamo riusciti a trovare la risorsa richiesta.",
-    "unauthorized": "Accesso negato. Controlla le tue credenziali API.",
+    "unauthorized": "Accesso negato. Devi aver effettuato l'accesso per eseguire questa azione.",
     "rate_limit": "Troppe richieste. Per favore rallenta e riprova più tardi.",
     "server_error": "Il server TMDB sta attualmente riscontrando problemi.",
     "default": "Si è verificato un errore imprevisto. Per favore riprova.",
@@ -324,5 +358,15 @@
     "NR": "Non valutato.",
     "Unrated": "Non valutato",
     "fallback": "Classificazioni per età"
+  },
+  "tmdb": {
+    "jobs": {
+      "Director": "Regista",
+      "Producer": "Produttore",
+      "Executive Producer": "Produttore Esecutivo",
+      "Songs": "Canzoni",
+      "Writer": "Sceneggiatore",
+      "Screenplay": "Sceneggiatura"
+    }
   }
 }

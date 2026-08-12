@@ -1,5 +1,4 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
 const buttonGroupVariants = cva(
@@ -35,59 +34,4 @@ function ButtonGroup({
   );
 }
 
-function ButtonGroupText({
-  className,
-  render,
-  ...props
-}: React.ComponentProps<"div"> & {
-  render?: (props: React.HTMLAttributes<HTMLElement>) => React.ReactNode;
-}) {
-  if (render) {
-    const renderProps = {
-      "data-slot": "button-group-text",
-      className: cn(
-        "flex items-center gap-2 rounded-lg border bg-muted px-2.5 text-sm font-medium [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
-        className,
-      ),
-      ...props,
-    };
-
-    return render(renderProps);
-  }
-
-  return (
-    <div
-      data-slot="button-group-text"
-      className={cn(
-        "flex items-center gap-2 rounded-lg border bg-muted px-2.5 font-medium text-sm [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
-
-function ButtonGroupSeparator({
-  className,
-  orientation = "vertical",
-  ...props
-}: React.ComponentProps<typeof Separator>) {
-  return (
-    <Separator
-      data-slot="button-group-separator"
-      orientation={orientation}
-      className={cn(
-        "relative self-stretch bg-input data-horizontal:mx-px data-vertical:my-px data-vertical:h-auto data-horizontal:w-auto",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
-
-export {
-  ButtonGroup,
-  ButtonGroupSeparator,
-  ButtonGroupText,
-  buttonGroupVariants,
-};
+export { ButtonGroup };

@@ -32,7 +32,7 @@ export const getTrendingMovies = (
 ): TMDBPaginatedResponse<Movie> =>
   fetchTMDB(`/trending/movie/${timeWindow}${buildQuery({ page })}`);
 
-export const getPopularMovies = (page = 1): TMDBPaginatedResponse<Movie> =>
+const _getPopularMovies = (page = 1): TMDBPaginatedResponse<Movie> =>
   fetchTMDB(`/movie/popular${buildQuery({ page })}`);
 
 export const discoverMovies = (

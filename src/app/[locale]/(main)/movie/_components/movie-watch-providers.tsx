@@ -15,9 +15,9 @@ export function MovieWatchProviders({
 }: {
   providers?: WatchLocaleData;
 }) {
-  if (!providers) return null;
-
   const t = useTranslations("domains.movie");
+
+  if (!providers) return null;
 
   const { flatrate, rent, buy } = providers;
 

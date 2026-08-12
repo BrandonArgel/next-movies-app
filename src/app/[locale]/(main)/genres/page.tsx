@@ -180,7 +180,7 @@ export default async function GenresPage() {
         </div>
       </div>
 
-      <div className="container mx-auto max-w-7xl flex flex-col gap-16 px-4 pt-12 md:px-8 xl:px-12">
+      <div className="container mx-auto flex max-w-7xl flex-col gap-16 px-4 pt-12 md:px-8 xl:px-12">
         {/* Movie genres */}
         {movieGenres.length > 0 && (
           <section aria-labelledby="movies-genres-heading">

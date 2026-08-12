@@ -1,5 +1,6 @@
 "use client";
 
+import { useTransition } from "react";
 import {
   GlobeIcon,
   LogInIcon,
@@ -9,6 +10,7 @@ import {
   PaletteIcon,
   SunIcon,
   UserIcon,
+  Loader2,
 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
@@ -31,7 +33,8 @@ import { type Locale, routing } from "@/i18n/routing";
 import { BASE_GRAVATAR_URL } from "@/lib/constants";
 import { getTMDBImageUrl } from "@/lib/get-tmdb-image-url";
 import { cn } from "@/lib/utils";
-import { ACCENT_COLORS, useColor } from "@/providers/color-provider";
+import { useColor } from "@/providers/color-provider";
+import { ACCENT_COLORS } from "@/lib/colors";
 import type { Account } from "@/types/account";
 import { LOCALE_META } from "./locale-meta";
 
@@ -47,7 +50,6 @@ export function UserPreferencesMenu({
   onLogout,
 }: UserPreferencesMenuProps) {
   const tGlobal = useTranslations("global");
-  const tNav = useTranslations("components.nav");
   const tPreferences = useTranslations("components.preferences");
 
   const { theme, setTheme } = useTheme();
@@ -57,6 +59,9 @@ export function UserPreferencesMenu({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  // 1. Inicializar useTransition
+  const [isPending, startTransition] = useTransition();
 
   const initials = user?.name
     ? user.name
@@ -71,7 +76,11 @@ export function UserPreferencesMenu({
     if (next === locale) return;
     const params = new URLSearchParams(searchParams.toString());
     const query = params.toString() ? `?${params.toString()}` : "";
-    router.replace(`${pathname}${query}`, { locale: next });
+
+    // 2. Envolver la navegación en startTransition
+    startTransition(() => {
+      router.replace(`${pathname}${query}`, { locale: next });
+    });
   }
 
   const tmdbPath = user?.avatar?.tmdb?.avatar_path;
@@ -82,7 +91,18 @@ export function UserPreferencesMenu({
 
   return (
     <DropdownMenuTrigger>
-      <Button variant="ghost" size="icon" className="rounded-full">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="relative rounded-full"
+        isDisabled={isPending}
+      >
+        {isPending && (
+          <div className="absolute inset-0 z-10 flex items-center justify-center rounded-full bg-background/60 backdrop-blur-sm">
+            <Loader2 className="size-5 animate-spin text-primary" />
+          </div>
+        )}
+
         {user ? (
           <Avatar className="size-8 border-2 border-primary">
             <AvatarImage src={imgUrl ?? ""} alt={user.name} />
@@ -91,7 +111,7 @@ export function UserPreferencesMenu({
             </AvatarFallback>
           </Avatar>
         ) : (
-          <Avatar className="flex justify-center items-center size-8 border-2 border-primary">
+          <Avatar className="flex size-8 items-center justify-center border-2 border-primary">
             <UserIcon className="size-5" />
           </Avatar>
         )}

@@ -33,10 +33,12 @@ export async function generateMetadata({
 
   const response = await getMovie(id);
 
-  if (!response.success) return {};
+  if (!response.success) {
+    return { title: "Not Found" };
+  }
 
   const movie = response.data;
-  const backdropUlr = getTMDBImageUrl(movie.backdrop_path, "w300") ?? "";
+  const imageUrl = getTMDBImageUrl(movie.poster_path, "w500");
 
   return {
     title: movie.title,
@@ -44,7 +46,17 @@ export async function generateMetadata({
     openGraph: {
       title: movie.title,
       description: movie.overview,
-      images: [backdropUlr],
+      url: `/movie/${id}`,
+      images: imageUrl
+        ? [{ url: imageUrl, width: 500, height: 750, alt: movie.title }]
+        : [],
+      type: "video.movie",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: movie.title,
+      description: movie.overview,
+      images: imageUrl ? [imageUrl] : [],
     },
   };
 }

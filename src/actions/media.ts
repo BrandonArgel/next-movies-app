@@ -20,7 +20,7 @@ export async function toggleFavoriteAction(
     if (!user || !token) return { success: false, error: "Unauthorized" };
 
     return await toggleFavorite(user.id, token, mediaType, mediaId, isFavorite);
-  } catch (error) {
+  } catch (_error) {
     return { success: false, error: "default" };
   }
 }
@@ -41,7 +41,7 @@ export async function toggleWatchListAction(
       mediaId,
       isWatchList,
     );
-  } catch (error) {
+  } catch (_error) {
     return { success: false, error: "default" };
   }
 }
@@ -58,7 +58,7 @@ export async function getMediaAccountStateAction(
 
     if (!res.success) return { success: false, error: res.error };
     return { success: true, data: res.data };
-  } catch (error) {
+  } catch (_error) {
     return { success: false, error: "Unexpected error" };
   }
 }
@@ -73,7 +73,7 @@ export async function rateMediaAction(
     if (!user || !token) return { success: false, error: "Unauthorized" };
 
     return await rateMedia(mediaType, mediaId, token, ratingFromUi);
-  } catch (error) {
+  } catch (_error) {
     return { success: false, error: "default" };
   }
 }
@@ -84,7 +84,7 @@ export async function unrateMediaAction(mediaId: number, mediaType: MediaType) {
     if (!user || !token) return { success: false, error: "Unauthorized" };
 
     return await unrateMedia(mediaType, mediaId, token);
-  } catch (error) {
+  } catch (_error) {
     return { success: false, error: "default" };
   }
 }

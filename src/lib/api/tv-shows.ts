@@ -1,4 +1,3 @@
-import type { MutationResponse } from "@/types/account";
 import type { TMDBPaginatedResponse, TMDBResponse } from "@/types/api";
 import type { TimeWindow } from "@/types/common";
 import type { TvShowAppend } from "@/types/tmdb";
@@ -39,7 +38,7 @@ export const discoverTVShows = (
   return fetchTMDB(`/discover/tv${buildQuery({ ...params, page })}`);
 };
 
-export const getTvShowAccountState = (
+const _getTvShowAccountState = (
   tvShowId: number,
   sessionId: string,
 ): TMDBResponse<TvShowAccountState> =>

@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { getTranslations } from "next-intl/server";
 import { MovieCarouselSkeleton } from "@/components/movies/movies-carousel";
 import { getTrendingMovies } from "@/lib/api/movies";
 import { requireUser } from "@/lib/auth-utils";
@@ -6,6 +7,12 @@ import { MovieHero } from "./_components/movie-hero";
 import { TrendingMoviesContainer } from "./_components/trending-movies-container";
 import { TrendingPeopleContainer } from "./_components/trending-people-container";
 import { TrendingTvShowsContainer } from "./_components/trending-tv-shows-container";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "components.nav" });
+  return { title: t("home") };
+}
 
 export default async function MoviesPage() {
   const { user, token } = await requireUser();

@@ -14,7 +14,17 @@
       "view_details_of": "জন্য বিশদ দেখুন",
       "readMore": "আরও পড়ুন",
       "readLess": "কম পড়ুন",
-      "options_aria_label": "{name} এর আরও বিকল্প"
+      "options_aria_label": "{name} এর আরও বিকল্প",
+      "cancel": "Cancel",
+      "confirm_over_18": "Yes, I am over 18 years old",
+      "login": "লগইন",
+      "logout": "লগআউট",
+      "add_favorite": "পছন্দে যোগ করুন",
+      "remove_favorite": "পছন্দ থেকে সরান",
+      "add_watch_later": "পরে দেখার তালিকায় যোগ করুন",
+      "remove_watch_later": "পরে দেখার তালিকা থেকে সরান",
+      "rate": "রেট করুন",
+      "unrate": "রেটিং সরান"
     },
     "labels": {
       "results_count": "ফলাফল",
@@ -26,6 +36,8 @@
     },
     "states": {
       "loading": "লোড হচ্ছে...",
+      "redirecting": "পুনর্নির্দেশ করা হচ্ছে...",
+      "logging_out": "লগ আউট হচ্ছে",
       "no_more_results": "শেষে পৌঁছে গেছেন।",
       "no_items_found": "কোনো আইটেম পাওয়া যায়নি.",
       "no_results": "এই মুহূর্তে কোনো ফলাফল পাওয়া যাচ্ছে না।",
@@ -47,36 +59,29 @@
       "categories": "ক্যাটাগরি",
       "popular": "জনপ্রিয়",
       "upcoming": "আসন্ন",
-      "open_menu": "নেভিগেশন মেনু খুলুন",
-      "close_menu": "নেভিগেশন মেনু বন্ধ করুন",
-      "navigation": "প্রধান নেভিগেশন",
-      "settings": "সেটিংস",
-      "movies": "সিনেমা",
-      "tv_shows": "টিভি শো",
-      "people": "মানুষ",
       "now_playing": "এখন চলছে",
       "top_rated": "শীর্ষ রেট",
       "airing_today": "আজ সম্প্রচার হচ্ছে",
-      "on_tv": "টিভিতে",
+      "on_the_air": "এখন সম্প্রচারিত",
+      "movies": "সিনেমা",
+      "tv_shows": "টিভি শো",
+      "people": "মানুষ",
+      "genres": "Genres",
       "user": "আমার স্টাফ",
       "favorites": "প্রিয়",
       "list": "আমার তালিকা",
       "ratings": "আমার রেটিং",
-      "on_the_air": "এখন সম্প্রচারিত"
+      "open_menu": "নেভিগেশন মেনু খুলুন",
+      "close_menu": "নেভিগেশন মেনু বন্ধ করুন",
+      "navigation": "প্রধান নেভিগেশন",
+      "settings": "সেটিংস",
+      "profile": "প্রোফাইল"
     },
     "search": {
       "placeholder": "সিনেমা, টিভি শো এবং ব্যক্তি খুঁজুন...",
       "label": "অনুসন্ধান করুন",
       "submit": "অনুসন্ধান জমা দিন",
-      "clear": "সাফ অনুসন্ধান",
-      "filter_all": "সব",
-      "filter_movies": "চলচ্চিত্র",
-      "filter_tv": "টিভি শো",
-      "filter_people": "ব্যক্তিত্ব",
-      "no_results": "\"{query}\" এর জন্য কোনো ফলাফল পাওয়া যায়নি।",
-      "results": "\"এর জন্য অনুসন্ধানের ফলাফল{query}\"",
-      "title": "অনুসন্ধান করুন",
-      "results_count": "ফলাফল"
+      "clear": "সাফ অনুসন্ধান"
     },
     "filters": {
       "sort_by": "অনুসারে সাজান",
@@ -129,6 +134,31 @@
         "language_selector": "ভাষা নির্বাচক"
       }
     },
+    "media_actions": {
+      "success_title": "সফল",
+      "error_title": "ত্রুটি",
+      "favorite_added": "{title} আপনার পছন্দে যোগ করা হয়েছে",
+      "favorite_removed": "{title} আপনার পছন্দ থেকে সরানো হয়েছে",
+      "watch_later_added": "{title} পরে দেখার তালিকায় যোগ করা হয়েছে",
+      "watch_later_removed": "{title} পরে দেখার তালিকা থেকে সরানো হয়েছে",
+      "rating_success": "আপনি সফলভাবে {title}-কে রেট করেছেন",
+      "unrate_success": "{title}-এর জন্য আপনার রেটিং সরানো হয়েছে",
+      "action_error": "{title} আপডেট করার সময় একটি ত্রুটি ঘটেছে",
+      "rating_labels": {
+        "terrible": "ভয়ংকর",
+        "bad": "খারাপ",
+        "average": "মাঝারি",
+        "great": "দারুণ",
+        "perfect": "নিখুঁত"
+      }
+    },
+    "alerts": {
+      "adult_content": {
+        "title": "Adult Content",
+        "description": "This content is rated for adults and may contain explicit material or violence. Do you confirm you are over 18 years old?",
+        "card_overlay": "Adult content. Click to verify age."
+      }
+    },
     "footer": {
       "tagline": "আপনার সিনেমার মহাবিশ্ব, সব এক জায়গায়।",
       "copyright": "©{year}ব্র্যান্ডস্কোপ। সর্বস্বত্ব সংরক্ষিত",
@@ -143,8 +173,7 @@
       "hero": {
         "trending": "প্রবণতা !",
         "play_trailer": "ট্রেলার চালান",
-        "details": "আরো বিস্তারিত",
-        "no_trailer": "কোন ট্রেলার উপলব্ধ."
+        "details": "আরো বিস্তারিত"
       },
       "trending": {
         "movies": {
@@ -229,6 +258,24 @@
       "movies_section": "সিনেমা",
       "tv_section": "টিভি শো",
       "explore_genre": "{genre} অন্বেষণ করুন"
+    },
+    "favorites": {
+      "movies_title": "আপনার পছন্দের মুভি",
+      "tv_shows_title": "আপনার পছন্দের টিভি শো",
+      "no_movies": "আপনি এখনও আপনার পছন্দে কোনো মুভি যোগ করেননি।",
+      "no_tv_shows": "আপনি এখনও আপনার পছন্দে কোনো টিভি শো যোগ করেননি।"
+    },
+    "watch_later": {
+      "movies_title": "পরে দেখার মুভি",
+      "tv_shows_title": "পরে দেখার টিভি শো",
+      "no_movies": "আপনি এখনও পরে দেখার তালিকায় কোনো মুভি যোগ করেননি।",
+      "no_tv_shows": "আপনি এখনও পরে দেখার তালিকায় কোনো টিভি শো যোগ করেননি।"
+    },
+    "rated": {
+      "movies_title": "আপনার রেট করা মুভি",
+      "tv_shows_title": "আপনার রেট করা টিভি শো",
+      "no_movies": "আপনি এখনও কোনো মুভি রেট করেননি।",
+      "no_tv_shows": "আপনি এখনও কোনো টিভি শো রেট করেননি।"
     }
   },
   "domains": {
@@ -236,69 +283,56 @@
       "cast": "শীর্ষ বিল করা কাস্ট",
       "trailer": "ট্রেলার",
       "recommendations": "আপনি যদি এই মুভিটি পছন্দ করেন তবে আপনিও পছন্দ করবেন...",
-      "no_trailer": "কোন ট্রেলার উপলব্ধ.",
-      "release_date": "মুক্তির তারিখ",
-      "genres": "জেনারস",
-      "score": "স্কোর",
-      "official_website": "অফিসিয়াল ওয়েবসাইট",
-      "status": "স্ট্যাটাস",
-      "popularity": "জনপ্রিয়তা",
       "budget": "বাজেট",
       "revenue": "রাজস্ব",
       "where_to_watch": "কোথায় দেখতে হবে",
-      "stream": "প্রবাহ",
-      "buy": "কিনুন",
-      "rent": "ভাড়া",
       "providers_attribution": "দ্বারা প্রদত্ত স্ট্রিমিং ডেটা",
       "gallery": "গ্যালারি",
       "similar": "অনুরূপ সিনেমা",
       "reviews": "ব্যবহারকারী পর্যালোচনা",
       "awards": "পুরস্কার",
-      "fallback_overview": "এই মুভির জন্য কোন ওভারভিউ উপলব্ধ নেই।",
-      "options_aria_label": "জন্য আরো বিকল্প{title}"
+      "status": "স্ট্যাটাস",
+      "stream": "প্রবাহ",
+      "rent": "ভাড়া",
+      "buy": "কিনুন",
+      "official_website": "অফিসিয়াল ওয়েবসাইট",
+      "fallback_overview": "এই মুভির জন্য কোন ওভারভিউ উপলব্ধ নেই।"
     },
     "tv": {
-      "fallback_overview": "এই টিভি শোর জন্য কোনো ওভারভিউ উপলব্ধ নেই৷",
-      "options_aria_label": "জন্য আরো বিকল্প{name}",
-      "status": "অবস্থা",
-      "popularity": "জনপ্রিয়তা",
       "episodes": "পর্ব",
+      "status": "অবস্থা",
       "season": "সিজন",
       "seasons": "সিজন",
       "reviews": "ব্যবহারকারীর পর্যালোচনা",
       "created_by": "নির্মাতা",
       "in_production": "নির্মাণাধীন",
       "series_badge": "সিরিজ",
-      "official_website": "অফিসিয়াল ওয়েবসাইট",
+      "recommendations": "আপনি যদি এই টিভি শোটি পছন্দ করেন তবে আপনিও পছন্দ করবেন...",
       "production_companies": "প্রযোজনা সংস্থা",
-      "recommendations": "আপনি যদি এই টিভি শোটি পছন্দ করেন তবে আপনিও পছন্দ করবেন..."
+      "fallback_overview": "এই টিভি শোর জন্য কোনো ওভারভিউ উপলব্ধ নেই৷",
+      "official_website": "অফিসিয়াল ওয়েবসাইট"
     },
     "person": {
-      "castMovies": "এর জন্য পরিচিত...",
       "biography": "জীবনী",
-      "noBiography": "কোন জীবনী উপলব্ধ.",
-      "noPhoto": "ছবি নেই",
-      "readMore": "আরও পড়ুন",
-      "readLess": "কম পড়ুন",
-      "fallback_overview": "এই ব্যক্তির জন্য কোন ওভারভিউ উপলব্ধ.",
-      "options_aria_label": "জন্য আরো বিকল্প{name}",
-      "known_for": "পরিচিত",
-      "popularity": "জনপ্রিয়তা",
-      "also_known_as": "অন্য নামে পরিচিত",
-      "photos": "ছবি",
-      "social_links_aria": "{name}-এর সামাজিক লিঙ্ক",
-      "tv_credits": "টিভি ক্রেডিট",
-      "crew_credits": "পর্দার পেছনে",
       "show_biography_aria": "সম্পূর্ণ জীবনী দেখান",
       "hide_biography_aria": "জীবনী লুকান",
-      "castTvShows": "টিভি শোতে অভিনয়ের জন্য পরিচিত..."
+      "noBiography": "কোন জীবনী উপলব্ধ.",
+      "noPhoto": "ছবি নেই",
+      "popularity": "জনপ্রিয়তা",
+      "known_for": "পরিচিত",
+      "castMovies": "এর জন্য পরিচিত...",
+      "castTvShows": "টিভি শোতে অভিনয়ের জন্য পরিচিত...",
+      "also_known_as": "অন্য নামে পরিচিত",
+      "photos": "ছবি",
+      "crew_credits": "পর্দার পেছনে",
+      "fallback_overview": "এই ব্যক্তির জন্য কোন ওভারভিউ উপলব্ধ."
     }
   },
   "errors": {
     "network": "আপনার ইন্টারনেট সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন.",
     "timeout": "সার্ভার প্রতিক্রিয়া জানাতে অনেক সময় নিয়েছে৷",
     "not_found": "আমরা অনুরোধ করা সংস্থান খুঁজে পাইনি৷",
-    "unauthorized": "অ্যাক্সেস অস্বীকার করা হয়েছে৷ অনুগ্রহ করে আপনার API শংসাপত্র পরীক্ষা করুন৷",
+    "unauthorized": "অ্যাক্সেস অস্বীকার করা হয়েছে। এই পদক্ষেপটি সম্পাদন করতে আপনাকে অবশ্যই লগইন করতে হবে।",
     "rate_limit": "অনেক অনুরোধ. দয়া করে ধীর করুন এবং পরে আবার চেষ্টা করুন।",
     "server_error": "TMDB সার্ভার বর্তমানে সমস্যার সম্মুখীন হচ্ছে৷",
     "default": "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে৷ আবার চেষ্টা করুন.",
@@ -324,5 +358,15 @@
     "NR": "রেট দেওয়া হয়নি।",
     "Unrated": "রেট দেওয়া হয়নি",
     "fallback": "বয়স রেটিং"
+  },
+  "tmdb": {
+    "jobs": {
+      "Director": "পরিচালক",
+      "Producer": "প্রযোজক",
+      "Executive Producer": "নির্বাহী প্রযোজক",
+      "Songs": "গান",
+      "Writer": "লেখক",
+      "Screenplay": "চিত্রনাট্য"
+    }
   }
 }

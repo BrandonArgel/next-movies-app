@@ -14,7 +14,17 @@
       "view_details_of": "查看詳細信息",
       "readMore": "閱讀更多",
       "readLess": "收起",
-      "options_aria_label": "{name} 的更多選項"
+      "options_aria_label": "{name} 的更多選項",
+      "cancel": "Cancel",
+      "confirm_over_18": "Yes, I am over 18 years old",
+      "login": "登入",
+      "logout": "登出",
+      "add_favorite": "新增至收藏",
+      "remove_favorite": "從收藏中移除",
+      "add_watch_later": "稍後觀看",
+      "remove_watch_later": "從稍後觀看中移除",
+      "rate": "評分",
+      "unrate": "移除評分"
     },
     "labels": {
       "results_count": "個結果",
@@ -26,6 +36,8 @@
     },
     "states": {
       "loading": "載入中...",
+      "redirecting": "正在重新導向...",
+      "logging_out": "正在登出",
       "no_more_results": "已到達末尾。",
       "no_items_found": "沒有找到任何內容。",
       "no_results": "目前沒有可用結果。",
@@ -47,36 +59,29 @@
       "categories": "類別",
       "popular": "熱門",
       "upcoming": "即將推出",
-      "open_menu": "開啟導覽選單",
-      "close_menu": "關閉導航選單",
-      "navigation": "主導航",
-      "settings": "設定",
-      "movies": "電影",
-      "tv_shows": "電視節目",
-      "people": "人們",
       "now_playing": "正在播放",
       "top_rated": "最受好評",
       "airing_today": "今天播出",
-      "on_tv": "在電視上",
+      "on_the_air": "正在播出",
+      "movies": "電影",
+      "tv_shows": "電視節目",
+      "people": "人們",
+      "genres": "Genres",
       "user": "我的東西",
       "favorites": "收藏夾",
       "list": "我的清單",
       "ratings": "我的評分",
-      "on_the_air": "正在播出"
+      "open_menu": "開啟導覽選單",
+      "close_menu": "關閉導航選單",
+      "navigation": "主導航",
+      "settings": "設定",
+      "profile": "個人資料"
     },
     "search": {
       "placeholder": "搜尋電影、劇集、人物...",
       "label": "搜尋",
       "submit": "提交搜索",
-      "clear": "清除搜尋",
-      "filter_all": "全部",
-      "filter_movies": "電影",
-      "filter_tv": "電視節目",
-      "filter_people": "人物",
-      "no_results": "找不到關於「{query}」的結果。",
-      "results": "搜尋結果“{query}」",
-      "title": "搜尋",
-      "results_count": "個結果"
+      "clear": "清除搜尋"
     },
     "filters": {
       "sort_by": "排序方式",
@@ -129,6 +134,31 @@
         "language_selector": "語言選擇器"
       }
     },
+    "media_actions": {
+      "success_title": "成功",
+      "error_title": "錯誤",
+      "favorite_added": "已將 {title} 新增至收藏",
+      "favorite_removed": "已將 {title} 從收藏中移除",
+      "watch_later_added": "已將 {title} 新增至稍後觀看",
+      "watch_later_removed": "已將 {title} 從稍後觀看中移除",
+      "rating_success": "您已成功對 {title} 進行評分",
+      "unrate_success": "您對 {title} 的評分已移除",
+      "action_error": "更新 {title} 時發生錯誤",
+      "rating_labels": {
+        "terrible": "糟糕",
+        "bad": "差",
+        "average": "普通",
+        "great": "好",
+        "perfect": "完美"
+      }
+    },
+    "alerts": {
+      "adult_content": {
+        "title": "Adult Content",
+        "description": "This content is rated for adults and may contain explicit material or violence. Do you confirm you are over 18 years old?",
+        "card_overlay": "Adult content. Click to verify age."
+      }
+    },
     "footer": {
       "tagline": "您的電影世界盡在一處。",
       "copyright": "©{year}品牌範圍。版權所有。",
@@ -143,8 +173,7 @@
       "hero": {
         "trending": "趨勢！",
         "play_trailer": "播放預告片",
-        "details": "更多詳情",
-        "no_trailer": "沒有可用的預告片。"
+        "details": "更多詳情"
       },
       "trending": {
         "movies": {
@@ -229,6 +258,24 @@
       "movies_section": "電影",
       "tv_section": "劇集",
       "explore_genre": "探索 {genre}"
+    },
+    "favorites": {
+      "movies_title": "您收藏的電影",
+      "tv_shows_title": "您收藏的電視節目",
+      "no_movies": "您還沒有收藏任何電影。",
+      "no_tv_shows": "您還沒有收藏任何電視節目。"
+    },
+    "watch_later": {
+      "movies_title": "稍後觀看的電影",
+      "tv_shows_title": "稍後觀看的電視節目",
+      "no_movies": "您還沒有新增任何稍後觀看的電影。",
+      "no_tv_shows": "您還沒有新增任何稍後觀看的電視節目。"
+    },
+    "rated": {
+      "movies_title": "您評分的電影",
+      "tv_shows_title": "您評分的電視節目",
+      "no_movies": "您還沒有對任何電影進行評分。",
+      "no_tv_shows": "您還沒有對任何電視節目進行評分。"
     }
   },
   "domains": {
@@ -236,69 +283,56 @@
       "cast": "票房最高的演員陣容",
       "trailer": "拖車",
       "recommendations": "如果你喜歡這部電影，你也會喜歡...",
-      "no_trailer": "沒有可用的預告片。",
-      "release_date": "發售日期",
-      "genres": "流派",
-      "score": "分數",
-      "official_website": "官方網站",
-      "status": "地位",
-      "popularity": "人氣",
       "budget": "預算",
       "revenue": "收入",
       "where_to_watch": "在哪裡觀看",
-      "stream": "溪流",
-      "buy": "買",
-      "rent": "租",
       "providers_attribution": "串流資料提供者",
       "gallery": "畫廊",
       "similar": "類似電影",
       "reviews": "用戶評論",
       "awards": "獎項",
-      "fallback_overview": "沒有這部電影的概述。",
-      "options_aria_label": "更多選項{title}"
+      "status": "地位",
+      "stream": "溪流",
+      "rent": "租",
+      "buy": "買",
+      "official_website": "官方網站",
+      "fallback_overview": "沒有這部電影的概述。"
     },
     "tv": {
-      "fallback_overview": "沒有此電視節目的概述。",
-      "options_aria_label": "更多選項{name}",
-      "status": "狀態",
-      "popularity": "熱度",
       "episodes": "集數",
+      "status": "狀態",
       "season": "季",
       "seasons": "季",
       "reviews": "用戶評論",
       "created_by": "創作者",
       "in_production": "製作中",
       "series_badge": "劇集",
-      "official_website": "官方網站",
+      "recommendations": "如果你喜歡這個電視節目，你也會喜歡...",
       "production_companies": "製作公司",
-      "recommendations": "如果你喜歡這個電視節目，你也會喜歡..."
+      "fallback_overview": "沒有此電視節目的概述。",
+      "official_website": "官方網站"
     },
     "person": {
-      "castMovies": "因...而聞名",
       "biography": "傳",
-      "noBiography": "沒有可用的傳記。",
-      "noPhoto": "沒有照片",
-      "readMore": "閱讀更多",
-      "readLess": "少讀書",
-      "fallback_overview": "沒有此人的概述。",
-      "options_aria_label": "更多選項{name}",
-      "known_for": "知名作品",
-      "popularity": "熱度",
-      "also_known_as": "別名",
-      "photos": "照片",
-      "social_links_aria": "{name}的社群連結",
-      "tv_credits": "電視作品",
-      "crew_credits": "幕後工作",
       "show_biography_aria": "顯示完整傳記",
       "hide_biography_aria": "隱藏傳記",
-      "castTvShows": "因出演電視節目而聞名..."
+      "noBiography": "沒有可用的傳記。",
+      "noPhoto": "沒有照片",
+      "popularity": "熱度",
+      "known_for": "知名作品",
+      "castMovies": "因...而聞名",
+      "castTvShows": "因出演電視節目而聞名...",
+      "also_known_as": "別名",
+      "photos": "照片",
+      "crew_credits": "幕後工作",
+      "fallback_overview": "沒有此人的概述。"
     }
   },
   "errors": {
     "network": "請檢查您的網路連接，然後重試。",
     "timeout": "伺服器回應時間太長。",
     "not_found": "我們找不到所要求的資源。",
-    "unauthorized": "拒絕訪問。請檢查您的 API 憑證。",
+    "unauthorized": "存取被拒。您必須登入才能執行此操作。",
     "rate_limit": "請求太多。請放慢速度，稍後再試。",
     "server_error": "TMDB 伺服器目前遇到問題。",
     "default": "發生意外錯誤。請再試一次。",
@@ -324,5 +358,15 @@
     "NR": "未分級。",
     "Unrated": "未分級",
     "fallback": "年齡分級"
+  },
+  "tmdb": {
+    "jobs": {
+      "Director": "導演",
+      "Producer": "製作人",
+      "Executive Producer": "執行製作",
+      "Songs": "歌曲",
+      "Writer": "編劇",
+      "Screenplay": "劇本"
+    }
   }
 }

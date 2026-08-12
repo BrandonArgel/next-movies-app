@@ -14,7 +14,17 @@
       "view_details_of": "के लिए विवरण देखें",
       "readMore": "और पढ़ें",
       "readLess": "कम पढ़ें",
-      "options_aria_label": "{name} के लिए अधिक विकल्प"
+      "options_aria_label": "{name} के लिए अधिक विकल्प",
+      "cancel": "Cancel",
+      "confirm_over_18": "Yes, I am over 18 years old",
+      "login": "लॉग इन करें",
+      "logout": "लॉग आउट करें",
+      "add_favorite": "पसंदीदा में जोड़ें",
+      "remove_favorite": "पसंदीदा से हटाएं",
+      "add_watch_later": "बाद में देखने के लिए जोड़ें",
+      "remove_watch_later": "बाद में देखने की सूची से हटाएं",
+      "rate": "रेट करें",
+      "unrate": "रेटिंग हटाएं"
     },
     "labels": {
       "results_count": "परिणाम",
@@ -26,6 +36,8 @@
     },
     "states": {
       "loading": "लोड हो रहा है...",
+      "redirecting": "रीडायरेक्ट कर रहा है...",
+      "logging_out": "लॉग आउट हो रहा है",
       "no_more_results": "आप अंत तक पहुँच गए।",
       "no_items_found": "कोई आइटम नहीं मिला।",
       "no_results": "फिलहाल कोई परिणाम उपलब्ध नहीं है.",
@@ -47,36 +59,29 @@
       "categories": "श्रेणियाँ",
       "popular": "लोकप्रिय",
       "upcoming": "आगामी",
-      "open_menu": "नेविगेशन मेनू खोलें",
-      "close_menu": "नेविगेशन मेनू बंद करें",
-      "navigation": "मुख्य नेविगेशन",
-      "settings": "सेटिंग्स",
-      "movies": "चलचित्र",
-      "tv_shows": "टीवी शो",
-      "people": "लोग",
       "now_playing": "अब खेल रहे हैं",
       "top_rated": "टॉप रेटेड",
       "airing_today": "आज प्रसारित हो रहा है",
-      "on_tv": "टीवी पर",
+      "on_the_air": "अब प्रसारित",
+      "movies": "चलचित्र",
+      "tv_shows": "टीवी शो",
+      "people": "लोग",
+      "genres": "Genres",
       "user": "मेरा सामान",
       "favorites": "पसंदीदा",
       "list": "मेरी सूची",
       "ratings": "मेरी रेटिंग",
-      "on_the_air": "अब प्रसारित"
+      "open_menu": "नेविगेशन मेनू खोलें",
+      "close_menu": "नेविगेशन मेनू बंद करें",
+      "navigation": "मुख्य नेविगेशन",
+      "settings": "सेटिंग्स",
+      "profile": "प्रोफ़ाइल"
     },
     "search": {
       "placeholder": "फिल्म, टीवी शो और लोग खोजें...",
       "label": "खोज",
       "submit": "खोज सबमिट करें",
-      "clear": "स्पष्ट खोज",
-      "filter_all": "सब",
-      "filter_movies": "फ़िल्में",
-      "filter_tv": "टीवी शो",
-      "filter_people": "व्यक्ति",
-      "no_results": "\"{query}\" के लिए कोई परिणाम नहीं मिला।",
-      "results": "के लिए खोज परिणाम \"{query}\"",
-      "title": "खोज",
-      "results_count": "परिणाम"
+      "clear": "स्पष्ट खोज"
     },
     "filters": {
       "sort_by": "इसके अनुसार छाँटें",
@@ -129,6 +134,31 @@
         "language_selector": "भाषा चयनकर्ता"
       }
     },
+    "media_actions": {
+      "success_title": "सफलता",
+      "error_title": "त्रुटि",
+      "favorite_added": "{title} को आपके पसंदीदा में जोड़ दिया गया है",
+      "favorite_removed": "{title} को आपके पसंदीदा से हटा दिया गया है",
+      "watch_later_added": "{title} को बाद में देखने की सूची में जोड़ दिया गया है",
+      "watch_later_removed": "{title} को बाद में देखने की सूची से हटा दिया गया है",
+      "rating_success": "आपने {title} को सफलतापूर्वक रेट किया है",
+      "unrate_success": "{title} के लिए आपकी रेटिंग हटा दी गई है",
+      "action_error": "{title} को अपडेट करते समय कोई त्रुटि हुई",
+      "rating_labels": {
+        "terrible": "भयानक",
+        "bad": "खराब",
+        "average": "औसत",
+        "great": "बहुत अच्छा",
+        "perfect": "उत्तम"
+      }
+    },
+    "alerts": {
+      "adult_content": {
+        "title": "Adult Content",
+        "description": "This content is rated for adults and may contain explicit material or violence. Do you confirm you are over 18 years old?",
+        "card_overlay": "Adult content. Click to verify age."
+      }
+    },
     "footer": {
       "tagline": "आपकी फ़िल्मों का संसार, सभी एक ही स्थान पर।",
       "copyright": "©{year}ब्रांडस्कोप। सर्वाधिकार सुरक्षित।",
@@ -143,8 +173,7 @@
       "hero": {
         "trending": "ट्रेंडिंग!",
         "play_trailer": "ट्रेलर चलायें",
-        "details": "अधिक जानकारी",
-        "no_trailer": "कोई ट्रेलर उपलब्ध नहीं है."
+        "details": "अधिक जानकारी"
       },
       "trending": {
         "movies": {
@@ -229,6 +258,24 @@
       "movies_section": "फिल्में",
       "tv_section": "टीवी शो",
       "explore_genre": "{genre} एक्सप्लोर करें"
+    },
+    "favorites": {
+      "movies_title": "आपकी पसंदीदा फ़िल्में",
+      "tv_shows_title": "आपके पसंदीदा टीवी शो",
+      "no_movies": "आपने अभी तक अपनी पसंदीदा सूची में कोई फ़िल्म नहीं जोड़ी है।",
+      "no_tv_shows": "आपने अभी तक अपनी पसंदीदा सूची में कोई टीवी शो नहीं जोड़ा है।"
+    },
+    "watch_later": {
+      "movies_title": "बाद में देखने वाली फ़िल्में",
+      "tv_shows_title": "बाद में देखने वाले टीवी शो",
+      "no_movies": "आपने अभी तक बाद में देखने की सूची में कोई फ़िल्म नहीं जोड़ी है।",
+      "no_tv_shows": "आपने अभी तक बाद में देखने की सूची में कोई टीवी शो नहीं जोड़ा है।"
+    },
+    "rated": {
+      "movies_title": "आपकी रेट की गई फ़िल्में",
+      "tv_shows_title": "आपके रेट किए गए टीवी शो",
+      "no_movies": "आपने अभी तक किसी फ़िल्म को रेट नहीं किया है।",
+      "no_tv_shows": "आपने अभी तक किसी टीवी शो को रेट नहीं किया है।"
     }
   },
   "domains": {
@@ -236,69 +283,56 @@
       "cast": "टॉप बिल कास्ट",
       "trailer": "ट्रेलर",
       "recommendations": "अगर आपको यह फिल्म पसंद आई तो आपको यह भी पसंद आएगी...",
-      "no_trailer": "कोई ट्रेलर उपलब्ध नहीं है.",
-      "release_date": "रिलीज़ की तारीख",
-      "genres": "शैलियां",
-      "score": "अंक",
-      "official_website": "आधिकारिक वेबसाइट",
-      "status": "स्थिति",
-      "popularity": "लोकप्रियता",
       "budget": "बजट",
       "revenue": "आय",
       "where_to_watch": "कहाँ देखना है",
-      "stream": "धारा",
-      "buy": "खरीदना",
-      "rent": "किराया",
       "providers_attribution": "स्ट्रीमिंग डेटा द्वारा प्रदान किया गया",
       "gallery": "गैलरी",
       "similar": "ऐसी ही फिल्में",
       "reviews": "उपयोगकर्ता समीक्षाएँ",
       "awards": "पुरस्कार",
-      "fallback_overview": "इस फ़िल्म का कोई सिंहावलोकन उपलब्ध नहीं है.",
-      "options_aria_label": "के लिए और अधिक विकल्प{title}"
+      "status": "स्थिति",
+      "stream": "धारा",
+      "rent": "किराया",
+      "buy": "खरीदना",
+      "official_website": "आधिकारिक वेबसाइट",
+      "fallback_overview": "इस फ़िल्म का कोई सिंहावलोकन उपलब्ध नहीं है."
     },
     "tv": {
-      "fallback_overview": "इस टीवी शो के लिए कोई अवलोकन उपलब्ध नहीं है.",
-      "options_aria_label": "के लिए और अधिक विकल्प{name}",
-      "status": "स्थिति",
-      "popularity": "लोकप्रियता",
       "episodes": "एपिसोड",
+      "status": "स्थिति",
       "season": "सीजन",
       "seasons": "सीज़न",
       "reviews": "उपयोगकर्ता समीक्षाएं",
       "created_by": "निर्मित",
       "in_production": "उत्पादन में",
       "series_badge": "सीरीज़",
-      "official_website": "आधिकारिक वेबसाइट",
+      "recommendations": "अगर आपको यह टीवी शो पसंद आया, तो आपको यह भी पसंद आएगा...",
       "production_companies": "निर्माण कंपनियां",
-      "recommendations": "अगर आपको यह टीवी शो पसंद आया, तो आपको यह भी पसंद आएगा..."
+      "fallback_overview": "इस टीवी शो के लिए कोई अवलोकन उपलब्ध नहीं है.",
+      "official_website": "आधिकारिक वेबसाइट"
     },
     "person": {
-      "castMovies": "के लिए जाना जाता है...",
       "biography": "जीवनी",
-      "noBiography": "कोई जीवनी उपलब्ध नहीं है.",
-      "noPhoto": "कोई फोटो नहीं",
-      "readMore": "और पढ़ें",
-      "readLess": "कम पढ़ें",
-      "fallback_overview": "इस व्यक्ति के लिए कोई सिंहावलोकन उपलब्ध नहीं है.",
-      "options_aria_label": "के लिए और अधिक विकल्प{name}",
-      "known_for": "प्रसिद्ध",
-      "popularity": "लोकप्रियता",
-      "also_known_as": "अन्य नाम",
-      "photos": "तस्वीरें",
-      "social_links_aria": "{name} के सोशल लिंक",
-      "tv_credits": "टीवी क्रेडिट",
-      "crew_credits": "परदे के पीछे",
       "show_biography_aria": "पूरी जीवनी दिखाओ",
       "hide_biography_aria": "जीवनी छिपाएँ",
-      "castTvShows": "टीवी शोज में एक्टिंग के लिए मशहूर..."
+      "noBiography": "कोई जीवनी उपलब्ध नहीं है.",
+      "noPhoto": "कोई फोटो नहीं",
+      "popularity": "लोकप्रियता",
+      "known_for": "प्रसिद्ध",
+      "castMovies": "के लिए जाना जाता है...",
+      "castTvShows": "टीवी शोज में एक्टिंग के लिए मशहूर...",
+      "also_known_as": "अन्य नाम",
+      "photos": "तस्वीरें",
+      "crew_credits": "परदे के पीछे",
+      "fallback_overview": "इस व्यक्ति के लिए कोई सिंहावलोकन उपलब्ध नहीं है."
     }
   },
   "errors": {
     "network": "अपने इंटरनेट कनेक्शन की जाँच करें और पुन: प्रयास करें।",
     "timeout": "सर्वर ने प्रतिक्रिया देने में बहुत अधिक समय लिया.",
     "not_found": "हमें अनुरोधित संसाधन नहीं मिला.",
-    "unauthorized": "पहुंच अस्वीकृत। कृपया अपने एपीआई क्रेडेंशियल जांचें।",
+    "unauthorized": "पहुंच अस्वीकृत। यह कार्रवाई करने के लिए आपको लॉग इन होना चाहिए।",
     "rate_limit": "बहुत सारे अनुरोध. कृपया धीमा करें और बाद में पुनः प्रयास करें।",
     "server_error": "टीएमडीबी सर्वर वर्तमान में समस्याओं का सामना कर रहा है।",
     "default": "एक अप्रत्याशित त्रुटि हुई। कृपया पुन: प्रयास करें।",
@@ -324,5 +358,15 @@
     "NR": "मूल्यांकित नहीं.",
     "Unrated": "मूल्यांकित नहीं",
     "fallback": "आयु रेटिंग"
+  },
+  "tmdb": {
+    "jobs": {
+      "Director": "निर्देशक",
+      "Producer": "निर्माता",
+      "Executive Producer": "कार्यकारी निर्माता",
+      "Songs": "गीत",
+      "Writer": "लेखक",
+      "Screenplay": "पटकथा"
+    }
   }
 }

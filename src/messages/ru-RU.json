@@ -14,7 +14,17 @@
       "view_details_of": "Посмотреть детали для",
       "readMore": "Читать далее",
       "readLess": "Читать меньше",
-      "options_aria_label": "Дополнительные параметры для {name}"
+      "options_aria_label": "Дополнительные параметры для {name}",
+      "cancel": "Cancel",
+      "confirm_over_18": "Yes, I am over 18 years old",
+      "login": "Войти",
+      "logout": "Выйти",
+      "add_favorite": "Добавить в избранное",
+      "remove_favorite": "Удалить из избранного",
+      "add_watch_later": "Смотреть позже",
+      "remove_watch_later": "Удалить из посмотреть позже",
+      "rate": "Оценить",
+      "unrate": "Удалить оценку"
     },
     "labels": {
       "results_count": "результатов",
@@ -26,6 +36,8 @@
     },
     "states": {
       "loading": "Загрузка...",
+      "redirecting": "Перенаправление...",
+      "logging_out": "Выход...",
       "no_more_results": "Вы достигли конца.",
       "no_items_found": "Ничего не найдено.",
       "no_results": "На данный момент результатов нет.",
@@ -47,36 +59,29 @@
       "categories": "Категории",
       "popular": "Популярное",
       "upcoming": "Предстоящие",
-      "open_menu": "Открыть меню навигации",
-      "close_menu": "Закрыть меню навигации",
-      "navigation": "Основная навигация",
-      "settings": "Настройки",
-      "movies": "Фильмы",
-      "tv_shows": "ТВ-шоу",
-      "people": "Люди",
       "now_playing": "Сейчас играет",
       "top_rated": "С самым высоким рейтингом",
       "airing_today": "В эфире сегодня",
-      "on_tv": "По телевизору",
+      "on_the_air": "В эфире",
+      "movies": "Фильмы",
+      "tv_shows": "ТВ-шоу",
+      "people": "Люди",
+      "genres": "Genres",
       "user": "Мои вещи",
       "favorites": "Избранное",
       "list": "Мой список",
       "ratings": "Мои рейтинги",
-      "on_the_air": "В эфире"
+      "open_menu": "Открыть меню навигации",
+      "close_menu": "Закрыть меню навигации",
+      "navigation": "Основная навигация",
+      "settings": "Настройки",
+      "profile": "Профиль"
     },
     "search": {
       "placeholder": "Поиск фильмов, сериалов, людей...",
       "label": "Поиск",
       "submit": "Отправить поиск",
-      "clear": "Очистить поиск",
-      "filter_all": "Все",
-      "filter_movies": "Фильмы",
-      "filter_tv": "Сериалы",
-      "filter_people": "Люди",
-      "no_results": "По запросу \"{query}\" ничего не найдено.",
-      "results": "Результаты поиска по запросу \"{query}\"",
-      "title": "Поиск",
-      "results_count": "результатов"
+      "clear": "Очистить поиск"
     },
     "filters": {
       "sort_by": "Сортировать по",
@@ -129,6 +134,31 @@
         "language_selector": "Выбор языка"
       }
     },
+    "media_actions": {
+      "success_title": "Успех",
+      "error_title": "Ошибка",
+      "favorite_added": "{title} добавлен в избранное",
+      "favorite_removed": "{title} удален из избранного",
+      "watch_later_added": "{title} добавлен в список для просмотра позже",
+      "watch_later_removed": "{title} удален из списка для просмотра позже",
+      "rating_success": "Вы успешно оценили {title}",
+      "unrate_success": "Ваша оценка для {title} удалена",
+      "action_error": "Произошла ошибка при обновлении {title}",
+      "rating_labels": {
+        "terrible": "Ужасно",
+        "bad": "Плохо",
+        "average": "Средне",
+        "great": "Отлично",
+        "perfect": "Идеально"
+      }
+    },
+    "alerts": {
+      "adult_content": {
+        "title": "Adult Content",
+        "description": "This content is rated for adults and may contain explicit material or violence. Do you confirm you are over 18 years old?",
+        "card_overlay": "Adult content. Click to verify age."
+      }
+    },
     "footer": {
       "tagline": "Ваша вселенная фильмов в одном месте.",
       "copyright": "©{year}БрендСкоп. Все права защищены.",
@@ -143,8 +173,7 @@
       "hero": {
         "trending": "В тренде!",
         "play_trailer": "Воспроизвести трейлер",
-        "details": "Подробнее",
-        "no_trailer": "Нет трейлера."
+        "details": "Подробнее"
       },
       "trending": {
         "movies": {
@@ -229,6 +258,24 @@
       "movies_section": "Фильмы",
       "tv_section": "Сериалы",
       "explore_genre": "Смотреть {genre}"
+    },
+    "favorites": {
+      "movies_title": "Ваши любимые фильмы",
+      "tv_shows_title": "Ваши любимые сериалы",
+      "no_movies": "Вы еще не добавили ни одного фильма в избранное.",
+      "no_tv_shows": "Вы еще не добавили ни одного сериала в избранное."
+    },
+    "watch_later": {
+      "movies_title": "Фильмы для просмотра позже",
+      "tv_shows_title": "Сериалы для просмотра позже",
+      "no_movies": "Вы еще не добавили ни одного фильма в список просмотра.",
+      "no_tv_shows": "Вы еще не добавили ни одного сериала в список просмотра."
+    },
+    "rated": {
+      "movies_title": "Оцененные вами фильмы",
+      "tv_shows_title": "Оцененные вами сериалы",
+      "no_movies": "Вы еще не оценили ни одного фильма.",
+      "no_tv_shows": "Вы еще не оценили ни одного сериала."
     }
   },
   "domains": {
@@ -236,69 +283,56 @@
       "cast": "Актеры с самым высоким рейтингом",
       "trailer": "Трейлер",
       "recommendations": "Если вам понравился этот фильм, вам также понравится...",
-      "no_trailer": "Нет трейлера.",
-      "release_date": "Дата выпуска",
-      "genres": "Жанры",
-      "score": "Счет",
-      "official_website": "Официальный сайт",
-      "status": "Статус",
-      "popularity": "Популярность",
       "budget": "Бюджет",
       "revenue": "Доход",
       "where_to_watch": "Где смотреть",
-      "stream": "Транслировать",
-      "buy": "Купить",
-      "rent": "Арендовать",
       "providers_attribution": "Потоковые данные предоставлены",
       "gallery": "Галерея",
       "similar": "Похожие фильмы",
       "reviews": "Отзывы пользователей",
       "awards": "Награды",
-      "fallback_overview": "Обзор этого фильма недоступен.",
-      "options_aria_label": "Больше возможностей для{title}"
+      "status": "Статус",
+      "stream": "Транслировать",
+      "rent": "Арендовать",
+      "buy": "Купить",
+      "official_website": "Официальный сайт",
+      "fallback_overview": "Обзор этого фильма недоступен."
     },
     "tv": {
-      "fallback_overview": "Обзор этого телешоу недоступен.",
-      "options_aria_label": "Больше возможностей для{name}",
-      "status": "Статус",
-      "popularity": "Популярность",
       "episodes": "Эпизоды",
+      "status": "Статус",
       "season": "Сезон",
       "seasons": "Сезоны",
       "reviews": "Отзывы пользователей",
       "created_by": "Создатель",
       "in_production": "В производстве",
       "series_badge": "Сериал",
-      "official_website": "Официальный сайт",
+      "recommendations": "Если вам понравилось это телешоу, вам также понравится...",
       "production_companies": "Производственные компании",
-      "recommendations": "Если вам понравилось это телешоу, вам также понравится..."
+      "fallback_overview": "Обзор этого телешоу недоступен.",
+      "official_website": "Официальный сайт"
     },
     "person": {
-      "castMovies": "Известен...",
       "biography": "Биография",
-      "noBiography": "Биография не доступна.",
-      "noPhoto": "Нет фото",
-      "readMore": "Читать далее",
-      "readLess": "Читать меньше",
-      "fallback_overview": "Для этого человека обзор недоступен.",
-      "options_aria_label": "Больше возможностей для{name}",
-      "known_for": "Известен по",
-      "popularity": "Популярность",
-      "also_known_as": "Также известен как",
-      "photos": "Фото",
-      "social_links_aria": "Ссылки на соцсети {name}",
-      "tv_credits": "Роли в сериалах",
-      "crew_credits": "За камерой",
       "show_biography_aria": "Показать полную биографию",
       "hide_biography_aria": "Скрыть биографию",
-      "castTvShows": "Известен по участию в телешоу..."
+      "noBiography": "Биография не доступна.",
+      "noPhoto": "Нет фото",
+      "popularity": "Популярность",
+      "known_for": "Известен по",
+      "castMovies": "Известен...",
+      "castTvShows": "Известен по участию в телешоу...",
+      "also_known_as": "Также известен как",
+      "photos": "Фото",
+      "crew_credits": "За камерой",
+      "fallback_overview": "Для этого человека обзор недоступен."
     }
   },
   "errors": {
     "network": "Пожалуйста, проверьте подключение к Интернету и повторите попытку.",
     "timeout": "Сервер отвечал слишком долго.",
     "not_found": "Нам не удалось найти запрошенный ресурс.",
-    "unauthorized": "Доступ запрещен. Пожалуйста, проверьте свои учетные данные API.",
+    "unauthorized": "В доступе отказано. Вы должны войти в систему, чтобы выполнить это действие.",
     "rate_limit": "Слишком много запросов. Пожалуйста, замедлите темп и повторите попытку позже.",
     "server_error": "На сервере TMDB в настоящее время возникают проблемы.",
     "default": "Произошла непредвиденная ошибка. Пожалуйста, попробуйте еще раз.",
@@ -324,5 +358,15 @@
     "NR": "Не оценено.",
     "Unrated": "Нет рейтинга",
     "fallback": "Возрастные рейтинги"
+  },
+  "tmdb": {
+    "jobs": {
+      "Director": "Режиссер",
+      "Producer": "Продюсер",
+      "Executive Producer": "Исполнительный продюсер",
+      "Songs": "Песни",
+      "Writer": "Сценарист",
+      "Screenplay": "Сценарий"
+    }
   }
 }

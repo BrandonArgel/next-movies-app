@@ -4,7 +4,6 @@ import { Bookmark, Heart, MoreVerticalIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState, useTransition } from "react";
 import { Dialog } from "react-aria-components";
-import { Popover, PopoverTrigger } from "@/components/ui/popover";
 import { sileo } from "sileo";
 import {
   getMediaAccountStateAction,
@@ -14,6 +13,7 @@ import {
   unrateMediaAction,
 } from "@/actions/media";
 import { Button } from "@/components/ui/button";
+import { Popover, PopoverTrigger } from "@/components/ui/popover";
 import { Rating } from "@/components/ui/rating";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
@@ -198,7 +198,7 @@ export function MediaActionsDropdown({
       <PopoverTrigger isOpen={isOpen} onOpenChange={handleOpenChange}>
         <Button
           variant="ghost"
-          className="flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md outline-none transition-colors hover:bg-black/80 focus-visible:ring-2 focus-visible:ring-primary"
+          className="flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white outline-none backdrop-blur-md transition-colors hover:bg-black/80 focus-visible:ring-2 focus-visible:ring-primary"
           aria-label={tActions("options_aria_label", { name: mediaTitle })}
         >
           <MoreVerticalIcon className="size-4" />
@@ -282,7 +282,7 @@ export function MediaActionsDropdown({
 
                 <div className="flex flex-col gap-2 px-2.5 py-1.5">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-muted-foreground">
+                    <span className="font-semibold text-muted-foreground text-xs">
                       {tActions("rate")}
                     </span>
                     {rating !== undefined && rating > 0 && (

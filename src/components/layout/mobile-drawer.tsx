@@ -3,7 +3,6 @@
 import {
   FilmIcon,
   MenuIcon,
-  SettingsIcon,
   TagIcon,
   TvIcon,
   UserIcon,
@@ -14,9 +13,6 @@ import { useTranslations } from "next-intl";
 import { type ReactNode, useState } from "react";
 import { NavLink } from "@/components/layout/nav-link";
 import { SearchBar } from "@/components/layout/search-bar";
-import { ColorToggle } from "@/components/theme/color-toggle";
-import { LanguageToggle } from "@/components/theme/language-toggle";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -115,7 +111,7 @@ export function MobileDrawer({ isAuthenticated }: MobileDrawerProps) {
       <SheetContent side="left" showCloseButton={false}>
         <SheetHeader>
           <div className="flex items-center justify-between">
-            <SheetTitle className="text-primary font-semibold text-lg">
+            <SheetTitle className="font-semibold text-lg text-primary">
               {tGlobal("app_name")}
             </SheetTitle>
             <SheetClose

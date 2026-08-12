@@ -86,7 +86,7 @@ export function TvShowCarousel({
   );
 }
 
-export function TVShowCarouselSkeleton() {
+function TVShowCarouselSkeleton() {
   return (
     <div className="w-full space-y-4">
       <div className="relative w-full">

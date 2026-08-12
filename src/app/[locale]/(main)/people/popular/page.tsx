@@ -2,6 +2,12 @@ import { getTranslations } from "next-intl/server";
 import { InfinitePeopleGrid } from "@/components/people/infinite-people-grid";
 import { getPopularPeople } from "@/lib/api/people";
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "pages.people.popular" });
+  return { title: t("title") };
+}
+
 export default async function PopularPeoplePage() {
   const t = await getTranslations("pages.people.popular");
 

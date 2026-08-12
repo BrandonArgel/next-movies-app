@@ -30,9 +30,9 @@ function extractState<T>(settled: PromiseSettledResult<any>): CategoryState<T> {
     if (settled.value.success) {
       return { success: true, data: settled.value.data };
     }
-    return { success: false, error: settled.value.error || "Error de la API" };
+    return { success: false, error: settled.value.error };
   }
-  return { success: false, error: settled.reason?.message || "Error de red" };
+  return { success: false, error: settled.reason?.message };
 }
 
 export async function generateMetadata({
@@ -46,6 +46,12 @@ export async function generateMetadata({
     title: query ? t("results", { query }) : t("title"),
     description: query ? t("results", { query }) : t("title"),
   };
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "components.nav" });
+  return { title: t("search") || "Search" };
 }
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {

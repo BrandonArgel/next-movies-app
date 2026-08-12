@@ -1,5 +1,5 @@
 import { Info, Tv2, Users } from "lucide-react";
-import { getFormatter, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { MediaHeroLayout } from "@/components/layout/media-hero-layout";
 import { MediaUserActions } from "@/components/layout/media-user-actions";
 import { Badge } from "@/components/ui/badge";

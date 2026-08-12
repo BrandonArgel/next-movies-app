@@ -5,11 +5,17 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { I18nProvider as AriaI18nProvider } from "react-aria";
 import { NetworkNotifier } from "@/components/network-notifier";
 import { ColorProvider } from "./color-provider";
+import { type AccentColor } from "@/lib/colors";
 import { LocaleProvider } from "./locale-provider";
 import { ReactAriaProvider } from "./react-aria-provider";
 import { ToastProvider } from "./toast-provider";
 
-export function AppProvider({ children }: { children: React.ReactNode }) {
+interface AppProviderProps {
+  children: React.ReactNode;
+  appColor: AccentColor;
+}
+
+export function AppProvider({ children, appColor }: AppProviderProps) {
   const t = useTranslations("global.network");
   const locale = useLocale();
 
@@ -22,7 +28,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     >
       <AriaI18nProvider locale={locale}>
         <LocaleProvider>
-          <ColorProvider>
+          <ColorProvider initialColor={appColor}>
             <ReactAriaProvider>
               <NetworkNotifier
                 dictionary={{

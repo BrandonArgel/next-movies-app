@@ -9,9 +9,9 @@ interface MovieCastProps {
 }
 
 export function MovieCast({ cast }: MovieCastProps) {
-  if (!cast || cast.length === 0) return;
-
   const t = useTranslations("domains.movie");
+
+  if (!cast || cast.length === 0) return;
 
   return (
     <section aria-labelledby="cast-heading" className="flex flex-col gap-4">
