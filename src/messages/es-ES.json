@@ -15,8 +15,8 @@
       "readMore": "Leer más",
       "readLess": "Leer menos",
       "options_aria_label": "Más opciones para {name}",
-      "cancel": "Cancel",
-      "confirm_over_18": "Yes, I am over 18 years old",
+      "cancel": "Cancelar",
+      "confirm_over_18": "Sí, soy mayor de 18 años",
       "login": "Iniciar sesión",
       "logout": "Cerrar sesión",
       "add_favorite": "Añadir a favoritos",
@@ -42,7 +42,7 @@
       "no_items_found": "No se encontraron elementos.",
       "no_results": "No hay resultados disponibles en este momento.",
       "loading_error": "No se pudieron cargar los datos:",
-      "try_again": "Intenta de nuevo",
+      "try_again": "Intentar de nuevo",
       "no_trailer": "No hay tráiler disponible."
     },
     "network": {
@@ -55,7 +55,7 @@
   "components": {
     "nav": {
       "home": "Inicio",
-      "trending_movies": "Películas de tendencia",
+      "trending_movies": "Películas en tendencia",
       "categories": "Categorías",
       "popular": "Populares",
       "upcoming": "Próximamente",
@@ -66,8 +66,8 @@
       "movies": "Películas",
       "tv_shows": "Series",
       "people": "Personas",
-      "genres": "Genres",
-      "user": "Mis cosas",
+      "genres": "Géneros",
+      "user": "Mi contenido",
       "favorites": "Favoritos",
       "list": "Mi lista",
       "ratings": "Mis valoraciones",
@@ -85,21 +85,21 @@
     },
     "filters": {
       "sort_by": "Ordenar por",
-      "sort_popularity_desc": "Popularidad: mayor a menor",
-      "sort_popularity_asc": "Popularidad: menor a mayor",
-      "sort_rating_desc": "Valoración: mayor a menor",
-      "sort_rating_asc": "Valoración: menor a mayor",
-      "sort_title_desc": "Título: Z-A",
-      "sort_title_asc": "Título: A-Z",
-      "sort_date_desc": "Fecha de estreno: más reciente a antigua",
-      "sort_date_asc": "Fecha de estreno: antigua a reciente",
-      "sort_first_air_date_desc": "Fecha de primera emisión: más reciente a antigua",
-      "sort_first_air_date_asc": "Fecha de primera emisión: antigua a reciente",
+      "sort_popularity_desc": "Popularidad (Mayor a menor)",
+      "sort_popularity_asc": "Popularidad (Menor a mayor)",
+      "sort_rating_desc": "Valoración (Mayor a menor)",
+      "sort_rating_asc": "Valoración (Menor a mayor)",
+      "sort_title_desc": "Título (Z-A)",
+      "sort_title_asc": "Título (A-Z)",
+      "sort_date_desc": "Fecha de estreno (Reciente a antigua)",
+      "sort_date_asc": "Fecha de estreno (Antigua a reciente)",
+      "sort_first_air_date_desc": "Fecha de primera emisión (Reciente a antigua)",
+      "sort_first_air_date_asc": "Fecha de primera emisión (Antigua a reciente)",
       "sort_by_genre": "Género",
       "all_genres": "Todos los géneros",
       "sort_by_release_dates": "Fechas de estreno",
       "pick_a_date": "Elige un rango de fechas",
-      "sort_by_runtime_minutes": "Duración (minutos)",
+      "sort_by_runtime_minutes": "Duración (Minutos)",
       "apply_filters": "Aplicar filtros",
       "applying_filters": "Aplicando filtros",
       "clear_filters": "Limpiar filtros"
@@ -119,7 +119,7 @@
         "green": "Verde",
         "cyan": "Cian",
         "indigo": "Índigo",
-        "purple": "Púrpura",
+        "purple": "Morado",
         "yellow": "Amarillo",
         "orange": "Naranja",
         "red": "Rojo",
@@ -144,6 +144,7 @@
       "rating_success": "Has valorado {title} correctamente",
       "unrate_success": "Se ha eliminado tu valoración de {title}",
       "action_error": "Se produjo un error al actualizar {title}",
+      "login_required": "Inicia sesión en tu cuenta para continuar.",
       "rating_labels": {
         "terrible": "Pésima",
         "bad": "Mala",
@@ -154,15 +155,15 @@
     },
     "alerts": {
       "adult_content": {
-        "title": "Adult Content",
-        "description": "This content is rated for adults and may contain explicit material or violence. Do you confirm you are over 18 years old?",
-        "card_overlay": "Adult content. Click to verify age."
+        "title": "Contenido para adultos",
+        "description": "Este contenido está clasificado para adultos y puede contener material explícito o violencia. ¿Confirmas que eres mayor de 18 años?",
+        "card_overlay": "Contenido para adultos. Haz clic para verificar tu edad."
       }
     },
     "footer": {
       "tagline": "Tu universo de películas, todo en un solo lugar.",
       "copyright": "© {year} BrandScope. Todos los derechos reservados.",
-      "powered_by": "Con tecnología de TMDB",
+      "powered_by": "Con tecnología de TMDB, creado por Brandon Argel",
       "disclaimer": "Este producto usa la API de TMDB pero no está respaldado ni certificado por TMDB.",
       "links": "Navegación",
       "legal": "Avisos legales"
@@ -177,20 +178,20 @@
       },
       "trending": {
         "movies": {
-          "title": "Películas de tendencia",
+          "title": "Películas en tendencia",
           "description": "Las películas más populares en este momento.",
           "day": "Hoy",
           "week": "Esta semana"
         },
         "tv_shows": {
-          "title": "Series de tendencia",
+          "title": "Series en tendencia",
           "description": "Las series más populares en este momento.",
           "day": "Hoy",
           "week": "Esta semana",
           "error": "Error al cargar series:"
         },
         "people": {
-          "title": "Personas de tendencia",
+          "title": "Personas en tendencia",
           "description": "Las personas más populares en este momento.",
           "day": "Hoy",
           "week": "Esta semana",
@@ -201,11 +202,11 @@
     "movies": {
       "popular": {
         "title": "Películas Populares",
-        "description": "Las películas más vistas."
+        "description": "Las películas más vistas en este momento."
       },
       "upcoming": {
         "title": "Próximos Estrenos",
-        "description": "Películas que llegarán pronto."
+        "description": "Películas que llegarán pronto a los cines."
       },
       "now_playing": {
         "title": "En Cartelera",
@@ -241,7 +242,7 @@
       }
     },
     "search": {
-      "title": "Búsqueda",
+      "title": "Búsqueda {query}",
       "placeholder": "¡Intenta buscar algo en la barra de búsqueda en la parte superior de la página!",
       "no_results": "No se encontraron resultados para \"{query}\".",
       "results": "Resultados de búsqueda para \"{query}\"",
@@ -253,7 +254,7 @@
       "filter_people": "Personas"
     },
     "genres": {
-      "title": "Categorías",
+      "title": "Géneros",
       "description": "Explora películas y series por género.",
       "movies_section": "Películas",
       "tv_section": "Series",
@@ -307,7 +308,7 @@
       "created_by": "Creado por",
       "in_production": "En producción",
       "series_badge": "Serie",
-      "recommendations": "Si te gustó este programa de televisión, también te gustará...",
+      "recommendations": "Si te gustó esta serie, también te gustará...",
       "production_companies": "Compañías de producción",
       "fallback_overview": "No hay descripción disponible para esta serie.",
       "official_website": "Sitio web oficial"
@@ -320,8 +321,8 @@
       "noPhoto": "Sin foto",
       "popularity": "Popularidad",
       "known_for": "Conocido por",
-      "castMovies": "Conocido por...",
-      "castTvShows": "Conocido por actuar en programas de televisión...",
+      "castMovies": "Conocido por actuar en películas...",
+      "castTvShows": "Conocido por actuar en series...",
       "also_known_as": "También conocido como",
       "photos": "Fotos",
       "crew_credits": "Detrás de las cámaras",
@@ -333,6 +334,7 @@
     "timeout": "El servidor tardó demasiado en responder.",
     "not_found": "No pudimos encontrar el recurso solicitado.",
     "unauthorized": "Acceso denegado. Debes iniciar sesión para realizar esta acción.",
+    "unauthorized_dev": "Acceso denegado. Configura tus claves de API de TMDB y OMDB correctamente.",
     "rate_limit": "Demasiadas solicitudes. Por favor reduce la velocidad e intenta más tarde.",
     "server_error": "El servidor de TMDB está experimentando problemas.",
     "default": "Ocurrió un error inesperado. Por favor intenta de nuevo.",
@@ -340,7 +342,7 @@
     "retry": "Reintentar",
     "search_unavailable": "El servicio de búsqueda no está disponible actualmente.",
     "load_movies_failed": "Error al cargar películas",
-    "load_tv_failed": "Error al cargar programas de televisión",
+    "load_tv_failed": "Error al cargar series",
     "load_people_failed": "Error al cargar personas"
   },
   "certifications": {

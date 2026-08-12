@@ -14,7 +14,7 @@ export async function fetchTMDB<T>(
     console.error(
       "TMDB_API_READ_ACCESS_TOKEN is missing in environment variables.",
     );
-    return { success: false, error: "unauthorized" };
+    return { success: false, error: "unauthorized_dev" };
   }
 
   try {

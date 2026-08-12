@@ -4,7 +4,7 @@
       "app_name": "BrandScope"
     },
     "entities": {
-      "movies": "Movies",
+      "movies": "Films",
       "tv_shows": "TV Shows",
       "people": "People"
     },
@@ -17,10 +17,10 @@
       "options_aria_label": "More options for {name}",
       "cancel": "Cancel",
       "confirm_over_18": "Yes, I am over 18 years old",
-      "login": "Login",
-      "logout": "Logout",
-      "add_favorite": "Add to favorites",
-      "remove_favorite": "Remove from favorites",
+      "login": "Log in",
+      "logout": "Log out",
+      "add_favorite": "Add to favourites",
+      "remove_favorite": "Remove from favourites",
       "add_watch_later": "Add to watch later",
       "remove_watch_later": "Remove from watch later",
       "rate": "Rate",
@@ -37,13 +37,13 @@
     "states": {
       "loading": "Loading...",
       "redirecting": "Redirecting...",
-      "logging_out": "Logging out",
+      "logging_out": "Logging out...",
       "no_more_results": "You've reached the end.",
       "no_items_found": "No items found.",
       "no_results": "No results available at the moment.",
       "loading_error": "Could not load data:",
       "try_again": "Try again",
-      "no_trailer": "No trailer available."
+      "no_trailer": "No trailer available"
     },
     "network": {
       "online_title": "Connection Restored",
@@ -55,20 +55,20 @@
   "components": {
     "nav": {
       "home": "Home",
-      "trending_movies": "Trending Movies",
+      "trending_movies": "Trending Films",
       "categories": "Categories",
       "popular": "Popular",
       "upcoming": "Upcoming",
       "now_playing": "Now Playing",
       "top_rated": "Top Rated",
       "airing_today": "Airing Today",
-      "on_the_air": "On The Air",
-      "movies": "Movies",
+      "on_the_air": "On TV",
+      "movies": "Films",
       "tv_shows": "TV Shows",
       "people": "People",
       "genres": "Genres",
       "user": "My Stuff",
-      "favorites": "Favorites",
+      "favorites": "Favourites",
       "list": "My List",
       "ratings": "My Ratings",
       "open_menu": "Open navigation menu",
@@ -114,7 +114,7 @@
         "preferences": "Preferences"
       },
       "color": {
-        "label": "Accent Color",
+        "label": "Accent Colour",
         "blue": "Blue",
         "green": "Green",
         "cyan": "Cyan",
@@ -124,8 +124,8 @@
         "orange": "Orange",
         "red": "Red",
         "pink": "Pink",
-        "gray": "Gray",
-        "toggle_color": "Toggle accent color"
+        "gray": "Grey",
+        "toggle_color": "Toggle accent colour"
       },
       "language": {
         "label": "Languages",
@@ -137,13 +137,14 @@
     "media_actions": {
       "success_title": "Success",
       "error_title": "Error",
-      "favorite_added": "{title} has been added to your favorites",
-      "favorite_removed": "{title} has been removed from your favorites",
-      "watch_later_added": "{title} has been added to watch later list",
-      "watch_later_removed": "{title} has been removed from watch later list",
+      "favorite_added": "{title} has been added to your favourites",
+      "favorite_removed": "{title} has been removed from your favourites",
+      "watch_later_added": "{title} has been added to your watch later list",
+      "watch_later_removed": "{title} has been removed from your watch later list",
       "rating_success": "You have successfully rated {title}",
       "unrate_success": "Your rating for {title} has been removed",
       "action_error": "An error occurred while updating {title}",
+      "login_required": "Please log in to your account to continue.",
       "rating_labels": {
         "terrible": "Terrible",
         "bad": "Bad",
@@ -160,9 +161,9 @@
       }
     },
     "footer": {
-      "tagline": "Your universe of movies, all in one place.",
+      "tagline": "Your universe of films, all in one place.",
       "copyright": "© {year} BrandScope. All rights reserved.",
-      "powered_by": "Powered by TMDB",
+      "powered_by": "Powered by TMDB, created by Brandon Argel",
       "disclaimer": "This product uses the TMDB API but is not endorsed or certified by TMDB.",
       "links": "Navigation",
       "legal": "Legal"
@@ -177,14 +178,14 @@
       },
       "trending": {
         "movies": {
-          "title": "Trending Movies",
-          "description": "The most popular movies right now.",
+          "title": "Trending Films",
+          "description": "The most popular films right now.",
           "day": "Today",
           "week": "This Week"
         },
         "tv_shows": {
           "title": "Trending TV Shows",
-          "description": "The most popular TV Shows right now.",
+          "description": "The most popular TV shows right now.",
           "day": "Today",
           "week": "This Week",
           "error": "Error loading TV shows:"
@@ -201,19 +202,19 @@
     "movies": {
       "popular": {
         "title": "Popular Films",
-        "description": "The most watched movies."
+        "description": "The most watched films right now."
       },
       "upcoming": {
         "title": "Upcoming Films",
-        "description": "Movies coming soon."
+        "description": "Films coming soon to cinemas."
       },
       "now_playing": {
         "title": "Now Playing",
         "description": "Films currently showing in cinemas."
       },
       "top_rated": {
-        "title": "Top Rated Movies",
-        "description": "The highest rated movies of all time."
+        "title": "Top Rated Films",
+        "description": "The highest rated films of all time."
       }
     },
     "tv": {
@@ -230,7 +231,7 @@
         "description": "The most popular TV shows right now."
       },
       "top_rated": {
-        "title": "Top Rated TV Shows",
+        "title": "Top Rated",
         "description": "The highest rated TV shows of all time."
       }
     },
@@ -241,40 +242,40 @@
       }
     },
     "search": {
-      "title": "Search",
+      "title": "Search {query}",
       "placeholder": "Try searching something in the search bar at the top of the page!",
       "no_results": "No results found for \"{query}\".",
       "results": "Search results for \"{query}\"",
       "results_count": "results",
       "view_all_results": "View all results",
       "filter_all": "All",
-      "filter_movies": "Movies",
+      "filter_movies": "Films",
       "filter_tv": "TV Shows",
       "filter_people": "People"
     },
     "genres": {
-      "title": "Categories",
-      "description": "Browse movies and TV shows by genre.",
+      "title": "Genres",
+      "description": "Browse films and TV shows by genre.",
       "movies_section": "Films",
       "tv_section": "TV Shows",
       "explore_genre": "Explore {genre}"
     },
     "favorites": {
-      "movies_title": "Your favorite movies",
-      "tv_shows_title": "Your favorite TV shows",
-      "no_movies": "You haven't added any movies to your favorites yet.",
-      "no_tv_shows": "You haven't added any TV shows to your favorites yet."
+      "movies_title": "Your favourite films",
+      "tv_shows_title": "Your favourite TV shows",
+      "no_movies": "You haven't added any films to your favourites yet.",
+      "no_tv_shows": "You haven't added any TV shows to your favourites yet."
     },
     "watch_later": {
-      "movies_title": "Movies to watch later",
+      "movies_title": "Films to watch later",
       "tv_shows_title": "TV shows to watch later",
-      "no_movies": "You haven't added any movies to your watch later list yet.",
+      "no_movies": "You haven't added any films to your watch later list yet.",
       "no_tv_shows": "You haven't added any TV shows to your watch later list yet."
     },
     "rated": {
-      "movies_title": "Your rated movies",
+      "movies_title": "Your rated films",
       "tv_shows_title": "Your rated TV shows",
-      "no_movies": "You haven't rated any movies yet.",
+      "no_movies": "You haven't rated any films yet.",
       "no_tv_shows": "You haven't rated any TV shows yet."
     }
   },
@@ -282,21 +283,21 @@
     "movie": {
       "cast": "Top Billed Cast",
       "trailer": "Trailer",
-      "recommendations": "If you liked this movie, you'll also like...",
+      "recommendations": "If you liked this film, you'll also like...",
       "budget": "Budget",
       "revenue": "Revenue",
       "where_to_watch": "Where to watch",
       "providers_attribution": "Streaming data provided by",
       "gallery": "Gallery",
-      "similar": "Similar movies",
-      "reviews": "User reviews",
+      "similar": "Similar films",
+      "reviews": "User Reviews",
       "awards": "Awards",
       "status": "Status",
       "stream": "Stream",
       "rent": "Rent",
       "buy": "Buy",
       "official_website": "Official website",
-      "fallback_overview": "No overview available for this movie."
+      "fallback_overview": "No overview available for this film."
     },
     "tv": {
       "episodes": "Episodes",
@@ -307,7 +308,7 @@
       "created_by": "Created by",
       "in_production": "In Production",
       "series_badge": "Series",
-      "recommendations": "If you liked this tv show, you'll also like...",
+      "recommendations": "If you liked this TV show, you'll also like...",
       "production_companies": "Production Companies",
       "fallback_overview": "No overview available for this TV show.",
       "official_website": "Official website"
@@ -320,8 +321,8 @@
       "noPhoto": "No photo",
       "popularity": "Popularity",
       "known_for": "Known for",
-      "castMovies": "Known for...",
-      "castTvShows": "Known for acting in TV Shows...",
+      "castMovies": "Known for acting in films...",
+      "castTvShows": "Known for acting in TV shows...",
       "also_known_as": "Also known as",
       "photos": "Photos",
       "crew_credits": "Behind the Camera",
@@ -333,13 +334,14 @@
     "timeout": "The server took too long to respond.",
     "not_found": "We couldn't find the requested resource.",
     "unauthorized": "Access denied. You must be logged in to perform this action.",
+    "unauthorized_dev": "Access denied. Please configure your TMDB and OMDB API keys correctly.",
     "rate_limit": "Too many requests. Please slow down and try again later.",
     "server_error": "The TMDB server is currently experiencing issues.",
     "default": "An unexpected error occurred. Please try again.",
     "title": "Something went wrong",
     "retry": "Retry",
     "search_unavailable": "The search service is currently unavailable.",
-    "load_movies_failed": "Failed to load movies",
+    "load_movies_failed": "Failed to load films",
     "load_tv_failed": "Failed to load TV shows",
     "load_people_failed": "Failed to load people"
   },

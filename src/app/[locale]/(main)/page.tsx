@@ -8,7 +8,11 @@ import { TrendingMoviesContainer } from "./_components/trending-movies-container
 import { TrendingPeopleContainer } from "./_components/trending-people-container";
 import { TrendingTvShowsContainer } from "./_components/trending-tv-shows-container";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "components.nav" });
   return { title: t("home") };

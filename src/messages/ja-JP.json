@@ -6,17 +6,17 @@
     "entities": {
       "movies": "映画",
       "tv_shows": "テレビ番組",
-      "people": "人々"
+      "people": "人物"
     },
     "actions": {
-      "back_to_home": "家に戻る",
+      "back_to_home": "ホームに戻る",
       "view_details": "詳細を見る",
       "view_details_of": "詳細を見る",
       "readMore": "続きを読む",
-      "readLess": "少なく読む",
+      "readLess": "一部を表示",
       "options_aria_label": "{name} のその他のオプション",
-      "cancel": "Cancel",
-      "confirm_over_18": "Yes, I am over 18 years old",
+      "cancel": "キャンセル",
+      "confirm_over_18": "はい、18歳以上です",
       "login": "ログイン",
       "logout": "ログアウト",
       "add_favorite": "お気に入りに追加",
@@ -28,235 +28,236 @@
     },
     "labels": {
       "results_count": "件",
-      "status": "状態",
-      "popularity": "人気",
+      "status": "ステータス",
+      "popularity": "人気度",
       "score": "スコア",
-      "release_date": "リリース日",
+      "release_date": "公開日",
       "genres": "ジャンル"
     },
     "states": {
       "loading": "読み込み中...",
       "redirecting": "リダイレクト中...",
       "logging_out": "ログアウト中",
-      "no_more_results": "最後まで到達しました。",
-      "no_items_found": "項目が見つかりません。",
-      "no_results": "現時点では結果はありません。",
-      "loading_error": "データをロードできませんでした:",
-      "try_again": "もう一度やり直してください",
-      "no_trailer": "トレーラーはありません。"
+      "no_more_results": "すべての結果を表示しました。",
+      "no_items_found": "アイテムが見つかりません。",
+      "no_results": "現在表示できる結果はありません。",
+      "loading_error": "データの読み込みに失敗しました:",
+      "try_again": "再試行",
+      "no_trailer": "予告編はありません"
     },
     "network": {
-      "online_title": "接続が復元されました",
+      "online_title": "接続が復旧しました",
       "online_description": "オンラインに戻りました。",
-      "offline_title": "接続がありません",
-      "offline_description": "インターネット接続が失われたようです。"
+      "offline_title": "オフライン",
+      "offline_description": "インターネット接続が失われました。"
     }
   },
   "components": {
     "nav": {
-      "home": "家",
-      "trending_movies": "話題の映画",
+      "home": "ホーム",
+      "trending_movies": "トレンド映画",
       "categories": "カテゴリー",
       "popular": "人気",
-      "upcoming": "今後の予定",
-      "now_playing": "プレイ中",
-      "top_rated": "最高評価",
+      "upcoming": "公開予定",
+      "now_playing": "上映中",
+      "top_rated": "高評価",
       "airing_today": "本日放送",
       "on_the_air": "放送中",
       "movies": "映画",
       "tv_shows": "テレビ番組",
-      "people": "人々",
-      "genres": "Genres",
-      "user": "私のもの",
+      "people": "人物",
+      "genres": "ジャンル",
+      "user": "マイリスト",
       "favorites": "お気に入り",
-      "list": "マイリスト",
-      "ratings": "私の評価",
-      "open_menu": "ナビゲーションメニューを開く",
-      "close_menu": "ナビゲーションメニューを閉じる",
+      "list": "後で見る",
+      "ratings": "マイ評価",
+      "open_menu": "メニューを開く",
+      "close_menu": "メニューを閉じる",
       "navigation": "メインナビゲーション",
       "settings": "設定",
       "profile": "プロフィール"
     },
     "search": {
-      "placeholder": "映画・TVシリーズ・人物を検索...",
+      "placeholder": "映画、テレビ番組、人物を検索...",
       "label": "検索",
-      "submit": "検索を送信",
-      "clear": "検索をクリア"
+      "submit": "検索",
+      "clear": "クリア"
     },
     "filters": {
-      "sort_by": "並び替え",
-      "sort_popularity_desc": "人気：高い順",
-      "sort_popularity_asc": "人気：低い順",
-      "sort_rating_desc": "評価：高い順",
-      "sort_rating_asc": "評価：低い順",
-      "sort_title_desc": "タイトル：Z→A",
-      "sort_title_asc": "タイトル：A→Z",
-      "sort_date_desc": "リリース日：新しい順",
-      "sort_date_asc": "リリース日：古い順",
-      "sort_first_air_date_desc": "初回放送日：新しい順",
-      "sort_first_air_date_asc": "初回放送日：古い順",
+      "sort_by": "並べ替え",
+      "sort_popularity_desc": "人気度 (高い順)",
+      "sort_popularity_asc": "人気度 (低い順)",
+      "sort_rating_desc": "評価 (高い順)",
+      "sort_rating_asc": "評価 (低い順)",
+      "sort_title_desc": "タイトル (Z-A)",
+      "sort_title_asc": "タイトル (A-Z)",
+      "sort_date_desc": "公開日 (新しい順)",
+      "sort_date_asc": "公開日 (古い順)",
+      "sort_first_air_date_desc": "初回放送日 (新しい順)",
+      "sort_first_air_date_asc": "初回放送日 (古い順)",
       "sort_by_genre": "ジャンル",
       "all_genres": "すべてのジャンル",
       "sort_by_release_dates": "公開日",
       "pick_a_date": "日付範囲を選択",
-      "sort_by_runtime_minutes": "上映時間（分）",
+      "sort_by_runtime_minutes": "上映時間 (分)",
       "apply_filters": "フィルターを適用",
-      "applying_filters": "フィルターを適用中",
+      "applying_filters": "適用中...",
       "clear_filters": "フィルターをクリア"
     },
     "preferences": {
       "theme": {
         "label": "テーマ",
         "light": "ライト",
-        "dark": "暗い",
+        "dark": "ダーク",
         "system": "システム",
-        "toggle_theme": "テーマの切り替え",
+        "toggle_theme": "テーマを切り替える",
         "preferences": "設定"
       },
       "color": {
         "label": "アクセントカラー",
-        "blue": "青",
-        "green": "緑",
+        "blue": "ブルー",
+        "green": "グリーン",
         "cyan": "シアン",
-        "indigo": "インジゴ",
-        "purple": "紫",
-        "yellow": "黄色",
+        "indigo": "インディゴ",
+        "purple": "パープル",
+        "yellow": "イエロー",
         "orange": "オレンジ",
-        "red": "赤",
+        "red": "レッド",
         "pink": "ピンク",
         "gray": "グレー",
-        "toggle_color": "アクセントカラーを切り替えます"
+        "toggle_color": "アクセントカラーを切り替える"
       },
       "language": {
         "label": "言語",
         "toggle_language": "言語を切り替える",
-        "search_language": "検索言語",
-        "language_selector": "言語セレクター"
+        "search_language": "言語を検索",
+        "language_selector": "言語選択"
       }
     },
     "media_actions": {
       "success_title": "成功",
       "error_title": "エラー",
-      "favorite_added": "{title} をお気に入りに追加しました",
-      "favorite_removed": "{title} をお気に入りから削除しました",
-      "watch_later_added": "{title} を「後で見る」に追加しました",
-      "watch_later_removed": "{title} を「後で見る」から削除しました",
-      "rating_success": "{title} を評価しました",
-      "unrate_success": "{title} の評価を削除しました",
-      "action_error": "{title} の更新中にエラーが発生しました",
+      "favorite_added": "「{title}」をお気に入りに追加しました",
+      "favorite_removed": "「{title}」をお気に入りから削除しました",
+      "watch_later_added": "「{title}」を後で見るリストに追加しました",
+      "watch_later_removed": "「{title}」を後で見るリストから削除しました",
+      "rating_success": "「{title}」を評価しました",
+      "unrate_success": "「{title}」の評価を削除しました",
+      "action_error": "「{title}」の更新中にエラーが発生しました",
+      "login_required": "続行するにはアカウントにログインしてください。",
       "rating_labels": {
         "terrible": "ひどい",
         "bad": "悪い",
         "average": "普通",
         "great": "良い",
-        "perfect": "素晴らしい"
+        "perfect": "最高"
       }
     },
     "alerts": {
       "adult_content": {
-        "title": "Adult Content",
-        "description": "This content is rated for adults and may contain explicit material or violence. Do you confirm you are over 18 years old?",
-        "card_overlay": "Adult content. Click to verify age."
+        "title": "成人向けコンテンツ",
+        "description": "このコンテンツは成人向けであり、過激な描写や暴力が含まれている可能性があります。18歳以上であることを確認しますか？",
+        "card_overlay": "成人向けコンテンツ。クリックして年齢を確認してください。"
       }
     },
     "footer": {
-      "tagline": "映画の世界をすべて 1 か所に。",
-      "copyright": "©{year}ブランドスコープ。無断転載を禁じます。",
-      "powered_by": "Brandon Argel によって作成された TMDB を利用",
-      "disclaimer": "この製品は TMDB API を使用していますが、TMDB によって承認または認定されていません。",
+      "tagline": "あなたの映画ユニバースを、ここに。",
+      "copyright": "© {year} BrandScope. All rights reserved.",
+      "powered_by": "Powered by TMDB, created by Brandon Argel",
+      "disclaimer": "この製品は TMDB API を使用していますが、TMDB によって承認または認定されているものではありません。",
       "links": "ナビゲーション",
-      "legal": "法律上の"
+      "legal": "法的情報"
     }
   },
   "pages": {
     "home": {
       "hero": {
         "trending": "トレンド！",
-        "play_trailer": "トレーラーを再生する",
-        "details": "さらに詳しく"
+        "play_trailer": "予告編を再生",
+        "details": "詳細を見る"
       },
       "trending": {
         "movies": {
-          "title": "話題の映画",
+          "title": "トレンド映画",
           "description": "今最も人気のある映画。",
           "day": "今日",
           "week": "今週"
         },
         "tv_shows": {
-          "title": "話題のテレビ番組",
+          "title": "トレンドのテレビ番組",
           "description": "今最も人気のあるテレビ番組。",
           "day": "今日",
           "week": "今週",
           "error": "テレビ番組の読み込みエラー:"
         },
         "people": {
-          "title": "注目の人物",
-          "description": "今一番人気のある人たち。",
+          "title": "話題の人物",
+          "description": "今最も人気のある人物。",
           "day": "今日",
           "week": "今週",
-          "error": "人物のロード中にエラーが発生しました:"
+          "error": "人物の読み込みエラー:"
         }
       }
     },
     "movies": {
       "popular": {
         "title": "人気映画",
-        "description": "最も視聴された映画。"
+        "description": "今最も視聴されている映画。"
       },
       "upcoming": {
-        "title": "近日公開映画",
-        "description": "もうすぐ劇場に映画が公開されます。"
+        "title": "公開予定の映画",
+        "description": "近日公開予定の映画。"
       },
       "now_playing": {
-        "title": "上映中",
-        "description": "現在上映中の映画。"
+        "title": "上映中の映画",
+        "description": "現在劇場で上映中の映画。"
       },
       "top_rated": {
-        "title": "高評価映画",
+        "title": "高評価の映画",
         "description": "歴代最高評価の映画。"
       }
     },
     "tv": {
       "airing_today": {
-        "title": "本日放送",
-        "description": "今日エピソードが放送されるシリーズ。"
+        "title": "本日放送の番組",
+        "description": "今日エピソードが放送されるテレビ番組。"
       },
       "on_the_air": {
-        "title": "放送中",
-        "description": "現在テレビで放送中のシリーズ。"
+        "title": "放送中の番組",
+        "description": "現在テレビで放送中の番組。"
       },
       "popular": {
-        "title": "人気TVシリーズ",
-        "description": "今最も人気のあるTVシリーズ。"
+        "title": "人気のテレビ番組",
+        "description": "今最も人気のあるテレビ番組。"
       },
       "top_rated": {
-        "title": "高評価TVシリーズ",
-        "description": "歴代最高評価のTVシリーズ。"
+        "title": "高評価のテレビ番組",
+        "description": "歴代最高評価のテレビ番組。"
       }
     },
     "people": {
       "popular": {
         "title": "人気の人物",
-        "description": "最も注目を集めている信優・監督・クリエイター。"
+        "description": "最も話題になっている俳優、監督、クリエイター。"
       }
     },
     "search": {
-      "title": "検索",
-      "placeholder": "ページ上部の検索バーで何か検索してみてください。",
-      "no_results": "「{query}」の結果は見つかりませんでした。",
-      "results": "「」の検索結果{query}」",
+      "title": "{query} の検索結果",
+      "placeholder": "ページ上部の検索バーから何か検索してみてください！",
+      "no_results": "「{query}」に一致する結果は見つかりませんでした。",
+      "results": "「{query}」の検索結果",
       "results_count": "件",
       "view_all_results": "すべての結果を表示",
       "filter_all": "すべて",
       "filter_movies": "映画",
-      "filter_tv": "TV番組",
+      "filter_tv": "テレビ番組",
       "filter_people": "人物"
     },
     "genres": {
-      "title": "カテゴリー",
-      "description": "ジャンル別に映画やTVシリーズを探す。",
+      "title": "ジャンル",
+      "description": "ジャンル別に映画やテレビ番組を探す。",
       "movies_section": "映画",
-      "tv_section": "TVシリーズ",
+      "tv_section": "テレビ番組",
       "explore_genre": "{genre} を探す"
     },
     "favorites": {
@@ -268,35 +269,35 @@
     "watch_later": {
       "movies_title": "後で見る映画",
       "tv_shows_title": "後で見るテレビ番組",
-      "no_movies": "「後で見る」に映画はまだ追加されていません。",
-      "no_tv_shows": "「後で見る」にテレビ番組はまだ追加されていません。"
+      "no_movies": "後で見るリストに映画はまだ追加されていません。",
+      "no_tv_shows": "後で見るリストにテレビ番組はまだ追加されていません。"
     },
     "rated": {
       "movies_title": "評価した映画",
       "tv_shows_title": "評価したテレビ番組",
-      "no_movies": "映画をまだ評価していません。",
-      "no_tv_shows": "テレビ番組をまだ評価していません。"
+      "no_movies": "まだ映画を評価していません。",
+      "no_tv_shows": "まだテレビ番組を評価していません。"
     }
   },
   "domains": {
     "movie": {
-      "cast": "主要キャスト",
-      "trailer": "トレーラー",
-      "recommendations": "この映画が気に入った方は、こちらも気に入っていただけると思います...",
+      "cast": "主なキャスト",
+      "trailer": "予告編",
+      "recommendations": "この映画が気に入った方は、こちらもおすすめ...",
       "budget": "予算",
-      "revenue": "収益",
-      "where_to_watch": "どこで見るか",
-      "providers_attribution": "ストリーミングデータ提供",
+      "revenue": "興行収入",
+      "where_to_watch": "配信サービス",
+      "providers_attribution": "配信データの提供元:",
       "gallery": "ギャラリー",
-      "similar": "類似の映画",
+      "similar": "似ている映画",
       "reviews": "ユーザーレビュー",
       "awards": "受賞歴",
-      "status": "状態",
-      "stream": "ストリーム",
-      "rent": "家賃",
-      "buy": "買う",
+      "status": "ステータス",
+      "stream": "定額制",
+      "rent": "レンタル",
+      "buy": "購入",
       "official_website": "公式サイト",
-      "fallback_overview": "この映画の概要はありません。"
+      "fallback_overview": "この映画のあらすじは提供されていません。"
     },
     "tv": {
       "episodes": "エピソード",
@@ -304,59 +305,60 @@
       "season": "シーズン",
       "seasons": "シーズン",
       "reviews": "ユーザーレビュー",
-      "created_by": "制作",
+      "created_by": "クリエイター",
       "in_production": "制作中",
       "series_badge": "シリーズ",
-      "recommendations": "このテレビ番組が気に入った方は、こちらも気に入るでしょう...",
+      "recommendations": "この番組が気に入った方は、こちらもおすすめ...",
       "production_companies": "制作会社",
-      "fallback_overview": "このテレビ番組の概要はありません。",
+      "fallback_overview": "このテレビ番組のあらすじは提供されていません。",
       "official_website": "公式サイト"
     },
     "person": {
       "biography": "バイオグラフィー",
-      "show_biography_aria": "略歴を表示",
-      "hide_biography_aria": "経歴を隠す",
-      "noBiography": "経歴はありません。",
+      "show_biography_aria": "バイオグラフィーをすべて表示",
+      "hide_biography_aria": "バイオグラフィーを隠す",
+      "noBiography": "バイオグラフィーはありません。",
       "noPhoto": "写真なし",
       "popularity": "人気度",
       "known_for": "代表作",
-      "castMovies": "で知られる...",
-      "castTvShows": "テレビ番組での演技で知られる...",
+      "castMovies": "映画の出演作...",
+      "castTvShows": "テレビ番組の出演作...",
       "also_known_as": "別名",
       "photos": "写真",
-      "crew_credits": "スタッフとして",
-      "fallback_overview": "この人物に関する概要はありません。"
+      "crew_credits": "制作スタッフ",
+      "fallback_overview": "この人物の経歴は提供されていません。"
     }
   },
   "errors": {
-    "network": "インターネット接続を確認して、もう一度試してください。",
+    "network": "インターネット接続を確認して、もう一度お試しください。",
     "timeout": "サーバーの応答に時間がかかりすぎました。",
-    "not_found": "要求されたリソースが見つかりませんでした。",
-    "unauthorized": "アクセスが拒否されました。この操作を行うにはログインする必要があります。",
-    "rate_limit": "リクエストが多すぎます。速度を落として、後でもう一度試してください。",
-    "server_error": "TMDB サーバーで現在問題が発生しています。",
-    "default": "予期しないエラーが発生しました。もう一度試してください。",
-    "title": "何か問題が発生しました",
-    "retry": "リトライ",
-    "search_unavailable": "検索サービスは現在利用できません。",
+    "not_found": "リクエストされたリソースが見つかりませんでした。",
+    "unauthorized": "アクセスが拒否されました。この操作を行うにはログインしてください。",
+    "unauthorized_dev": "アクセスが拒否されました。TMDBおよびOMDBのAPIキーを正しく設定してください。",
+    "rate_limit": "リクエストが多すぎます。しばらくしてからもう一度お試しください。",
+    "server_error": "TMDBサーバーで現在問題が発生しています。",
+    "default": "予期しないエラーが発生しました。もう一度お試しください。",
+    "title": "エラーが発生しました",
+    "retry": "再試行",
+    "search_unavailable": "現在検索サービスは利用できません。",
     "load_movies_failed": "映画の読み込みに失敗しました",
     "load_tv_failed": "テレビ番組の読み込みに失敗しました",
     "load_people_failed": "人物の読み込みに失敗しました"
   },
   "certifications": {
-    "G": "すべての視聴者に適しています。",
-    "PG": "保護者の指導が推奨されました。",
-    "PG-13": "13歳未満の子供に対する厳しい保護者の指導。",
-    "R": "制限付き。 17 歳未満のお子様には大人の同伴が必要です。",
-    "NC-17": "大人専用。 17歳未満の方は閲覧できません。",
-    "TV-Y": "すべてのお子様に適しています。",
-    "TV-Y7": "7歳以上のお子様向け。",
-    "TV-G": "すべての視聴者に適しています。",
-    "TV-PG": "保護者の指導が推奨されました。",
-    "TV-14": "14 歳未満のお子様には適していません。",
-    "TV-MA": "成人向けのみ。",
-    "NR": "評価されていません。",
-    "Unrated": "評価されていません",
+    "G": "年齢制限なし。すべての観客向け。",
+    "PG": "保護者の同伴が推奨されます。",
+    "PG-13": "13歳未満の子供には保護者の厳重な注意が必要です。",
+    "R": "17歳未満は保護者の同伴が必要です。",
+    "NC-17": "18歳未満は鑑賞できません。",
+    "TV-Y": "すべての子供向け。",
+    "TV-Y7": "7歳以上の子供向け。",
+    "TV-G": "年齢制限なし。すべての観客向け。",
+    "TV-PG": "保護者の同伴が推奨されます。",
+    "TV-14": "14歳未満の子供には適していません。",
+    "TV-MA": "成人向け。",
+    "NR": "審査なし。",
+    "Unrated": "審査なし",
     "fallback": "年齢制限"
   },
   "tmdb": {
@@ -364,8 +366,8 @@
       "Director": "監督",
       "Producer": "プロデューサー",
       "Executive Producer": "製作総指揮",
-      "Songs": "曲",
-      "Writer": "ライター",
+      "Songs": "楽曲",
+      "Writer": "脚本家",
       "Screenplay": "脚本"
     }
   }

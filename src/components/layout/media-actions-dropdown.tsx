@@ -19,6 +19,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { useAppLocale } from "@/providers/locale-provider";
 import type { MediaType } from "@/types/media";
+import { useAuth } from "@/providers/auth-provider";
 
 interface MediaActionsDropdownProps {
   mediaId: number;
@@ -38,6 +39,7 @@ export function MediaActionsDropdown({
   className,
 }: MediaActionsDropdownProps) {
   const { direction } = useAppLocale();
+  const isAuthenticated = useAuth();
   const t = useTranslations("components.media_actions");
   const tActions = useTranslations("global.actions");
 
@@ -52,6 +54,19 @@ export function MediaActionsDropdown({
   const [isFavoritePending, startFavoriteTransition] = useTransition();
   const [isWatchLaterPending, startWatchListTransition] = useTransition();
   const [isRatingPending, startRatingTransition] = useTransition();
+
+  const checkAuthAndNotify = () => {
+    if (!isAuthenticated) {
+      sileo.info({
+        title: tActions("login"),
+        description: t("login_required", {
+          fallback: "You must be logged in to perform this action.",
+        }),
+      });
+      return false;
+    }
+    return true;
+  };
 
   const fetchState = async () => {
     setIsLoadingState(true);
@@ -76,14 +91,20 @@ export function MediaActionsDropdown({
     onOpenChange?.(open);
 
     if (open && !hasFetchedState) {
-      fetchState();
+      if (isAuthenticated) {
+        fetchState();
+      } else {
+        setHasFetchedState(true);
+      }
     }
   };
 
   const handleFavoritePress = () => {
+    if (!checkAuthAndNotify()) return;
+
     const previousState = isFavorite;
     const nextState = !isFavorite;
-    setIsFavorite(nextState); // Actualización optimista
+    setIsFavorite(nextState);
 
     startFavoriteTransition(async () => {
       const result = await toggleFavoriteAction(mediaId, nextState, mediaType);
@@ -96,7 +117,7 @@ export function MediaActionsDropdown({
             : t("favorite_removed", { title: mediaTitle }),
         });
       } else {
-        setIsFavorite(previousState); // Reversión en caso de error
+        setIsFavorite(previousState);
         sileo.error({
           title: t("error_title"),
           description: t("action_error", { title: mediaTitle }),
@@ -106,9 +127,11 @@ export function MediaActionsDropdown({
   };
 
   const handleWatchLaterPress = () => {
+    if (!checkAuthAndNotify()) return;
+
     const previousState = isWatchLater;
     const nextState = !isWatchLater;
-    setIsWatchLater(nextState); // Actualización optimista
+    setIsWatchLater(nextState);
 
     startWatchListTransition(async () => {
       const result = await toggleWatchListAction(mediaId, nextState, mediaType);
@@ -121,7 +144,7 @@ export function MediaActionsDropdown({
             : t("watch_later_removed", { title: mediaTitle }),
         });
       } else {
-        setIsWatchLater(previousState); // Reversión en caso de error
+        setIsWatchLater(previousState);
         sileo.error({
           title: t("error_title"),
           description: t("action_error", { title: mediaTitle }),
@@ -131,10 +154,12 @@ export function MediaActionsDropdown({
   };
 
   const handleRatingClick = (value: number) => {
+    if (!checkAuthAndNotify()) return;
+
     const previousState = rating;
     const newState = value * 2;
     if (rating === newState) return;
-    setRating(newState); // Actualización optimista
+    setRating(newState);
 
     startRatingTransition(async () => {
       const result = await rateMediaAction(mediaId, newState, mediaType);
@@ -145,7 +170,7 @@ export function MediaActionsDropdown({
           description: t("rating_success", { title: mediaTitle }),
         });
       } else {
-        setRating(previousState); // Reversión en caso de error
+        setRating(previousState);
         sileo.error({
           title: t("error_title"),
           description: t("action_error", { title: mediaTitle }),
@@ -155,8 +180,10 @@ export function MediaActionsDropdown({
   };
 
   const handleUnratingPress = () => {
+    if (!checkAuthAndNotify()) return;
+
     const previousState = rating;
-    setRating(undefined); // Actualización optimista
+    setRating(undefined);
 
     startRatingTransition(async () => {
       const result = await unrateMediaAction(mediaId, mediaType);
@@ -167,7 +194,7 @@ export function MediaActionsDropdown({
           description: t("unrate_success", { title: mediaTitle }),
         });
       } else {
-        setRating(previousState); // Reversión en caso de error
+        setRating(previousState);
         sileo.error({
           title: t("error_title"),
           description: t("action_error", { title: mediaTitle }),
@@ -211,13 +238,11 @@ export function MediaActionsDropdown({
           <Dialog className="flex flex-col outline-none">
             {isLoadingState ? (
               <div className="flex flex-col outline-none">
-                {/* Favorite */}
                 <div className="flex w-full items-center gap-2.5 px-2.5 py-2">
                   <Skeleton className="size-4 rounded-sm" />
                   <Skeleton className="h-4 w-32 rounded-sm" />
                 </div>
 
-                {/* Watch Later */}
                 <div className="flex w-full items-center gap-2.5 px-2.5 py-2">
                   <Skeleton className="size-4 rounded-sm" />
                   <Skeleton className="h-4 w-36 rounded-sm" />
@@ -225,7 +250,6 @@ export function MediaActionsDropdown({
 
                 <div className="-mx-1 my-1 h-px bg-border" />
 
-                {/* Rating */}
                 <div className="flex flex-col gap-2 px-2.5 py-1.5">
                   <div className="flex items-center justify-between">
                     <Skeleton className="h-3 w-10 rounded-sm" />

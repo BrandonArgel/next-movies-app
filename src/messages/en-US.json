@@ -144,6 +144,7 @@
       "rating_success": "You have successfully rated {title}",
       "unrate_success": "Your rating for {title} has been removed",
       "action_error": "An error occurred while updating {title}",
+      "login_required": "Please log in to your account to continue.",
       "rating_labels": {
         "terrible": "Terrible",
         "bad": "Bad",
@@ -333,6 +334,7 @@
     "timeout": "The server took too long to respond.",
     "not_found": "We couldn't find the requested resource.",
     "unauthorized": "Access denied. You must be logged in to perform this action.",
+    "unauthorized_dev": "Access denied. Please configure your TMDB and OMDB API keys correctly.",
     "rate_limit": "Too many requests. Please slow down and try again later.",
     "server_error": "The TMDB server is currently experiencing issues.",
     "default": "An unexpected error occurred. Please try again.",
