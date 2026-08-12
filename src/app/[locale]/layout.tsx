@@ -85,7 +85,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
       description:
         "A modern, fully internationalized movie app built with Next.js.",
-      images: [`${baseUrl}/og-image.png`],
+      images: [`${baseUrl}/og.png`],
     },
     alternates: {
       canonical: "./",
