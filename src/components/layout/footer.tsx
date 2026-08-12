@@ -5,10 +5,10 @@ import { Link } from "@/i18n/navigation";
 
 const NAV_LINKS = [
   { href: "/", labelKey: "home" as const },
-  { href: "/trending", labelKey: "trending_movies" as const },
-  { href: "/categories", labelKey: "categories" as const },
-  { href: "/popular", labelKey: "popular" as const },
-  { href: "/upcoming", labelKey: "upcoming" as const },
+  { href: "/movies/popular", labelKey: "popular" as const },
+  { href: "/movies/upcoming", labelKey: "upcoming" as const },
+  { href: "/movies/top-rated", labelKey: "top_rated" as const },
+  { href: "/genres", labelKey: "genres" as const },
 ] as const;
 
 export async function Footer() {
