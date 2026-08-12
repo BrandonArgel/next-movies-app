@@ -128,7 +128,7 @@ export async function MovieDetailHero({
           <MediaUserActions
             mediaId={movie?.id}
             mediaTitle={movie?.title}
-            mediaType="tv"
+            mediaType="movie"
             initialFavorite={accountState.favorite}
             initialWatchLater={accountState.watchlist}
             initialRating={accountState.rated?.value}
