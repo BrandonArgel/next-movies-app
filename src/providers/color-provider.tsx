@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { createContext, useCallback, useContext, useState } from "react";
-import { ACCENT_COLORS_VALUES, type AccentColor } from "@/lib/colors"; // Nueva importación
+import { ACCENT_COLORS_VALUES, type AccentColor } from "@/lib/colors";
 
 interface ColorContextType {
   color: AccentColor;

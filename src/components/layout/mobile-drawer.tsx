@@ -149,13 +149,16 @@ export function MobileDrawer({ isAuthenticated }: MobileDrawerProps) {
           <Separator className="my-3" />
 
           {isAuthenticated && (
-            <NavSection
-              label={tNav("user")}
-              icon={<UserIcon className="size-3.5" />}
-              links={USER_LINKS}
-              tNav={tNav}
-              onClose={close}
-            />
+            <>
+              <NavSection
+                label={tNav("user")}
+                icon={<UserIcon className="size-3.5" />}
+                links={USER_LINKS}
+                tNav={tNav}
+                onClose={close}
+              />
+              <Separator className="my-3" />
+            </>
           )}
 
           <NavSection

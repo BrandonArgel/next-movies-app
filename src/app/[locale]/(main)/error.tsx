@@ -1,4 +1,3 @@
-// src/app/[locale]/(main)/error.tsx
 "use client";
 
 import { useTranslations } from "next-intl";
