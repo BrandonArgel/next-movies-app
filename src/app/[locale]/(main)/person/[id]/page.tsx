@@ -79,7 +79,6 @@ export default async function PersonPage({ params }: PersonPageProps) {
   const rawCrewCredits =
     person.movie_credits?.crew.filter((c) => c.poster_path && c.job) || [];
 
-  // 1. Agrupar los trabajos en un arreglo temporal por película
   const groupedCrewMap = rawCrewCredits.reduce((map, current) => {
     const translatedJob = tJobs.has(current.job as any)
       ? tJobs(current.job as any)
@@ -87,7 +86,6 @@ export default async function PersonPage({ params }: PersonPageProps) {
 
     if (map.has(current.id)) {
       const existing = map.get(current.id);
-      // Evitar trabajos duplicados idénticos para la misma película
       if (!existing.jobsArray.includes(translatedJob)) {
         existing.jobsArray.push(translatedJob);
       }
@@ -97,7 +95,6 @@ export default async function PersonPage({ params }: PersonPageProps) {
     return map;
   }, new Map());
 
-  // 2. Mapear el resultado para aplicar format.list
   const deduplicatedCrew = Array.from(groupedCrewMap.values()).map(
     (movie: any) => ({
       ...movie,
@@ -105,7 +102,6 @@ export default async function PersonPage({ params }: PersonPageProps) {
     }),
   );
 
-  // 3. Ordenar y cortar
   const crewMovieCredits = deduplicatedCrew
     .sort((a, b) => b.popularity - a.popularity)
     .slice(0, 20);

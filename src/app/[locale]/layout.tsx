@@ -1,17 +1,21 @@
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { cookies } from "next/headers";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import {
+  getMessages,
+  getTimeZone,
+  getTranslations,
+  setRequestLocale,
+} from "next-intl/server";
 import { type Locale, routing } from "@/i18n/routing";
-import { AppProvider } from "@/providers/app-provider";
-import { ACCENT_COLORS_VALUES, type AccentColor } from "@/lib/colors";
 import { requireUser } from "@/lib/auth-utils";
+import { ACCENT_COLORS_VALUES, type AccentColor } from "@/lib/colors";
 import { getDirection } from "@/lib/locale-utils";
+import { AppProvider } from "@/providers/app-provider";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -115,6 +119,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(validLocale);
   const direction = getDirection(validLocale);
   const messages = await getMessages();
+  const timeZone = await getTimeZone();
 
   const cookieStore = await cookies();
   const appColor = (cookieStore.get("app-color")?.value ||
@@ -136,6 +141,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           appColor={appColor}
           messages={messages}
           locale={validLocale}
+          timeZone={timeZone}
           isAuthenticated={isAuthenticated}
         >
           {children}

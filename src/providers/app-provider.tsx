@@ -1,24 +1,24 @@
-// src/providers/app-provider.tsx
 "use client";
 
-import { NextIntlClientProvider, useTranslations } from "next-intl";
 import type { AbstractIntlMessages } from "next-intl";
+import { NextIntlClientProvider, useTranslations } from "next-intl";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { I18nProvider as AriaI18nProvider } from "react-aria";
 import { NetworkNotifier } from "@/components/network-notifier";
-import { type AccentColor } from "@/lib/colors";
+import { formats } from "@/i18n/formats";
+import type { AccentColor } from "@/lib/colors";
+import { AuthProvider } from "./auth-provider";
 import { ColorProvider } from "./color-provider";
 import { LocaleProvider } from "./locale-provider";
 import { ReactAriaProvider } from "./react-aria-provider";
 import { ToastProvider } from "./toast-provider";
-import { AuthProvider } from "./auth-provider";
-import { formats } from "@/i18n/formats";
 
 interface AppProviderProps {
   children: React.ReactNode;
   appColor: AccentColor;
   messages: AbstractIntlMessages;
   locale: string;
+  timeZone?: string;
   isAuthenticated: boolean;
 }
 
@@ -27,6 +27,7 @@ export function AppProvider({
   appColor,
   messages,
   locale,
+  timeZone = "UTC",
   isAuthenticated,
 }: AppProviderProps) {
   return (
@@ -34,6 +35,7 @@ export function AppProvider({
       locale={locale}
       messages={messages}
       formats={formats}
+      timeZone={timeZone}
     >
       <NextThemesProvider
         attribute="class"

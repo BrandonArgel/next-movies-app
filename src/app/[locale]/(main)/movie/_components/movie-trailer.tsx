@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import type { VideoResult } from "@/types/media";
-import { TrailerIframe } from "./trailer-iframe"; // Importamos el cliente
+import { TrailerIframe } from "./trailer-iframe";
 
 interface MovieTrailerProps {
   videos: VideoResult[];

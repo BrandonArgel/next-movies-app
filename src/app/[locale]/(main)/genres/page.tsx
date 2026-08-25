@@ -27,7 +27,6 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getMovieGenres, getTvShowGenres } from "@/lib/api/genres";
 
-// Standard TMDB Genre IDs mapped to Lucide icons
 const GENRE_ICONS: Record<number, React.ElementType> = {
   // Movies & Shared
   28: SwordsIcon, // Action

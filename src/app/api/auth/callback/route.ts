@@ -1,5 +1,3 @@
-// app/api/auth/callback/route.ts
-
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { createSession } from "@/lib/api/auth";
@@ -25,7 +23,6 @@ export async function GET(request: Request) {
     );
   }
 
-  // Store session_id securely
   cookieStore.set({
     name: TMDB_SESSION_ID_COOKIE,
     value: res.data.session_id,

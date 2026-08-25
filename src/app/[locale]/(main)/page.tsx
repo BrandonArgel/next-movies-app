@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { MovieCarouselSkeleton } from "@/components/movies/movies-carousel";
 import { getTrendingMovies } from "@/lib/api/movies";
 import { requireUser } from "@/lib/auth-utils";

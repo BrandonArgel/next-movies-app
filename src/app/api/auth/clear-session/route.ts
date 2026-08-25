@@ -1,4 +1,3 @@
-// app/api/auth/clear-session/route.ts
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { TMDB_SESSION_ID_COOKIE } from "@/lib/constants";

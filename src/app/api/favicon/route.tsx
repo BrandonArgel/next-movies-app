@@ -91,7 +91,6 @@ export function GET(request: Request) {
   return new NextResponse(svgString, {
     headers: {
       "Content-Type": "image/svg+xml",
-      // Permite que el navegador cachee el favicon localmente por URL
       "Cache-Control": "public, max-age=31536000, immutable",
     },
   });

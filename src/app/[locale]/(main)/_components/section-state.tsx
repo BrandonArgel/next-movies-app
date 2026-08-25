@@ -19,9 +19,6 @@ type SectionStateProps =
 export async function SectionState(props: SectionStateProps) {
   const tGlobal = await getTranslations("global");
 
-  // -----------------------------------------------------
-  // 1. STATUS: NO RESULTS (Empty)
-  // -----------------------------------------------------
   if (props.type === "empty") {
     return (
       <Empty className="rounded-xl border border-dashed bg-muted/20 p-12">
@@ -35,9 +32,6 @@ export async function SectionState(props: SectionStateProps) {
     );
   }
 
-  // -----------------------------------------------------
-  // 2. STATUS: ERROR
-  // -----------------------------------------------------
   const tErrors = await getTranslations("errors");
   const title = `${tGlobal("states.loading_error")} ${tGlobal(`entities.${props.entity}`)}`;
 

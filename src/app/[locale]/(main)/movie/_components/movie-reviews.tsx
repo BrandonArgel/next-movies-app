@@ -1,4 +1,3 @@
-// _components/movie-reviews.tsx
 import { useTranslations } from "next-intl";
 import { ReviewCard } from "@/components/movies/review-card";
 import type { Review } from "@/types/movies";
